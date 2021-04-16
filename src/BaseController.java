@@ -14,7 +14,6 @@ public class BaseController {
     @FXML
     private void buttonPressed(Event e){
         //todo Notify backend
-        addBox(); //todo remove
     }
     public void addBox(){
         //todo accually add box
