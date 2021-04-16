@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Base.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/Base.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/BaseController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BaseController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
