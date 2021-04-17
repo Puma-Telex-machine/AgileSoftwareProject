@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Box.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Model.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Observer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/Base.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/Base.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/BaseController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Base.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodel/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +26,7 @@
       <list>
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -38,11 +43,17 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15625" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="model" />
+      <recent name="viewmodel" />
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\emilh\Documents\GitHub\AgileSoftwareProject\src\view" />
     </key>
   </component>
   <component name="RunManager">
@@ -86,5 +97,16 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/model/Model.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
