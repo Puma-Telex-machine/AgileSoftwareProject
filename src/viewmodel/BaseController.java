@@ -1,8 +1,12 @@
+package viewmodel;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import model.Box;
+import model.Observer;
 
-public class BaseController {
+public class BaseController implements Observer{
 
     @FXML
     private Label boxLabel;
@@ -17,10 +21,12 @@ public class BaseController {
     private void buttonPressed(Event e){
         //todo Notify backend
     }
-    public void addBox(){
+    @Override
+    public void addBox(Box box){
         //todo accually add box
         boxLabel.setText("box added");
     }
+    @FXML
     public void contextmenu(){
         //todo add adding of boxes here
         context.setText("contextMenu opened");
