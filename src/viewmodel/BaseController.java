@@ -4,7 +4,10 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import model.Box;
+import model.Model;
 import model.Observer;
+
+import java.awt.*;
 
 public class BaseController implements Observer{
 
@@ -13,14 +16,18 @@ public class BaseController implements Observer{
     @FXML
     private Label context;
 
-    public BaseController(){
+    Model model;
 
+    public BaseController() {
+        model = Model.getModel();
+        model.addObserver(this);
     }
 
     @FXML
-    private void buttonPressed(Event e){
-        //todo Notify backend
+    private void buttonPressed(Event e) {
+        model.addBox(new Point(0, 0));
     }
+
     @Override
     public void addBox(Box box){
         //todo accually add box
