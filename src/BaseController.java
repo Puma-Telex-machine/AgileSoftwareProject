@@ -6,6 +6,8 @@ public class BaseController {
 
     @FXML
     private Label boxLabel;
+    @FXML
+    private Label context;
 
     public BaseController(){
 
@@ -18,5 +20,9 @@ public class BaseController {
     public void addBox(){
         //todo accually add box
         boxLabel.setText("box added");
+    }
+    public void contextmenu(){
+        //todo add adding of boxes here
+        context.setText("contextMenu opened");
     }
 }
