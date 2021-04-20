@@ -3,8 +3,7 @@
         "src"
     ],
     "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "/Users/madeleinexia/Downloads/LAB DKGG/javafx-sdk-11.0.2/**/*.jar",
+     
         "/Users/madeleinexia/Downloads/javafx-sdk-11.0.2/lib/javafx.base.jar",
         "/Users/madeleinexia/Downloads/javafx-sdk-11.0.2/lib/javafx.controls.jar",
         "/Users/madeleinexia/Downloads/javafx-sdk-11.0.2/lib/javafx.swing.jar",
@@ -14,4 +13,4 @@
         "/Users/madeleinexia/Downloads/javafx-sdk-11.0.2/lib/javafx.graphics.jar",
         "/Users/madeleinexia/Downloads/javafx-sdk-11.0.2/lib/javafx.media.jar"
     ]
-}
+} 
