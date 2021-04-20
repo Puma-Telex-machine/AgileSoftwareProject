@@ -1,0 +1,24 @@
+.text-Large{
+    -fx-text-fill: "DBDBDB";
+    -fx-font-size: 20px;
+    -fx-font-family: "Roboto";
+}
+.text-small{
+    -fx-text-fill: "DBDBDB";
+    -fx-font-size: 12px;
+    -fx-font-family: "Roboto";
+}
+
+.background{
+    -fx-background-color: "#1B1E22";
+}
+.highlight{
+    -fx-background-color: "#585858";
+}
+.box{
+    -fx-background-color: "#3E4046";
+}
+.border{
+    -fx-border-color: "#000000";
+    -fx-border-width: 1;
+}
