@@ -4,12 +4,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane onContextMenuRequested="#contextmenu" onDragOver="#dragOver" onMouseDragged="#handleDragStart" prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewmodel.BaseController">
+<AnchorPane onContextMenuRequested="#contextmenu" onMouseDragged="#handleDragStart" prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewmodel.BaseController">
    <children>
       <Button layoutX="111.0" layoutY="58.0" mnemonicParsing="false" onAction="#buttonPressed" text="Add Box" />
       <Label fx:id="boxLabel" layoutX="271.0" layoutY="148.0" text="No Box" />
       <Label fx:id="context" layoutX="131.0" layoutY="192.0" text="No contextmenu" />
-      <Label fx:id="source" layoutX="190.0" layoutY="331.0" text="Source" />
+      <Label fx:id="source" layoutX="190.0" layoutY="331.0" onMouseDragged="#handleDragLabel" onMouseReleased="#handleDragOver" text="Source" />
       <Label fx:id="target" layoutX="340.0" layoutY="323.0" text="Target" />
    </children>
 </AnchorPane>

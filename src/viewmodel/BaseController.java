@@ -47,17 +47,24 @@ public class BaseController implements Observer{
         //todo add adding of boxes here
         context.setText("contextMenu opened");
     }
+
+    double offset=0;
+    boolean pressed=false;
     @FXML
     public void handleDragStart(MouseEvent event){
+
+    }
+    @FXML
+    public void handleDragLabel(MouseEvent event){
         source.setText("dragging");
-        source.setLayoutX(event.getX()-25);
-        source.setLayoutY(event.getY());
+
+        source.setLayoutX(source.getLayoutX()+event.getX()-25);
+        source.setLayoutY(source.getLayoutY()+event.getY());
+        System.out.println(offset);
         event.consume();
     }
-    public void dragOver(DragEvent dragEvent){
+    public void handleDragOver(MouseEvent event){
         source.setText("Drag done");
-        source.setLayoutX(dragEvent.getX());
-        source.setLayoutY(dragEvent.getY());
-        dragEvent.consume();
+        event.consume();
     }
 }
