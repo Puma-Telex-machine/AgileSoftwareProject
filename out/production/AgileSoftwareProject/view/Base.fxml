@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="pane" onContextMenuRequested="#contextmenu" prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewmodel.BaseController">
+<AnchorPane fx:id="pane" onContextMenuRequested="#contextmenu" prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BaseController">
    <children>
       <Button layoutX="111.0" layoutY="58.0" mnemonicParsing="false" onAction="#buttonPressed" text="Add Box" />
       <Label fx:id="boxLabel" layoutX="271.0" layoutY="148.0" text="No Box" />

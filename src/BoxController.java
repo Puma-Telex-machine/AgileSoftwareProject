@@ -1,16 +1,11 @@
-package viewmodel;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Line;
 import model.Box;
 
 import java.io.IOException;
@@ -24,15 +19,14 @@ public class BoxController extends AnchorPane {
     VBox methods;
     @FXML
     VBox variables;
-    @FXML
-    Line line;
 
     List<String> methodList = new ArrayList<>();
     List<String> variableList = new ArrayList<>();
 
     Box box;
     public BoxController(Box box){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("Box.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Box.fxml")));
+
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -64,7 +58,6 @@ public class BoxController extends AnchorPane {
     }
     public void addMethod(){
         String method = "+ getNumber() : int";
-        this.setPrefHeight(this.getHeight()+17);
         methodList.add(method);
         Label tmp = new Label();
         Paint p = new Color(0.86,0.86,0.86,1);
@@ -74,7 +67,6 @@ public class BoxController extends AnchorPane {
     }
     public void addVariable(){
         String method = "+ varable : bool";
-        this.setPrefHeight(this.getHeight()+17);
         variableList.add(method);
         Label tmp = new Label();
         Paint p = new Color(0.86,0.86,0.86,1);
