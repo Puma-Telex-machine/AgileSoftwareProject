@@ -5,16 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/model/Box.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Model.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Observer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Class.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Diagram.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Interface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Method.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Relation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/Base.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/BaseController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Base.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodel/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Box.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Box.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Model.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/viewmodel/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/viewmodel/BaseController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Box.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/viewmodel/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodel/BaseController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +29,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -40,11 +44,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="full.screen.before.presentation.mode" value="false" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15625" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="CodeWithMe" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -97,16 +102,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/model/Model.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

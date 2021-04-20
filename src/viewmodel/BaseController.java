@@ -31,6 +31,6 @@ public class BaseController implements Observer {
 
     public void addBox(Box box) {
         //todo actually add box
-        boxLabel.setText("box added");
+        boxLabel.setText(box.getName());
     }
 }

@@ -22,7 +22,7 @@ public class Model {
     }
 
     public void addBox(Point position) {
-        Box box = new Box(position);
+        Box box = new Box(position, "This is a box name");
         observers.forEach(observer -> observer.addBox(box));
     }
 }
