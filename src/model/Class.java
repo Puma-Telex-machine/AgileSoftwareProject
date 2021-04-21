@@ -10,4 +10,9 @@ public class Class extends Box {
     public Class(Point position, String name) {
         super(position, name);
     }
+
+    @Override
+    public String getType(){
+        return "Class";
+    }
 }
