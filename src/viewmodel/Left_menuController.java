@@ -9,18 +9,28 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
-import javax.swing.Icon;
-
 public class Left_menuController extends AnchorPane {
 
     @FXML
     AnchorPane base_menu, top_anchorpane, middle_anchorpane, left_anchorpane;
     @FXML
     Button button1, button2, button3, button4, button5, button6;
-    @FXML
-    Icon icon1, icon2, icon3, icon4, icon5, icon6;
     @FXML 
     Pane pane1, pane2, pane3, pane4, pane5, pane6;
+
+  /*  public Left_menuController() {
+        FXMLLoader fxmlLoader = new FXMLLoader(
+                getClass().getResource("view/left_menu.fxml"));
+
+        //fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+    }*/
 
     @FXML
     private void handleButtonAction(ActionEvent event){
@@ -42,24 +52,5 @@ public class Left_menuController extends AnchorPane {
         else if (event.getSource()== button6) {
             pane6.toFront();
         }
-        
-
     }
-
-
-    public Left_menuController() {
-        FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("/view/Left_menu.fxml"));
-
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
-
-        try {
-            fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
-
-    }
-
 }

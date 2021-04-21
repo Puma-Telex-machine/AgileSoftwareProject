@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Model;
 import viewmodel.BaseController;
+import viewmodel.Left_menuController;
 
 import java.util.Objects;
 
@@ -19,11 +20,12 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("view/Base.fxml")));
+
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("view/left_menu.fxml")));
         Scene scene = new Scene(root, 800, 500);
         fxmlLoader.setRoot(this);
-        //fxmlLoader.setController(new BaseController());
-
+        //fxmlLoader.setController(new Left_menuController());
+       
         stage.setTitle("UML 2000");
         stage.setScene(scene);
         stage.show();
