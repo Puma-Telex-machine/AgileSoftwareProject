@@ -44,7 +44,7 @@ public class BaseController implements Observer{
     @FXML
     public void handleContextMenu(ContextMenuEvent e){
         context.setLayoutX(e.getX());
-        context.setLayoutY(e.getY()+200);
+        context.setLayoutY(e.getY());
         contextMenu.toFront();
         e.consume();
     }
@@ -54,7 +54,7 @@ public class BaseController implements Observer{
     }
     @FXML
     private void handleContextAddBox(MouseEvent e) {
-        model.addBox(new Point((int) context.getLayoutX()-80,(int) context.getLayoutY()-235));
+        model.addBox(new Point((int) context.getLayoutX()-80,(int) context.getLayoutY()-35));
         exitContext();
         e.consume();
     }

@@ -101,14 +101,22 @@ public class BoxController extends AnchorPane {
             circlePane.setVisible(circlePaneVisible);
         }
     }
+    private boolean creatingArrow=false;
     @FXML
     private void startArrow(MouseEvent event){
+        if(!creatingArrow){
+            name.setText("creating arrow");
+            creatingArrow=true;
+        }
         //todo find closest anchorpoint
         //todo observerpattern
         event.consume();
     }
     @FXML
-    private void attachArrow(){
+    private void attachArrow(MouseEvent event){
+        creatingArrow=false;
+        name.setText("attaching arrow");
+
         //todo observerpattern
     }
     public Box getBox(){

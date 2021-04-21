@@ -8,9 +8,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onClick" onMouseDragReleased="#attachArrow" onMouseDragged="#handleDrag" prefWidth="160.0" stylesheets="@DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onClick" onMouseDragReleased="#attachArrow" onMouseDragged="#handleDrag" onMouseReleased="#attachArrow" prefWidth="156.0" stylesheets="@DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox prefWidth="150.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <VBox prefWidth="150.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0">
          <children>
             <Label fx:id="name" alignment="TOP_CENTER" prefWidth="150.0" styleClass="text-Large" text="Class">
                <font>
@@ -31,10 +31,10 @@
       </VBox>
       <AnchorPane fx:id="circlePane" layoutX="3.0" layoutY="2.0" minHeight="-Infinity" onMouseDragged="#startArrow" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Ellipse centerX="80.0" fill="DODGERBLUE" radiusX="5.0" radiusY="4.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.bottomAnchor="2.0" />
-            <Ellipse centerX="80.0" centerY="1.0" fill="DODGERBLUE" radiusX="5.0" radiusY="4.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.topAnchor="2.0" />
-            <Ellipse centerY="35.0" fill="DODGERBLUE" radiusX="4.0" radiusY="5.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.leftAnchor="2.0" />
-            <Ellipse centerY="35.0" fill="DODGERBLUE" radiusX="4.0" radiusY="5.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.rightAnchor="2.0" />
+            <Ellipse centerX="80.0" fill="DODGERBLUE" radiusX="5.0" radiusY="4.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.bottomAnchor="0.0" />
+            <Ellipse centerX="80.0" centerY="1.0" fill="DODGERBLUE" radiusX="5.0" radiusY="4.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.topAnchor="0.0" />
+            <Ellipse centerY="35.0" fill="DODGERBLUE" radiusX="4.0" radiusY="5.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.leftAnchor="0.0" />
+            <Ellipse centerY="35.0" fill="DODGERBLUE" radiusX="4.0" radiusY="5.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.rightAnchor="0.0" />
          </children>
       </AnchorPane>
    </children>
