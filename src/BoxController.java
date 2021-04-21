@@ -8,20 +8,23 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import model.Box;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BoxController extends AnchorPane {
     @FXML
-    Label name;
+    private Label name;
     @FXML
-    VBox methods;
+    private VBox methods;
     @FXML
-    VBox variables;
+    private VBox variables;
+    @FXML
+    AnchorPane circlePane;
 
-    List<String> methodList = new ArrayList<>();
-    List<String> variableList = new ArrayList<>();
+    private List<String> methodList = new ArrayList<>();
+    private List<String> variableList = new ArrayList<>();
 
     Box box;
     public BoxController(Box box){
@@ -36,27 +39,36 @@ public class BoxController extends AnchorPane {
             throw new RuntimeException(exception);
         }
         this.box = box;
+        circlePane.setVisible(false);
+        this.setLayoutX(box.getPosition().x);
+        this.setLayoutY(box.getPosition().y);
     }
 
-    boolean moving = false;
-    double x=0;
-    double y=0;
+    //for moving box
+    private boolean moving = false;
+    private double offsetX = 0;
+    private double offsetY = 0;
+
     @FXML
-    public void handleDrag(MouseEvent event){
+    private void handleDrag(MouseEvent event){
         if(!moving){
-            x=event.getX();
-            y=event.getY();
+            offsetX = event.getX();
+            offsetY = event.getY();
             moving=true;
         }
-        this.setLayoutX(this.getLayoutX()+event.getX()-x);
-        this.setLayoutY(this.getLayoutY()+event.getY()-y);
+        this.setLayoutX(this.getLayoutX()+ event.getX() - offsetX);
+        this.setLayoutY(this.getLayoutY()+ event.getY() - offsetY);
         event.consume();
     }
-    public void handleLetGo(MouseEvent event){
-        moving = false;
+
+    @FXML
+    private void handleLetGo(MouseEvent event){
+        moving=false;
+        box.setPosition(new Point((int)this.getLayoutX(),(int)this.getLayoutY()));
         event.consume();
     }
-    public void addMethod(){
+    @FXML
+    private void addMethod(MouseEvent e){
         String method = "+ getNumber() : int";
         methodList.add(method);
         Label tmp = new Label();
@@ -64,14 +76,41 @@ public class BoxController extends AnchorPane {
         tmp.setTextFill(p);
         tmp.setText(method);
         methods.getChildren().add(tmp);
+        e.consume();
     }
-    public void addVariable(){
-        String method = "+ varable : bool";
+    @FXML
+    private void addVariable(MouseEvent e){
+        String method = "+ variable : bool";
         variableList.add(method);
         Label tmp = new Label();
         Paint p = new Color(0.86,0.86,0.86,1);
         tmp.setTextFill(p);
         tmp.setText(method);
         variables.getChildren().add(tmp);
+        e.consume();
+    }
+
+    private boolean circlePaneVisible = false;
+    @FXML
+    private void onClick(MouseEvent e){
+        if(moving){
+            handleLetGo(e);
+        }
+        else {
+            circlePaneVisible=!circlePaneVisible;
+            circlePane.setVisible(circlePaneVisible);
+        }
+    }
+    @FXML
+    private void startArrow(MouseEvent event){
+        //todo observerpattern
+        event.consume();
+    }
+    @FXML
+    private void attachArrow(){
+        //todo observerpattern
+    }
+    public Box getBox(){
+        return box;
     }
 }

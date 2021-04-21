@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 
-<AnchorPane fx:id="pane" onContextMenuRequested="#contextmenu" prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BaseController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@DarkMode.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BaseController">
    <children>
-      <Button layoutX="111.0" layoutY="58.0" mnemonicParsing="false" onAction="#buttonPressed" text="Add Box" />
-      <Label fx:id="boxLabel" layoutX="271.0" layoutY="148.0" text="No Box" />
-      <Label fx:id="context" layoutX="131.0" layoutY="192.0" text="No contextmenu" />
-      <Label fx:id="source" layoutX="190.0" layoutY="331.0" onMouseDragged="#handleDragLabel" onMouseReleased="#handleDragOver" text="Drag test" />
+      <StackPane prefHeight="900.0" prefWidth="1440.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="contextMenu" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#exitContext" onMouseDragged="#exitContext" prefHeight="900.0" prefWidth="625.0" stylesheets="@DarkMode.css">
+               <children>
+                  <VBox fx:id="context" alignment="TOP_CENTER" layoutX="205.0" layoutY="336.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                     <children>
+                        <Label alignment="CENTER" onMouseClicked="#handleContextAddBox" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add Class" textAlignment="CENTER" />
+                        <Label alignment="CENTER" onMouseClicked="#handleContextAddBox" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add interface" textAlignment="CENTER" />
+                        <Label alignment="CENTER" onMouseClicked="#handleContextAddBox" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add Abstract Class" textAlignment="CENTER" />
+                        <Line endX="149.0" />
+                     </children>
+                     <styleClass>
+                        <String fx:value="highlight" />
+                        <String fx:value="border" />
+                     </styleClass>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="UML" onContextMenuRequested="#handleContextMenu" prefHeight="200.0" prefWidth="200.0" styleClass="background">
+               <children>
+                  <Button layoutX="484.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleAddBox" text="Add Box" />
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

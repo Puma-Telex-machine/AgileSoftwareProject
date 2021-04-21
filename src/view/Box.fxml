@@ -4,29 +4,38 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#handleDrag" onMouseReleased="#handleLetGo" prefWidth="150.0" stylesheets="@DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onClick" onMouseDragReleased="#attachArrow" onMouseDragged="#handleDrag" prefWidth="160.0" stylesheets="@DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefWidth="150.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <children>
-            <Label fx:id="name" alignment="TOP_CENTER" prefWidth="148.0" styleClass="text-Large" text="Class">
+            <Label fx:id="name" alignment="TOP_CENTER" prefWidth="150.0" styleClass="text-Large" text="Class">
                <font>
                   <Font name="Arial Unicode MS" size="20.0" />
                </font>
             </Label>
             <Line fx:id="line" endX="148.0" />
             <VBox fx:id="methods" prefWidth="150.0" styleClass="box" />
-            <Label alignment="TOP_CENTER" onMouseClicked="#addMethod" prefWidth="145.0" styleClass="text-small" text="+" />
+            <Label alignment="TOP_CENTER" onMouseClicked="#addMethod" prefWidth="150.0" styleClass="text-small" text="+" />
             <Line fx:id="line1" endX="148.0" />
             <VBox fx:id="variables" prefWidth="149.0" />
-            <Label alignment="TOP_CENTER" onMouseClicked="#addVariable" prefWidth="145.0" styleClass="text-small" text="+" />
+            <Label alignment="TOP_CENTER" onMouseClicked="#addVariable" prefWidth="150.0" styleClass="text-small" text="+" />
          </children>
+         <styleClass>
+            <String fx:value="box" />
+            <String fx:value="border" />
+         </styleClass>
       </VBox>
+      <AnchorPane fx:id="circlePane" layoutX="3.0" layoutY="2.0" minHeight="-Infinity" onMouseDragged="#startArrow" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Ellipse centerX="80.0" fill="DODGERBLUE" radiusX="5.0" radiusY="4.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.bottomAnchor="2.0" />
+            <Ellipse centerX="80.0" centerY="1.0" fill="DODGERBLUE" radiusX="5.0" radiusY="4.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.topAnchor="2.0" />
+            <Ellipse centerY="35.0" fill="DODGERBLUE" radiusX="4.0" radiusY="5.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.leftAnchor="2.0" />
+            <Ellipse centerY="35.0" fill="DODGERBLUE" radiusX="4.0" radiusY="5.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.rightAnchor="2.0" />
+         </children>
+      </AnchorPane>
    </children>
-   <styleClass>
-      <String fx:value="box" />
-      <String fx:value="border" />
-   </styleClass>
 </fx:root>

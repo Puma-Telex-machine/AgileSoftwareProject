@@ -2,17 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/view/Box.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AgileSoftwareProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AgileSoftwareProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/view/Base.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/viewmodel/BaseController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Box.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Box.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/view/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/view/Base.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BoxController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Box.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Base.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodel/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodel/Box.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodel/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BoxController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Box.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Box.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/DarkMode.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/DarkMode.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +31,7 @@
   </component>
   <component name="ProjectId" id="1rQYA68kZv9OJSXUBK7N0ko4Wsr" />
   <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/view" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -40,6 +39,9 @@
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/view" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/resources" />

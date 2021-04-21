@@ -22,3 +22,8 @@
     -fx-border-color: "#000000";
     -fx-border-width: 1;
 }
+.fill-light{
+    -fx-fill: "DBDBDB";
+    -fx-border-color: "#000000";
+    -fx-border-width: 1;
+}

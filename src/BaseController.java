@@ -1,8 +1,10 @@
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import model.Box;
 import model.Model;
 import model.Observer;
@@ -13,17 +15,14 @@ import java.awt.*;
 public class BaseController implements Observer{
 
     @FXML
-    private Label boxLabel;
+    private VBox context;
+
     @FXML
-    private Label context;
+    AnchorPane UML;
     @FXML
-    private Label source;
-    @FXML
-    AnchorPane pane;
+    AnchorPane contextMenu;
 
     Model model;
-
-    BoxController box;
 
     public BaseController() {
 
@@ -32,33 +31,31 @@ public class BaseController implements Observer{
     }
 
     @FXML
-    private void buttonPressed(Event e) {
+    private void handleAddBox(Event e) {
         model.addBox(new Point(0, 0));
+        e.consume();
     }
 
     @Override
     public void addBox(Box b){
-        box = new BoxController(b);
-        pane.getChildren().add(this.box);
-        boxLabel.setText("box added");
-
+        BoxController box = new BoxController(b);
+        UML.getChildren().add(box);
     }
     @FXML
-    public void contextmenu(){
-        //todo add adding of boxes here
-        context.setText("contextMenu opened");
+    public void handleContextMenu(ContextMenuEvent e){
+        context.setLayoutX(e.getX());
+        context.setLayoutY(e.getY()+200);
+        contextMenu.toFront();
+        e.consume();
     }
-
     @FXML
-    public void handleDragLabel(MouseEvent event){
-        source.setText("dragging");
-
-        source.setLayoutX(source.getLayoutX()+event.getX()-25);
-        source.setLayoutY(source.getLayoutY()+event.getY());
-        event.consume();
+    public void exitContext(){
+        UML.toFront();
     }
-    public void handleDragOver(MouseEvent event){
-        source.setText("Drag test");
-        event.consume();
+    @FXML
+    private void handleContextAddBox(MouseEvent e) {
+        model.addBox(new Point((int) context.getLayoutX()-80,(int) context.getLayoutY()-235));
+        exitContext();
+        e.consume();
     }
 }
