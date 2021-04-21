@@ -12,6 +12,7 @@ public class Model {
     }
 
     ArrayList<Observer> observers = new ArrayList<>();
+    Diagram diagram = new Diagram();
 
     public void addObserver(Observer observer) {
         observers.add(observer);
@@ -22,7 +23,8 @@ public class Model {
     }
 
     public void addBox(Point position) {
-        Box box = new Box(position, "This is a box name");
+        diagram.createBox(position, "This is a box name");
+        Box box = diagram.getBox(0);
         observers.forEach(observer -> observer.addBox(box));
     }
 }
