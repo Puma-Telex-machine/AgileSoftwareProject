@@ -28,7 +28,7 @@ public class Attribute {
 
     /**
      * Changes all of the Attribute's modifiers.
-     * @param modifiers the new set of modifiers.
+     * @param modifiers The new set of modifiers.
      *  */
     void SetModifiers(Set<Modifier> modifiers){
         this.modifiers = modifiers;
@@ -36,7 +36,7 @@ public class Attribute {
 
     /**
      * Adds a modifier to the Attribute.
-     * @param modifier the modifier to be added.
+     * @param modifier The modifier to be added.
      */
     void AddModifier(Modifier modifier){
         modifiers.add(modifier);
