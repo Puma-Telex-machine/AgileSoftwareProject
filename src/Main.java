@@ -3,8 +3,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Model;
-import viewmodel.BaseController;
 
 import java.util.Objects;
 
@@ -20,7 +18,7 @@ public class Main extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("view/Base.fxml")));
-        Scene scene = new Scene(root, 800, 500);
+        Scene scene = new Scene(root, 1440, 900);
         fxmlLoader.setRoot(this);
         //fxmlLoader.setController(new BaseController());
 
