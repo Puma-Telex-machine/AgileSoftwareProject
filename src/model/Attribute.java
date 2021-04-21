@@ -6,13 +6,6 @@ public class Attribute {
     Changeable changeable;
     Visibility visibility;
 
-    enum Visibility{
-        PRIVATE,
-        PACKAGE_PRIVATE,
-        PROTECTED,
-        PUBLIC
-    }
-
     enum Type{ //Probably requires non-enum solution
         INT
     }
