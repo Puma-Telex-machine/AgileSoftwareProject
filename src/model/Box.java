@@ -4,6 +4,11 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
+/**
+ * A generalized class representing a UML object, specifically classes/interfaces/enums.
+ * Originally created by Emil Holmsten,
+ * Updated by Filip Hanberg.
+ */
 public class Box {
 
 
@@ -104,6 +109,10 @@ public class Box {
 
     public String getName() {
         return name;
+    }
+
+    public Point getPosition(){
+        return position;
     }
 
     public String getType(){

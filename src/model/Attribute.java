@@ -2,6 +2,10 @@ package model;
 
 import java.util.Set;
 
+/** Represents either a method argument or a variable.
+ *  Originally created by Emil Holmsten,
+ *  Updated by Filip Hanberg.
+ */
 public class Attribute {
 
     String name;

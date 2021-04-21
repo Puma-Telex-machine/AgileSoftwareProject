@@ -3,6 +3,11 @@ package model;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Represents a method within a class/interface
+ * Originally created by Emil Holmsten,
+ * Updated by Filip Hanberg.
+ */
 public class Method {
 
     private String name;
