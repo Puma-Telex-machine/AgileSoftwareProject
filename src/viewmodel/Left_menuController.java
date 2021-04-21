@@ -2,12 +2,10 @@ package viewmodel;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-
-import java.io.IOException;
 
 public class Left_menuController extends AnchorPane {
 
@@ -17,8 +15,10 @@ public class Left_menuController extends AnchorPane {
     Button button1, button2, button3, button4, button5, button6;
     @FXML 
     Pane pane1, pane2, pane3, pane4, pane5, pane6;
+    @FXML
+    TextField searchbar;
 
-  /*  public Left_menuController() {
+  /*public Left_menuController() {
         FXMLLoader fxmlLoader = new FXMLLoader(
                 getClass().getResource("view/left_menu.fxml"));
 
@@ -37,19 +37,23 @@ public class Left_menuController extends AnchorPane {
         if(event.getSource() == button1) {
             pane1.toFront();
         }
-        else if (event.getSource()== button2) {
+        else if (event.getSource() == button2) {
             pane2.toFront();
+            searchbar.toFront();
+            //titel "UML component"
+            //create box/add box knapp
+            //templates ska upp
         }
-        else if (event.getSource()== button3) {
+        else if (event.getSource() == button3) {
             pane3.toFront();
         }
-        else if (event.getSource()== button4) {
+        else if (event.getSource() == button4) {
             pane4.toFront();
         }
-        else if (event.getSource()== button5) {
+        else if (event.getSource() == button5) {
             pane5.toFront();
         }
-        else if (event.getSource()== button6) {
+        else if (event.getSource() == button6) {
             pane6.toFront();
         }
     }
