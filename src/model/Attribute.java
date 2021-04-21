@@ -1,25 +1,20 @@
 package model;
 
+import java.util.Set;
+
 public class Attribute {
 
     String name;
-    Changeable changeable;
+    Set<Modifier> modifiers;
     Visibility visibility;
 
     enum Type{ //Probably requires non-enum solution
         INT
     }
 
-    enum Changeable{
-        NON_STATIC,
-        STATIC,
-        FINAL,
-        STATIC_FINAL
-    }
-
-    Attribute(String name, Changeable changeable, Visibility visibility){
+    Attribute(String name, Set<Modifier> modifiers, Visibility visibility){
         this.name = name;
-        this.changeable = changeable;
+        this.modifiers = modifiers;
         this.visibility = visibility;
     }
 
@@ -31,10 +26,41 @@ public class Attribute {
         this.visibility = visibility;
     }
 
-    void SetChangeable(Changeable changeable){
-        this.changeable = changeable;
+    /**
+     * Changes all of the Attribute's modifiers.
+     * @param modifiers the new set of modifiers.
+     *  */
+    void SetModifiers(Set<Modifier> modifiers){
+        this.modifiers = modifiers;
     }
 
+    /**
+     * Adds a modifier to the Attribute.
+     * @param modifier the modifier to be added.
+     */
+    void AddModifier(Modifier modifier){
+        modifiers.add(modifier);
+    }
+
+    /**
+     * Removes a modifier from the Attribute.
+     * @param modifier The modifier to be removed.
+     */
+    void RemoveModifier(Modifier modifier){
+        modifiers.remove(modifier);
+    }
+
+    String GetName(){
+        return name;
+    }
+
+    Set<Modifier> GetModifiers(){
+        return modifiers;
+    }
+
+    Visibility GetVisibility(){
+        return visibility;
+    }
 
 
 
