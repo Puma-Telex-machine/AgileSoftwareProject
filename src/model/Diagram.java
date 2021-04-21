@@ -13,7 +13,7 @@ public class Diagram {
     }
 
     public void createRelation(Box to, Box from, Relation.ArrowType arrowType) {
-        relations.add(new Relation(to, from, arrowType));
+        //relations.add(new Relation(to, from, arrowType));
     }
 
     public List<Relation.ArrowType> getPossibleRelations(Box to, Box from) {
