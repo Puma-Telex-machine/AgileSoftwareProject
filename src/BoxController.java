@@ -103,6 +103,7 @@ public class BoxController extends AnchorPane {
     }
     @FXML
     private void startArrow(MouseEvent event){
+        //todo find closest anchorpoint
         //todo observerpattern
         event.consume();
     }
