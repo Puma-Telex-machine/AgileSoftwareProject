@@ -1,7 +1,6 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Diagram {
 
@@ -12,7 +11,7 @@ public class Diagram {
 
     }
 
-    public void createRelation(Box to, Box from, Relation.ArrowType arrowType) {
+   /*  public void createRelation(Box to, Box from, Relation.ArrowType arrowType) {
         relations.add(new Relation(to, from, arrowType));
     }
 
@@ -27,4 +26,5 @@ public class Diagram {
     public List<Relation.ArrowType> getPossibleRelations(Interface to, Class from) {
         return null;
     }
+ */
 }
