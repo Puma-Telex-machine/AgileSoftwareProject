@@ -18,11 +18,11 @@ public class Attribute {
         this.visibility = visibility;
     }
 
-    void SetName(String name){
+    public void SetName(String name){
         this.name = name;
     }
 
-    void SetVisibility(Visibility visibility){
+    public void SetVisibility(Visibility visibility){
         this.visibility = visibility;
     }
 
@@ -30,7 +30,7 @@ public class Attribute {
      * Changes all of the Attribute's modifiers.
      * @param modifiers The new set of modifiers.
      *  */
-    void SetModifiers(Set<Modifier> modifiers){
+    public void SetModifiers(Set<Modifier> modifiers){
         this.modifiers = modifiers;
     }
 
@@ -38,7 +38,7 @@ public class Attribute {
      * Adds a modifier to the Attribute.
      * @param modifier The modifier to be added.
      */
-    void AddModifier(Modifier modifier){
+    public void AddModifier(Modifier modifier){
         modifiers.add(modifier);
     }
 
@@ -46,19 +46,19 @@ public class Attribute {
      * Removes a modifier from the Attribute.
      * @param modifier The modifier to be removed.
      */
-    void RemoveModifier(Modifier modifier){
+    public void RemoveModifier(Modifier modifier){
         modifiers.remove(modifier);
     }
 
-    String GetName(){
+    public String GetName(){
         return name;
     }
 
-    Set<Modifier> GetModifiers(){
+    public Set<Modifier> GetModifiers(){
         return modifiers;
     }
 
-    Visibility GetVisibility(){
+    public Visibility GetVisibility(){
         return visibility;
     }
 

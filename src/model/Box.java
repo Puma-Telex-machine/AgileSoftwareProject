@@ -82,20 +82,24 @@ public class Box {
         return null;
     }
 
-    void SetModifiers(Set<Modifier> modifiers){
+    public void SetModifiers(Set<Modifier> modifiers){
         this.modifiers = modifiers;
     }
 
-    void AddModifier(Modifier modifier){
+    public void AddModifier(Modifier modifier){
         modifiers.add(modifier);
     }
 
-    void RemoveModifier(Modifier modifier){
+    public void RemoveModifier(Modifier modifier){
         modifiers.remove(modifier);
     }
 
-    void SetVisibility(Visibility visibility){
+    public void SetVisibility(Visibility visibility){
         this.visibility = visibility;
+    }
+
+    public Visibility GetVisibility(){
+        return visibility;
     }
 
     public String getName() {

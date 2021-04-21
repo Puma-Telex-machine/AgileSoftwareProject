@@ -18,7 +18,7 @@ public class Method {
         this.visibility = visibility;
     }
 
-    void SetName(String name){
+    public void SetName(String name){
         this.name = name;
     }
 
@@ -26,7 +26,7 @@ public class Method {
      * Changes all of the Method's arguments.
      * @param arguments The new set of arguments.
      */
-    void SetArguments(List<Attribute> arguments){
+    public void SetArguments(List<Attribute> arguments){
         this.arguments = arguments;
     }
 
@@ -34,7 +34,7 @@ public class Method {
      * Adds an argument to the Method.
      * @param argument The argument to be added.
      */
-    void AddArgument(Attribute argument){
+    public void AddArgument(Attribute argument){
         arguments.add(argument);
     }
 
@@ -42,7 +42,7 @@ public class Method {
      * Removes an argument from the Method
      * @param position the argument's position in the list.
      */
-    void RemoveArgument(int position){
+    public void RemoveArgument(int position){
         if(position < arguments.size() && position >= 0)
             arguments.remove(position);
     }
@@ -51,7 +51,7 @@ public class Method {
      * Changes all of the Method's modifiers.
      * @param modifiers The new set of modifiers.
      *  */
-    void SetModifiers(Set<Modifier> modifiers){
+    public void SetModifiers(Set<Modifier> modifiers){
         this.modifiers = modifiers;
     }
 
@@ -59,7 +59,7 @@ public class Method {
      * Adds a modifier to the Method.
      * @param modifier The modifier to be added.
      */
-    void AddModifier(Modifier modifier){
+    public void AddModifier(Modifier modifier){
         modifiers.add(modifier);
     }
 
@@ -67,27 +67,27 @@ public class Method {
      * Removes a modifier from the Method.
      * @param modifier The modifier to be removed.
      */
-    void RemoveModifier(Modifier modifier){
+    public void RemoveModifier(Modifier modifier){
         modifiers.remove(modifier);
     }
 
-    void SetVisibility(Visibility visibility){
+    public void SetVisibility(Visibility visibility){
         this.visibility = visibility;
     }
 
-    String GetName(){
+    public String GetName(){
         return name;
     }
 
-    List<Attribute> GetArguments(){
+    public List<Attribute> GetArguments(){
         return arguments;
     }
 
-    Set<Modifier> GetModifiers(){
+    public Set<Modifier> GetModifiers(){
         return modifiers;
     }
 
-    Visibility GetVisibility(){
+    public Visibility GetVisibility(){
         return visibility;
     }
 }
