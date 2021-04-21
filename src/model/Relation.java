@@ -6,7 +6,12 @@ public class Relation {
     Box to;
     Box from;
     ArrowType arrowType;
-  
+   
+    Relation (Box from, Box to, ArrowType arrowType) {
+        this.from = from;
+        this.to = to;
+        this.arrowType = arrowType;
+    }
 
     public List<ArrowType> getPossibleRelations(Box from, Box to) {
         if (from.getType() == "class") {
@@ -42,7 +47,7 @@ public class Relation {
             types.add(ArrowType.EXTENDS);
             return types;
         }
-        return null;
+        return types;
     }
 
     private List<ArrowType> interfaceRelations (String to) {
@@ -51,7 +56,7 @@ public class Relation {
             types.add(ArrowType.EXTENDS);
             return types;
         }
-        return null;
+        return types;
     }
     
     private List<ArrowType> abstractclassRelations(String to) {
@@ -68,7 +73,7 @@ public class Relation {
             types.add(ArrowType.IMPLEMENTS);
             return types;
         }
-        return null;
+        return types;
     }
     
     private List<ArrowType> enumRelations(String to) {
@@ -77,7 +82,7 @@ public class Relation {
             types.add(ArrowType.IMPLEMENTS);
             return types;
         }
-        return null;
+        return types;
     }
 }
    
