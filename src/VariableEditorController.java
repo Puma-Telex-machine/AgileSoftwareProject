@@ -1,15 +1,16 @@
+package viewmodel;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+import model.VariableData;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 
-public class VariableEditorController extends AnchorPane {
+public class VariableEditorController {
 
 
     @FXML
@@ -32,4 +33,14 @@ public class VariableEditorController extends AnchorPane {
     {
 
     }
+    public void EditVariable()
+    {
+        EditVariable(new VariableData());
+    }
+
+    public void EditVariable(VariableData variableData)
+    {
+
+    }
+
 }

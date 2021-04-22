@@ -4,6 +4,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.fxml.FXMLLoader;
+import model.MethodData;
+import model.boxes.Visibility;
 
 import java.io.IOException;
 import java.util.List;
@@ -46,20 +48,27 @@ public class MethodEditorController extends AnchorPane {
 
     }
 
-    public MethodEditorController()
+    public void EditMethod()
     {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/MethodEditor.fxml")));
+        EditMethod(new MethodData());
+    }
 
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
+    public void EditMethod(MethodData methodData)
+    {
+        nameField.setText(methodData.methodName);
+        Visibility[] allVisibility = Visibility.values();
+        accessComboBox.getItems().addAll(allVisibility.toString());
+        accessComboBox.getSelectionModel().select(methodData.visibility);
 
-        try {
-            fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
+        for (int i = 0; i < methodData.arguments.length; i++)
+        {
+            MethodArgumentEditorController argument = new MethodArgumentEditorController(argumentVBox);
+            argument.argumentTypeField.setText(methodData.arguments[i]);
         }
 
         currentEditArgument = new MethodArgumentEditorController(argumentVBox);
         currentEditArgument.argumentTypeField.setOnAction((Action) -> AddArgument());
     }
+
+
 }

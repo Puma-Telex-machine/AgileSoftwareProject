@@ -1,5 +1,8 @@
 package model;
 
+import model.boxes.Box;
+import model.boxes.Diagram;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -12,6 +15,7 @@ public class Model {
     }
 
     ArrayList<Observer> observers = new ArrayList<>();
+    Diagram diagram = new Diagram();
 
     public void addObserver(Observer observer) {
         observers.add(observer);
@@ -22,7 +26,8 @@ public class Model {
     }
 
     public void addBox(Point position) {
-        Box box = new Box(position);
+        diagram.createBox(position, "This is a box name");
+        Box box = diagram.getBox(0);
         observers.forEach(observer -> observer.addBox(box));
     }
 }
