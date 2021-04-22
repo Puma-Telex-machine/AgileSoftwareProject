@@ -80,7 +80,7 @@ public class BoxController extends AnchorPane {
 
         System.out.println("addmethod");
         methodEditor.setVisible(true);
-        methodEditor.setLayoutX(this.getLayoutX()-150);
+        methodEditor.setLayoutX(this.getLayoutX()-300);
         methodEditor.setLayoutY(this.getLayoutY());
         methodEditor.EditMethod();
 
@@ -98,7 +98,7 @@ public class BoxController extends AnchorPane {
     private void addVariable(MouseEvent e){
 
         variableEditor.setVisible(true);
-        variableEditor.setLayoutX(this.getLayoutX()-150);
+        variableEditor.setLayoutX(this.getLayoutX()-300);
         variableEditor.setLayoutY(this.getLayoutY());
         variableEditor.EditVariable();
 
