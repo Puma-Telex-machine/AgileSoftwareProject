@@ -15,6 +15,8 @@ public class Class extends Box {
 
     @Override
     public String getType(){
+        if(getModifiers().contains(Modifier.ABSTRACT))
+            return "AbstractClass";
         return "Class";
     }
 }

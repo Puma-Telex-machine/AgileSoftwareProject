@@ -103,17 +103,23 @@ public class Box {
         this.visibility = visibility;
     }
 
-    public Visibility GetVisibility(){
-        return visibility;
-    }
-
     public String getName() {
         return name;
     }
 
-    public Point getPosition(){
-        return position;
+    public Point getPosition(){return position; }
+
+    public List<Method> getMethods(){return methods;}
+
+    public List<Attribute> getAttributes(){return attributes;}
+
+    public Set<Modifier> getModifiers(){return modifiers;}
+
+    public Visibility GetVisibility(){
+        return visibility;
     }
+
+
 
     public String getType(){
         return "no type";

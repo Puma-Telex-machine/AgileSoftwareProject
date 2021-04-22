@@ -6,5 +6,6 @@ package model;
  */
 public enum Modifier {
     STATIC,
-    FINAL
+    FINAL,
+    ABSTRACT,
 }
