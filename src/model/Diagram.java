@@ -7,8 +7,14 @@ public class Diagram {
     ArrayList<Box> boxes = new ArrayList<>();
     ArrayList<Relation> relations = new ArrayList<>();
 
-    public void createBox() {
+    public void createBox(Point position, String name) {
+        boxes.add(new Class(position, name));
+    }
 
+    public Box getBox(int position){
+        if(position < boxes.size() && position >= 0)
+            return boxes.get(position);
+        return null;
     }
 
    /*  public void createRelation(Box to, Box from, Relation.ArrowType arrowType) {
