@@ -6,6 +6,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+
+
+/** Controller class for the left menu
+ * @author Madeleine Xia
+ * @version 1.0
+ * @since 2021-04-xx
+ * 
+ */
 
 public class Left_menuController extends AnchorPane {
 
@@ -17,6 +26,8 @@ public class Left_menuController extends AnchorPane {
     Pane pane1, pane2, pane3, pane4, pane5, pane6;
     @FXML
     TextField searchbar;
+    @FXML
+    Text uml_text;
 
   /*public Left_menuController() {
         FXMLLoader fxmlLoader = new FXMLLoader(
@@ -40,7 +51,7 @@ public class Left_menuController extends AnchorPane {
         else if (event.getSource() == button2) {
             pane2.toFront();
             searchbar.toFront();
-            //titel "UML component"
+            uml_text.toFront();
             //create box/add box knapp
             //templates ska upp
         }
