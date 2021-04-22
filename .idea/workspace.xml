@@ -3,12 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/DarkMode.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/DarkMode.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/MethodArgumentEditor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MethodArgumentEditor.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/MethodEditor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MethodEditor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/VariableEditor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VariableEditor.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/viewmodel/MethodArgumentEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodel/MethodArgumentEditorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/viewmodel/MethodEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodel/MethodEditorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodel/VariableEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodel/VariableEditorController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectId" id="1rWF7l8QkerBb0EMeKy43SosIen" />
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />

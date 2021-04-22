@@ -1,20 +1,19 @@
 package viewmodel;
-import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
-import javax.swing.*;
 import java.io.IOException;
 
 
 public class MethodArgumentEditorController {
 
     @FXML
-    protected  TextField argumentTypeField;
+    protected TextField argumentTypeField;
+
+    @FXML
+    protected Pane highlightPane;
 
     public MethodArgumentEditorController(VBox spawnBox)
     {

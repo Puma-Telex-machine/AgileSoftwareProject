@@ -58,5 +58,8 @@ public class MethodEditorController {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        currentEditArgument = new MethodArgumentEditorController(argumentVBox);
+        currentEditArgument.argumentTypeField.setOnAction((Action) -> AddArgument());
     }
 }
