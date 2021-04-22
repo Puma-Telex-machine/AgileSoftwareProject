@@ -46,20 +46,10 @@ public class MethodEditorController {
 
     }
 
-    public MethodEditorController()
+    public void EditMethod()
     {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/MethodEditor.fxml")));
 
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
-
-        try {
-            fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
-
-        currentEditArgument = new MethodArgumentEditorController(argumentVBox);
-        currentEditArgument.argumentTypeField.setOnAction((Action) -> AddArgument());
     }
+
+
 }

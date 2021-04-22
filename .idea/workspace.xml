@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/model/MethodData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/VariableData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/facades/BoxFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/DarkMode.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/DarkMode.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MethodArgumentEditor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MethodArgumentEditor.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MethodEditor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MethodEditor.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/VariableEditor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VariableEditor.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodel/MethodArgumentEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodel/MethodArgumentEditorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/viewmodel/MethodEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodel/MethodEditorController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,6 +17,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
