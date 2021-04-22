@@ -21,10 +21,10 @@ public class Main extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("view/left_menu.fxml")));
-        Scene scene = new Scene(root, 800, 500);
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("view/Left_menu.fxml")));
+        Scene scene = new Scene(root, 1440, 900);
         fxmlLoader.setRoot(this);
-        //fxmlLoader.setController(new Left_menuController());
+        //fxmlLoader.setController(new BaseController());
        
         stage.setTitle("UML 2000");
         stage.setScene(scene);
