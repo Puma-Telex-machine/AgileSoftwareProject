@@ -1,4 +1,6 @@
-package model;
+package model.boxes;
+
+import model.relations.Relation;
 
 import java.util.*;
 

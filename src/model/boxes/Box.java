@@ -1,4 +1,4 @@
-package model;
+package model.boxes;
 
 import java.awt.*;
 import java.util.*;
@@ -11,7 +11,6 @@ import java.util.List;
  */
 public class Box {
 
-
     private String name;
     private Point position;
     private List<Method> methods;
@@ -19,12 +18,16 @@ public class Box {
     private Set<Modifier> modifiers;
     private Visibility visibility;
 
-    public Box(Point position, String name, String type) {
+    public Box(Point position, String name) {
         this.position = position;
         this.name = name;
         methods = new ArrayList<>();
         attributes = new ArrayList<>();
         modifiers = new HashSet<>();
+    }
+
+    public BoxType getType(){
+        return BoxType.BOX;
     }
 
     public void setName(String newName){
@@ -120,8 +123,4 @@ public class Box {
     }
 
 
-
-    public String getType(){
-        return "no type";
-    }
 }

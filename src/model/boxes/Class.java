@@ -1,4 +1,4 @@
-package model;
+package model.boxes;
 
 import java.awt.*;
 
@@ -14,9 +14,9 @@ public class Class extends Box {
     }
 
     @Override
-    public String getType(){
+    public BoxType getType(){
         if(getModifiers().contains(Modifier.ABSTRACT))
-            return "AbstractClass";
-        return "Class";
+            return BoxType.ABSTRACTCLASS;
+        return BoxType.CLASS;
     }
 }

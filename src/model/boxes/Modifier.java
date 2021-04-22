@@ -1,4 +1,4 @@
-package model;
+package model.boxes;
 
 /**
  * An enumerable representing various modifiers/keywords.

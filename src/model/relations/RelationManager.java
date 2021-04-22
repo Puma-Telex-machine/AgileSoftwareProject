@@ -1,88 +1,81 @@
-package model;
+package model.relations;
 
-import java.util.*;
+import model.boxes.Box;
+import model.boxes.BoxType;
 
-public class Relation {
-    Box to;
-    Box from;
-    ArrowType arrowType;
-   
-    Relation (Box from, Box to, ArrowType arrowType) {
-        this.from = from;
-        this.to = to;
-        this.arrowType = arrowType;
-    }
+import java.util.ArrayList;
+import java.util.List;
+
+public class RelationManager {
 
     public List<ArrowType> getPossibleRelations(Box from, Box to) {
-        if (from.getType() == "class") {
+        if (from.getType() == BoxType.BOX) {
+            //TODO: fix
+        }
+        if (from.getType() == BoxType.CLASS) {
             return classRelations(to.getType());
         }
-        if (from.getType() == "interface") {
+        if (from.getType() == BoxType.INTERFACE) {
             return interfaceRelations(to.getType());
         }
-        if (from.getType() == "abstractclass") {
+        if (from.getType() == BoxType.ABSTRACTCLASS) {
             return abstractclassRelations(to.getType());
         }
-        if (from.getType() == "enum") {
+        if (from.getType() == BoxType.ENUM) {
             return enumRelations(to.getType());
         }
         return null;
     }
 
-    enum ArrowType {
-        EXTENDS,
-        IMPLEMENTS
-    }
-    private List<ArrowType> classRelations (String to) {
+    private List<ArrowType> classRelations (BoxType to) {
         List<ArrowType> types = new ArrayList<>();
-        if (to == "class") {
+        if (to == BoxType.CLASS) {
             types.add(ArrowType.EXTENDS);
             return types;
         }
-        if (to == "interface") {
+        if (to == BoxType.INTERFACE) {
             types.add(ArrowType.IMPLEMENTS);
             return types;
         }
-        if (to == "abstractclass") {
+        if (to == BoxType.ABSTRACTCLASS) {
             types.add(ArrowType.EXTENDS);
             return types;
         }
         return types;
     }
 
-    private List<ArrowType> interfaceRelations (String to) {
+    private List<ArrowType> interfaceRelations (BoxType to) {
         List<ArrowType> types = new ArrayList<>();
-        if (to == "interface") {
+        if (to == BoxType.INTERFACE) {
             types.add(ArrowType.EXTENDS);
             return types;
         }
         return types;
     }
-    
-    private List<ArrowType> abstractclassRelations(String to) {
+
+    private List<ArrowType> abstractclassRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
-        if (to == "interface") {
+        if (to == BoxType.INTERFACE) {
             types.add(ArrowType.IMPLEMENTS);
             return types;
         }
-        if (to == "abstractclass") {
+        if (to == BoxType.ABSTRACTCLASS) {
             types.add(ArrowType.IMPLEMENTS);
             return types;
         }
-        if (to == "class") {
+        if (to == BoxType.CLASS) {
             types.add(ArrowType.IMPLEMENTS);
             return types;
         }
         return types;
     }
-    
-    private List<ArrowType> enumRelations(String to) {
+
+    private List<ArrowType> enumRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
-        if (to == "interface") {
+        if (to == BoxType.INTERFACE) {
             types.add(ArrowType.IMPLEMENTS);
             return types;
         }
         return types;
     }
 }
-   

@@ -2,15 +2,12 @@ package viewmodel;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import model.Box;
+import model.boxes.Box;
 import model.Model;
 import model.Observer;
 
 import java.awt.*;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class BaseController implements Observer {
 

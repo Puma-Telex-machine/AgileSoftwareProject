@@ -1,5 +1,8 @@
 package model;
 
+import model.boxes.Box;
+import model.boxes.Diagram;
+
 import java.awt.*;
 import java.util.ArrayList;
 
