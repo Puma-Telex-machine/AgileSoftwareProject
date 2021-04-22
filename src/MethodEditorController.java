@@ -12,6 +12,18 @@ import java.util.List;
 
 public class MethodEditorController extends AnchorPane {
 
+    public MethodEditorController(){
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/MethodEditor.fxml")));
+
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
     @FXML
     private TextField nameField;
 
@@ -55,6 +67,7 @@ public class MethodEditorController extends AnchorPane {
 
     public void EditMethod(MethodData methodData)
     {
+        System.out.println();
         nameField.setText(methodData.methodName);
         Visibility[] allVisibility = Visibility.values();
         accessComboBox.getItems().addAll(allVisibility.toString());

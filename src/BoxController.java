@@ -6,12 +6,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import model.Box;
+import model.MethodData;
+import model.VariableData;
+import model.boxes.Box;
 
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BoxController extends AnchorPane {
     @FXML
@@ -26,10 +30,10 @@ public class BoxController extends AnchorPane {
     VariableEditorController variableEditor;
     MethodEditorController methodEditor;
 
-    private List<String> methodList = new ArrayList<>();
-    private List<String> variableList = new ArrayList<>();
+    private Map<Label,String> methodMap = new HashMap<Label,String>();
+    private Map<Label,String> variableMap = new HashMap<Label,String>();
 
-    Box box;
+    private Box box;
     public BoxController(Box box,VariableEditorController VEC,MethodEditorController MEC){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Box.fxml")));
 
@@ -74,9 +78,11 @@ public class BoxController extends AnchorPane {
     @FXML
     private void addMethod(MouseEvent e){
 
+        System.out.println("addmethod");
         methodEditor.setVisible(true);
         methodEditor.setLayoutX(this.getLayoutX()-150);
         methodEditor.setLayoutY(this.getLayoutY());
+        methodEditor.EditMethod();
 
         /*
         String method = "+ getNumber() : int";
@@ -94,6 +100,7 @@ public class BoxController extends AnchorPane {
         variableEditor.setVisible(true);
         variableEditor.setLayoutX(this.getLayoutX()-150);
         variableEditor.setLayoutY(this.getLayoutY());
+        variableEditor.EditVariable();
 
 
         /*String method = "+ variable : bool";
@@ -105,6 +112,17 @@ public class BoxController extends AnchorPane {
         variables.getChildren().add(tmp);*/
         e.consume();
     }
+    @FXML
+    private void editVariable(){
+        //todo
+        //box.getVariableData()
+    }
+
+    public void updateMethods(List<MethodData> methods){
+        //todo
+        //add lamda function  ish currentEditArgument.argumentTypeField.setOnAction((Action) -> editVariable(variableData)
+    }
+
 
     private boolean circlePaneVisible = false;
     @FXML

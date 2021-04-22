@@ -2,6 +2,7 @@ package model.boxes;
 
 import model.relations.Relation;
 
+import java.awt.*;
 import java.util.*;
 
 public class Diagram {

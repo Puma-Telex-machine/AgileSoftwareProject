@@ -4,9 +4,9 @@ import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import model.Box;
 import model.Model;
 import model.Observer;
+import model.boxes.Box;
 
 import java.awt.*;
 
@@ -23,21 +23,37 @@ public class BaseController implements Observer{
 
     Model model;
 
+    VariableEditorController variableEditor;
+
+    MethodEditorController methodEditor;
+
     public BaseController() {
+
+        methodEditor = new MethodEditorController();
+        variableEditor = new VariableEditorController();
 
         model = Model.getModel();
         model.addObserver(this);
     }
 
+    public void init(){
+        System.out.println("init");
+        UML.getChildren().add(methodEditor);
+        UML.getChildren().add(variableEditor);
+        methodEditor.setLayoutX(150);
+        methodEditor.setLayoutY(150);
+    }
+
     @FXML
     private void handleAddBox(Event e) {
+        if(!UML.getChildren().contains(variableEditor)) init();
         model.addBox(new Point(0, 0));
         e.consume();
     }
 
     @Override
     public void addBox(Box b){
-        BoxController box = new BoxController(b);
+        BoxController box = new BoxController(b,variableEditor,methodEditor);
         UML.getChildren().add(box);
     }
     @FXML
