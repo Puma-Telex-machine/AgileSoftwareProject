@@ -40,8 +40,8 @@ public class BaseController implements Observer{
         System.out.println("init");
         UML.getChildren().add(methodEditor);
         UML.getChildren().add(variableEditor);
-        methodEditor.setLayoutX(150);
-        methodEditor.setLayoutY(150);
+        methodEditor.setVisible(false);
+        variableEditor.setVisible(false);
     }
 
     @FXML
