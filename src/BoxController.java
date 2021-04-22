@@ -23,16 +23,20 @@ public class BoxController extends AnchorPane {
     @FXML
     AnchorPane circlePane;
 
+    VariableEditorController variableEditor;
+    MethodEditorController methodEditor;
+
     private List<String> methodList = new ArrayList<>();
     private List<String> variableList = new ArrayList<>();
 
     Box box;
-    public BoxController(Box box){
+    public BoxController(Box box,VariableEditorController VEC,MethodEditorController MEC){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Box.fxml")));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
-
+        variableEditor = VEC;
+        methodEditor = MEC;
         try {
             fxmlLoader.load();
         } catch (IOException exception) {
@@ -69,24 +73,36 @@ public class BoxController extends AnchorPane {
     }
     @FXML
     private void addMethod(MouseEvent e){
+
+        methodEditor.setVisible(true);
+        methodEditor.setLayoutX(this.getLayoutX()-150);
+        methodEditor.setLayoutY(this.getLayoutY());
+
+        /*
         String method = "+ getNumber() : int";
         methodList.add(method);
         Label tmp = new Label();
         Paint p = new Color(0.86,0.86,0.86,1);
         tmp.setTextFill(p);
         tmp.setText(method);
-        methods.getChildren().add(tmp);
+        methods.getChildren().add(tmp);*/
         e.consume();
     }
     @FXML
     private void addVariable(MouseEvent e){
-        String method = "+ variable : bool";
+
+        variableEditor.setVisible(true);
+        variableEditor.setLayoutX(this.getLayoutX()-150);
+        variableEditor.setLayoutY(this.getLayoutY());
+
+
+        /*String method = "+ variable : bool";
         variableList.add(method);
         Label tmp = new Label();
         Paint p = new Color(0.86,0.86,0.86,1);
         tmp.setTextFill(p);
         tmp.setText(method);
-        variables.getChildren().add(tmp);
+        variables.getChildren().add(tmp);*/
         e.consume();
     }
 

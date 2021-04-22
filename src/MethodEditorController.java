@@ -1,14 +1,14 @@
-package viewmodel;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 import java.util.List;
 
-public class MethodEditorController {
+public class MethodEditorController extends AnchorPane {
 
     @FXML
     private TextField nameField;
