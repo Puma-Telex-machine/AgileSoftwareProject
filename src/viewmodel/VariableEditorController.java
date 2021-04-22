@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import model.VariableData;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -32,4 +33,14 @@ public class VariableEditorController {
     {
 
     }
+    public void EditVariable()
+    {
+        EditVariable(new VariableData());
+    }
+
+    public void EditVariable(VariableData variableData)
+    {
+
+    }
+
 }

@@ -1,7 +1,9 @@
 package model;
 
+import model.boxes.Visibility;
+
 public class VariableData {
 
-    String name;
-
+    public String name = "";
+    public Visibility visibility = Visibility.PRIVATE;
 }
