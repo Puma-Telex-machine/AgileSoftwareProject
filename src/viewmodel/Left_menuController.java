@@ -25,12 +25,8 @@ public class Left_menuController {
     @FXML 
     Pane pane1, pane2, pane3, pane4, pane5, pane6;
     @FXML
-    TextField searchbar;
-    @FXML
     Text uml_text, templates_text, recentworktext, textformattext, exercisetext, commenttext, overviewtext;
    
-
-    BoxController boxC;
 
   /*public Left_menuController() {
         FXMLLoader fxmlLoader = new FXMLLoader(
@@ -53,7 +49,6 @@ public class Left_menuController {
         }
         else if (event.getSource() == button2) {
             pane2.toFront();
-            searchbar.toFront();
             uml_text.toFront();
             templates_text.toFront();
             
