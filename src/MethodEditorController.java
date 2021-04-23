@@ -47,7 +47,7 @@ public class MethodEditorController extends AnchorPane {
 
     private List<MethodArgumentEditorController> arguments;
 
-    public void AddArgument()
+    private void AddArgument()
     {
         //Adds the current edit argument to the arguments
         currentEditArgument.highlightPane.getStyleClass().clear();
@@ -56,6 +56,9 @@ public class MethodEditorController extends AnchorPane {
         currentEditArgument.argumentTypeField.getStyleClass().add("highlight");
         currentEditArgument.argumentTypeField.setOnAction(null);
         arguments.add(currentEditArgument);
+        MethodArgumentEditorController argument = currentEditArgument;
+        argument.argumentTypeField.setOnAction((Action) -> ChangeArgument(argument));
+        this.setLayoutY(this.getLayoutY() - argument.getHeight()/2);
 
         //Creates a new current edit argument
         currentEditArgument = new MethodArgumentEditorController();
@@ -65,6 +68,17 @@ public class MethodEditorController extends AnchorPane {
         currentEditArgument.argumentTypeField.getStyleClass().clear();
         currentEditArgument.argumentTypeField.getStyleClass().add("box");
         currentEditArgument.argumentTypeField.setOnAction((Action) -> AddArgument());
+    }
+
+    private void ChangeArgument(MethodArgumentEditorController argument)
+    {
+        if(argument.argumentTypeField.getText().equals(""))
+        {
+            this.setLayoutY(this.getLayoutY() + argument.getHeight()/2);
+            arguments.remove(argument);
+            argumentVBox.getChildren().remove(argument);
+            argument.argumentTypeField.setOnAction(null);
+        }
     }
 
     @FXML
@@ -80,15 +94,18 @@ public class MethodEditorController extends AnchorPane {
         }
         methodData.arguments = argRet;
 
-        Visibility visibility = (Visibility) accessComboBox.getSelectionModel().getSelectedItem();
+        //Visibility visibility = (Visibility) accessComboBox.getSelectionModel().getSelectedItem();
 
         //box.EditMethod(methodData); todo
+
+        this.setVisible(false);
     }
 
     @FXML
     public void DeleteMethod()
     {
-        box.DeleteMethod(methodData.methodName);
+        //box.DeleteMethod(methodData.methodName);
+        this.setVisible(false);
     }
 
     public void EditMethod()
@@ -120,7 +137,9 @@ public class MethodEditorController extends AnchorPane {
         {
             MethodArgumentEditorController argument = new MethodArgumentEditorController();
             argument.argumentTypeField.setText(methodData.arguments[i]);
-            argumentVBox.getChildren().add(currentEditArgument);
+            argument.argumentTypeField.setOnAction((Action) -> ChangeArgument(argument));
+            argumentVBox.getChildren().add(argument);
+            this.setLayoutY(this.getLayoutY() - argument.getHeight()/2);
         }
 
         currentEditArgument = new MethodArgumentEditorController();
@@ -131,6 +150,4 @@ public class MethodEditorController extends AnchorPane {
         currentEditArgument.argumentTypeField.getStyleClass().add("box");
         currentEditArgument.argumentTypeField.setOnAction((Action) -> AddArgument());
     }
-
-
 }
