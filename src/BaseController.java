@@ -7,6 +7,7 @@ import javafx.scene.layout.VBox;
 import model.Model;
 import model.Observer;
 import model.boxes.Box;
+import model.facades.BoxFacade;
 
 import java.awt.*;
 
@@ -52,7 +53,7 @@ public class BaseController implements Observer{
     }
 
     @Override
-    public void addBox(Box b){
+    public void addBox(BoxFacade b){
         BoxController box = new BoxController(b,variableEditor,methodEditor);
         UML.getChildren().add(box);
     }

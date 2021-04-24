@@ -3,6 +3,8 @@ package model.facades;
 import model.MethodData;
 import model.VariableData;
 
+import java.awt.*;
+
 public interface BoxFacade {
     /**
      * Should edit the method if the method already exists.
@@ -31,4 +33,8 @@ public interface BoxFacade {
      * @param variableName The name of the variable that should be deleted.
      */
     public void DeleteVariable(String variableName);
+
+    public Point getPosition();
+
+    void setPosition(Point point);
 }

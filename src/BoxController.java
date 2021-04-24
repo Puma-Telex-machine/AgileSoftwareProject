@@ -9,6 +9,7 @@ import javafx.scene.paint.Paint;
 import model.MethodData;
 import model.VariableData;
 import model.boxes.Box;
+import model.facades.BoxFacade;
 
 import java.awt.*;
 import java.io.IOException;
@@ -33,8 +34,8 @@ public class BoxController extends AnchorPane {
     private Map<Label,String> methodMap = new HashMap<Label,String>();
     private Map<Label,String> variableMap = new HashMap<Label,String>();
 
-    private Box box;
-    public BoxController(Box box,VariableEditorController VEC,MethodEditorController MEC){
+    private BoxFacade box;
+    public BoxController(BoxFacade box,VariableEditorController VEC,MethodEditorController MEC){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Box.fxml")));
 
         fxmlLoader.setRoot(this);
@@ -82,7 +83,7 @@ public class BoxController extends AnchorPane {
         methodEditor.setVisible(true);
         methodEditor.setLayoutX(this.getLayoutX()-150);
         methodEditor.setLayoutY(this.getLayoutY());
-        methodEditor.EditMethod();
+        methodEditor.EditMethod(box);
 
         /*
         String method = "+ getNumber() : int";
@@ -100,7 +101,7 @@ public class BoxController extends AnchorPane {
         variableEditor.setVisible(true);
         variableEditor.setLayoutX(this.getLayoutX()-150);
         variableEditor.setLayoutY(this.getLayoutY());
-        variableEditor.EditVariable();
+        variableEditor.EditVariable(box);
 
 
         /*String method = "+ variable : bool";
@@ -153,7 +154,7 @@ public class BoxController extends AnchorPane {
 
         //todo observerpattern
     }
-    public Box getBox(){
+    public BoxFacade getBox(){
         return box;
     }
 }
