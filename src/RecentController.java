@@ -6,9 +6,6 @@ import model.Model;
 
 import java.io.IOException;
 
-@FXML
-Button minimize_button;
-
 public class RecentController extends AnchorPane{
 
     Model model = Model.getModel();

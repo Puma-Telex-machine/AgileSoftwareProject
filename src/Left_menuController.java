@@ -30,7 +30,7 @@ public class Left_menuController extends AnchorPane{
     @FXML
     private void handleButtonAction(ActionEvent event){
         if(event.getSource() == button1) {
-            // TODO button1.setBackground(); to #3E4046
+            //TODO button1.setBackground(); to #3E4046
         
         }
         else if (event.getSource() == button2) {

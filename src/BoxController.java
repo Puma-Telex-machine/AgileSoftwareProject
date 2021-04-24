@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
 import model.MethodData;
-import model.VariableData;
+//import model.VariableData;
 import model.boxes.Box;
 import model.facades.BoxFacade;
 
@@ -106,7 +106,7 @@ public class BoxController extends AnchorPane {
         variableEditor.setVisible(true);
         variableEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
         variableEditor.setLayoutY(this.getLayoutY()+this.getHeight()/2-variableEditor.getHeight()/2);
-        variableEditor.EditVariable(box);
+        //variableEditor.EditVariable(box);
 
 
         /*String method = "+ variable : bool";
