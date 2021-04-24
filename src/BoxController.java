@@ -4,6 +4,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
@@ -20,6 +21,8 @@ import java.util.List;
 import java.util.Map;
 
 public class BoxController extends AnchorPane {
+    @FXML
+    private TextField nameField;
     @FXML
     private Label name;
     @FXML
@@ -83,8 +86,6 @@ public class BoxController extends AnchorPane {
     }
     @FXML
     private void addMethod(MouseEvent e){
-
-        System.out.println("addmethod");
         methodEditor.setVisible(true);
         methodEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
         methodEditor.setLayoutY(this.getLayoutY()+this.getHeight()/2-methodEditor.getHeight()/2);
@@ -102,7 +103,6 @@ public class BoxController extends AnchorPane {
     }
     @FXML
     private void addVariable(MouseEvent e){
-
         variableEditor.setVisible(true);
         variableEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
         variableEditor.setLayoutY(this.getLayoutY()+this.getHeight()/2-variableEditor.getHeight()/2);
@@ -133,7 +133,6 @@ public class BoxController extends AnchorPane {
     @FXML
     private void startArrow(MouseEvent event){
         if(!creatingArrow){
-            name.setText("creating arrow");
             creatingArrow=true;
         }
         //todo find closest anchorpoint
@@ -143,10 +142,10 @@ public class BoxController extends AnchorPane {
     @FXML
     private void attachArrow(MouseEvent event){
         creatingArrow=false;
-        name.setText("attaching arrow");
 
         //todo observerpattern
     }
+
     public BoxFacade getBox(){
         return box;
     }
@@ -163,5 +162,35 @@ public class BoxController extends AnchorPane {
         circle2.setVisible(true);
         circle3.setVisible(true);
         circle4.setVisible(true);
+    }
+    private void circlesToFront(){
+        circle1.toFront();
+        circle2.toFront();
+        circle3.toFront();
+        circle4.toFront();
+    }
+    @FXML
+    private void updateName(){
+        //todo wait for backend to implement
+        //box.setName(nameField.getText());
+        nameField.toBack();
+        name.setText(nameField.getText());
+        this.requestFocus();
+    }
+    private boolean changeable=true;
+    @FXML
+    private void changeName(){
+        if(!changeable){
+            changeable=true;
+            return;
+        }
+        nameField.setText(name.getText());
+        nameField.toFront();
+        circlesToFront();
+        nameField.requestFocus();
+    }
+    @FXML
+    private void unableToChangeName(){
+        changeable=false;
     }
 }

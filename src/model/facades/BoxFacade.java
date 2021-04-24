@@ -37,4 +37,6 @@ public interface BoxFacade {
     public Point getPosition();
 
     void setPosition(Point point);
+
+    void setName(String name);
 }

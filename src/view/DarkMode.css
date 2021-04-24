@@ -1,12 +1,24 @@
 .text-Large{
     -fx-text-fill: "DBDBDB";
+    -fx-alignment: "Center";
     -fx-font-size: 20px;
     -fx-font-family: "Roboto";
 }
 .text-small{
     -fx-text-fill: "DBDBDB";
-    -fx-font-size: 12px;
+    -fx-alignment: "Center";
+       -fx-font-size: 12px;
+       -fx-font-family: "Roboto";
+}
+
+.text-medium {
+    -fx-text-fill: "DBDBDB";
+    -fx-alignment: "Center";
+    -fx-font-size: 16px;
     -fx-font-family: "Roboto";
+}
+.text-input {
+    -fx-text-inner-color: "DBDBDB";
 }
 
 .background{
