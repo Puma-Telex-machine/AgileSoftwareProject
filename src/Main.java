@@ -3,6 +3,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Model;
+//import viewmodel.BaseController;
+import viewmodel.Left_menuController;
 
 import java.util.Objects;
 
@@ -21,7 +24,7 @@ public class Main extends Application {
         Scene scene = new Scene(root, 1440, 900);
         fxmlLoader.setRoot(this);
         //fxmlLoader.setController(new BaseController());
-
+       
         stage.setTitle("UML 2000");
         stage.setScene(scene);
         stage.show();
@@ -33,5 +36,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
+    
 }
