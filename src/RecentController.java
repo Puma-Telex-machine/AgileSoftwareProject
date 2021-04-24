@@ -12,13 +12,6 @@ import java.awt.*;
 import java.io.IOException;
 
 
-/** Controller class for the left menu
- * @author Madeleine Xia
- * @version 1.0
- * @since 2021-04-xx
- *
- */
-
 public class RecentController extends AnchorPane{
 
     Model model = Model.getModel();

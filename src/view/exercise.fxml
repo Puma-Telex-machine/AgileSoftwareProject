@@ -3,8 +3,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<Pane id="pane4" fx:id="pane4" prefHeight="900.0" prefWidth="198.0" style="-fx-background-color: #afeeee;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<Pane id="pane4" fx:id="pane4" prefHeight="900.0" prefWidth="220.0" style="-fx-background-color: #3E4046;" stylesheets="@DarkMode.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text id="exercisetext" fx:id="exercisetext" layoutX="15.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EXERCISE" />
+      <Text id="exercisetext" fx:id="exercisetext" fill="#b8b8b8" layoutX="20.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-Large" text="EXERCISES" />
    </children>
 </Pane>

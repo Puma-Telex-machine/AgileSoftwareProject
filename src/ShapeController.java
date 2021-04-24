@@ -3,7 +3,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class ShapeController extends AnchorPane {

@@ -5,7 +5,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import model.VariableData;
+//import model.VariableData;
 import model.facades.BoxFacade;
 
 import javax.swing.*;
@@ -32,8 +32,8 @@ public class VariableEditorController extends AnchorPane {
     @FXML
     private TextField nameField; //The text field for the name of the variable
 
-    @FXML
-    private ComboBox accessComboBox; //The combo box for choosing the access of the variable
+    //@FXML
+    //private ComboBox accessComboBox; //The combo box for choosing the access of the variable
 
     @FXML
     private TextField typeField; //The text field for the type of the variable
@@ -46,7 +46,7 @@ public class VariableEditorController extends AnchorPane {
         box.DeleteVariable(nameField.getText());
     }
 
-    @FXML
+   /* @FXML
     private void confirmVariable() //This method is called when the player wants to confirm and stop editing this variable
     {
         VariableData data = new VariableData();
@@ -62,6 +62,6 @@ public class VariableEditorController extends AnchorPane {
     public void EditVariable(VariableData variableData, BoxFacade box)
     {
         this.box = box;
-    }
+    }*/
 
 }

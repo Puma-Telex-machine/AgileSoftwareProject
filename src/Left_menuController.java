@@ -2,20 +2,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
 
-
-/** Controller class for the left menu
- * @author Madeleine Xia
- * @version 1.0
- * @since 2021-04-xx
- * 
- */
 
 public class Left_menuController extends AnchorPane{
 
@@ -52,9 +44,6 @@ public class Left_menuController extends AnchorPane{
             pane2.toFront();
             uml_text.toFront();
             templates_text.toFront();
-            
-            //create box/add box knapp
-            //templates ska upp
         }
         else if (event.getSource() == button3) {
             pane3.toFront();
@@ -73,9 +62,5 @@ public class Left_menuController extends AnchorPane{
             pane6.toFront();
             overviewtext.toFront();
         }
-        /*else if (event.getSource() == template1){
-            (en fxml för template1).toFront();
-
-        }*/
     }
 }

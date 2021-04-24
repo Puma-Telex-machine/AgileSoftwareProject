@@ -1,7 +1,7 @@
 package model.facades;
 
 import model.MethodData;
-import model.VariableData;
+//import model.VariableData;
 
 import java.awt.*;
 
@@ -18,7 +18,7 @@ public interface BoxFacade {
      * If the variable doesn't exist the variable should be added instead.
      * @param variableData The data for the new variable. Should replace the old data.
      */
-    public void EditVariable(VariableData variableData);
+    //public void EditVariable(VariableData variableData);
 
     /**
      * If a method with this name exists then delete the method.

@@ -5,19 +5,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root id="pane2" fx:id="pane2" prefHeight="900.0" prefWidth="198.0" style="-fx-background-color: #ff0c93;" type="Pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root id="pane2" fx:id="pane2" prefHeight="900.0" prefWidth="220.0" style="-fx-background-color: #3E4046;" stylesheets="@DarkMode.css" type="Pane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button id="template1" layoutX="15.0" layoutY="300.0" mnemonicParsing="false" prefHeight="166.0" prefWidth="82.0" text="Templates1" />
-      <Text id="uml_text" layoutX="15.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UML COMPONENTS">
+      <Button id="template1" layoutX="20.0" layoutY="320.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="84.0" text="Templates1" />
+      <Text id="uml_text" fill="#b8b8b8" layoutX="20.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-Large" text="BOXES">
          <font>
             <Font name="Roboto" size="13.0" />
          </font>
       </Text>
-      <Text id="templates_text" layoutX="15.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TEMPLATES">
+      <Text id="templates_text" fill="#b8b8b8" layoutX="20.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-Large" text="TEMPLATES">
          <font>
             <Font name="Roboto" size="13.0" />
          </font>
       </Text>
-      <Button layoutX="18.0" layoutY="119.0" mnemonicParsing="false" onAction="#addBox" text="Add Box" />
+      <Button layoutX="20.0" layoutY="70.0" mnemonicParsing="false" onAction="#addBox" text="Add Box" />
    </children>
 </fx:root>
