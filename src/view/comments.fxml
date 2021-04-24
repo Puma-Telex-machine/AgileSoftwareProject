@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<Pane id="pane5" fx:id="pane5" prefHeight="900.0" prefWidth="197.0" style="-fx-background-color: #8a2be2;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text id="commenttext" fx:id="commenttext" layoutX="15.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMMENTS" />
+      <ListView id="commentlist" fx:id="commentlist" layoutY="55.0" prefHeight="846.0" prefWidth="200.0" />
+   </children>
+</Pane>

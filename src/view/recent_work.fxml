@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<Pane id="pane1" fx:id="pane1" prefHeight="900.0" prefWidth="197.0" style="-fx-background-color: #ffe700;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text id="recentworktext" fx:id="recentworktext" layoutX="15.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RECENT WORK" />
+      <Button id="new_button" fx:id="new_button" layoutX="88.0" layoutY="645.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="83.0" text="NEW" />
+   </children>
+</Pane>

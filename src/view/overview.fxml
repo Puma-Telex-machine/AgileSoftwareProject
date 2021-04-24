@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<Pane id="pane6" fx:id="pane6" prefHeight="899.0" prefWidth="197.0" style="-fx-background-color: #df5558;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text id="overviewtext" fx:id="overviewtext" layoutX="15.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OVERVIEW" />
+   </children>
+</Pane>

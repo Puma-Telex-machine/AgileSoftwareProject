@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane id="pane2" fx:id="pane2" prefHeight="900.0" prefWidth="198.0" style="-fx-background-color: #ff0c93;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button id="template1" fx:id="template1" layoutX="15.0" layoutY="300.0" mnemonicParsing="false" prefHeight="166.0" prefWidth="82.0" text="Templates1" />
+      <Text id="uml_text" fx:id="uml_text" layoutX="15.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UML COMPONENTS">
+         <font>
+            <Font name="Roboto" size="13.0" />
+         </font>
+      </Text>
+      <Text id="templates_text" fx:id="templates_text" layoutX="15.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TEMPLATES">
+         <font>
+            <Font name="Roboto" size="13.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>
