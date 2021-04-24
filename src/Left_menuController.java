@@ -1,12 +1,13 @@
-package viewmodel;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+
+import java.io.IOException;
 
 
 /** Controller class for the left menu
@@ -16,7 +17,7 @@ import javafx.scene.text.Text;
  * 
  */
 
-public class Left_menuController {
+public class Left_menuController extends AnchorPane{
 
     @FXML
     AnchorPane base_menu, top_anchorpane, middle_anchorpane, left_anchorpane;
@@ -28,11 +29,11 @@ public class Left_menuController {
     Text uml_text, templates_text, recentworktext, textformattext, exercisetext, commenttext, overviewtext;
    
 
-  /*public Left_menuController() {
+  public Left_menuController() {
         FXMLLoader fxmlLoader = new FXMLLoader(
                 getClass().getResource("view/left_menu.fxml"));
 
-        //fxmlLoader.setRoot(this);
+        fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
         try {
@@ -40,7 +41,7 @@ public class Left_menuController {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-    }*/
+    }
 
     @FXML
     private void handleButtonAction(ActionEvent event){

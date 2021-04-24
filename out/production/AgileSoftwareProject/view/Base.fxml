@@ -3,37 +3,52 @@
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@DarkMode.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BaseController">
    <children>
-      <StackPane prefHeight="900.0" prefWidth="1440.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox prefHeight="900.0" prefWidth="1440.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane fx:id="contextMenu" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#exitContext" onMouseDragged="#exitContext" prefHeight="900.0" prefWidth="625.0" stylesheets="@DarkMode.css">
+            <AnchorPane id="left_anchorpane" fx:id="left_anchorpane" prefHeight="900.0" prefWidth="27.0" style="-fx-background-color: #8DBF8C;">
+               <effect>
+                  <DropShadow />
+               </effect>
                <children>
-                  <VBox fx:id="context" alignment="TOP_CENTER" layoutX="205.0" layoutY="336.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                  <Button id="button1" fx:id="button1" layoutX="2.0" layoutY="74.0" mnemonicParsing="false" text="Recent" />
+                  <Button id="button2" fx:id="button2" layoutX="1.0" layoutY="140.0" mnemonicParsing="false" text="Shapes" />
+                  <Button id="button3" fx:id="button3" layoutX="4.0" layoutY="211.0" mnemonicParsing="false" text="Text" />
+                  <Button id="button4" fx:id="button4" layoutX="-1.0" layoutY="286.0" mnemonicParsing="false" text="Exercises" />
+                  <Button id="button5" fx:id="button5" layoutY="359.0" mnemonicParsing="false" text="Comments" />
+                  <Button id="button6" fx:id="button6" layoutY="436.0" mnemonicParsing="false" text="Overview" />
+               </children>
+            </AnchorPane>
+            <StackPane prefHeight="900.0" prefWidth="1440.0">
+               <children>
+                  <AnchorPane fx:id="contextMenu" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#exitContext" onMouseDragged="#exitContext" prefHeight="900.0" prefWidth="625.0" stylesheets="@DarkMode.css">
                      <children>
-                        <Label alignment="CENTER" onMouseClicked="#handleContextAddBox" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add Class" textAlignment="CENTER" />
-                        <Label alignment="CENTER" onMouseClicked="#handleContextAddBox" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add interface" textAlignment="CENTER" />
-                        <Label alignment="CENTER" onMouseClicked="#handleContextAddBox" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add Abstract Class" textAlignment="CENTER" />
-                        <Line endX="149.0" />
+                        <VBox fx:id="context" alignment="TOP_CENTER" layoutX="205.0" layoutY="336.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                           <children>
+                              <Label alignment="CENTER" onMouseClicked="#handleContextAddBox" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add Class" textAlignment="CENTER" />
+                              <Label alignment="CENTER" onMouseClicked="#handleContextAddBox" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add interface" textAlignment="CENTER" />
+                              <Label alignment="CENTER" onMouseClicked="#handleContextAddBox" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add Abstract Class" textAlignment="CENTER" />
+                              <Line endX="149.0" />
+                           </children>
+                           <styleClass>
+                              <String fx:value="highlight" />
+                              <String fx:value="border" />
+                           </styleClass>
+                        </VBox>
                      </children>
-                     <styleClass>
-                        <String fx:value="highlight" />
-                        <String fx:value="border" />
-                     </styleClass>
-                  </VBox>
+                  </AnchorPane>
+                  <AnchorPane fx:id="UML" onContextMenuRequested="#handleContextMenu" prefHeight="200.0" prefWidth="200.0" styleClass="background" />
                </children>
-            </AnchorPane>
-            <AnchorPane fx:id="UML" onContextMenuRequested="#handleContextMenu" prefHeight="200.0" prefWidth="200.0" styleClass="background">
-               <children>
-                  <Button layoutX="484.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleAddBox" text="Add Box" />
-               </children>
-            </AnchorPane>
+            </StackPane>
          </children>
-      </StackPane>
+      </HBox>
    </children>
 </AnchorPane>

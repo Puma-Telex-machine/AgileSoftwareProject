@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="base_menu" fx:id="base_menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1463.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewmodel.Left_menuController">
+<fx:root id="base_menu" fx:id="base_menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1463.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane id="top_anchorpane" fx:id="top_anchorpane" layoutX="258.0" layoutY="-3.0" prefHeight="900.0" prefWidth="1205.0" style="-fx-background-color: E2E2E2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="258.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane id="middle_anchorpane" fx:id="middle_anchorpane" layoutX="184.0" layoutY="-1.0" prefHeight="900.0" prefWidth="260.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -71,4 +71,4 @@
          </effect>
       </AnchorPane>
    </children>
-</AnchorPane>
+</fx:root>
