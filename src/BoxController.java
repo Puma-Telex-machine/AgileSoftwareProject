@@ -6,6 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Ellipse;
 import model.MethodData;
 import model.VariableData;
 import model.boxes.Box;
@@ -26,7 +27,7 @@ public class BoxController extends AnchorPane {
     @FXML
     private VBox variables;
     @FXML
-    AnchorPane circlePane;
+    Ellipse circle1,circle2,circle3,circle4;
 
     VariableEditorController variableEditor;
     MethodEditorController methodEditor;
@@ -49,7 +50,7 @@ public class BoxController extends AnchorPane {
             throw new RuntimeException(exception);
         }
         this.box = box;
-        circlePane.setVisible(false);
+        hideCircles();
         this.setLayoutX(box.getPosition().x);
         this.setLayoutY(box.getPosition().y);
     }
@@ -61,6 +62,8 @@ public class BoxController extends AnchorPane {
 
     @FXML
     private void handleDrag(MouseEvent event){
+        variableEditor.setVisible(false);
+        methodEditor.setVisible(false);
         if(!moving){
             offsetX = event.getX();
             offsetY = event.getY();
@@ -126,15 +129,6 @@ public class BoxController extends AnchorPane {
         //add lamda function  ish currentEditArgument.argumentTypeField.setOnAction((Action) -> editVariable(variableData)
     }
 
-
-    @FXML
-    private void hoverEnter(){
-        circlePane.setVisible(true);
-    }
-    @FXML
-    private void hoverExit(){
-        circlePane.setVisible(false);
-    }
     private boolean creatingArrow=false;
     @FXML
     private void startArrow(MouseEvent event){
@@ -155,5 +149,19 @@ public class BoxController extends AnchorPane {
     }
     public BoxFacade getBox(){
         return box;
+    }
+    @FXML
+    private void hideCircles(){
+        circle1.setVisible(false);
+        circle2.setVisible(false);
+        circle3.setVisible(false);
+        circle4.setVisible(false);
+    }
+    @FXML
+    private void showCircles(){
+        circle1.setVisible(true);
+        circle2.setVisible(true);
+        circle3.setVisible(true);
+        circle4.setVisible(true);
     }
 }

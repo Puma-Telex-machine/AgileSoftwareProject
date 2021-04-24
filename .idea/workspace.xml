@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BaseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BoxController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CanvasController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ShapeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ShapeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MethodEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MethodEditorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Box.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Box.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

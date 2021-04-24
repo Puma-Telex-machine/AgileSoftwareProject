@@ -126,8 +126,7 @@ public class MethodEditorController extends AnchorPane {
         nameField.setText(methodData.methodName);
 
         //Sets the options for the accessibility combo box
-        Visibility[] allVisibility = Visibility.values();
-        accessComboBox.getItems().addAll(allVisibility);
+        accessComboBox.getItems().addAll(Visibility.values());
 
         //Sets the current visibility
         accessComboBox.getSelectionModel().select(methodData.visibility.name());
