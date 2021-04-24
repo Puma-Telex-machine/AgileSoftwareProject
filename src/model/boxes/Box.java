@@ -1,5 +1,9 @@
 package model.boxes;
 
+import model.MethodData;
+import model.VariableData;
+import model.facades.BoxFacade;
+
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -9,7 +13,7 @@ import java.util.List;
  * Originally created by Emil Holmsten,
  * Updated by Filip Hanberg.
  */
-public class Box {
+public class Box implements BoxFacade {
 
     private String name;
     private Point position;
@@ -108,6 +112,26 @@ public class Box {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void EditMethod(MethodData methodData) {
+        //todo
+    }
+
+    @Override
+    public void EditVariable(VariableData variableData) {
+        //todo
+    }
+
+    @Override
+    public void DeleteMethod(String methodName) {
+        //todo
+    }
+
+    @Override
+    public void DeleteVariable(String variableName) {
+        //todo
     }
 
     public Point getPosition(){return position; }

@@ -5,9 +5,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.fxml.FXMLLoader;
 import model.MethodData;
+import model.boxes.Box;
 import model.boxes.Visibility;
+import model.facades.BoxFacade;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MethodEditorController extends AnchorPane {
@@ -36,52 +39,115 @@ public class MethodEditorController extends AnchorPane {
     @FXML
     private VBox argumentVBox;
 
+    private BoxFacade box;
+
+    private MethodData methodData;
+
     private MethodArgumentEditorController currentEditArgument;
 
     private List<MethodArgumentEditorController> arguments;
 
-    public void AddArgument()
+    private void AddArgument()
     {
+        //Adds the current edit argument to the arguments
+        currentEditArgument.highlightPane.getStyleClass().clear();
+        currentEditArgument.highlightPane.getStyleClass().add("box");
+        currentEditArgument.argumentTypeField.getStyleClass().clear();
+        currentEditArgument.argumentTypeField.getStyleClass().add("highlight");
         currentEditArgument.argumentTypeField.setOnAction(null);
         arguments.add(currentEditArgument);
-        currentEditArgument = new MethodArgumentEditorController(argumentVBox);
+        MethodArgumentEditorController argument = currentEditArgument;
+        argument.argumentTypeField.setOnAction((Action) -> ChangeArgument(argument));
+        this.setLayoutY(this.getLayoutY() - argument.getHeight()/2);
+
+        //Creates a new current edit argument
+        currentEditArgument = new MethodArgumentEditorController();
+        argumentVBox.getChildren().add(currentEditArgument);
+        currentEditArgument.highlightPane.getStyleClass().clear();
+        currentEditArgument.highlightPane.getStyleClass().add("highlight");
+        currentEditArgument.argumentTypeField.getStyleClass().clear();
+        currentEditArgument.argumentTypeField.getStyleClass().add("box");
         currentEditArgument.argumentTypeField.setOnAction((Action) -> AddArgument());
+    }
+
+    private void ChangeArgument(MethodArgumentEditorController argument)
+    {
+        if(argument.argumentTypeField.getText().equals(""))
+        {
+            this.setLayoutY(this.getLayoutY() + argument.getHeight()/2);
+            arguments.remove(argument);
+            argumentVBox.getChildren().remove(argument);
+            argument.argumentTypeField.setOnAction(null);
+        }
     }
 
     @FXML
     public void ConfirmMethod()
     {
+        methodData.methodName = nameField.getText();
 
+        //Gets the arguments for the method data
+        String[] argRet = new String[arguments.size()];
+        for (int i = 0; i < argRet.length; i++)
+        {
+            argRet[i] = arguments.get(i).argumentTypeField.getText();
+        }
+        methodData.arguments = argRet;
+
+        String visibility = (String) accessComboBox.getValue();
+
+        box.EditMethod(methodData);
+
+        this.setVisible(false);
     }
 
     @FXML
     public void DeleteMethod()
     {
-
+        //box.DeleteMethod(methodData.methodName);
+        this.setVisible(false);
     }
 
-    public void EditMethod()
+    public void EditMethod(BoxFacade box)
     {
-        EditMethod(new MethodData());
+        EditMethod(new MethodData(), box);
     }
 
-    public void EditMethod(MethodData methodData)
+    public void EditMethod(MethodData methodData,  BoxFacade box)
     {
-        System.out.println();
+        this.box = box;
+        this.methodData = methodData;
+
+        //Resets the arguments array
+        arguments = new ArrayList<MethodArgumentEditorController>(0);
+        argumentVBox.getChildren().setAll();
+
+        //Set name
         nameField.setText(methodData.methodName);
-        Visibility[] allVisibility = Visibility.values();
-        accessComboBox.getItems().addAll(allVisibility.toString());
-        accessComboBox.getSelectionModel().select(methodData.visibility);
 
+        //Sets the options for the accessibility combo box
+        Visibility[] allVisibility = Visibility.values();
+        accessComboBox.getItems().addAll(allVisibility);
+
+        //Sets the current visibility
+        accessComboBox.getSelectionModel().select(methodData.visibility.name());
+
+        //Sets the arguments for this method
         for (int i = 0; i < methodData.arguments.length; i++)
         {
-            MethodArgumentEditorController argument = new MethodArgumentEditorController(argumentVBox);
+            MethodArgumentEditorController argument = new MethodArgumentEditorController();
             argument.argumentTypeField.setText(methodData.arguments[i]);
+            argument.argumentTypeField.setOnAction((Action) -> ChangeArgument(argument));
+            argumentVBox.getChildren().add(argument);
+            this.setLayoutY(this.getLayoutY() - argument.getHeight()/2);
         }
 
-        currentEditArgument = new MethodArgumentEditorController(argumentVBox);
+        currentEditArgument = new MethodArgumentEditorController();
+        argumentVBox.getChildren().add(currentEditArgument);
+        currentEditArgument.highlightPane.getStyleClass().clear();
+        currentEditArgument.highlightPane.getStyleClass().add("highlight");
+        currentEditArgument.argumentTypeField.getStyleClass().clear();
+        currentEditArgument.argumentTypeField.getStyleClass().add("box");
         currentEditArgument.argumentTypeField.setOnAction((Action) -> AddArgument());
     }
-
-
 }

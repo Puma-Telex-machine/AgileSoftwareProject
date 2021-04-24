@@ -15,11 +15,11 @@ public class MethodArgumentEditorController extends AnchorPane {
     @FXML
     protected Pane highlightPane;
 
-    public MethodArgumentEditorController(VBox spawnBox)
+    public MethodArgumentEditorController()
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/MethodArgumentEditor.fxml")));
 
-        fxmlLoader.setRoot(spawnBox);
+        fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
         try {
