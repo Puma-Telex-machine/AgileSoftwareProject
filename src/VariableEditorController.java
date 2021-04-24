@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.VariableData;
+import model.facades.BoxFacade;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -37,25 +38,30 @@ public class VariableEditorController extends AnchorPane {
     @FXML
     private TextField typeField; //The text field for the type of the variable
 
+    BoxFacade box;
+
     @FXML
     private void deleteVariable() //This method is called when the player wants to delete the variable
     {
-
+        box.DeleteVariable(nameField.getText());
     }
 
     @FXML
     private void confirmVariable() //This method is called when the player wants to confirm and stop editing this variable
     {
-
-    }
-    public void EditVariable()
-    {
-        EditVariable(new VariableData());
+        VariableData data = new VariableData();
+        data.name = nameField.getText();
+        box.EditVariable(data);
     }
 
-    public void EditVariable(VariableData variableData)
+    public void EditVariable(BoxFacade box)
     {
+        EditVariable(new VariableData(), box);
+    }
 
+    public void EditVariable(VariableData variableData, BoxFacade box)
+    {
+        this.box = box;
     }
 
 }

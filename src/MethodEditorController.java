@@ -94,9 +94,9 @@ public class MethodEditorController extends AnchorPane {
         }
         methodData.arguments = argRet;
 
-        //Visibility visibility = (Visibility) accessComboBox.getSelectionModel().getSelectedItem();
+        String visibility = (String) accessComboBox.getValue();
 
-        //box.EditMethod(methodData); todo
+        box.EditMethod(methodData);
 
         this.setVisible(false);
     }
@@ -108,14 +108,14 @@ public class MethodEditorController extends AnchorPane {
         this.setVisible(false);
     }
 
-    public void EditMethod()
+    public void EditMethod(BoxFacade box)
     {
-        EditMethod(new MethodData());
+        EditMethod(new MethodData(), box);
     }
 
-    public void EditMethod(MethodData methodData)
+    public void EditMethod(MethodData methodData,  BoxFacade box)
     {
-        //this.box = box; todo
+        this.box = box;
         this.methodData = methodData;
 
         //Resets the arguments array
