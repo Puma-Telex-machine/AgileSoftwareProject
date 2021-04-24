@@ -30,6 +30,10 @@ public class BaseController implements Observer{
 
     Left_menuController menu;
 
+    RecentController recent;
+
+
+
     public BaseController() {
 
         methodEditor = new MethodEditorController();
@@ -53,7 +57,7 @@ public class BaseController implements Observer{
     }
 
     @Override
-    private void addBox(BoxFacade b){
+    public void addBox(BoxFacade b){
         BoxController box = new BoxController(b,variableEditor,methodEditor);
         UML.getChildren().add(box);
     }
@@ -78,6 +82,8 @@ public class BaseController implements Observer{
     //open Menus
     @FXML
     private void openRecent(){
-        if(UML.getChildren().contains(recent))
+        if(UML.getChildren().contains(recent)){
+            
+        }
     }
 }
