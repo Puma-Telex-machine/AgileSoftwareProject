@@ -9,8 +9,9 @@ import java.io.IOException;
 public class ShapeController extends AnchorPane {
 
     Model model = Model.getModel();
+    CanvasController canvas;
 
-    public ShapeController() {
+    public ShapeController(CanvasController canvas) {
         FXMLLoader fxmlLoader = new FXMLLoader(
                 getClass().getResource("view/shapes.fxml"));
 
@@ -22,11 +23,13 @@ public class ShapeController extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        this.canvas = canvas;
     }
 
     @FXML
     private void addBox(){
-        model.addBox(new Point(500,200));
+        model.addBox(canvas.getMiddle());
     }
 
 }

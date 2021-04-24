@@ -35,6 +35,7 @@ public class BoxController extends AnchorPane {
     private Map<Label,String> variableMap = new HashMap<Label,String>();
 
     private BoxFacade box;
+
     public BoxController(BoxFacade box,VariableEditorController VEC,MethodEditorController MEC){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Box.fxml")));
 
@@ -126,16 +127,13 @@ public class BoxController extends AnchorPane {
     }
 
 
-    private boolean circlePaneVisible = false;
     @FXML
-    private void onClick(MouseEvent e){
-        if(moving){
-            handleLetGo(e);
-        }
-        else {
-            circlePaneVisible=!circlePaneVisible;
-            circlePane.setVisible(circlePaneVisible);
-        }
+    private void hoverEnter(){
+        circlePane.setVisible(true);
+    }
+    @FXML
+    private void hoverExit(){
+        circlePane.setVisible(false);
     }
     private boolean creatingArrow=false;
     @FXML

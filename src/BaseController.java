@@ -12,7 +12,7 @@ import model.facades.BoxFacade;
 import java.awt.*;
 
 
-public class BaseController implements Observer{
+public class BaseController{
 
     @FXML
     private VBox context;
@@ -25,10 +25,6 @@ public class BaseController implements Observer{
 
     Model model;
 
-    VariableEditorController variableEditor;
-
-    MethodEditorController methodEditor;
-
     RecentController recent;
 
     CanvasController canvas;
@@ -38,14 +34,11 @@ public class BaseController implements Observer{
 
 
     public BaseController() {
-
-        methodEditor = new MethodEditorController();
-        variableEditor = new VariableEditorController();
         recent = new RecentController();
         canvas = new CanvasController();
-        shapes = new ShapeController();
+        shapes = new ShapeController(canvas);
         model = Model.getModel();
-        model.addObserver(this);
+        model.addObserver(canvas);
     }
 
     private void init(){
@@ -53,24 +46,7 @@ public class BaseController implements Observer{
         UML.getChildren().add(shapes);
         recent.setVisible(false);
         shapes.setVisible(false);
-        canvas.getChildren().add(methodEditor);
-        canvas.getChildren().add(variableEditor);
         UML.getChildren().add(canvas);
-        methodEditor.setVisible(false);
-        variableEditor.setVisible(false);
-    }
-
-    @FXML
-    private void handleAddBox(Event e) {
-        if(!UML.getChildren().contains(canvas)) init();
-        model.addBox(new Point(0, 0));
-        e.consume();
-    }
-
-    @Override
-    public void addBox(BoxFacade b){
-        BoxController box = new BoxController(b,variableEditor,methodEditor);
-        canvas.getChildren().add(box);
     }
     @FXML
     private void handleContextMenu(ContextMenuEvent e){

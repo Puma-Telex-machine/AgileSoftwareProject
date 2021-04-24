@@ -2,17 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ShapeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/view/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/view/Base.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BaseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BoxController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CanvasController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RecentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RecentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Base.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Canvas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Canvas.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/recent_work.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/recent_work.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/shapes.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/shapes.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ShapeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ShapeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Box.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Box.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
