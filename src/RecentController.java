@@ -39,6 +39,6 @@ public class RecentController extends AnchorPane{
 
     @FXML
     private void handleButtonAction(ActionEvent event){
-        model.addBox(new Point(0,0));
+        //todo add new
     }
 }

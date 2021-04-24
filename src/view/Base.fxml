@@ -19,8 +19,8 @@
                   <DropShadow />
                </effect>
                <children>
-                  <Button id="button1" fx:id="button1" layoutX="2.0" layoutY="74.0" mnemonicParsing="false" text="Recent" />
-                  <Button id="button2" fx:id="button2" layoutX="1.0" layoutY="140.0" mnemonicParsing="false" text="Shapes" />
+                  <Button id="button1" fx:id="button1" layoutX="2.0" layoutY="74.0" mnemonicParsing="false" onAction="#openRecent" text="Recent" />
+                  <Button id="button2" fx:id="button2" layoutX="1.0" layoutY="140.0" mnemonicParsing="false" onAction="#openShapes" text="Shapes" />
                   <Button id="button3" fx:id="button3" layoutX="4.0" layoutY="211.0" mnemonicParsing="false" text="Text" />
                   <Button id="button4" fx:id="button4" layoutX="-1.0" layoutY="286.0" mnemonicParsing="false" text="Exercises" />
                   <Button id="button5" fx:id="button5" layoutY="359.0" mnemonicParsing="false" text="Comments" />
@@ -45,7 +45,7 @@
                         </VBox>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="UML" onContextMenuRequested="#handleContextMenu" prefHeight="200.0" prefWidth="200.0" styleClass="background" />
+                  <AnchorPane fx:id="UML" onContextMenuRequested="#handleContextMenu" styleClass="background" />
                </children>
             </StackPane>
          </children>

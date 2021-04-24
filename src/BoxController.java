@@ -65,6 +65,7 @@ public class BoxController extends AnchorPane {
             offsetY = event.getY();
             moving=true;
         }
+        //todo fix borders
         this.setLayoutX(this.getLayoutX()+ event.getX() - offsetX);
         this.setLayoutY(this.getLayoutY()+ event.getY() - offsetY);
         event.consume();
@@ -81,8 +82,8 @@ public class BoxController extends AnchorPane {
 
         System.out.println("addmethod");
         methodEditor.setVisible(true);
-        methodEditor.setLayoutX(this.getLayoutX()-300);
-        methodEditor.setLayoutY(this.getLayoutY());
+        methodEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
+        methodEditor.setLayoutY(this.getLayoutY()+this.getHeight()/2-methodEditor.getHeight()/2);
         methodEditor.EditMethod(box);
 
         /*
@@ -99,8 +100,8 @@ public class BoxController extends AnchorPane {
     private void addVariable(MouseEvent e){
 
         variableEditor.setVisible(true);
-        variableEditor.setLayoutX(this.getLayoutX()-300);
-        variableEditor.setLayoutY(this.getLayoutY());
+        variableEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
+        variableEditor.setLayoutY(this.getLayoutY()+this.getHeight()/2-variableEditor.getHeight()/2);
         variableEditor.EditVariable(box);
 
 

@@ -19,6 +19,7 @@ public class BaseController implements Observer{
 
     @FXML
     AnchorPane UML;
+
     @FXML
     AnchorPane contextMenu;
 
@@ -28,9 +29,11 @@ public class BaseController implements Observer{
 
     MethodEditorController methodEditor;
 
-    Left_menuController menu;
-
     RecentController recent;
+
+    CanvasController canvas;
+
+    ShapeController shapes;
 
 
 
@@ -38,20 +41,28 @@ public class BaseController implements Observer{
 
         methodEditor = new MethodEditorController();
         variableEditor = new VariableEditorController();
+        recent = new RecentController();
+        canvas = new CanvasController();
+        shapes = new ShapeController();
         model = Model.getModel();
         model.addObserver(this);
     }
 
     private void init(){
-        UML.getChildren().add(methodEditor);
-        UML.getChildren().add(variableEditor);
+        UML.getChildren().add(recent);
+        UML.getChildren().add(shapes);
+        recent.setVisible(false);
+        shapes.setVisible(false);
+        canvas.getChildren().add(methodEditor);
+        canvas.getChildren().add(variableEditor);
+        UML.getChildren().add(canvas);
         methodEditor.setVisible(false);
         variableEditor.setVisible(false);
     }
 
     @FXML
     private void handleAddBox(Event e) {
-        if(!UML.getChildren().contains(variableEditor)) init();
+        if(!UML.getChildren().contains(canvas)) init();
         model.addBox(new Point(0, 0));
         e.consume();
     }
@@ -59,7 +70,7 @@ public class BaseController implements Observer{
     @Override
     public void addBox(BoxFacade b){
         BoxController box = new BoxController(b,variableEditor,methodEditor);
-        UML.getChildren().add(box);
+        canvas.getChildren().add(box);
     }
     @FXML
     private void handleContextMenu(ContextMenuEvent e){
@@ -82,8 +93,29 @@ public class BaseController implements Observer{
     //open Menus
     @FXML
     private void openRecent(){
-        if(UML.getChildren().contains(recent)){
-            
-        }
+        if(!UML.getChildren().contains(recent)) init();
+        shapes.setVisible(false);
+        recent.setVisible(!recent.isVisible());
+        canvas.toBack();
     }
+    @FXML
+    private void openShapes(){
+        if(!UML.getChildren().contains(shapes)) init();
+        recent.setVisible(false);
+        shapes.setVisible(!shapes.isVisible());
+        canvas.toBack();
+    }
+    /*
+    @FXML
+    private void openRecent(){
+        recent.setVisible(!recent.isVisible());
+    }
+    @FXML
+    private void openRecent(){
+        recent.setVisible(!recent.isVisible());
+    }
+    @FXML
+    private void openRecent(){
+        recent.setVisible(!recent.isVisible());
+    }*/
 }
