@@ -1,16 +1,13 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 import model.Model;
 
-import java.awt.*;
 import java.io.IOException;
 
+@FXML
+Button minimize_button;
 
 public class RecentController extends AnchorPane{
 
@@ -33,5 +30,7 @@ public class RecentController extends AnchorPane{
     @FXML
     private void handleButtonAction(ActionEvent event){
         //todo add new
+        //minimize_button 
+
     }
 }
