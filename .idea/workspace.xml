@@ -5,23 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/model/boxes/BoxType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/relations/ArrowType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/relations/RelationManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/grid/BoxGrid.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/grid/ScaledGrid.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Attribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Attribute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Class.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Class.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Diagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Diagram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Enum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Enum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Interface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Interface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Method.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Modifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Modifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/Grid.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Observer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Relation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/Relation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Visibility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Visibility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodel/viewmodel/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodel/viewmodel/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/boxes/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Box.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/boxes/Diagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Diagram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/relations/RelationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/RelationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/GridTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/GridTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,9 +24,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -57,6 +49,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="model.boxes" />
       <recent name="model" />
       <recent name="viewmodel" />
       <recent name="" />

@@ -7,20 +7,20 @@ import java.util.List;
 /**
  * A generalized class representing a UML object, specifically classes/interfaces/enums.
  * Originally created by Emil Holmsten,
- * Updated by Filip Hanberg.
+ * Expanded by Filip Hanberg.
  */
 public class Box {
 
     private String name;
-    private Point position;
     private List<Method> methods;
     private List<Attribute> attributes;
     private Set<Modifier> modifiers;
     private Visibility visibility;
+    private Point position;
 
-    public Box(Point position, String name) {
-        this.position = position;
+    public Box(String name, Point position) {
         this.name = name;
+        this.position = position;
         methods = new ArrayList<>();
         attributes = new ArrayList<>();
         modifiers = new HashSet<>();

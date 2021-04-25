@@ -1,38 +1,27 @@
 package model.boxes;
 
+import model.grid.BoxGrid;
+import model.grid.ScaledGrid;
+import model.grid.VirtualBox;
 import model.relations.Relation;
 
+import java.awt.*;
 import java.util.*;
 
 public class Diagram {
 
-    ArrayList<Box> boxes = new ArrayList<>();
-    ArrayList<Relation> relations = new ArrayList<>();
+    BoxGrid boxGrid = new BoxGrid(6, 8);
+    ScaledGrid<Box> connectionGrid = new ScaledGrid<>(3, 4);
+    HashSet<Relation> relations = new HashSet<>();
 
-    public void createBox(Point position, String name) {
-        boxes.add(new Class(position, name));
+    public Box createBox(Point position) {
+        return boxGrid.createBox(position);
     }
 
-    public Box getBox(int position){
-        if(position < boxes.size() && position >= 0)
-            return boxes.get(position);
-        return null;
+    public void remove(Box box) {
+        boxGrid.removeBox(box.getPosition());
     }
-
-   /*  public void createRelation(Box to, Box from, Relation.ArrowType arrowType) {
-        relations.add(new Relation(to, from, arrowType));
+    public boolean move(Box box, Point position) {
+        return boxGrid.moveBox(box.getPosition(), position);
     }
-
-    public List<Relation.ArrowType> getPossibleRelations(Box to, Box from) {
-        return null;
-    }
-
-    public List<Relation.ArrowType> getPossibleRelations(Class to, Class from) {
-        return null;
-    }
-
-    public List<Relation.ArrowType> getPossibleRelations(Interface to, Class from) {
-        return null;
-    }
- */
 }

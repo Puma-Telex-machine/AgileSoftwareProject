@@ -1,7 +1,8 @@
 package model;
 
-import model.boxes.Box;
+import java.awt.*;
 
 public interface Observer {
-    void addBox(Box box);
+    void updateAll();
+    void updatePoint(Point point);
 }
