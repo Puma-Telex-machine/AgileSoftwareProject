@@ -5,7 +5,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.fxml.FXMLLoader;
 import model.MethodData;
-import model.boxes.Box;
 import model.boxes.Visibility;
 import model.facades.BoxFacade;
 

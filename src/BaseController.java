@@ -1,13 +1,9 @@
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import model.Model;
-import model.Observer;
-import model.boxes.Box;
-import model.facades.BoxFacade;
 
 import java.awt.*;
 
