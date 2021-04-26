@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,19 +23,27 @@
             <Label fx:id="name" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onDragDetected="#unableToChangeName" onMouseClicked="#changeName" onMouseReleased="#handleLetGo" prefHeight="32.0" styleClass="text-medium" text="Class" />
             <Line fx:id="line" endX="148.0" />
             <VBox fx:id="methods" prefWidth="150.0" styleClass="box" />
-            <Label alignment="TOP_CENTER" onMouseClicked="#addMethod" prefWidth="150.0" styleClass="text-small" text="+" />
+            <Label alignment="TOP_CENTER" onMouseClicked="#addMethod" prefWidth="150.0" styleClass="text-small" text="+">
+               <VBox.margin>
+                  <Insets left="60.0" right="60.0" />
+               </VBox.margin></Label>
             <Line fx:id="line1" endX="148.0" />
             <VBox fx:id="variables" prefWidth="149.0" />
-            <Label alignment="TOP_CENTER" onMouseClicked="#addVariable" prefWidth="150.0" styleClass="text-small" text="+" />
+            <Label alignment="TOP_CENTER" onMouseClicked="#addVariable" prefWidth="150.0" styleClass="text-small" text="+">
+               <VBox.margin>
+                  <Insets left="60.0" right="60.0" />
+               </VBox.margin></Label>
          </children>
          <styleClass>
             <String fx:value="box" />
             <String fx:value="border" />
          </styleClass>
       </VBox>
-      <Ellipse fx:id="circle1" centerX="78.0" fill="DODGERBLUE" radiusX="5.0" radiusY="4.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.bottomAnchor="0.0" />
-      <Ellipse fx:id="circle2" centerX="78.0" centerY="1.0" fill="DODGERBLUE" radiusX="5.0" radiusY="4.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.topAnchor="0.0" />
-      <Ellipse fx:id="circle3" centerY="35.0" fill="DODGERBLUE" radiusX="4.0" radiusY="5.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.leftAnchor="0.0" />
-      <Ellipse fx:id="circle4" centerY="35.0" fill="DODGERBLUE" radiusX="4.0" radiusY="5.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.rightAnchor="0.0" />
+      <AnchorPane fx:id="blockpane1" onDragDetected="#handleDrag" prefHeight="10.0" prefWidth="200.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0" />
+      <AnchorPane fx:id="blockpane2" layoutX="10.0" layoutY="10.0" onDragDetected="#handleDrag" prefHeight="8.0" prefWidth="200.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="28.0" />
+      <Ellipse fx:id="circle1" centerX="78.0" fill="DODGERBLUE" radiusX="5.0" radiusY="4.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.bottomAnchor="1.0" />
+      <Ellipse fx:id="circle2" centerX="78.0" centerY="1.0" fill="DODGERBLUE" radiusX="5.0" radiusY="4.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.topAnchor="1.0" />
+      <Ellipse fx:id="circle3" centerY="35.0" fill="DODGERBLUE" radiusX="4.0" radiusY="5.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.leftAnchor="1.0" />
+      <Ellipse fx:id="circle4" centerY="35.0" fill="DODGERBLUE" radiusX="4.0" radiusY="5.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.rightAnchor="1.0" />
    </children>
 </fx:root>

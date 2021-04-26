@@ -27,8 +27,14 @@ public class BoxController extends AnchorPane {
     private VBox methods;
     @FXML
     private VBox variables;
+
+    //anchorpoints
     @FXML
     Ellipse circle1,circle2,circle3,circle4;
+
+    //for dragging box when editing name
+    @FXML
+    AnchorPane blockpane1,blockpane2;
 
     VariableEditorController variableEditor;
     MethodEditorController methodEditor;
@@ -179,6 +185,8 @@ public class BoxController extends AnchorPane {
         //todo wait for backend to implement
         //box.setName(nameField.getText());
         nameField.toBack();
+        blockpane1.toBack();
+        blockpane2.toBack();
         name.setText(nameField.getText());
         this.requestFocus();
     }
@@ -191,6 +199,8 @@ public class BoxController extends AnchorPane {
         }
         nameField.setText(name.getText());
         nameField.toFront();
+        blockpane1.toFront();
+        blockpane2.toFront();
         circlesToFront();
         nameField.requestFocus();
     }
