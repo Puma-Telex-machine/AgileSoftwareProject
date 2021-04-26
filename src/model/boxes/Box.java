@@ -1,5 +1,9 @@
 package model.boxes;
 
+import model.MethodData;
+import model.VariableData;
+import model.facades.BoxFacade;
+
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -110,6 +114,22 @@ public class Box {
         return name;
     }
 
+    public void editMethod(MethodData methodData) {
+        //todo
+    }
+
+    public void editVariable(VariableData variableData) {
+        //todo
+    }
+
+    public void deleteMethod(String methodName) {
+        //todo
+    }
+
+    public void deleteVariable(String variableName) {
+        //todo
+    }
+
     public Point getPosition(){return position; }
 
     public List<Method> getMethods(){return methods;}
@@ -122,5 +142,7 @@ public class Box {
         return visibility;
     }
 
-
+    public int getHeight() {
+        return 0;
+    }
 }

@@ -1,8 +1,7 @@
 package model;
 
-import java.awt.*;
+import model.facades.BoxFacade;
 
 public interface Observer {
-    void updateAll();
-    void updatePoint(Point point);
+    void addBox(BoxFacade box);
 }
