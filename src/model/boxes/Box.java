@@ -42,50 +42,10 @@ public class Box {
         position = newPosition;
     }
 
-    public void setMethods(List<Method> newMethods){
-        methods = newMethods;
-    }
-
-    public void addMethod(Method toAdd){
-        methods.add(toAdd);
-    }
-
-    public void removeMethod(int position){
-        if(position < methods.size() && position >= 0)
-            methods.remove(position);
-    }
-
-    public void replaceMethod(int position, Method method){ //maybe unnecessary
-        if(position < methods.size() && position >= 0) {
-            methods.remove(position);
-            methods.add(position, method);
-        }
-    }
-
     public Method getMethod(int position){
         if(position < methods.size() && position >= 0)
             return methods.get(position);
         return null;
-    }
-
-    public void setAttributes(List<Attribute> newAttributes){
-        attributes = newAttributes;
-    }
-
-    public void addAttribute(Attribute toAdd){
-        attributes.add(toAdd);
-    }
-
-    public void removeAttribute(int position){
-        if(position < attributes.size() && position >= 0)
-            attributes.remove(position);
-    }
-
-    public void replaceAttribute(int position, Attribute attribute){ //maybe unnecessary
-        if(position < attributes.size() && position >= 0) {
-            attributes.remove(position);
-            attributes.add(position, attribute);
-        }
     }
 
     public Attribute getAttribute(int position){
@@ -94,19 +54,19 @@ public class Box {
         return null;
     }
 
-    public void SetModifiers(Set<Modifier> modifiers){
+    public void setModifiers(Set<Modifier> modifiers){
         this.modifiers = modifiers;
     }
 
-    public void AddModifier(Modifier modifier){
+    public void addModifier(Modifier modifier){
         modifiers.add(modifier);
     }
 
-    public void RemoveModifier(Modifier modifier){
+    public void removeModifier(Modifier modifier){
         modifiers.remove(modifier);
     }
 
-    public void SetVisibility(Visibility visibility){
+    public void setVisibility(Visibility visibility){
         this.visibility = visibility;
     }
 
@@ -115,19 +75,56 @@ public class Box {
     }
 
     public void editMethod(MethodData methodData) {
-        //todo
+        boolean exists = false;
+        for (Method method: methods) {
+            if(methodData.methodName == method.GetName()){
+                exists = true;
+                //method.SetName(methodData.methodName); todo: identify methods
+                method.SetVisibility(methodData.visibility);
+                method.SetArguments(methodData);
+                break;
+            }
+        }
+        if(!exists){
+            methods.add(new Method(methodData));
+        }
     }
 
     public void editVariable(VariableData variableData) {
-        //todo
+        boolean exists = false;
+        for (Attribute attribute: attributes) {
+            if(variableData.name == attribute.GetName()){
+                exists = true;
+                //attribute.SetName(variableData.name); todo: identify attributes
+                attribute.SetVisibility(variableData.visibility);
+                break;
+            }
+        }
+        if(!exists){
+            attributes.add(new Attribute(variableData));
+        }
     }
 
     public void deleteMethod(String methodName) {
-        //todo
+        int counter = 0;
+        for (Method method: methods) {
+            if(methodName == method.GetName()) {
+                methods.remove(counter);
+                break;
+            }
+            counter++;
+        }
     }
 
     public void deleteVariable(String variableName) {
-        //todo
+        int counter = 0;
+        for (Attribute attribute: attributes) {
+            if(variableName == attribute.GetName()) {
+                attributes.remove(counter);
+                break;
+            }
+            counter++;
+        }
     }
 
     public Point getPosition(){return position; }
