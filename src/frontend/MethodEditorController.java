@@ -1,3 +1,5 @@
+package frontend;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -93,7 +95,10 @@ public class MethodEditorController extends AnchorPane {
         }
         methodData.arguments = argRet;
 
-        String visibility = (String) accessComboBox.getValue();
+        Visibility visibility = Visibility.valueOf((String) accessComboBox.getValue());
+        methodData.visibility = visibility;
+
+        methodData.methodReturnType = returnTypeField.getText();
 
         box.EditMethod(methodData);
 
@@ -129,6 +134,9 @@ public class MethodEditorController extends AnchorPane {
 
         //Sets the current visibility
         accessComboBox.getSelectionModel().select(methodData.visibility.name());
+
+        //Sets the method type field
+        returnTypeField.setText(methodData.methodReturnType);
 
         //Sets the arguments for this method
         for (int i = 0; i < methodData.arguments.length; i++)

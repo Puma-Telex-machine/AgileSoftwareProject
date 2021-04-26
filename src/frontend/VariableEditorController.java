@@ -1,17 +1,15 @@
-import javafx.event.Event;
+package frontend;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 //import model.VariableData;
 import model.VariableData;
+import model.boxes.Visibility;
 import model.facades.BoxFacade;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.beans.PropertyChangeListener;
 import java.io.IOException;
 
 public class VariableEditorController extends AnchorPane {
@@ -33,8 +31,8 @@ public class VariableEditorController extends AnchorPane {
     @FXML
     private TextField nameField; //The text field for the name of the variable
 
-    //@FXML
-    //private ComboBox accessComboBox; //The combo box for choosing the access of the variable
+    @FXML
+    private ComboBox accessComboBox; //The combo box for choosing the access of the variable
 
     @FXML
     private TextField typeField; //The text field for the type of the variable
@@ -52,6 +50,12 @@ public class VariableEditorController extends AnchorPane {
     {
         VariableData data = new VariableData();
         data.name = nameField.getText();
+
+        Visibility visibility = Visibility.valueOf((String) accessComboBox.getValue());
+        data.visibility = visibility;
+
+        data.variableType = typeField.getText();
+
         box.EditVariable(data);
     }
 
@@ -63,6 +67,10 @@ public class VariableEditorController extends AnchorPane {
     public void EditVariable(VariableData variableData, BoxFacade box)
     {
         this.box = box;
+
+        nameField.setText(variableData.name);
+        typeField.setText(variableData.variableType);
+        accessComboBox.getSelectionModel().select(variableData.visibility.name());
     }
 
 }

@@ -1,3 +1,5 @@
+package frontend;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -37,6 +39,7 @@ public class BoxController extends AnchorPane {
     private BoxFacade box;
 
     public BoxController(BoxFacade box,VariableEditorController VEC,MethodEditorController MEC){
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Box.fxml")));
 
         fxmlLoader.setRoot(this);
@@ -78,6 +81,10 @@ public class BoxController extends AnchorPane {
     private void handleLetGo(MouseEvent event){
         moving=false;
         box.setPosition(new Point((int)this.getLayoutX(),(int)this.getLayoutY()));
+
+        //for snap to grid
+        this.setLayoutX(box.getPosition().x);
+        this.setLayoutY(box.getPosition().y);
         event.consume();
     }
     @FXML
