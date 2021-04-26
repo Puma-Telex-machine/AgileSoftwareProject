@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/view/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/view/Base.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/boxes/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pictures/outline_add_box_white_24dp.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Resources/outline_add_box_white_24dp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pictures/outline_bubble_chart_white_24dp.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Resources/outline_bubble_chart_white_24dp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pictures/outline_comment_white_24dp.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Resources/outline_comment_white_24dp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pictures/outline_filter_list_white_24dp.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Resources/outline_filter_list_white_24dp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pictures/outline_folder_open_white_24dp.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Resources/outline_folder_open_white_24dp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pictures/outline_minimize_white_24dp.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Resources/outline_minimize_white_24dp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pictures/outline_psychology_white_24dp.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Resources/outline_psychology_white_24dp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pictures/outline_table_rows_white_24dp.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Resources/outline_table_rows_white_24dp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pictures/outline_text_snippet_white_24dp.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Resources/outline_text_snippet_white_24dp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Base.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/shapes.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/shapes.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/BaseWindow.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Left_menu.fxml" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
