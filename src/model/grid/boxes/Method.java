@@ -1,4 +1,4 @@
-package model.boxes;
+package model.grid.boxes;
 
 import model.MethodData;
 

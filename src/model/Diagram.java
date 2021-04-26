@@ -1,24 +1,28 @@
 package model;
 
-import model.boxes.Box;
+import model.grid.boxes.Box;
 import model.grid.BoxGrid;
+import model.grid.RelationGrid;
 
 import java.awt.*;
 
 public class Diagram {
 
     BoxGrid boxGrid = new BoxGrid(6, 8);
-    //ScaledGrid<Relation> relationGrid = new ScaledGrid<>(3, 4);
+    RelationGrid relationGrid = new RelationGrid(3, 4);
     //HashSet<Relation> relations = new HashSet<>();
 
     public void move(Box box, Point position) {
-        if (boxGrid.moveBox(box, position)) {
-            box.setPosition(position);
-        }
+        Point newPosition = boxGrid.moveBox(box, position);
+        box.setPosition(newPosition);
     }
 
     public Box createBox(Point point) {
         return boxGrid.createBox(point);
+    }
+
+    public void deleteBox(Box box) {
+        boxGrid.removeBox(box.getPosition());
     }
 
     public void deleteMethod(Box box, String methodName) {
@@ -37,7 +41,5 @@ public class Diagram {
         box.editMethod(methodData);
     }
 
-    public void deleteBox(Box box) {
-        boxGrid.removeBox(box.getPosition());
-    }
+
 }

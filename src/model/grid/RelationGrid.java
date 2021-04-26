@@ -1,15 +1,15 @@
 package model.grid;
 
 import model.grid.boxes.Box;
+import model.grid.relations.Relation;
 
 import java.awt.*;
 
-public class BoxGrid {
+public class RelationGrid {
 
-    private final ScaledGrid<Box> grid;
-    private int boxCounter = 0; //Needs to be saved if we want to use it
+    private final ScaledGrid<Relation> grid;
 
-    public BoxGrid(int gridWidth, int gridHeight) {
+    public RelationGrid(int gridWidth, int gridHeight) {
         grid = new ScaledGrid<>(gridWidth, gridHeight);
     }
 
@@ -17,7 +17,7 @@ public class BoxGrid {
         String boxName = "Box " + boxCounter;
         Box box = new Box(boxName, position);
 
-        if (grid.set(position, box)) {
+        if (boxGrid.set(position, box)) {
             boxCounter++;
             return box;
         }
@@ -25,11 +25,10 @@ public class BoxGrid {
     }
 
     public Point moveBox(Box from, Point to) {
-        return grid.move(from.getPosition(), to);
+        return boxGrid.move(from.getPosition(), to);
     }
 
     public void removeBox(Point position) {
-        grid.remove(position);
+        boxGrid.remove(position);
     }
-
 }

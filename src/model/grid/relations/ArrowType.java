@@ -1,4 +1,4 @@
-package model.relations;
+package model.grid.relations;
 
 public enum ArrowType {
         EXTENDS,

@@ -15,7 +15,6 @@ public class ScaledGrid<V> {
         this.gridWidth = gridWidth;
     }
 
-
     public boolean set(Point point, V value) {
         return grid.set(convertToScale(point), value);
     }
@@ -34,8 +33,8 @@ public class ScaledGrid<V> {
         }
     }
 
-    public boolean move(Point from, Point to) {
-        return grid.move(convertToScale(from), convertToScale(to));
+    public Point move(Point from, Point to) {
+        return convertFromScale(grid.move(convertToScale(from), convertToScale(to)));
     }
 
     public boolean shift(ArrayList<Point> points, Point shiftDistance) {
@@ -44,6 +43,12 @@ public class ScaledGrid<V> {
 
     public boolean isEmpty(Point point) {
         return grid.isEmpty(convertToScale(point));
+    }
+
+    private Point convertFromScale(Point point) {
+        int convertedX = point.x * gridWidth;
+        int convertedY = point.y * gridHeight;
+        return new Point(convertedX, convertedY);
     }
 
     private Point convertToScale(Point point) {

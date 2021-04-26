@@ -1,7 +1,7 @@
-package model.relations;
+package model.grid.relations;
 
-import model.boxes.Box;
-import model.boxes.BoxType;
+import model.grid.boxes.Box;
+import model.grid.boxes.BoxType;
 
 import java.util.ArrayList;
 import java.util.List;

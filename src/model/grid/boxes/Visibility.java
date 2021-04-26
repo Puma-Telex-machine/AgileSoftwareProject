@@ -1,4 +1,4 @@
-package model.boxes;
+package model.grid.boxes;
 
 /**
  * An enum representing the different visibilities of java objects/methods/variables.

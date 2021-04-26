@@ -47,13 +47,13 @@ public class Grid<V> {
         }
     }
 
-    public boolean move(Point from, Point to) {
+    public Point move(Point from, Point to) {
         if (!isEmpty(to)){
-            return false;
+            return from;
         }
         grid.put(to, get(from));
         grid.remove(from);
-        return true;
+        return to;
     }
 
  /*

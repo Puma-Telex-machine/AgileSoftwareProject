@@ -1,8 +1,6 @@
-package model.relations;
+package model.grid.relations;
 
-import model.boxes.Box;
-
-import java.util.*;
+import model.grid.boxes.Box;
 
 public class Relation {
     Box to;

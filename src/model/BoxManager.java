@@ -1,6 +1,6 @@
 package model;
 
-import model.boxes.Box;
+import model.grid.boxes.Box;
 import model.facades.BoxFacade;
 
 import java.awt.*;
@@ -47,6 +47,11 @@ public class BoxManager implements BoxFacade {
     @Override
     public void setPosition(Point point) {
         diagram.move(box, point);
+    }
+
+    @Override
+    public void setName(String name) {
+
     }
 
     public boolean isEmpty() {

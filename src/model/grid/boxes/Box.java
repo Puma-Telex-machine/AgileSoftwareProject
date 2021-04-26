@@ -1,8 +1,7 @@
-package model.boxes;
+package model.grid.boxes;
 
 import model.MethodData;
 import model.VariableData;
-import model.facades.BoxFacade;
 
 import java.awt.*;
 import java.util.*;

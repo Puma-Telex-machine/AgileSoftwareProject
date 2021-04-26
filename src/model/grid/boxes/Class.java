@@ -1,10 +1,15 @@
-package model.boxes;
+package model.grid.boxes;
 
 import java.awt.*;
 
-public class Enum extends Box {
+/**
+ * Represents a class. Subclass of the "Box" class.
+ * Originally created by Emil Holmsten,
+ * Updated by Filip Hanberg.
+ */
+public class Class extends Box {
 
-    public Enum(Point position, String name) {
+    public Class(Point position, String name) {
         super(name, position);
     }
 
