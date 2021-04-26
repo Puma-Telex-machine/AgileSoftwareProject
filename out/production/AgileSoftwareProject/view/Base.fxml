@@ -23,27 +23,27 @@
                <children>
                   <ImageView fitHeight="69.0" fitWidth="68.0" layoutX="8.0" layoutY="98.0" onMouseClicked="#openRecent" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0">
                      <image>
-                        <Image url="@Resources/icon_close.png" />
+                        <Image url="@Resources/outline_folder_open_white_24dp.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="69.0" fitWidth="68.0" layoutX="9.0" layoutY="488.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0">
+                  <ImageView fitHeight="69.0" fitWidth="68.0" layoutX="5.0" layoutY="467.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0">
                      <image>
-                        <Image url="@Resources/icon_close.png" />
+                        <Image url="@Resources/outline_text_snippet_white_24dp.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="69.0" fitWidth="68.0" layoutX="10.0" layoutY="295.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0">
+                  <ImageView fitHeight="69.0" fitWidth="68.0" layoutX="5.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0">
                      <image>
-                        <Image url="@Resources/icon_close.png" />
+                        <Image url="@Resources/outline_comment_white_24dp.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="69.0" fitWidth="68.0" layoutX="7.0" layoutY="184.0" onMouseClicked="#openShapes" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0">
                      <image>
-                        <Image url="@Resources/icon_close.png" />
+                        <Image url="@Resources/outline_add_box_white_24dp.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="69.0" fitWidth="68.0" layoutX="9.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0">
+                  <ImageView fitHeight="69.0" fitWidth="68.0" layoutX="3.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="3.0">
                      <image>
-                        <Image url="@Resources/icon_close.png" />
+                        <Image url="@Resources/outline_bubble_chart_white_24dp.png" />
                      </image>
                   </ImageView>
                   <Text fill="#b8b8b8" layoutX="20.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-Large" text="UML" textAlignment="CENTER" wrappingWidth="59.28372636269103" AnchorPane.leftAnchor="5.0" />

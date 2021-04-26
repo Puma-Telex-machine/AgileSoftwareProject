@@ -2,6 +2,7 @@ package model.boxes;
 
 import model.MethodData;
 //import model.VariableData;
+import model.VariableData;
 import model.facades.BoxFacade;
 
 import java.awt.*;
@@ -119,10 +120,10 @@ public class Box implements BoxFacade {
         //todo
     }
 
-    /*@Override
+    @Override
     public void EditVariable(VariableData variableData) {
         //todo
-    }*/
+    }
 
     @Override
     public void DeleteMethod(String methodName) {
