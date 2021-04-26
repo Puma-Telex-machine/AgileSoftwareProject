@@ -12,11 +12,11 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@DarkMode.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.BaseController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@css/DarkMode.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.BaseController">
    <children>
       <HBox prefHeight="900.0" prefWidth="1440.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane id="left_anchorpane" fx:id="left_anchorpane1" prefHeight="900.0" prefWidth="110.0" style="-fx-background-color: #2A314A;" styleClass="text-Large" stylesheets="@DarkMode.css">
+            <AnchorPane id="left_anchorpane" fx:id="left_anchorpane1" prefHeight="900.0" prefWidth="110.0" style="-fx-background-color: #2A314A;" styleClass="text-Large" stylesheets="@css/DarkMode.css">
                <effect>
                   <DropShadow />
                </effect>
@@ -51,7 +51,7 @@
             </AnchorPane>
             <StackPane prefHeight="900.0" prefWidth="1440.0">
                <children>
-                  <AnchorPane fx:id="contextMenu" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#exitContext" onMouseDragged="#exitContext" prefHeight="900.0" prefWidth="625.0" stylesheets="@DarkMode.css">
+                  <AnchorPane fx:id="contextMenu" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#exitContext" onMouseDragged="#exitContext" prefHeight="900.0" prefWidth="625.0" stylesheets="@css/DarkMode.css">
                      <children>
                         <VBox fx:id="context" alignment="TOP_CENTER" layoutX="205.0" layoutY="336.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
                            <children>

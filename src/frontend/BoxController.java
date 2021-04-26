@@ -119,6 +119,7 @@ public class BoxController extends AnchorPane {
         variableEditor.setLayoutY(this.getLayoutY()+this.getHeight()/2-variableEditor.getHeight()/2);
         //variableEditor.EditVariable(box);
 
+        //add lamda expression  ish currentEditArgument.argumentTypeField.setOnAction((Action) -> editVariable(variableData)
 
         /*String method = "+ variable : bool";
         variableList.add(method);

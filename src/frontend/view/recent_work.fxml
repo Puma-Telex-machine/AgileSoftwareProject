@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<fx:root id="pane1" fx:id="pane1" prefHeight="900.0" prefWidth="220.0" style="-fx-background-color: #3E4046;" stylesheets="@DarkMode.css" type="Pane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root id="pane1" fx:id="pane1" prefHeight="900.0" prefWidth="220.0" style="-fx-background-color: #3E4046;" stylesheets="@css/DarkMode.css" type="Pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text id="recentworktext" fill="#b8b8b8" layoutX="20.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-Large" text="RECENT WORK" textAlignment="CENTER" />
-      <Button id="new_button" layoutX="88.0" layoutY="645.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="45.0" prefWidth="83.0" stylesheets="@DarkMode.css" text="NEW" />
+      <Button id="new_button" layoutX="88.0" layoutY="645.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="45.0" prefWidth="83.0" stylesheets="@css/DarkMode.css" text="NEW" />
       <Button id="minimize_button" fx:id="minimize_button" layoutX="158.0" layoutY="-20.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="80.0" style="-fx-background-color: transparent;">
          <graphic>
             <ImageView fitHeight="31.0" fitWidth="27.0" layoutX="15.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">

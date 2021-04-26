@@ -4,7 +4,19 @@
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BoxController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Base.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/view/Box.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Box.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/DarkMode.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/css/DarkMode.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/LightMode.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/css/LightMode.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/MethodArgumentEditor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/MethodArgumentEditor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/MethodEditor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/MethodEditor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/VariableEditor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/VariableEditor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/comments.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/comments.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/exercise.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/exercise.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/overview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/overview.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/recent_work.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/recent_work.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/shapes.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/shapes.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/textform.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/textform.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,12 +37,14 @@
   <component name="ProjectId" id="1rWF7l8QkerBb0EMeKy43SosIen" />
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/view/Resources" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pathVariables" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/frontend/view/css" />
       <recent name="$PROJECT_DIR$/src/view/Resources" />
       <recent name="$PROJECT_DIR$/src/resources" />
       <recent name="$PROJECT_DIR$/src/view" />
