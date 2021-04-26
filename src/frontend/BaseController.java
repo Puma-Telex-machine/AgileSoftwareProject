@@ -1,3 +1,5 @@
+package frontend;
+
 import javafx.fxml.FXML;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;

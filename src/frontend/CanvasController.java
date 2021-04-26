@@ -1,3 +1,5 @@
+package frontend;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import model.Observer;
