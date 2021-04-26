@@ -31,4 +31,9 @@ public class ShapeController extends AnchorPane {
         model.addBox(canvas.getMiddle());
     }
 
+    @FXML
+    private void minimize(){
+        this.setVisible(false);
+    }
+
 }

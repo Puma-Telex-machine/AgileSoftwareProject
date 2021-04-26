@@ -87,6 +87,7 @@ public class BoxController extends AnchorPane {
     @FXML
     private void addMethod(MouseEvent e){
         methodEditor.setVisible(true);
+        methodEditor.toFront();
         methodEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
         methodEditor.setLayoutY(this.getLayoutY()+this.getHeight()/2-methodEditor.getHeight()/2);
         methodEditor.EditMethod(box);
@@ -104,6 +105,7 @@ public class BoxController extends AnchorPane {
     @FXML
     private void addVariable(MouseEvent e){
         variableEditor.setVisible(true);
+        variableEditor.toFront();
         variableEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
         variableEditor.setLayoutY(this.getLayoutY()+this.getHeight()/2-variableEditor.getHeight()/2);
         variableEditor.EditVariable(box);

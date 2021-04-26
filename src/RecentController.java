@@ -1,15 +1,16 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
 
 import java.io.IOException;
 
-@FXML
-Button minimize_button;
-
 public class RecentController extends AnchorPane{
+
+    @FXML
+    Button minimize_button;
 
     Model model = Model.getModel();
 
