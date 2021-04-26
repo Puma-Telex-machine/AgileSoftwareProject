@@ -49,6 +49,11 @@ public class BoxManager implements BoxFacade {
         diagram.move(box, point);
     }
 
+    @Override
+    public void setName(String name) {
+        box.setName(name);
+    }
+
     public boolean isEmpty() {
         return box == null;
     }
