@@ -1,9 +1,5 @@
 package model;
 
-import model.boxes.Box;
-import model.boxes.Diagram;
-import model.facades.BoxFacade;
-
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -27,9 +23,9 @@ public class Model {
     }
 
     public void addBox(Point position) {
-        diagram.createBox(position, "This is a box name");
-        Box box = diagram.getBox(0);
-        BoxFacade b = box;
-        observers.forEach(observer -> observer.addBox(box));
+        BoxManager boxManager = new BoxManager(diagram, position);
+        if (!boxManager.isEmpty()) {
+            observers.forEach(observer -> observer.addBox(boxManager));
+        }
     }
 }

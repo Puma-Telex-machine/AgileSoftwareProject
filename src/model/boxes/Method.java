@@ -1,5 +1,9 @@
 package model.boxes;
 
+import model.MethodData;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -12,15 +16,22 @@ public class Method {
 
     private String name;
     private List<Attribute> arguments;
-    private Set<Modifier> modifiers;
+    private Set<Modifier> modifiers = new HashSet<>();
     private Visibility visibility;
     String returnValue; // Unsure how to implement types, for now
 
-    Method(String name, List<Attribute> arguments, Set<Modifier> modifiers, Visibility visibility){
-        this.name = name;
-        this.arguments = arguments;
-        this.modifiers = modifiers;
-        this.visibility = visibility;
+    Method(MethodData data){
+        this.name = data.methodName;
+        this.arguments = createArguments(data);
+        this.visibility = data.visibility;
+    }
+
+    private List<Attribute> createArguments(MethodData methodData){
+        List<Attribute> result = new ArrayList<>();
+        for (String argument: methodData.arguments) {
+            result.add(new Attribute(argument,null, null));
+        }
+        return result;
     }
 
     public void SetName(String name){
@@ -29,10 +40,10 @@ public class Method {
 
     /**
      * Changes all of the Method's arguments.
-     * @param arguments The new set of arguments.
+     * @param data The new set of arguments.
      */
-    public void SetArguments(List<Attribute> arguments){
-        this.arguments = arguments;
+    public void SetArguments(MethodData data){
+        this.arguments = createArguments(data);
     }
 
     /**

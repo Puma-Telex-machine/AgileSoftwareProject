@@ -1,4 +1,4 @@
-package model;
+package model.grid;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -15,12 +15,23 @@ public class Grid<V> {
     });
 
     public boolean set(Point point, V value) {
-        if (isOccupied(point)){
+        if (!isEmpty(point)){
             return false;
         }
         grid.put(point, value);
         return true;
     }
+/*
+    public boolean set(ArrayList<Point> points, V value) {
+        for (Point p : points) {
+            if (isOccupied(p)) return false;
+        }
+        for (Point p : points) {
+            grid.put(p, value);
+        }
+        return true;
+    }
+ */
 
     public V get(Point point) {
         return grid.get(point);
@@ -37,7 +48,7 @@ public class Grid<V> {
     }
 
     public boolean move(Point from, Point to) {
-        if (isOccupied(to)){
+        if (!isEmpty(to)){
             return false;
         }
         grid.put(to, get(from));
@@ -57,17 +68,17 @@ public class Grid<V> {
     }
  */
 
-    public boolean shift(ArrayList<Point> points, Point shift) {
+    public boolean shift(ArrayList<Point> points, Point shiftDistance) {
         ArrayList<Point> toPoints = new ArrayList<>();
 
         // Fill array with shifted points
         for (Point p : points) {
-            toPoints.add(new Point(new Point(p.x + shift.x, p.y + shift.y)));
+            toPoints.add(new Point(new Point(p.x + shiftDistance.x, p.y + shiftDistance.y)));
         }
         // Check if move should be possible
         for (Point p : toPoints) {
             if (points.contains(p)) continue;       // Ignore points to be moved
-            if (isOccupied(p)) return false;        // If no new point is occupied, continue
+            if (!isEmpty(p)) return false;        // If no new point is occupied, continue
         }
         // Move each point
         for (int i = 0; i < points.size(); i++) {
@@ -78,9 +89,9 @@ public class Grid<V> {
         return true;
     }
 
-    private boolean isOccupied(Point point) {
+    public boolean isEmpty(Point point) {
         boolean isOccupied = grid.containsKey(point);
         if (isOccupied) System.out.println("Position already is occupied.");
-        return isOccupied;
+        return !isOccupied;
     }
 }
