@@ -1,0 +1,17 @@
+.idea/
+.idea*
+.idea/*
+.idea\
+.idea\*
+misc.xml
+workspace.xml
+.idea\workspace.xml
+.idea/workspace.xml
+out/*
+out/
+out\
+out\*
+.idea\misc.xml
+.idea/misc.xml
+.idea/workspace.xml
+.idea/workspace.xml

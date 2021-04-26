@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="" />
+    <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/viewmodel/BaseController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BoxController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CanvasController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MethodEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MethodEditorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ShapeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ShapeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VariableEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VariableEditorController.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +24,31 @@
       </list>
     </option>
   </component>
-  <component name="ProjectId" id="1q7ErzcHvje1cSfPhklbNZrri7J" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1rWF7l8QkerBb0EMeKy43SosIen" />
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/view/Resources" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/view/Resources" />
+      <recent name="$PROJECT_DIR$/src/resources" />
+      <recent name="$PROJECT_DIR$/src/view" />
+      <recent name="$PROJECT_DIR$/src/viewmodel" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/view/Resources" />
+      <recent name="$PROJECT_DIR$/src/view" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -28,17 +61,48 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="AgileSoftwareProject" />
+      <option name="VM_PARAMETERS" value="--module-path ${PATH_TO_FX} --add-modules javafx.controls,javafx.fxml " />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="" />
-      <created>1616422430867</created>
+      <created>1618909634565</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1616422430867</updated>
+      <updated>1618909634565</updated>
     </task>
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
