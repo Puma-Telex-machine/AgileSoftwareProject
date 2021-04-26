@@ -135,6 +135,9 @@ public class MethodEditorController extends AnchorPane {
         //Sets the current visibility
         accessComboBox.getSelectionModel().select(methodData.visibility.name());
 
+        //Sets the method type field
+        returnTypeField.setText(methodData.methodReturnType);
+
         //Sets the arguments for this method
         for (int i = 0; i < methodData.arguments.length; i++)
         {

@@ -53,7 +53,7 @@ public class VariableEditorController extends AnchorPane {
 
         Visibility visibility = Visibility.valueOf((String) accessComboBox.getValue());
         data.visibility = visibility;
-        
+
         data.variableType = typeField.getText();
 
         box.EditVariable(data);
@@ -67,6 +67,10 @@ public class VariableEditorController extends AnchorPane {
     public void EditVariable(VariableData variableData, BoxFacade box)
     {
         this.box = box;
+
+        nameField.setText(variableData.name);
+        typeField.setText(variableData.variableType);
+        accessComboBox.getSelectionModel().select(variableData.visibility.name());
     }
 
 }
