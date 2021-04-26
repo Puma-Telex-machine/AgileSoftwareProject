@@ -1,6 +1,6 @@
 package model.boxes;
 
-import model.relations.Relation;
+//import model.relations.Relation;
 
 import java.awt.*;
 import java.util.*;
@@ -8,7 +8,7 @@ import java.util.*;
 public class Diagram {
 
     ArrayList<Box> boxes = new ArrayList<>();
-    ArrayList<Relation> relations = new ArrayList<>();
+    //ArrayList<Relation> relations = new ArrayList<>();
 
     public void createBox(Point position, String name) {
         boxes.add(new Class(position, name));
