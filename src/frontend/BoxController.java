@@ -230,7 +230,7 @@ public class BoxController extends AnchorPane implements ArrowObservable{
 
     @Override
     public void notifyArrowEvent(MouseEvent e) {
-        arrowObserver.arrowEvent(new Point((int)e.getScreenX(),(int)e.getSceneY()),this);
+        arrowObserver.arrowEvent(new Point((int)e.getSceneX(),(int)e.getSceneY()),this);
         showCircles();
         e.consume();
     }
