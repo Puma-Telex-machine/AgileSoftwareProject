@@ -1,5 +1,7 @@
 package frontend;
 
+import frontend.Observers.ArrowObservable;
+import frontend.Observers.ArrowObserver;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -18,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BoxController extends AnchorPane implements ArrowObservable{
+public class BoxController extends AnchorPane implements ArrowObservable {
     @FXML
     private TextField nameField;
     @FXML

@@ -1,5 +1,6 @@
 package frontend;
 
+import frontend.Observers.ArrowObserver;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
@@ -12,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CanvasController extends AnchorPane implements Observer,ArrowObserver{
+public class CanvasController extends AnchorPane implements Observer, ArrowObserver {
 
     VariableEditorController variableEditor;
     MethodEditorController methodEditor;

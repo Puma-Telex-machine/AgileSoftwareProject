@@ -1,4 +1,4 @@
-package frontend;
+package frontend.Observers;
 
 
 import javafx.scene.input.MouseEvent;

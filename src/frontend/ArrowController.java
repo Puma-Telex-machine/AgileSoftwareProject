@@ -1,12 +1,7 @@
-package frontend.view;
+package frontend;
 
-import frontend.ArrowObserver;
-import frontend.MethodEditorController;
-import frontend.VariableEditorController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Line;
-import model.facades.BoxFacade;
 
 import java.io.IOException;
 
