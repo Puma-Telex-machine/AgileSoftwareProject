@@ -2,21 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/frontend/ArrowObservable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/ArrowObserver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/view/Arrow.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/view/ArrowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BaseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BoxController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Base.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/CanvasController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/view/Box.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Box.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/DarkMode.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/css/DarkMode.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/LightMode.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/css/LightMode.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/MethodArgumentEditor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/MethodArgumentEditor.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/MethodEditor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/MethodEditor.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/VariableEditor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/VariableEditor.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/comments.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/comments.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/exercise.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/exercise.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/overview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/overview.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/recent_work.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/recent_work.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/shapes.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/shapes.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/textform.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/textform.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +21,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>

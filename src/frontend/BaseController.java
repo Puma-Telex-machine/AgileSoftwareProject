@@ -6,6 +6,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import model.Model;
+import model.facades.BoxFacade;
 
 import java.awt.*;
 
@@ -79,6 +80,8 @@ public class BaseController{
         shapes.setVisible(!shapes.isVisible());
         canvas.toBack();
     }
+
+
     /*
     @FXML
     private void openRecent(){

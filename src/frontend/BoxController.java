@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BoxController extends AnchorPane {
+public class BoxController extends AnchorPane implements ArrowObservable{
     @FXML
     private TextField nameField;
     @FXML
@@ -44,7 +44,9 @@ public class BoxController extends AnchorPane {
 
     private BoxFacade box;
 
-    public BoxController(BoxFacade box,VariableEditorController VEC,MethodEditorController MEC){
+    private ArrowObserver arrowObserver;
+
+    public BoxController(BoxFacade box,VariableEditorController VEC,MethodEditorController MEC,ArrowObserver arrowObserver){
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Box.fxml")));
 
@@ -57,6 +59,7 @@ public class BoxController extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+        this.arrowObserver=arrowObserver;
         this.box = box;
         hideCircles();
         this.setLayoutX(box.getPosition().x);
@@ -136,7 +139,7 @@ public class BoxController extends AnchorPane {
         //box.getVariableData()
     }
 
-    public void updateMethods(List<MethodData> methods){
+    private void updateMethods(List<MethodData> methods){
         //todo
         //add lamda function  ish currentEditArgument.argumentTypeField.setOnAction((Action) -> editVariable(variableData)
     }
@@ -163,6 +166,7 @@ public class BoxController extends AnchorPane {
     }
     @FXML
     private void hideCircles(){
+        if(circleToggle) return;
         circle1.setVisible(false);
         circle2.setVisible(false);
         circle3.setVisible(false);
@@ -170,17 +174,30 @@ public class BoxController extends AnchorPane {
     }
     @FXML
     private void showCircles(){
+        if(circleToggle) return;
         circle1.setVisible(true);
         circle2.setVisible(true);
         circle3.setVisible(true);
         circle4.setVisible(true);
-    }
-    private void circlesToFront(){
         circle1.toFront();
         circle2.toFront();
         circle3.toFront();
         circle4.toFront();
     }
+    private boolean circleToggle = false;
+
+    public void toggleCircleVisibility(){
+        //change after
+        if(circleToggle){
+            circleToggle=false;
+            hideCircles();
+        }
+        else{
+            showCircles();
+            circleToggle=true;
+        }
+    }
+
     @FXML
     private void updateName(){
         //todo wait for backend to implement
@@ -202,11 +219,23 @@ public class BoxController extends AnchorPane {
         nameField.toFront();
         blockpane1.toFront();
         blockpane2.toFront();
-        circlesToFront();
+        showCircles();
         nameField.requestFocus();
     }
     @FXML
     private void unableToChangeName(){
         changeable=false;
     }
+
+
+    @Override
+    public void notifyArrowEvent(MouseEvent e) {
+        arrowObserver.arrowEvent(new Point((int)e.getScreenX(),(int)e.getSceneY()),this);
+        showCircles();
+        e.consume();
+    }
+    public String getName(){
+        return name.getText();
+    }
+
 }
