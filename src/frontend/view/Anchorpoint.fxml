@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Ellipse?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="14.0" prefWidth="20.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Ellipse fx:id="center" centerX="10.0" centerY="7.0" fill="#e4e4e4" radiusX="6.0" radiusY="4.0" stroke="BLACK" strokeType="INSIDE" />
+      <Ellipse centerX="10.0" centerY="7.0" fill="#1e73bd00" onMousePressed="#arrowEvent" radiusX="10.0" radiusY="7.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+   </children>
+</fx:root>

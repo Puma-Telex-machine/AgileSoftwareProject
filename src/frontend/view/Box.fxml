@@ -6,19 +6,18 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Line?>
 
-<fx:root maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#handleDrag" onMouseEntered="#showCircles" onMouseExited="#hideCircles" onMouseMoved="#showCircles" onMouseReleased="#handleLetGo" prefWidth="156.0" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#handleDrag" onMouseEntered="#showCircles" onMouseExited="#hideCircles" onMouseMoved="#showCircles" onMousePressed="#notifyArrowEvent" onMouseReleased="#handleLetGo" prefWidth="150.0" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField fx:id="nameField" maxHeight="-Infinity" minHeight="-Infinity" onAction="#updateName" prefWidth="148.0" style="-fx-background-radius: 0;" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0">
+      <TextField fx:id="nameField" maxHeight="-Infinity" minHeight="-Infinity" onAction="#updateName" prefWidth="148.0" style="-fx-background-radius: 0;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <styleClass>
             <String fx:value="text-medium" />
             <String fx:value="box" />
             <String fx:value="border" />
          </styleClass>
       </TextField>
-      <VBox prefWidth="150.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0">
+      <VBox prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="name" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onDragDetected="#unableToChangeName" onMouseClicked="#changeName" onMouseReleased="#handleLetGo" prefHeight="32.0" styleClass="text-medium" text="Class" />
             <Line fx:id="line" endX="148.0" />
@@ -39,15 +38,7 @@
             <String fx:value="border" />
          </styleClass>
       </VBox>
-      <AnchorPane fx:id="blockpane1" onDragDetected="#handleDrag" prefHeight="10.0" prefWidth="200.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0" />
-      <AnchorPane fx:id="blockpane2" layoutX="10.0" layoutY="10.0" onDragDetected="#handleDrag" prefHeight="8.0" prefWidth="200.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="28.0" />
-      <Ellipse fx:id="circle1" centerX="78.0" fill="DODGERBLUE" onMouseClicked="#notifyArrowEvent" radiusX="5.0" radiusY="4.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.bottomAnchor="1.0" />
-      <Ellipse fx:id="circle2" centerX="78.0" centerY="1.0" fill="DODGERBLUE" onMouseClicked="#notifyArrowEvent" radiusX="5.0" radiusY="4.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.topAnchor="1.0" />
-      <Ellipse fx:id="circle3" centerY="35.0" fill="DODGERBLUE" onMouseClicked="#notifyArrowEvent" radiusX="4.0" radiusY="5.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.leftAnchor="1.0" />
-      <Ellipse fx:id="circle4" centerY="35.0" fill="DODGERBLUE" onMouseClicked="#notifyArrowEvent" radiusX="4.0" radiusY="5.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" AnchorPane.rightAnchor="1.0" />
-      <AnchorPane layoutY="26.0" onMouseClicked="#notifyArrowEvent" prefHeight="20.0" prefWidth="12.0" AnchorPane.leftAnchor="0.0" />
-      <AnchorPane layoutX="144.0" layoutY="26.0" onMouseClicked="#notifyArrowEvent" prefHeight="20.0" prefWidth="12.0" AnchorPane.rightAnchor="0.0" />
-      <AnchorPane layoutX="68.0" layoutY="58.0" onMouseClicked="#notifyArrowEvent" prefHeight="12.0" prefWidth="20.0" AnchorPane.bottomAnchor="0.0" />
-      <AnchorPane layoutX="68.0" onMouseClicked="#notifyArrowEvent" prefHeight="12.0" prefWidth="20.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="blockpane1" onDragDetected="#handleDrag" prefHeight="10.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="blockpane2" layoutX="10.0" layoutY="10.0" onDragDetected="#handleDrag" prefHeight="8.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0" />
    </children>
 </fx:root>

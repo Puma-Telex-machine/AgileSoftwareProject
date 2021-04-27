@@ -16,9 +16,8 @@ import model.facades.BoxFacade;
 
 import java.awt.*;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 public class BoxController extends AnchorPane implements ArrowObservable {
     @FXML
@@ -29,10 +28,6 @@ public class BoxController extends AnchorPane implements ArrowObservable {
     private VBox methods;
     @FXML
     private VBox variables;
-
-    //anchorpoints
-    @FXML
-    Ellipse circle1,circle2,circle3,circle4;
 
     //for dragging box when editing name
     @FXML
@@ -47,6 +42,8 @@ public class BoxController extends AnchorPane implements ArrowObservable {
     private BoxFacade box;
 
     private ArrowObserver arrowObserver;
+
+    List<AnchorPointController> anchorPoints = new ArrayList<>();
 
     public BoxController(BoxFacade box,VariableEditorController VEC,MethodEditorController MEC,ArrowObserver arrowObserver){
 
@@ -66,8 +63,39 @@ public class BoxController extends AnchorPane implements ArrowObservable {
         hideCircles();
         this.setLayoutX(box.getPosition().x);
         this.setLayoutY(box.getPosition().y);
+
+        initAnchors();
+    }
+    private void initAnchors(){
+        AnchorPointController p1 = new AnchorPointController();
+        AnchorPointController p2 = new AnchorPointController();
+        AnchorPointController p3 = new AnchorPointController();
+        AnchorPointController p4 = new AnchorPointController();
+        this.getChildren().add(p1);
+        this.getChildren().add(p2);
+        this.getChildren().add(p3);
+        this.getChildren().add(p4);
+
+        p2.rotateProperty().setValue(180);
+        p3.rotateProperty().setValue(270);
+        p4.rotateProperty().setValue(90);
+
+        p1.setLayoutX(65);
+        AnchorPane.setTopAnchor(p1, -7.0);
+        p2.setLayoutX(65);
+        AnchorPane.setBottomAnchor(p2, -7.0);
+        p3.setLayoutY(28);
+        AnchorPane.setLeftAnchor(p3, -10.0);
+        p4.setLayoutY(28);
+        AnchorPane.setRightAnchor(p4, -10.0);
+        anchorPoints.add(p1);
+        anchorPoints.add(p2);
+        anchorPoints.add(p3);
+        anchorPoints.add(p4);
+        hideCircles();
     }
 
+    //region dragging boxes
     //for moving box
     private boolean moving = false;
     private double offsetX = 0;
@@ -92,12 +120,13 @@ public class BoxController extends AnchorPane implements ArrowObservable {
     private void handleLetGo(MouseEvent event){
         moving=false;
         box.setPosition(new Point((int)this.getLayoutX(),(int)this.getLayoutY()));
-
         //for snap to grid
         this.setLayoutX(box.getPosition().x);
         this.setLayoutY(box.getPosition().y);
         event.consume();
     }
+    //endregion
+    //region methods
     @FXML
     private void addMethod(MouseEvent e){
         methodEditor.setVisible(true);
@@ -146,50 +175,26 @@ public class BoxController extends AnchorPane implements ArrowObservable {
         //add lamda function  ish currentEditArgument.argumentTypeField.setOnAction((Action) -> editVariable(variableData)
     }
 
-    private boolean creatingArrow=false;
-    @FXML
-    private void startArrow(MouseEvent event){
-        if(!creatingArrow){
-            creatingArrow=true;
-        }
-        //todo find closest anchorpoint
-        //todo observerpattern
-        event.consume();
-    }
-    @FXML
-    private void attachArrow(MouseEvent event){
-        creatingArrow=false;
-
-        //todo observerpattern
-    }
-
-    public BoxFacade getBox(){
-        return box;
-    }
+    //endregion
+    //region arrows
     @FXML
     private void hideCircles(){
         if(circleToggle) return;
-        circle1.setVisible(false);
-        circle2.setVisible(false);
-        circle3.setVisible(false);
-        circle4.setVisible(false);
+        for (AnchorPointController e:anchorPoints) {
+            e.setVisible(false);
+        }
     }
     @FXML
     private void showCircles(){
         if(circleToggle) return;
-        circle1.setVisible(true);
-        circle2.setVisible(true);
-        circle3.setVisible(true);
-        circle4.setVisible(true);
-        circle1.toFront();
-        circle2.toFront();
-        circle3.toFront();
-        circle4.toFront();
+        for (AnchorPointController e:anchorPoints) {
+            e.setVisible(true);
+            e.toFront();
+        }
     }
     private boolean circleToggle = false;
 
     public void toggleCircleVisibility(){
-        //change after
         if(circleToggle){
             circleToggle=false;
             hideCircles();
@@ -199,7 +204,21 @@ public class BoxController extends AnchorPane implements ArrowObservable {
             circleToggle=true;
         }
     }
-
+    @Override
+    public void notifyArrowEvent(MouseEvent e) {
+        System.out.println("box");
+        for (AnchorPointController a:anchorPoints) {
+            if(a.getPressed()){
+                System.out.println("box register press on anchor");
+                a.setNotPressed();
+                arrowObserver.arrowEvent(new Point ((int)(a.getMid().x+this.getLayoutX()),(int)(a.getMid().y+this.getLayoutY())),this);
+            }
+        }
+        showCircles();
+        e.consume();
+    }
+    //endregion
+    //region name
     @FXML
     private void updateName(){
         //todo wait for backend to implement
@@ -228,16 +247,13 @@ public class BoxController extends AnchorPane implements ArrowObservable {
     private void unableToChangeName(){
         changeable=false;
     }
-
-
-    @Override
-    public void notifyArrowEvent(MouseEvent e) {
-        arrowObserver.arrowEvent(new Point((int)e.getSceneX(),(int)e.getSceneY()),this);
-        showCircles();
-        e.consume();
-    }
+    //endregion
+    //region get/setters
     public String getName(){
         return name.getText();
     }
-
+    public BoxFacade getBox(){
+        return box;
+    }
+    //endregion
 }

@@ -14,6 +14,7 @@ import model.facades.BoxFacade;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.List;
@@ -22,7 +23,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
 
     VariableEditorController variableEditor;
     MethodEditorController methodEditor;
-    
+
     List<BoxController> boxes = new ArrayList<>();
     public CanvasController()
     {
@@ -56,30 +57,30 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         return new Point(500,400);
     }
 
-    //arrowmaking
+    //region arrowmaking
 
     boolean makingArrow = false;
-    Line l1,l2,l3;
+    Line[] arrow= new Line[3];
     BoxController arrowBox = null;
-    Point2D arrowStart;
+    Point arrowStart;
 
     @Override
     public void arrowEvent(Point p, BoxController box) {
         if(makingArrow) {
+            System.out.println("makingArrow");
+            this.getChildren().removeAll(arrow);
+
             //box == arrowBox => aborting arrowcreation
             if (box != arrowBox) {
                 //todo make arrow in backend
-                drawArrowLine(arrowStart.getX(), arrowStart.getY(), p.x-75, p.y);
+                this.getChildren().addAll(drawArrowLine(arrowStart.x, arrowStart.y, p.x, p.y));
                 System.out.println("arrow created between " + arrowBox.getName() + " and " + box.getName());
-            }else{
-                this.getChildren().remove(l1);
-                this.getChildren().remove(l2);
-                this.getChildren().remove(l3);
             }
         }
         else{
+            System.out.println("not makingArrow");
             arrowBox=box;
-            arrowStart=new Point(p.x-75,p.y);
+            arrowStart=p;
         }
         toggleAnchorPoints();
         makingArrow=!makingArrow;
@@ -89,17 +90,18 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
             box.toggleCircleVisibility();
         }
     }
+
     @FXML
     private void dragArrow(MouseEvent e){
         if(makingArrow){
-            this.getChildren().remove(l1);
-            this.getChildren().remove(l2);
-            this.getChildren().remove(l3);
-            drawArrowLine(arrowStart.getX(),arrowStart.getY(),e.getSceneX()-75,e.getSceneY());
+            this.getChildren().removeAll(arrow);
+            arrow= drawArrowLine(arrowStart.getX(),arrowStart.getY(),e.getSceneX()-75,e.getSceneY());
+            this.getChildren().addAll(arrow);
         }
+        e.consume();
     }
 
-    public void drawArrowLine(double startX, double startY, double endX, double endY) {
+    public Line[] drawArrowLine(double startX, double startY, double endX, double endY) {
         // get the slope of the line and find its angle
         double slope = (startY - endY) / (startX - endX);
         double lineAngle = Math.atan(slope);
@@ -140,9 +142,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         line.setStroke(( new Color(0.72,0.72,0.72,1)));
         arrow1.setStroke(( new Color(0.72,0.72,0.72,1)));
         arrow2.setStroke(( new Color(0.72,0.72,0.72,1)));
-        l1=line;
-        l2=arrow1;
-        l3=arrow2;
-        this.getChildren().addAll(line, arrow1, arrow2);
+        return new Line[]{line,arrow1,arrow2};
     }
+    //endregion
 }
