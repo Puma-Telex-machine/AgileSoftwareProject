@@ -10,7 +10,6 @@ import model.relations.ArrowType;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Arrow extends AnchorPane{
     private AnchorPane head=new AnchorPane();
@@ -68,7 +67,7 @@ public class Arrow extends AnchorPane{
 
         this.getChildren().addAll(lines);
         this.getChildren().add(head);
-        
+
         //if start=end glitches occur for head
         if(!(start.x==end.x&&start.y==end.y)) {
             setType(ArrowType.INHERITANCE);
@@ -129,11 +128,11 @@ public class Arrow extends AnchorPane{
                 break;
             case AGGREGATION:
                 setFullLine();
-                setRombHead(false,lineAngle);
+                setRhoumbusHead(false,lineAngle);
                 break;
             case COMPOSITION:
                 setFullLine();
-                setRombHead(true,lineAngle);
+                setRhoumbusHead(true,lineAngle);
                 break;
         }
     }
@@ -149,48 +148,45 @@ public class Arrow extends AnchorPane{
         }
     }
     private void setTriangleHead(boolean fill,double lineAngle){
-        head.getChildren().clear();
         Point[] points=getArrowHeadPoints(lineAngle,endX,endY);
         Polygon triangle = new Polygon(
                 endX, endY,
                 points[0].getX(), points[0].getY(),
                 points[1].getX(), points[1].getY()
         );
-
-        if(fill) triangle.setFill(new Color(0.72,0.72,0.72,1));
-        else {
-            triangle.setFill(new Color(0,0,0,0));
-            triangle.setStroke(new Color(0.72,0.72,0.72,1));
-            triangle.setStrokeWidth(1);
+        if(!fill){
             endline.setEndX(points[3].x);
             endline.setEndY(points[3].y);
         }
-        head.getChildren().add(triangle);
-        triangle.toFront();
-        head.toFront();
+        setPolygonHead(triangle,fill,lineAngle);
     }
 
-    private void setRombHead(boolean fill,double lineAngle){
-        head.getChildren().clear();
+    private void setRhoumbusHead(boolean fill,double lineAngle){
         Point[] points=getArrowHeadPoints(lineAngle,endX,endY);
-
         Polygon rhoumbus = new Polygon(
                 endX, endY,
                 points[0].getX(), points[0].getY(),
                 points[2].getX(),points[2].getY(),
                 points[1].getX(), points[1].getY()
         );
-
-        if(fill) rhoumbus.setFill(new Color(0.72,0.72,0.72,1));
-        else {
-            rhoumbus.setFill(new Color(0,0,0,0));
-            rhoumbus.setStroke(new Color(0.72,0.72,0.72,1));
-            rhoumbus.setStrokeWidth(1);
+        if(!fill){
             endline.setEndX(points[2].x);
             endline.setEndY(points[2].y);
         }
-        head.getChildren().add(rhoumbus);
-        rhoumbus.toFront();
+        setPolygonHead(rhoumbus,fill,lineAngle);
+    }
+
+    private void setPolygonHead(Polygon polygon,boolean fill,double lineAngle){
+        head.getChildren().clear();
+
+        if(fill) polygon.setFill(new Color(0.72,0.72,0.72,1));
+        else {
+            polygon.setFill(new Color(0,0,0,0));
+            polygon.setStroke(new Color(0.72,0.72,0.72,1));
+            polygon.setStrokeWidth(1);
+        }
+        head.getChildren().add(polygon);
+        polygon.toFront();
         head.toFront();
     }
 
