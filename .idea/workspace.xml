@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/frontend/OverviewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/frontend/view/Overview.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Base.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/overview.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/DarkMode.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/DarkMode.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/Overview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Overview.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
