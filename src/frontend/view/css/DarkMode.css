@@ -55,3 +55,16 @@
     -fx-border-width: 1;
     -fx-text-fill: "DBDBDB";
 }
+
+.combo-box .arrow{
+    -fx-background-color: "DBDBDB";;
+}
+.combo-box .list-cell
+{
+    -fx-background-color: "#585858";
+     -fx-text-fill: "DBDBDB";
+}
+.combo-box-popup .list-view
+{
+    -fx-border-color: "000000";
+}

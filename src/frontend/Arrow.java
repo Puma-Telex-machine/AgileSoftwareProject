@@ -1,5 +1,6 @@
 package frontend;
 
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -70,7 +71,8 @@ public class Arrow extends AnchorPane{
 
         //if start=end glitches occur for head
         if(!(start.x==end.x&&start.y==end.y)) {
-            setType(ArrowType.INHERITANCE);
+            setType(ArrowType.ASSOCIATION);
+
         }
     }
 
@@ -206,5 +208,21 @@ public class Arrow extends AnchorPane{
 
     public ArrowType getType() {
         return type;
+    }
+
+    public boolean isClickOn(MouseEvent event) {
+8
+        /* todo fix this
+        int diff = 30;
+
+        for (Line l:lines) {
+           if(     //vertical line
+                   (Math.abs(l.getStartX()-event.getSceneX())<=diff&&event.getSceneY()<l.getEndY()+diff&&event.getSceneY()>l.getStartY()-diff)||
+                   //horizontal line
+                   (Math.abs(l.getStartY()-event.getSceneY())<=diff&&event.getSceneX()<l.getEndX()+diff&&event.getSceneX()>l.getStartX()-diff)){
+               return true;
+           }
+        }*/
+        return true;
     }
 }

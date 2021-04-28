@@ -1,8 +1,11 @@
 package frontend;
 
 import frontend.Observers.ArrowObserver;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -13,6 +16,7 @@ import model.facades.BoxFacade;
 import model.relations.ArrowType;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.IOException;
@@ -26,6 +30,10 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     VariableEditorController variableEditor;
     MethodEditorController methodEditor;
 
+    @FXML
+    private AnchorPane arrowMenu,arrowMenuPane;
+    @FXML
+    private ComboBox<ArrowType> arrowTypeComboBox;
 
     List<BoxController> boxes = new ArrayList<>();
     public CanvasController()
@@ -40,6 +48,9 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        arrowTypeComboBox.getItems().addAll(ArrowType.IMPLEMENTATION,ArrowType.INHERITANCE,ArrowType.ASSOCIATION,ArrowType.AGGREGATION,ArrowType.COMPOSITION,ArrowType.DEPENDANCY);
+        arrowMenuPane.setVisible(false);
 
         variableEditor = new VariableEditorController();
         methodEditor = new MethodEditorController();
@@ -62,10 +73,12 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
 
     //region arrowmaking
 
-    boolean makingArrow = false;
-    Arrow arrow;
-    BoxController arrowBox = null;
-    Point arrowStart;
+    private boolean makingArrow = false;
+    private Arrow arrow;
+    private BoxController arrowBox = null;
+    private Point arrowStart;
+    private boolean toggleOn = false;
+    private Arrow clickedArrow = null;
 
     @Override
     public void arrowEvent(Point p, BoxController box) {
@@ -78,13 +91,30 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
                 //todo get bends from backend
                 //temporary
                 List<Point> bends = new ArrayList<>();
-                bends.add(new Point(p.x+20,arrowStart.y));
-                bends.add(new Point(p.x+20,p.y));
+                bends.add(new Point(p.x-20,arrowStart.y));
+                bends.add(new Point(p.x-20,p.y));
 
-                Arrow add = new Arrow(arrowStart,p,bends);
-                this.getChildren().addAll(add);
-                System.out.println("arrow created between " + arrowBox.getName() + " and " + box.getName());
-                add.toBack();
+                Arrow newArrow = new Arrow(arrowStart,p,bends);
+                this.getChildren().addAll(newArrow);
+
+                newArrow.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        if(!newArrow.isClickOn(event)) return;
+                        clickedArrow=newArrow;
+                        arrowTypeComboBox.getSelectionModel().select(newArrow.getType());
+                        openArrowMenu(event);
+                    }
+
+                    private void openArrowMenu(MouseEvent e) {
+                        arrowMenuPane.setVisible(true);
+                        arrowMenuPane.toFront();
+                        arrowMenu.setLayoutX(e.getX());
+                        arrowMenu.setLayoutY(e.getY());
+                        e.consume();
+                    }
+                });
+                newArrow.toBack();
             }
         }
         else{
@@ -96,7 +126,8 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         toggleAnchorPoints();
         makingArrow=!makingArrow;
     }
-    boolean toggleOn = false;
+
+
     private void toggleAnchorPoints(){
         for(BoxController box:boxes){
             box.toggleCircleVisibility(toggleOn);
@@ -114,6 +145,29 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         }
         e.consume();
     }
+
+    @FXML
+    private void deleteArrow(Event e){
+        this.getChildren().remove(clickedArrow);
+        minimizeArrowMenu(e);
+    }
+    @FXML
+    private void changeArrow(Event e){
+        clickedArrow.setType(arrowTypeComboBox.getValue());
+        minimizeArrowMenu(e);
+    }
+
+    @FXML
+    private void minimizeArrowMenu(Event e){
+        arrowMenuPane.setVisible(false);
+        arrowMenuPane.toBack();
+        e.consume();
+    }
+    @FXML
+    private void eventTrap(Event e){
+        e.consume();
+    }
+
 
     //endregion
 }

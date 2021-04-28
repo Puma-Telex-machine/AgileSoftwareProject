@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.shape.Ellipse;
 import model.MethodData;
 //import model.VariableData;
+import model.boxes.BoxType;
 import model.facades.BoxFacade;
 
 import java.awt.*;
@@ -23,12 +24,9 @@ public class BoxController extends AnchorPane implements ArrowObservable {
     @FXML
     private TextField nameField;
     @FXML
-    private Label name;
+    private Label name,identifier;
     @FXML
-    private VBox methods;
-    @FXML
-    private VBox variables;
-
+    private VBox methods, variables,vBox;
     //for dragging box when editing name
     @FXML
     AnchorPane blockpane1,blockpane2;
@@ -58,6 +56,25 @@ public class BoxController extends AnchorPane implements ArrowObservable {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        switch(box.getType()){
+            case CLASS:
+                blockpane1.setLayoutY(0);
+                blockpane2.setLayoutY(26);
+                nameField.setLayoutY(1);
+                vBox.getChildren().remove(identifier);
+                break;
+            case INTERFACE:
+                identifier.setText("<<Interface>>");
+                break;
+            case ABSTRACTCLASS:
+                identifier.setText("<Abstract>");
+                break;
+            case ENUM:
+                identifier.setText("Enum");
+                break;
+        }
+
         this.arrowObserver=arrowObserver;
         this.box = box;
         hideCircles();
@@ -66,7 +83,9 @@ public class BoxController extends AnchorPane implements ArrowObservable {
 
         initAnchors();
     }
+
     private void initAnchors(){
+        //todo add dynamicly
         AnchorPointController p1 = new AnchorPointController();
         AnchorPointController p2 = new AnchorPointController();
         AnchorPointController p3 = new AnchorPointController();
