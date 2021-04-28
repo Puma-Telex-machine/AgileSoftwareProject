@@ -1,3 +1,4 @@
+
 package model.grid;
 
 import java.awt.*;
@@ -14,7 +15,6 @@ public class ScaledGrid<V> {
         this.gridHeight = gridHeight;
         this.gridWidth = gridWidth;
     }
-
 
     public boolean set(Point point, V value) {
         return grid.set(convertToScale(point), value);
@@ -34,8 +34,8 @@ public class ScaledGrid<V> {
         }
     }
 
-    public boolean move(Point from, Point to) {
-        return grid.move(convertToScale(from), convertToScale(to));
+    public Point move(Point from, Point to) {
+        return convertFromScale(grid.move(convertToScale(from), convertToScale(to)));
     }
 
     public boolean shift(ArrayList<Point> points, Point shiftDistance) {
@@ -46,13 +46,27 @@ public class ScaledGrid<V> {
         return grid.isEmpty(convertToScale(point));
     }
 
-    private Point convertToScale(Point point) {
+    public Point convertFromScale(Point point) {
+        int convertedX = point.x * gridWidth;
+        int convertedY = point.y * gridHeight;
+        return new Point(convertedX, convertedY);
+    }
+
+    public ArrayList<Point> convertFromScale(ArrayList<Point> points) {
+        ArrayList<Point> convertedPoints = new ArrayList<>();
+        for (Point p : points) {
+            convertedPoints.add(convertFromScale(p));
+        }
+        return convertedPoints;
+    }
+
+    public Point convertToScale(Point point) {
         int convertedX = point.x / gridWidth;
         int convertedY = point.y / gridHeight;
         return new Point(convertedX, convertedY);
     }
 
-    private ArrayList<Point> convertToScale(ArrayList<Point> points) {
+    public ArrayList<Point> convertToScale(ArrayList<Point> points) {
         ArrayList<Point> convertedPoints = new ArrayList<>();
         for (Point p : points) {
             convertedPoints.add(convertToScale(p));
@@ -60,3 +74,4 @@ public class ScaledGrid<V> {
         return convertedPoints;
     }
 }
+

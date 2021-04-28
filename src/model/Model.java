@@ -30,10 +30,16 @@ public class Model {
             observers.forEach(observer -> observer.addBox(boxManager));
         }
 
-        runTest();
+        //runTest();
     }
-
+/*
     private void runTest() {
+        BoxManager boxManager = new BoxManager(diagram, new Point(100, 100));
+        if (!boxManager.isEmpty()) {
+            observers.forEach(observer -> observer.addBox(boxManager));
+        }
+
+        diagram.createRelation()
         addTestPoint(new Point(10, 10));
         //addBox(new Point(20, 20));
     }
@@ -41,4 +47,6 @@ public class Model {
     private void addTestPoint(Point point) {
         observers.forEach(observer -> observer.addTestPoint(point.x, point.y));
     }
+
+ */
 }

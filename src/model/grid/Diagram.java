@@ -3,43 +3,61 @@ package model.grid;
 import model.MethodData;
 import model.VariableData;
 import model.boxes.Box;
+import model.grid.ScaledGrid;
+import model.relations.ArrowType;
+import model.relations.Relation;
 
 import java.awt.*;
+import java.util.HashSet;
 
 public class Diagram {
 
-    BoxGrid boxGrid = new BoxGrid(60, 80);
-    RelationGrid relationGrid = new RelationGrid(boxGrid, 30, 40);
-    //ScaledGrid<Relation> relationGrid = new ScaledGrid<>(3, 4);
-    //HashSet<Relation> relations = new HashSet<>();
+    ScaledGrid<Box> boxGrid = new ScaledGrid<>(6, 8);
+    RelationGrid relationGrid = new RelationGrid(boxGrid, 3, 4);
 
-    public void move(Box box, Point position) {
-        if (boxGrid.moveBox(box, position)) {
-            box.setPosition(position);
+    HashSet<Relation> relations = new HashSet<>();
+
+    public Relation createRelation(Box to, Box from, ArrowType arrowType) {
+        Relation relation = new Relation(to, from, arrowType);
+        relations.add(relation);
+        return relation;
+    }
+
+
+    public Box createBox(Point position) {
+        Box box = new Box("Box", position);
+
+        if (boxGrid.set(position, box)) {
+            return box;
         }
+        return null;
     }
 
-    public Box createBox(Point point) {
-        return boxGrid.createBox(point);
+    public void moveBox(Box box, Point to) {
+        Point newPosition = boxGrid.move(box.getPosition(), to);
+        box.setPosition(newPosition);
     }
 
-    public void deleteMethod(Box box, String methodName) {
-        box.deleteMethod(methodName);
-    }
-
-    public void deleteVariable(Box box, String variableName) {
-        box.deleteVariable(variableName);
-    }
-
-    public void editVariable(Box box, VariableData variableData) {
-        box.editVariable(variableData);
-    }
-
-    public void editMethod(Box box, MethodData methodData) {
-        box.editMethod(methodData);
+    public void removeBox(Point position) {
+        boxGrid.remove(position);
     }
 
     public void deleteBox(Box box) {
-        boxGrid.removeBox(box.getPosition());
+    }
+
+    public void editMethod(Box box, MethodData methodData) {
+    }
+
+    public void editVariable(Box box, VariableData variableData) {
+    }
+
+    public void deleteMethod(Box box, String methodName) {
+    }
+
+    public void deleteVariable(Box box, String variableName) {
+    }
+
+    public void move(Box box, Point point) {
+
     }
 }
