@@ -12,6 +12,7 @@ import model.Observer;
 import model.facades.BoxFacade;
 import model.relations.ArrowType;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.IOException;
@@ -69,39 +70,44 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     @Override
     public void arrowEvent(Point p, BoxController box) {
         if(makingArrow) {
-            System.out.println("makingArrow");
             this.getChildren().removeAll(arrow);
 
             //box == arrowBox => aborting arrowcreation
             if (box != arrowBox) {
                 //todo make arrow in backend
-                Arrow add = new Arrow(arrowStart.x, arrowStart.y, p.x, p.y);
+
+                //todo get bends
+                List<Point> bends = new ArrayList<>();
+                bends.add(new Point(p.x+20,arrowStart.y));
+                bends.add(new Point(p.x+20,p.y));
+                Arrow add = new Arrow(arrowStart,p,bends);
                 this.getChildren().addAll(add);
                 System.out.println("arrow created between " + arrowBox.getName() + " and " + box.getName());
                 add.toBack();
             }
         }
         else{
-            System.out.println("not makingArrow");
             arrowBox=box;
             arrowStart=p;
-            arrow = new Arrow(arrowStart.x, arrowStart.y, p.x, p.y);
+            arrow = new Arrow(arrowStart,p,new ArrayList<>());
             this.getChildren().add(arrow);
         }
         toggleAnchorPoints();
         makingArrow=!makingArrow;
     }
+    boolean toggleOn = false;
     private void toggleAnchorPoints(){
         for(BoxController box:boxes){
-            box.toggleCircleVisibility();
+            box.toggleCircleVisibility(toggleOn);
         }
+        toggleOn=!toggleOn;
     }
 
     @FXML
     private void dragArrow(MouseEvent e){
         if(makingArrow){
             this.getChildren().remove(arrow);
-            arrow=new Arrow(arrowStart.x, arrowStart.y,e.getX(), e.getY());
+            arrow=new Arrow(arrowStart, new Point((int)e.getX(),(int)e.getY()),new ArrayList<>());
             this.getChildren().add(arrow);
             arrow.toBack();
         }

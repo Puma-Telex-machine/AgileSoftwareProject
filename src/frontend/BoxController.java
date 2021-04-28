@@ -194,8 +194,8 @@ public class BoxController extends AnchorPane implements ArrowObservable {
     }
     private boolean circleToggle = false;
 
-    public void toggleCircleVisibility(){
-        if(circleToggle){
+    public void toggleCircleVisibility(boolean toggle){
+        if(toggle){
             circleToggle=false;
             hideCircles();
         }
@@ -206,10 +206,8 @@ public class BoxController extends AnchorPane implements ArrowObservable {
     }
     @Override
     public void notifyArrowEvent(MouseEvent e) {
-        System.out.println("box");
         for (AnchorPointController a:anchorPoints) {
             if(a.getPressed()){
-                System.out.println("box register press on anchor");
                 a.setNotPressed();
                 arrowObserver.arrowEvent(new Point ((int)(a.getMid().x+this.getLayoutX()),(int)(a.getMid().y+this.getLayoutY())),this);
             }

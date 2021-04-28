@@ -31,7 +31,6 @@ public class AnchorPointController extends AnchorPane {
 
     @FXML
     private void arrowEvent(){
-        System.out.println("pressed anchor");
         pressed=true;
     }
     public void setNotPressed(){
