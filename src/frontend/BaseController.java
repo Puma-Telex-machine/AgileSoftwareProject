@@ -13,10 +13,10 @@ import java.awt.*;
 public class BaseController{
 
     @FXML
-    private VBox context;
+    AnchorPane UML;
 
     @FXML
-    AnchorPane UML;
+    AnchorPane leftMenue;
 
     @FXML
     AnchorPane contextMenu;
@@ -40,26 +40,38 @@ public class BaseController{
     }
 
     private void init(){
-        UML.getChildren().add(recent);
-        UML.getChildren().add(shapes);
+        leftMenue.getChildren().add(recent);
+        leftMenue.getChildren().add(shapes);
+        LockPane(recent);
+        LockPane(shapes);
         recent.setVisible(false);
         shapes.setVisible(false);
         UML.getChildren().add(canvas);
+        LockPane(canvas);
     }
+
+    private void LockPane(AnchorPane pane)
+    {
+        AnchorPane.setTopAnchor(pane, 0d);
+        AnchorPane.setLeftAnchor(pane, 0d);
+        AnchorPane.setRightAnchor(pane, 0d);
+        AnchorPane.setBottomAnchor(pane, 0d);
+    }
+
     @FXML
     private void handleContextMenu(ContextMenuEvent e){
-        context.setLayoutX(e.getX());
-        context.setLayoutY(e.getY());
-        contextMenu.toFront();
+        contextMenu.setLayoutX(e.getX());
+        contextMenu.setLayoutY(e.getY());
+        contextMenu.setVisible(true);
         e.consume();
     }
     @FXML
     private void exitContext(){
-        UML.toFront();
+        contextMenu.setVisible(false);
     }
     @FXML
     private void handleContextAddBox(MouseEvent e) {
-        model.addBox(new Point((int) context.getLayoutX()-80,(int) context.getLayoutY()-35));
+        model.addBox(new Point((int) contextMenu.getLayoutX()-80,(int) contextMenu.getLayoutY()-35));
         exitContext();
         e.consume();
     }
@@ -67,14 +79,14 @@ public class BaseController{
     //open Menus
     @FXML
     private void openRecent(){
-        if(!UML.getChildren().contains(recent)) init();
+        if(!leftMenue.getChildren().contains(recent)) init();
         shapes.setVisible(false);
         recent.setVisible(!recent.isVisible());
         canvas.toBack();
     }
     @FXML
     private void openShapes(){
-        if(!UML.getChildren().contains(shapes)) init();
+        if(!leftMenue.getChildren().contains(shapes)) init();
         recent.setVisible(false);
         shapes.setVisible(!shapes.isVisible());
         canvas.toBack();
