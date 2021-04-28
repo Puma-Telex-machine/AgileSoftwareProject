@@ -1,6 +1,5 @@
 package model.grid;
 
-import model.boxes.Box;
 import model.relations.Relation;
 
 import java.awt.*;
@@ -11,7 +10,7 @@ import java.util.TreeMap;
 public class RelationGrid {
 
     ScaledGrid<GridNode> relationGrid;
-    ScaledGrid<Box> boxGrid;
+    BoxGrid boxGrid;
 
     TreeMap<Point, RelationNode> visited = new TreeMap<>((p1, p2) -> {
         if (p1.x < p2.x) return -1;

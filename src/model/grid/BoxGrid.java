@@ -32,4 +32,7 @@ public class BoxGrid {
         boxGrid.remove(position);
     }
 
+    public boolean isEmpty(Point point) {
+        return boxGrid.isEmpty(point);
+    }
 }

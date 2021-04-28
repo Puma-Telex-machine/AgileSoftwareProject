@@ -29,5 +29,16 @@ public class Model {
         if (!boxManager.isEmpty()) {
             observers.forEach(observer -> observer.addBox(boxManager));
         }
+
+        runTest();
+    }
+
+    private void runTest() {
+        addTestPoint(new Point(10, 10));
+        //addBox(new Point(20, 20));
+    }
+
+    private void addTestPoint(Point point) {
+        observers.forEach(observer -> observer.addTestPoint(point.x, point.y));
     }
 }

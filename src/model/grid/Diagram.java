@@ -8,8 +8,8 @@ import java.awt.*;
 
 public class Diagram {
 
-    BoxGrid boxGrid = new BoxGrid(6, 8);
-    RelationGrid relationGrid = new RelationGrid(boxGrid, 3, 4);
+    BoxGrid boxGrid = new BoxGrid(60, 80);
+    RelationGrid relationGrid = new RelationGrid(boxGrid, 30, 40);
     //ScaledGrid<Relation> relationGrid = new ScaledGrid<>(3, 4);
     //HashSet<Relation> relations = new HashSet<>();
 
