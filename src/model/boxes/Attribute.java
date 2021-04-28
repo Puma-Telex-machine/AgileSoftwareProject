@@ -19,7 +19,7 @@ public class Attribute {
         INT
     }
 
-    Attribute(String name, Set<Modifier> modifiers, Visibility visibility){
+    public Attribute(String name, Set<Modifier> modifiers, Visibility visibility){
         this.name = name;
         this.modifiers = modifiers;
         this.visibility = visibility;

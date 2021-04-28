@@ -14,6 +14,11 @@ public class BoxManager implements BoxFacade {
         this.box = diagram.createBox(position);
     }
 
+    public BoxManager(Diagram diagram, Box box){
+        this.diagram = diagram;
+        this.box = box;
+    }
+
     @Override
     public void deleteBox() {
         diagram.deleteBox(box);

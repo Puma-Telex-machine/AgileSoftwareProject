@@ -39,6 +39,14 @@ public class Box {
         position = newPosition;
     }
 
+    public void setMethods(List<Method> newMethods){
+        methods = newMethods;
+    }
+
+    public void setAttributes(List<Attribute> newAttributes){
+        attributes = newAttributes;
+    }
+
     public Method getMethod(int position){
         if(position < methods.size() && position >= 0)
             return methods.get(position);

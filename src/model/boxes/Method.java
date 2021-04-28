@@ -17,8 +17,15 @@ public class Method {
     private String name;
     private List<Attribute> parameters = new ArrayList<>();
     private Set<Modifier> modifiers = new HashSet<>();
-    private Visibility visibility;
+    private Visibility visibility = Visibility.PUBLIC;
     String returnValue; // Unsure how to implement types, for now
+
+    public Method(String name, List<Attribute> parameters, Set<Modifier> modifiers, Visibility visibility){
+        this.name = name;
+        this.parameters = parameters;
+        this.modifiers = modifiers;
+        this.visibility = visibility;
+    }
 
     Method(MethodData data){
         this.name = data.methodName;
