@@ -3,12 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/AnchorPointController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/AnchorPointController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/Arrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Arrow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BoxController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/CanvasController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/Anchorpoint.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Anchorpoint.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/Box.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Box.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/relations/ArrowType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/ArrowType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/relations/RelationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/RelationManager.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

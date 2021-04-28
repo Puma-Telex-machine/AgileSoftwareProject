@@ -75,11 +75,12 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
             //box == arrowBox => aborting arrowcreation
             if (box != arrowBox) {
                 //todo make arrow in backend
-
-                //todo get bends
+                //todo get bends from backend
+                //temporary
                 List<Point> bends = new ArrayList<>();
                 bends.add(new Point(p.x+20,arrowStart.y));
                 bends.add(new Point(p.x+20,p.y));
+
                 Arrow add = new Arrow(arrowStart,p,bends);
                 this.getChildren().addAll(add);
                 System.out.println("arrow created between " + arrowBox.getName() + " and " + box.getName());

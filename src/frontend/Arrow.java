@@ -10,21 +10,25 @@ import model.relations.ArrowType;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Arrow extends AnchorPane{
-    AnchorPane head=new AnchorPane();
-    List<Line> lines=new ArrayList<>();
-    double startX,startY,endX,endY;
-    Line endline;
-    ArrowType type;
+    private AnchorPane head=new AnchorPane();
+    private List<Line> lines=new ArrayList<>();
+    private double startX,startY,endX,endY;
+    private Line endline;
+    private ArrowType type;
+    private List<Point> bends;
+
     public Arrow(Point start,Point end,List<Point> bends){//),double offsetX,double offsetY){
 
         this.startX=start.getX();
         this.startY=start.getY();
         this.endX=end.getX();
         this.endY=end.getY();
-
+        this.bends=bends;
         endline = new Line();
+
         if(bends.size()>=1){
             //start line
             Line l1 = new Line();
@@ -64,54 +68,12 @@ public class Arrow extends AnchorPane{
 
         this.getChildren().addAll(lines);
         this.getChildren().add(head);
-        setType(ArrowType.EXTENDS);
-    }
-    public void setType(ArrowType type){
-
-        if(this.type==type) return;
-
-        this.type=type;
-
-        double slope = (endline.getStartY() - endline.getEndY()) / (endline.getStartX() - endline.getEndX());
-        double lineAngle = Math.atan(slope);
-
-        head.getChildren().clear();
-
-        switch (type){
-            case IMPLEMENTS:
-                //line
-                for (Line l:lines) {
-                    l.getStrokeDashArray().addAll(10d, 10d);
-                }
-                //head
-                Point[] points=getArrowHeadPoints(lineAngle,endX,endY);
-                Polygon triangle = new Polygon(
-                        endX, endY,
-                        points[0].getX(), points[0].getY(),
-                        points[1].getX(), points[1].getY()
-                );
-                triangle.setFill(new Color(0.72,0.72,0.72,1));
-                head.getChildren().add(triangle);
-                triangle.toFront();
-                head.toFront();
-                break;
-
-            case EXTENDS:
-                //line
-                for (Line l:lines) {
-                    l.getStrokeDashArray().clear();
-                }
-
-                //head
-                for (Point point:getArrowHeadPoints(lineAngle,endX,endY)) {
-                    Line l = new Line(endX,endY,point.x,point.y);
-                    l.setStroke(( new Color(0.72,0.72,0.72,1)));
-                    head.getChildren().add(l);
-                }
-                break;
+        
+        //if start=end glitches occur for head
+        if(!(start.x==end.x&&start.y==end.y)) {
+            setType(ArrowType.INHERITANCE);
         }
     }
-
 
     private Point[] getArrowHeadPoints(double lineAngle, double endX, double endY) {
 
@@ -123,7 +85,130 @@ public class Arrow extends AnchorPane{
 
         Point p1 = new Point((int)(endX + 10 * Math.cos(lineAngle - arrowAngle)),(int)(endY + 10 * Math.sin(lineAngle - arrowAngle)));
         Point p2 = new Point((int)(endX + 10 * Math.cos(lineAngle + arrowAngle)),(int)(endY + 10 * Math.sin(lineAngle + arrowAngle)));
+        Point p3,p4;
+        double vx = 5*Math.sqrt(3) * Math.cos(lineAngle);
+        double vy = 5*Math.sqrt(3) * Math.sin(lineAngle);
 
-        return new Point[]{p1,p2};
+        if(endline.getStartX()>=endX){
+            p4 = new Point((int)(endX + vx),(int)(endY + vy));
+            p3= new Point((int)(endX + 2*vx),(int)(endY + 2*vy));
+        }
+        else{
+            p4 = new Point((int)(endX - vx),(int)(endY - vy));
+            p3= new Point((int)(endX - 2*vx),(int)(endY - 2*vy));
+        }
+
+        return new Point[]{p1,p2,p3,p4};
+    }
+
+    public void setType(ArrowType type){
+
+        if(this.type==type) return;
+        this.type=type;
+
+        double lineAngle = Math.atan((endline.getStartY() - endline.getEndY()) / (endline.getStartX() - endline.getEndX()));
+
+        switch (type){
+            case IMPLEMENTATION:
+                setDottedLine();
+                setTriangleHead(false,lineAngle);
+                break;
+
+            case INHERITANCE:
+                setFullLine();
+                setTriangleHead(false,lineAngle);
+                break;
+
+            case DEPENDANCY:
+                setDottedLine();
+                setArrowHead(lineAngle);
+                break;
+            case ASSOCIATION:
+                setFullLine();
+                setArrowHead(lineAngle);
+                break;
+            case AGGREGATION:
+                setFullLine();
+                setRombHead(false,lineAngle);
+                break;
+            case COMPOSITION:
+                setFullLine();
+                setRombHead(true,lineAngle);
+                break;
+        }
+    }
+
+    private void setFullLine(){
+        for (Line l:lines) {
+            l.getStrokeDashArray().clear();
+        }
+    }
+    private void setDottedLine(){
+        for (Line l:lines) {
+            l.getStrokeDashArray().addAll(10d, 10d);
+        }
+    }
+    private void setTriangleHead(boolean fill,double lineAngle){
+        head.getChildren().clear();
+        Point[] points=getArrowHeadPoints(lineAngle,endX,endY);
+        Polygon triangle = new Polygon(
+                endX, endY,
+                points[0].getX(), points[0].getY(),
+                points[1].getX(), points[1].getY()
+        );
+
+        if(fill) triangle.setFill(new Color(0.72,0.72,0.72,1));
+        else {
+            triangle.setFill(new Color(0,0,0,0));
+            triangle.setStroke(new Color(0.72,0.72,0.72,1));
+            triangle.setStrokeWidth(1);
+            endline.setEndX(points[3].x);
+            endline.setEndY(points[3].y);
+        }
+        head.getChildren().add(triangle);
+        triangle.toFront();
+        head.toFront();
+    }
+
+    private void setRombHead(boolean fill,double lineAngle){
+        head.getChildren().clear();
+        Point[] points=getArrowHeadPoints(lineAngle,endX,endY);
+
+        Polygon rhoumbus = new Polygon(
+                endX, endY,
+                points[0].getX(), points[0].getY(),
+                points[2].getX(),points[2].getY(),
+                points[1].getX(), points[1].getY()
+        );
+
+        if(fill) rhoumbus.setFill(new Color(0.72,0.72,0.72,1));
+        else {
+            rhoumbus.setFill(new Color(0,0,0,0));
+            rhoumbus.setStroke(new Color(0.72,0.72,0.72,1));
+            rhoumbus.setStrokeWidth(1);
+            endline.setEndX(points[2].x);
+            endline.setEndY(points[2].y);
+        }
+        head.getChildren().add(rhoumbus);
+        rhoumbus.toFront();
+        head.toFront();
+    }
+
+    private void setArrowHead(double lineAngle){
+        head.getChildren().clear();
+
+        for (Point point:getArrowHeadPoints(lineAngle,endX,endY)) {
+            Line l = new Line(endX,endY,point.x,point.y);
+            l.setStroke(( new Color(0.72,0.72,0.72,1)));
+            head.getChildren().add(l);
+        }
+    }
+
+    public List<Point> getBends(){
+        return bends;
+    }
+
+    public ArrowType getType() {
+        return type;
     }
 }
