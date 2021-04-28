@@ -3,7 +3,6 @@ package model.boxes;
 import model.MethodData;
 //import model.VariableData;
 import model.VariableData;
-import model.facades.BoxFacade;
 
 import java.awt.*;
 import java.util.*;
@@ -91,10 +90,10 @@ public class Box {
     public void editVariable(VariableData variableData) {
         boolean exists = false;
         for (Attribute attribute: attributes) {
-            if(variableData.name == attribute.GetName()){
+            if(variableData.name == attribute.getName()){
                 exists = true;
                 //attribute.SetName(variableData.name); todo: identify attributes
-                attribute.SetVisibility(variableData.visibility);
+                attribute.setVisibility(variableData.visibility);
                 break;
             }
         }
@@ -117,7 +116,7 @@ public class Box {
     public void deleteVariable(String variableName) {
         int counter = 0;
         for (Attribute attribute: attributes) {
-            if(variableName == attribute.GetName()) {
+            if(variableName == attribute.getName()) {
                 attributes.remove(counter);
                 break;
             }

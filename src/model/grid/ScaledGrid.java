@@ -2,6 +2,7 @@ package model.grid;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class ScaledGrid<V> {
 
@@ -44,6 +45,14 @@ public class ScaledGrid<V> {
 
     public boolean isEmpty(Point point) {
         return grid.isEmpty(convertToScale(point));
+    }
+
+    public ArrayList<V> getAllEntries(){
+        ArrayList<V> result = new ArrayList<>();
+        for (Map.Entry<Point, V> entry: grid.grid.entrySet()) {
+            result.add(entry.getValue());
+        }
+        return result;
     }
 
     private Point convertToScale(Point point) {
