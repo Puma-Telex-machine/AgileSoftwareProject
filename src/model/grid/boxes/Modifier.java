@@ -1,4 +1,4 @@
-package model.boxes;
+package model.grid.boxes;
 
 /**
  * An enumerable representing various modifiers/keywords.

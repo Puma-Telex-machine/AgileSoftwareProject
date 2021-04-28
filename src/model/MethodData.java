@@ -1,6 +1,6 @@
 package model;
 
-import model.boxes.Visibility;
+import model.grid.boxes.Visibility;
 
 public class MethodData {
     public  String methodName = "";

@@ -1,6 +1,6 @@
 package model;
 
-import model.boxes.Box;
+import model.grid.boxes.Box;
 import model.facades.BoxFacade;
 
 import java.awt.*;
@@ -16,7 +16,7 @@ public class BoxManager implements BoxFacade {
 
     @Override
     public void deleteBox() {
-        diagram.removeBox(box.getPosition());
+        diagram.deleteBox(box);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class BoxManager implements BoxFacade {
         diagram.move(box, point);
     }
 
-    //@Override
+    @Override
     public void setName(String name) {
 
     }

@@ -1,14 +1,15 @@
-package model.relations;
+package model.grid.relations;
 
-import model.boxes.Box;
-import model.boxes.BoxType;
+import model.grid.boxes.Box;
+import model.grid.boxes.BoxType;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.TreeMap;
 
 public class RelationManager {
+
+    TreeMap<Box, Relation> relations;
 
     public List<ArrowType> getPossibleRelations(Box from, Box to) {
         if (from.getType() == BoxType.BOX) {
@@ -21,7 +22,7 @@ public class RelationManager {
             return interfaceRelations(to.getType());
         }
         if (from.getType() == BoxType.ABSTRACTCLASS) {
-            return abstractClassRelations(to.getType());
+            return abstractclassRelations(to.getType());
         }
         if (from.getType() == BoxType.ENUM) {
             return enumRelations(to.getType());
@@ -55,7 +56,7 @@ public class RelationManager {
         return types;
     }
 
-    private List<ArrowType> abstractClassRelations(BoxType to) {
+    private List<ArrowType> abstractclassRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
         if (to == BoxType.INTERFACE) {
             types.add(ArrowType.IMPLEMENTS);

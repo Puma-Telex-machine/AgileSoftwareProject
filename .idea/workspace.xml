@@ -2,30 +2,55 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/model/RelationGrid.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/DiagramTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/META-INF/AgileSoftwareProject.kotlin_module" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BaseController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BoxController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MethodArgumentEditorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MethodEditorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/VariableEditorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/BoxManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Diagram.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/MethodData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/VariableData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/facades/BoxFacade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/BaseWindow.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/Box.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/DarkMode.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/LightMode.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/MethodArgumentEditor.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/MethodEditor.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/VariableEditor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MethodEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MethodEditorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/BoxManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/BoxManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Diagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Diagram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/MethodData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/MethodData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/VariableData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/VariableData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/BoxGrid.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/RelationGrid.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/ScaledGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/ScaledGrid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/boxes/Attribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Attribute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/boxes/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/boxes/BoxType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/BoxType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/boxes/Class.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Class.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/boxes/Enum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Enum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/boxes/Interface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Interface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/boxes/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Method.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/boxes/Modifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Modifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/boxes/Visibility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Visibility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/relations/ArrowType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/ArrowType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/relations/Relation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/Relation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/relations/RelationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/RelationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Box.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Box.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AgileSoftwareProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AgileSoftwareProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Attribute.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Box.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Class.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Diagram.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Enum.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Grid.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Interface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Method.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Model.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Observer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Observer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Relation$ArrowType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Relation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/view/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/view/Base.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/viewmodel/BaseController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/AgileSoftwareProject/GridTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Observer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/boxes/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Box.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/boxes/Class.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Class.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/boxes/Diagram.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/boxes/Enum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Enum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/boxes/Interface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Interface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/grid/BoxGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/BoxGrid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Base.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/viewmodel/viewmodel/BaseController.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,9 +60,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Class" />
-        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -58,10 +81,6 @@
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="model" />
-      <recent name="" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/view" />
     </key>
@@ -72,9 +91,6 @@
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="model" />
     </key>
   </component>
   <component name="RunManager">
