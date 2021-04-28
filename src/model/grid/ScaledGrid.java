@@ -45,19 +45,27 @@ public class ScaledGrid<V> {
         return grid.isEmpty(convertToScale(point));
     }
 
-    private Point convertFromScale(Point point) {
+    public Point convertFromScale(Point point) {
         int convertedX = point.x * gridWidth;
         int convertedY = point.y * gridHeight;
         return new Point(convertedX, convertedY);
     }
 
-    private Point convertToScale(Point point) {
+    public ArrayList<Point> convertFromScale(ArrayList<Point> points) {
+        ArrayList<Point> convertedPoints = new ArrayList<>();
+        for (Point p : points) {
+            convertedPoints.add(convertFromScale(p));
+        }
+        return convertedPoints;
+    }
+
+    public Point convertToScale(Point point) {
         int convertedX = point.x / gridWidth;
         int convertedY = point.y / gridHeight;
         return new Point(convertedX, convertedY);
     }
 
-    private ArrayList<Point> convertToScale(ArrayList<Point> points) {
+    public ArrayList<Point> convertToScale(ArrayList<Point> points) {
         ArrayList<Point> convertedPoints = new ArrayList<>();
         for (Point p : points) {
             convertedPoints.add(convertToScale(p));

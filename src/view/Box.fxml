@@ -25,7 +25,7 @@
                   <Font name="Arial Unicode MS" size="20.0" />
                </font>
             </Label>
-            <Line fx:id="line" endX="148.0" />
+            <Line fx:id="relationNode" endX="148.0" />
             <VBox fx:id="methods" prefWidth="150.0" styleClass="box" />
             <Label alignment="TOP_CENTER" onMouseClicked="#addMethod" prefWidth="150.0" styleClass="text-small" text="+" />
             <Line fx:id="line1" endX="148.0" />

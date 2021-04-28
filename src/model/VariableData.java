@@ -1,6 +1,6 @@
 package model;
 
-import model.grid.boxes.Visibility;
+import model.boxes.Visibility;
 
 public class VariableData {
 
