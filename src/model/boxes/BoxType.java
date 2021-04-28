@@ -1,4 +1,4 @@
-package model.grid.boxes;
+package model.boxes;
 
 public enum BoxType {
     BOX,
