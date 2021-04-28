@@ -1,13 +1,15 @@
-package model;
+package model.grid;
 
+import model.MethodData;
+import model.VariableData;
 import model.boxes.Box;
-import model.grid.BoxGrid;
 
 import java.awt.*;
 
 public class Diagram {
 
     BoxGrid boxGrid = new BoxGrid(6, 8);
+    RelationGrid relationGrid = new RelationGrid(boxGrid, 3, 4);
     //ScaledGrid<Relation> relationGrid = new ScaledGrid<>(3, 4);
     //HashSet<Relation> relations = new HashSet<>();
 

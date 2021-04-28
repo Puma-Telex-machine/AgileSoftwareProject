@@ -1,5 +1,7 @@
 package model;
 
+import model.grid.Diagram;
+
 import java.awt.*;
 import java.util.ArrayList;
 

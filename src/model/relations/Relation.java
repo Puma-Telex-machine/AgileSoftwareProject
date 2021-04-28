@@ -2,8 +2,6 @@ package model.relations;
 
 import model.boxes.Box;
 
-import java.util.*;
-
 public class Relation {
     Box to;
     Box from;
@@ -13,6 +11,18 @@ public class Relation {
         this.from = from;
         this.to = to;
         this.arrowType = arrowType;
+    }
+
+    public Box getTo() {
+        return to;
+    }
+
+    public Box getFrom() {
+        return from;
+    }
+
+    public ArrowType getArrowType() {
+        return arrowType;
     }
 }
    

@@ -2,6 +2,7 @@ package model;
 
 import model.boxes.Box;
 import model.facades.BoxFacade;
+import model.grid.Diagram;
 
 import java.awt.*;
 
