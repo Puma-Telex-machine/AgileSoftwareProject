@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import model.Model;
 
 import java.awt.*;
@@ -29,12 +28,15 @@ public class BaseController{
 
     ShapeController shapes;
 
+    OverviewController overview;
+
 
 
     public BaseController() {
         recent = new RecentController();
         canvas = new CanvasController();
         shapes = new ShapeController(canvas);
+        overview = new OverviewController();
         model = Model.getModel();
         model.addObserver(canvas);
     }
@@ -42,10 +44,11 @@ public class BaseController{
     private void init(){
         leftMenue.getChildren().add(recent);
         leftMenue.getChildren().add(shapes);
+        leftMenue.getChildren().add(overview);
         LockPane(recent);
         LockPane(shapes);
-        recent.setVisible(false);
-        shapes.setVisible(false);
+        LockPane(overview);
+        closeMenueTabbs();
         UML.getChildren().add(canvas);
         LockPane(canvas);
     }
@@ -56,6 +59,13 @@ public class BaseController{
         AnchorPane.setLeftAnchor(pane, 0d);
         AnchorPane.setRightAnchor(pane, 0d);
         AnchorPane.setBottomAnchor(pane, 0d);
+    }
+
+    private void closeMenueTabbs()
+    {
+        recent.setVisible(false);
+        shapes.setVisible(false);
+        overview.setVisible(false);
     }
 
     @FXML
@@ -79,17 +89,25 @@ public class BaseController{
     //open Menus
     @FXML
     private void openRecent(){
-        if(!leftMenue.getChildren().contains(recent)) init();
-        shapes.setVisible(false);
-        recent.setVisible(!recent.isVisible());
-        canvas.toBack();
+        openMenuItem(recent);
     }
     @FXML
     private void openShapes(){
-        if(!leftMenue.getChildren().contains(shapes)) init();
-        recent.setVisible(false);
-        shapes.setVisible(!shapes.isVisible());
-        canvas.toBack();
+        openMenuItem(shapes);
+    }
+
+    @FXML
+    private void  openOverview()
+    {
+        openMenuItem(overview);
+    }
+
+    private void openMenuItem(AnchorPane menu)
+    {
+        boolean vis = menu.isVisible();
+        if(!leftMenue.getChildren().contains(menu)) init();
+        closeMenueTabbs();
+        menu.setVisible(!vis);
     }
     /*
     @FXML
