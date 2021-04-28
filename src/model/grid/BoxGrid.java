@@ -25,6 +25,11 @@ public class BoxGrid {
         return null;
     }
 
+    public void addBox(Box box){
+        if(boxGrid.set(box.getPosition(),box))
+            boxCounter++;
+    }
+
     public ArrayList<Box> getAllBoxes(){
         return boxGrid.getAllEntries();
     }

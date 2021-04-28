@@ -1,5 +1,7 @@
 package model;
 
+import model.boxes.Box;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -25,6 +27,14 @@ public class Model {
     public void addBox(Point position) {
         BoxManager boxManager = new BoxManager(diagram, position);
         if (!boxManager.isEmpty()) {
+            observers.forEach(observer -> observer.addBox(boxManager));
+        }
+    }
+
+    public void loadDiagram(String filename){
+        diagram = Database.loadDiagram("test");
+        for(Box box : diagram.boxGrid.getAllBoxes()){
+            BoxManager boxManager = new BoxManager(diagram, box);
             observers.forEach(observer -> observer.addBox(boxManager));
         }
     }
