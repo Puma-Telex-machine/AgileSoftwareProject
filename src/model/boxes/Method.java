@@ -34,7 +34,7 @@ public class Method {
         return result;
     }
 
-    public void SetName(String name){
+    public void setName(String name){
         this.name = name;
     }
 
@@ -91,19 +91,19 @@ public class Method {
         this.visibility = visibility;
     }
 
-    public String GetName(){
+    public String getName(){
         return name;
     }
 
-    public List<Attribute> GetArguments(){
+    public List<Attribute> getArguments(){
         return arguments;
     }
 
-    public Set<Modifier> GetModifiers(){
+    public Set<Modifier> getModifiers(){
         return modifiers;
     }
 
-    public Visibility GetVisibility(){
+    public Visibility getVisibility(){
         return visibility;
     }
 }

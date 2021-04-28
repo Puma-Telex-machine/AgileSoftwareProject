@@ -17,18 +17,15 @@ import java.util.List;
 public class Box {
 
     private String name;
-    private List<Method> methods;
-    private List<Attribute> attributes;
-    private Set<Modifier> modifiers;
-    private Visibility visibility;
+    private List<Method> methods = new ArrayList<>();
+    private List<Attribute> attributes = new ArrayList<>();
+    private Set<Modifier> modifiers = new HashSet<>();
+    private Visibility visibility = Visibility.PUBLIC;
     private Point position;
 
     public Box(String name, Point position) {
         this.name = name;
         this.position = position;
-        methods = new ArrayList<>();
-        attributes = new ArrayList<>();
-        modifiers = new HashSet<>();
     }
 
     public BoxType getType(){
@@ -78,7 +75,7 @@ public class Box {
     public void editMethod(MethodData methodData) {
         boolean exists = false;
         for (Method method: methods) {
-            if(methodData.methodName == method.GetName()){
+            if(methodData.methodName == method.getName()){
                 exists = true;
                 //method.SetName(methodData.methodName); todo: identify methods
                 method.SetVisibility(methodData.visibility);
@@ -109,7 +106,7 @@ public class Box {
     public void deleteMethod(String methodName) {
         int counter = 0;
         for (Method method: methods) {
-            if(methodName == method.GetName()) {
+            if(methodName == method.getName()) {
                 methods.remove(counter);
                 break;
             }
@@ -136,7 +133,7 @@ public class Box {
 
     public Set<Modifier> getModifiers(){return modifiers;}
 
-    public Visibility GetVisibility(){
+    public Visibility getVisibility(){
         return visibility;
     }
 
