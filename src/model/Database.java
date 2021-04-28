@@ -14,6 +14,12 @@ import java.util.List;
  */
 public class Database {
 
+    /**
+     * Parses the given textfile and returns a Diagram.
+     * (.uml files expected)
+     * @param filename The name of the file to be loaded, currently not including general filepath and ".uml"
+     * @return A Diagram object.
+     */
     static public Diagram loadDiagram(String filename){
         try {
             int boxcount;
@@ -135,6 +141,11 @@ public class Database {
         return null;
     }
 
+    /**
+     * Saves the given diagram as a .uml-file, with the given name.
+     * @param target The diagram to be saved
+     * @param filename The name of the saved file. Currently not including filepath or ".uml"
+     */
     static public void saveDiagram(Diagram target, String filename) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("diagrams/" + filename + ".uml"));
@@ -154,60 +165,60 @@ public class Database {
     static private void saveBox(Box box, BufferedWriter writer) throws IOException {
         writer.write("<" + box.getType().toString() + ">");
         writer.newLine();
-        writer.write("name=" + box.getName());
+        writer.write("  name=" + box.getName());
         writer.newLine();
-        writer.write("xposition=" + box.getPosition().x);
+        writer.write("  xposition=" + box.getPosition().x);
         writer.newLine();
-        writer.write("yposition=" + box.getPosition().y);
+        writer.write("  yposition=" + box.getPosition().y);
         writer.newLine();
-        writer.write("visibility=" + box.getVisibility());
+        writer.write("  visibility=" + box.getVisibility());
         writer.newLine();
         for (Method method: box.getMethods()) {
-            saveMethod(method, writer);
+            saveMethod(method, writer, "  ");
         }
         for(Attribute attribute: box.getAttributes()){
-            writer.write("<ATTRIBUTE>");
+            writer.write("  <ATTRIBUTE>");
             writer.newLine();
-            saveAttribute(attribute, writer);
-            writer.write("<!ATTRIBUTE>");
+            saveAttribute(attribute, writer, "  ");
+            writer.write("  <!ATTRIBUTE>");
             writer.newLine();
         }
-        saveModifiers(box.getModifiers(), writer);
+        saveModifiers(box.getModifiers(), writer,"  ");
         writer.write("<!"+box.getType()+">");
         writer.newLine();
     }
 
-    static private void saveMethod(Method method, BufferedWriter writer) throws  IOException{
-        writer.write("<METHOD>");
+    static private void saveMethod(Method method, BufferedWriter writer, String tab) throws  IOException{
+        writer.write(tab + "<METHOD>");
         writer.newLine();
-        writer.write("name=" + method.getName());
+        writer.write(tab + "  name=" + method.getName());
         writer.newLine();
-        writer.write("visibility=" + method.getVisibility());
+        writer.write(tab + "  visibility=" + method.getVisibility());
         writer.newLine();
         for(Attribute attribute : method.getParameters()){
-            writer.write("<PARAMETER>");
+            writer.write(tab + "  <PARAMETER>");
             writer.newLine();
-            saveAttribute(attribute, writer);
-            writer.write("<!PARAMETER>");
+            saveAttribute(attribute, writer, tab + "  ");
+            writer.write(tab + "  <!PARAMETER>");
             writer.newLine();
         }
-        saveModifiers(method.getModifiers(), writer);
-        writer.write("<!METHOD>");
+        saveModifiers(method.getModifiers(), writer, tab + "  ");
+        writer.write(tab + "<!METHOD>");
         writer.newLine();
     }
 
-    static private void saveAttribute(Attribute attribute, BufferedWriter writer) throws IOException{
-        writer.write("name=" + attribute.getName());
+    static private void saveAttribute(Attribute attribute, BufferedWriter writer, String tab) throws IOException{
+        writer.write(tab + "  name=" + attribute.getName());
         writer.newLine();
-        writer.write("visibility=" + attribute.getVisibility());
+        writer.write(tab + "  visibility=" + attribute.getVisibility());
         writer.newLine();
-        saveModifiers(attribute.getModifiers(), writer);
+        saveModifiers(attribute.getModifiers(), writer, tab + "  ");
     }
 
-    static private void saveModifiers(Set<Modifier> modifiers, BufferedWriter writer) throws IOException{
+    static private void saveModifiers(Set<Modifier> modifiers, BufferedWriter writer, String tab) throws IOException{
         int modnum = 0;
         for (Modifier modifier: modifiers) {
-            writer.write("modifier" + modnum + "=" + modifier);
+            writer.write(tab + "  modifier" + modnum + "=" + modifier);
             writer.newLine();
             modnum++;
         }
