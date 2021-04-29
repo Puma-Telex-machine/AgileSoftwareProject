@@ -211,7 +211,7 @@ public class Arrow extends AnchorPane{
     }
 
     public boolean isClickOn(MouseEvent event) {
-8
+
         /* todo fix this
         int diff = 30;
 

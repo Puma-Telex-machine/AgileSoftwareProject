@@ -27,6 +27,7 @@ public class BoxController extends AnchorPane implements ArrowObservable {
     private Label name,identifier;
     @FXML
     private VBox methods, variables,vBox;
+
     //for dragging box when editing name
     @FXML
     AnchorPane blockpane1,blockpane2;
@@ -57,27 +58,41 @@ public class BoxController extends AnchorPane implements ArrowObservable {
             throw new RuntimeException(exception);
         }
 
+        //set boxType
         switch(box.getType()){
             case CLASS:
+                //remove typeidentifier and move components to work accordingly
                 blockpane1.setLayoutY(0);
                 blockpane2.setLayoutY(26);
                 nameField.setLayoutY(1);
                 vBox.getChildren().remove(identifier);
                 break;
             case INTERFACE:
-                identifier.setText("<<Interface>>");
+                identifier.setText("<<Interfacew>>");
+                vBox.getChildren().remove(variables);
+                //remove line and +
+                vBox.getChildren().remove(6);
+                vBox.getChildren().remove(5);
                 break;
             case ABSTRACTCLASS:
                 identifier.setText("<Abstract>");
                 break;
             case ENUM:
                 identifier.setText("Enum");
+                vBox.getChildren().remove(methods);
+                vBox.getChildren().remove(variables);
+                //remove lines and +'s
+                vBox.getChildren().remove(5);
+                vBox.getChildren().remove(4);
+                vBox.getChildren().remove(3);
+                vBox.getChildren().remove(2);
                 break;
         }
 
         this.arrowObserver=arrowObserver;
         this.box = box;
         hideCircles();
+
         this.setLayoutX(box.getPosition().x);
         this.setLayoutY(box.getPosition().y);
 
@@ -120,6 +135,10 @@ public class BoxController extends AnchorPane implements ArrowObservable {
     private double offsetX = 0;
     private double offsetY = 0;
 
+    /**
+     * method for moving a box through dragging
+     * @param event event of the mouseDrag
+     */
     @FXML
     private void handleDrag(MouseEvent event){
         variableEditor.setVisible(false);
@@ -135,6 +154,10 @@ public class BoxController extends AnchorPane implements ArrowObservable {
         event.consume();
     }
 
+    /**
+     * method for letting go of box, updates backend
+     * @param event mouseRelease
+     */
     @FXML
     private void handleLetGo(MouseEvent event){
         moving=false;
@@ -146,6 +169,11 @@ public class BoxController extends AnchorPane implements ArrowObservable {
     }
     //endregion
     //region methods
+
+    /**
+     * Adding a new method onto box
+     * @param e
+     */
     @FXML
     private void addMethod(MouseEvent e){
         methodEditor.setVisible(true);

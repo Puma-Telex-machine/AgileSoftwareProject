@@ -11,7 +11,7 @@ public class Diagram {
     //ArrayList<Relation> relations = new ArrayList<>();
 
     public void createBox(Point position, String name) {
-        boxes.add(new Class(position, name));
+        boxes.add(new Interface(position, name));
     }
 
     public Box getBox(int position){
