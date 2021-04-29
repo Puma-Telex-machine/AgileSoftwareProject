@@ -5,6 +5,7 @@ import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
+import model.facades.BoxFacade;
 
 import java.awt.*;
 
@@ -118,6 +119,8 @@ public class BaseController{
         closeMenueTabbs();
         menu.setVisible(!vis);
     }
+
+
     /*
     @FXML
     private void openRecent(){
