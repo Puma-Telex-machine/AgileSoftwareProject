@@ -10,7 +10,7 @@
 
 <fx:root maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#notifyArrowEvent" onMouseDragged="#handleDrag" onMouseEntered="#showCircles" onMouseExited="#hideCircles" onMouseMoved="#showCircles" onMouseReleased="#handleLetGo" prefWidth="150.0" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField fx:id="nameField" layoutY="16.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#updateName" prefHeight="32.0" prefWidth="148.0" style="-fx-background-radius: 0;" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0">
+      <TextField fx:id="nameField" layoutY="13.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#updateName" prefHeight="32.0" prefWidth="148.0" style="-fx-background-radius: 0;" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0">
          <styleClass>
             <String fx:value="text-medium" />
             <String fx:value="box" />
@@ -19,7 +19,10 @@
       <VBox fx:id="vBox" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="identifier" graphicTextGap="0.0" prefHeight="15.0" prefWidth="148.0" styleClass="text-small" text="&lt;&lt;Interface&gt;&gt;" />
-            <Label fx:id="name" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onDragDetected="#unableToChangeName" onMouseClicked="#changeName" onMouseReleased="#handleLetGo" prefHeight="32.0" styleClass="text-medium" text="Class" />
+            <Label fx:id="name" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onDragDetected="#unableToChangeName" onMouseClicked="#changeName" onMouseReleased="#handleLetGo" prefHeight="32.0" styleClass="text-medium" text="Class">
+               <VBox.margin>
+                  <Insets top="-3.0" />
+               </VBox.margin></Label>
             <Line fx:id="line" endX="148.0" />
             <VBox fx:id="methods" prefWidth="150.0" styleClass="box" />
             <Label alignment="TOP_CENTER" onMouseClicked="#addMethod" prefWidth="150.0" styleClass="text-small" text="+">

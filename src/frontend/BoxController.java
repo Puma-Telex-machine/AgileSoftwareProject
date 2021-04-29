@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.shape.Ellipse;
 import model.MethodData;
 //import model.VariableData;
+import model.VariableData;
 import model.boxes.BoxType;
 import model.facades.BoxFacade;
 
@@ -20,6 +21,9 @@ import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
+/**
+ * controller for the boxes in frontend
+ */
 public class BoxController extends AnchorPane implements ArrowObservable {
     @FXML
     private TextField nameField;
@@ -130,7 +134,6 @@ public class BoxController extends AnchorPane implements ArrowObservable {
     }
 
     //region dragging boxes
-    //for moving box
     private boolean moving = false;
     private double offsetX = 0;
     private double offsetY = 0;
@@ -172,7 +175,6 @@ public class BoxController extends AnchorPane implements ArrowObservable {
 
     /**
      * Adding a new method onto box
-     * @param e
      */
     @FXML
     private void addMethod(MouseEvent e){
@@ -192,6 +194,9 @@ public class BoxController extends AnchorPane implements ArrowObservable {
         methods.getChildren().add(tmp);*/
         e.consume();
     }
+    /**
+     * Adding a new variable onto box
+     */
     @FXML
     private void addVariable(MouseEvent e){
         variableEditor.setVisible(true);
@@ -211,13 +216,30 @@ public class BoxController extends AnchorPane implements ArrowObservable {
         variables.getChildren().add(tmp);*/
         e.consume();
     }
+    /**
+     * Editing a variable on box
+     */
     @FXML
     private void editVariable(){
         //todo
         //box.getVariableData()
     }
 
+    /**
+     * Editing a method on box
+     */
+    @FXML
+    private void editMethod(){
+        //todo
+        //box.getVariableData()
+    }
+
     private void updateMethods(List<MethodData> methods){
+        //todo
+        //add lamda function  ish currentEditArgument.argumentTypeField.setOnAction((Action) -> editVariable(variableData)
+    }
+
+    private void updateVariables(List<VariableData> varibles){
         //todo
         //add lamda function  ish currentEditArgument.argumentTypeField.setOnAction((Action) -> editVariable(variableData)
     }
@@ -241,6 +263,10 @@ public class BoxController extends AnchorPane implements ArrowObservable {
     }
     private boolean circleToggle = false;
 
+    /**
+     * for toggeling circles when adding arrows
+     * @param toggle toggle to set
+     */
     public void toggleCircleVisibility(boolean toggle){
         if(toggle){
             circleToggle=false;
@@ -251,6 +277,11 @@ public class BoxController extends AnchorPane implements ArrowObservable {
             circleToggle=true;
         }
     }
+
+    /**
+     * notifies the arrowObserver when anchorpoints pressed
+     * @param e onCLick
+     */
     @Override
     public void notifyArrowEvent(MouseEvent e) {
         for (AnchorPointController a:anchorPoints) {
@@ -264,17 +295,24 @@ public class BoxController extends AnchorPane implements ArrowObservable {
     }
     //endregion
     //region name
+
+    private boolean changeable=true;
+    /**
+     * updates the name and moves the editField to back
+     */
     @FXML
     private void updateName(){
-        //todo wait for backend to implement
-        //box.setName(nameField.getText());
+        box.setName(nameField.getText());
         nameField.toBack();
         blockpane1.toBack();
         blockpane2.toBack();
         name.setText(nameField.getText());
         this.requestFocus();
     }
-    private boolean changeable=true;
+
+    /**
+     * name pressed, bring editField to front
+     */
     @FXML
     private void changeName(){
         if(!changeable){
@@ -283,11 +321,16 @@ public class BoxController extends AnchorPane implements ArrowObservable {
         }
         nameField.setText(name.getText());
         nameField.toFront();
+        //blockpanes to be able to drag when editing
         blockpane1.toFront();
         blockpane2.toFront();
         showCircles();
         nameField.requestFocus();
     }
+
+    /**
+     * locks namechange when dragging on name
+     */
     @FXML
     private void unableToChangeName(){
         changeable=false;

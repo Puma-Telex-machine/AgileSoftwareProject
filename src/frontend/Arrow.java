@@ -12,6 +12,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for holding and managing components of a arrow in the frontend
+ */
 public class Arrow extends AnchorPane{
     private AnchorPane head=new AnchorPane();
     private List<Line> lines=new ArrayList<>();
@@ -76,6 +79,13 @@ public class Arrow extends AnchorPane{
         }
     }
 
+    /**
+     * get the points for the different type of arrowheads
+     * @param lineAngle the angle of the last line
+     * @param endX end coordinate x
+     * @param endY end coordinate y
+     * @return   [arrow point1, arrow point2, point on line for rhoumbus, point on line inbetween arrowpoints]
+     */
     private Point[] getArrowHeadPoints(double lineAngle, double endX, double endY) {
 
         double arrowAngle = endline.getStartX() > endline.getEndX() ? Math.toRadians(30) : -Math.toRadians(150);
@@ -102,6 +112,10 @@ public class Arrow extends AnchorPane{
         return new Point[]{p1,p2,p3,p4};
     }
 
+    /**
+     * changes arrow type
+     * @param type type to switch to
+     */
     public void setType(ArrowType type){
 
         if(this.type==type) return;
@@ -194,9 +208,9 @@ public class Arrow extends AnchorPane{
 
     private void setArrowHead(double lineAngle){
         head.getChildren().clear();
-
-        for (Point point:getArrowHeadPoints(lineAngle,endX,endY)) {
-            Line l = new Line(endX,endY,point.x,point.y);
+        Point[] points = getArrowHeadPoints(lineAngle,endX,endY);
+        for(int i=0;i<2;i++){
+            Line l = new Line(endX,endY,points[i].x,points[i].y);
             l.setStroke(( new Color(0.72,0.72,0.72,1)));
             head.getChildren().add(l);
         }
@@ -210,6 +224,11 @@ public class Arrow extends AnchorPane{
         return type;
     }
 
+    /**
+     * check if a click is on this arrow
+     * @param event the click
+     * @return  if click is on
+     */
     public boolean isClickOn(MouseEvent event) {
 
         /* todo fix this

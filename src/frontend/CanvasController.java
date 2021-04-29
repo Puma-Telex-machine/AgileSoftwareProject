@@ -65,6 +65,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         BoxController box = new BoxController(b,variableEditor,methodEditor,this);
         this.getChildren().add(box);
         boxes.add(box);
+        box.toggleCircleVisibility(!toggleOn);
     }
 
     public Point getMiddle(){
@@ -74,7 +75,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     //region arrowmaking
 
     private boolean makingArrow = false;
-    private Arrow arrow;
+    private Arrow dragArrow;
     private BoxController arrowBox = null;
     private Point arrowStart;
     private boolean toggleOn = false;
@@ -83,7 +84,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     @Override
     public void arrowEvent(Point p, BoxController box) {
         if(makingArrow) {
-            this.getChildren().removeAll(arrow);
+            this.getChildren().removeAll(dragArrow);
 
             //box == arrowBox => aborting arrowcreation
             if (box != arrowBox) {
@@ -91,6 +92,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
                 //todo get bends from backend
                 //temporary
                 List<Point> bends = new ArrayList<>();
+                bends.add(new Point(100,100));
                 bends.add(new Point(p.x-20,arrowStart.y));
                 bends.add(new Point(p.x-20,p.y));
 
@@ -120,14 +122,16 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         else{
             arrowBox=box;
             arrowStart=p;
-            arrow = new Arrow(arrowStart,p,new ArrayList<>());
-            this.getChildren().add(arrow);
+            dragArrow = new Arrow(arrowStart,p,new ArrayList<>());
+            this.getChildren().add(dragArrow);
         }
         toggleAnchorPoints();
         makingArrow=!makingArrow;
     }
 
-
+    /**
+     * toggles all anchorpoints on all classes
+     */
     private void toggleAnchorPoints(){
         for(BoxController box:boxes){
             box.toggleCircleVisibility(toggleOn);
@@ -135,13 +139,16 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         toggleOn=!toggleOn;
     }
 
+    /**
+     * updates the arrow when creating a arrow
+     */
     @FXML
     private void dragArrow(MouseEvent e){
         if(makingArrow){
-            this.getChildren().remove(arrow);
-            arrow=new Arrow(arrowStart, new Point((int)e.getX(),(int)e.getY()),new ArrayList<>());
-            this.getChildren().add(arrow);
-            arrow.toBack();
+            this.getChildren().remove(dragArrow);
+            dragArrow=new Arrow(arrowStart, new Point((int)e.getX(),(int)e.getY()),new ArrayList<>());
+            this.getChildren().add(dragArrow);
+            dragArrow.toBack();
         }
         e.consume();
     }
