@@ -26,8 +26,8 @@ public class ExercisesController extends AnchorPane {
             throw new RuntimeException(exception);
         }
 
-        exercises = exercisesHandler.getAllExercises();
-
+        //exercises = exercisesHandler.getAllExercises();
+        /*
         for (int i = 0; i < exercises.length; i++) {
             ExerciseFacade exercise = exercises[i];
 
@@ -36,7 +36,7 @@ public class ExercisesController extends AnchorPane {
             boolean left = (i % 2 == 0);
             if (left) leftBox.getChildren().add(exerciseMenuItem);
             else rightBox.getChildren().add(exerciseMenuItem);
-        }
+        }*/
     }
 
     @FXML

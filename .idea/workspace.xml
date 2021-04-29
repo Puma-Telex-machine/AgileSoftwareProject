@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/model/facades/ExerciseFacade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/facades/ExercisesHandlerFacade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/FileMenuItemController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/view/FileMenuItem.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/view/Files.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/facades/FileHandlerFacade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/facades/ModelFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BaseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/ExercisesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/ExercisesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/ExercisesMenuItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/ExercisesMenuItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/RecentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/FilesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/recent_work.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Model.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
