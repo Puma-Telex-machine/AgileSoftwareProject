@@ -90,8 +90,8 @@ public class BaseController{
 
     private void openMenuItem(AnchorPane menu)
     {
-        boolean vis = menu.isVisible();
         if(!leftMenue.getChildren().contains(menu)) init();
+        boolean vis = menu.isVisible();
         closeMenueTabbs();
         menu.setVisible(!vis);
     }
