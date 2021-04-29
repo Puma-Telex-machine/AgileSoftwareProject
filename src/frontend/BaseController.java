@@ -96,18 +96,4 @@ public class BaseController{
         menu.setVisible(!vis);
     }
 
-
-    /*
-    @FXML
-    private void openRecent(){
-        recent.setVisible(!recent.isVisible());
-    }
-    @FXML
-    private void openRecent(){
-        recent.setVisible(!recent.isVisible());
-    }
-    @FXML
-    private void openRecent(){
-        recent.setVisible(!recent.isVisible());
-    }*/
 }
