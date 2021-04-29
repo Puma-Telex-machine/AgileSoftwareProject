@@ -1,12 +1,21 @@
 package frontend;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import model.facades.ExerciseFacade;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class ExercisesMenuItemController extends AnchorPane {
-    public ExercisesMenuItemController() {
+
+    @FXML
+    Label nameLable;
+
+    private  ExerciseFacade exercise;
+
+    public ExercisesMenuItemController(ExerciseFacade exercise) {
         FXMLLoader fxmlLoader = new FXMLLoader(
                 getClass().getResource("view/ExercisesMenuItem.fxml"));
 
@@ -18,5 +27,15 @@ public class ExercisesMenuItemController extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        nameLable.setText(exercise.getName());
+        this.exercise = exercise;
     }
+
+    @FXML
+    private void openExercise()
+    {
+        exercise.startExercise();
+    }
+
 }
