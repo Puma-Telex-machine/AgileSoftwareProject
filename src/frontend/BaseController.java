@@ -30,6 +30,8 @@ public class BaseController{
 
     OverviewController overview;
 
+    ExercisesController exercises;
+
 
 
     public BaseController() {
@@ -37,6 +39,7 @@ public class BaseController{
         canvas = new CanvasController();
         shapes = new ShapeController(canvas);
         overview = new OverviewController();
+        exercises = new ExercisesController();
         model = Model.getModel();
         model.addObserver(canvas);
     }
@@ -45,9 +48,11 @@ public class BaseController{
         leftMenue.getChildren().add(recent);
         leftMenue.getChildren().add(shapes);
         leftMenue.getChildren().add(overview);
+        leftMenue.getChildren().add(exercises);
         LockPane(recent);
         LockPane(shapes);
         LockPane(overview);
+        LockPane(exercises);
         closeMenueTabbs();
         UML.getChildren().add(canvas);
         LockPane(canvas);
@@ -66,6 +71,7 @@ public class BaseController{
         recent.setVisible(false);
         shapes.setVisible(false);
         overview.setVisible(false);
+        exercises.setVisible(false);
     }
 
     @FXML
@@ -101,6 +107,9 @@ public class BaseController{
     {
         openMenuItem(overview);
     }
+
+    @FXML
+    private void openExercises() { openMenuItem(exercises);}
 
     private void openMenuItem(AnchorPane menu)
     {

@@ -47,7 +47,7 @@
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#openExercises" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Resources/outline_text_snippet_white_24dp.png" />
                                  </image>

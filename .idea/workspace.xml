@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/frontend/TestPointController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/frontend/view/TestPoint.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/ExercisesController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/ExercisesMenuItemController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/view/ExerciseMenuItem.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/view/Exercises.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/CanvasController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Model.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Observer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Observer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Base.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/exercise.fxml" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -101,5 +107,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/frontend/ExercisesController.java</url>
+          <line>14</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
