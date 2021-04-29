@@ -100,7 +100,7 @@ public class MethodEditorController extends AnchorPane {
 
         methodData.methodReturnType = returnTypeField.getText();
 
-        box.EditMethod(methodData);
+        box.editMethod(methodData);
 
         this.setVisible(false);
     }
