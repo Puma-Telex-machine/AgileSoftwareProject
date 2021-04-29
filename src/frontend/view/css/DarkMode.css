@@ -68,3 +68,16 @@
 {
     -fx-border-color: "000000";
 }
+.leftSideMenu{
+    -fx-fill: "#3E4046";
+    -fx-font-size: 16px;
+    -fx-text-fill: "DBDBDB";
+    -fx-background: "#3E4046";
+    -fx-background-color: "#3E4046";
+    -fx-alignment: "Left";
+    -fx-font-family: "Roboto";
+}
+
+.leftSideMenu-textLarge {
+    -fx-font-size: 24px;
+}

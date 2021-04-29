@@ -164,6 +164,7 @@ public class BoxController extends AnchorPane implements ArrowObservable {
     @FXML
     private void handleLetGo(MouseEvent event){
         moving=false;
+        moving=false;
         box.setPosition(new Point((int)this.getLayoutX(),(int)this.getLayoutY()));
         //for snap to grid
         this.setLayoutX(box.getPosition().x);
@@ -178,6 +179,7 @@ public class BoxController extends AnchorPane implements ArrowObservable {
      */
     @FXML
     private void addMethod(MouseEvent e){
+        variableEditor.setVisible(false);
         methodEditor.setVisible(true);
         methodEditor.toFront();
         methodEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
@@ -199,6 +201,7 @@ public class BoxController extends AnchorPane implements ArrowObservable {
      */
     @FXML
     private void addVariable(MouseEvent e){
+        methodEditor.setVisible(false);
         variableEditor.setVisible(true);
         variableEditor.toFront();
         variableEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
