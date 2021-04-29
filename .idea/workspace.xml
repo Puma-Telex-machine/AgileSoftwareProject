@@ -2,11 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/model/facades/ExerciseFacade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/facades/ExercisesHandlerFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/Arrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Arrow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/CanvasController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/ExercisesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/ExercisesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/ExercisesMenuItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/ExercisesMenuItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Base.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/Canvas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Canvas.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/ExerciseMenuItem.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/ExerciseMenuItem.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/ExerciseMenueItem.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/ExerciseMenueItem.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/Exercises.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Exercises.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/MethodArgumentEditor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/MethodArgumentEditor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/MethodEditor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/MethodEditor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/VariableEditor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/VariableEditor.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,10 +43,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/frontend/view/css" />
+      <recent name="$PROJECT_DIR$/src/frontend/view" />
       <recent name="$PROJECT_DIR$/src/view/Resources" />
       <recent name="$PROJECT_DIR$/src/resources" />
       <recent name="$PROJECT_DIR$/src/view" />
-      <recent name="$PROJECT_DIR$/src/viewmodel" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />

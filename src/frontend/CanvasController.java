@@ -6,23 +6,17 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Line;
+import model.Model;
 import model.Observer;
 import model.facades.BoxFacade;
 import model.relations.ArrowType;
 
-import javax.swing.*;
-
 import java.awt.*;
-import java.awt.geom.Point2D;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.List;
 
 public class CanvasController extends AnchorPane implements Observer, ArrowObserver {
@@ -31,9 +25,11 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     MethodEditorController methodEditor;
 
     @FXML
-    private AnchorPane arrowMenu,arrowMenuPane;
+    private AnchorPane arrowMenu,menuPane,contextMenu;
     @FXML
     private ComboBox<ArrowType> arrowTypeComboBox;
+
+    Model model = Model.getModel();
 
     List<BoxController> boxes = new ArrayList<>();
     public CanvasController()
@@ -50,7 +46,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         }
 
         arrowTypeComboBox.getItems().addAll(ArrowType.IMPLEMENTATION,ArrowType.INHERITANCE,ArrowType.ASSOCIATION,ArrowType.AGGREGATION,ArrowType.COMPOSITION,ArrowType.DEPENDANCY);
-        arrowMenuPane.setVisible(false);
+        arrowMenu.setVisible(false);
 
         variableEditor = new VariableEditorController();
         methodEditor = new MethodEditorController();
@@ -58,6 +54,12 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         this.getChildren().add(variableEditor);
         variableEditor.setVisible(false);
         methodEditor.setVisible(false);
+
+        menuPane.setVisible(false);
+        arrowMenu.setVisible(false);
+        contextMenu.setVisible(false);
+
+        model.addObserver(this);
     }
 
     @Override
@@ -98,9 +100,8 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
                 //todo get bends from backend
                 //temporary
                 List<Point> bends = new ArrayList<>();
-                bends.add(new Point(100,100));
-                bends.add(new Point(p.x-20,arrowStart.y));
-                bends.add(new Point(p.x-20,p.y));
+                bends.add(new Point(p.x-50,arrowStart.y));
+                bends.add(new Point(p.x-50,p.y));
 
                 Arrow newArrow = new Arrow(arrowStart,p,bends);
                 this.getChildren().addAll(newArrow);
@@ -115,10 +116,11 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
                     }
 
                     private void openArrowMenu(MouseEvent e) {
-                        arrowMenuPane.setVisible(true);
-                        arrowMenuPane.toFront();
+                        menuPane.setVisible(true);
+                        menuPane.toFront();
                         arrowMenu.setLayoutX(e.getX());
                         arrowMenu.setLayoutY(e.getY());
+                        arrowMenu.setVisible(true);
                         e.consume();
                     }
                 });
@@ -159,28 +161,49 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         e.consume();
     }
 
+    //endregion
+
+    //region Menus
+
+    @FXML
+    private void handleContextMenu(ContextMenuEvent e){
+        contextMenu.setLayoutX(e.getX());
+        contextMenu.setLayoutY(e.getY());
+        contextMenu.setVisible(true);
+        menuPane.setVisible(true);
+        menuPane.toFront();
+        e.consume();
+    }
+    @FXML
+    private void closeMenu(Event e){
+        menuPane.setVisible(false);
+        arrowMenu.setVisible(false);
+        contextMenu.setVisible(false);
+        menuPane.toBack();
+        e.consume();
+    }
+    @FXML
+    private void handleContextAddBox(MouseEvent e) {
+        model.addBox(new Point((int) contextMenu.getLayoutX()-80,(int) contextMenu.getLayoutY()-35));
+        closeMenu(e);
+        e.consume();
+    }
+
     @FXML
     private void deleteArrow(Event e){
         this.getChildren().remove(clickedArrow);
-        minimizeArrowMenu(e);
+        closeMenu(e);
+        e.consume();
     }
     @FXML
     private void changeArrow(Event e){
         clickedArrow.setType(arrowTypeComboBox.getValue());
-        minimizeArrowMenu(e);
-    }
-
-    @FXML
-    private void minimizeArrowMenu(Event e){
-        arrowMenuPane.setVisible(false);
-        arrowMenuPane.toBack();
+        closeMenu(e);
         e.consume();
     }
     @FXML
     private void eventTrap(Event e){
         e.consume();
     }
-
-
     //endregion
 }

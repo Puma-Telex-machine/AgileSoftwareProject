@@ -18,11 +18,6 @@ public class BaseController{
     @FXML
     AnchorPane leftMenue;
 
-    @FXML
-    AnchorPane contextMenu;
-
-    Model model;
-
     RecentController recent;
 
     CanvasController canvas;
@@ -41,8 +36,6 @@ public class BaseController{
         shapes = new ShapeController(canvas);
         overview = new OverviewController();
         exercises = new ExercisesController();
-        model = Model.getModel();
-        model.addObserver(canvas);
     }
 
     private void init(){
@@ -75,23 +68,6 @@ public class BaseController{
         exercises.setVisible(false);
     }
 
-    @FXML
-    private void handleContextMenu(ContextMenuEvent e){
-        contextMenu.setLayoutX(e.getX());
-        contextMenu.setLayoutY(e.getY());
-        contextMenu.setVisible(true);
-        e.consume();
-    }
-    @FXML
-    private void exitContext(){
-        contextMenu.setVisible(false);
-    }
-    @FXML
-    private void handleContextAddBox(MouseEvent e) {
-        model.addBox(new Point((int) contextMenu.getLayoutX()-80,(int) contextMenu.getLayoutY()-35));
-        exitContext();
-        e.consume();
-    }
 
     //open Menus
     @FXML

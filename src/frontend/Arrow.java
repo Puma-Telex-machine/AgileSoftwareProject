@@ -209,11 +209,19 @@ public class Arrow extends AnchorPane{
     private void setArrowHead(double lineAngle){
         head.getChildren().clear();
         Point[] points = getArrowHeadPoints(lineAngle,endX,endY);
-        for(int i=0;i<2;i++){
-            Line l = new Line(endX,endY,points[i].x,points[i].y);
-            l.setStroke(( new Color(0.72,0.72,0.72,1)));
-            head.getChildren().add(l);
-        }
+        Line l1 = new Line(endX,endY,points[0].x,points[0].y);
+        l1.setStroke(( new Color(0.72,0.72,0.72,1)));
+        head.getChildren().add(l1);
+        Line l2 = new Line(endX,endY,points[1].x,points[1].y);
+        l2.setStroke(( new Color(0.72,0.72,0.72,1)));
+        head.getChildren().add(l2);
+        Line l3 = new Line(endX,endY,points[3].x,points[3].y);
+        l3.setStroke(( new Color(0.72,0.72,0.72,1)));
+        head.getChildren().add(l3);
+
+        endline.setEndX(points[3].x);
+        endline.setEndY(points[3].y);
+
     }
 
     public List<Point> getBends(){
