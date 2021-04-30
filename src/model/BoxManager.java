@@ -1,4 +1,4 @@
-package model;
+/*package model;
 
 import model.boxes.Box;
 import model.boxes.BoxType;
@@ -64,3 +64,5 @@ public class BoxManager implements BoxFacade {
         return box == null;
     }
 }
+
+*/
