@@ -10,7 +10,7 @@ import java.awt.*;
 public class Class extends Box {
 
     public Class(Point position, String name) {
-        super(name, position);
+        super(position, name);
     }
 
     @Override

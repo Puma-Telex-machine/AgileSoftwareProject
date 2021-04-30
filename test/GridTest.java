@@ -1,4 +1,4 @@
-import model.grid.Grid;
+import model.Grid;
 import org.junit.Assert;
 import org.junit.Test;
 

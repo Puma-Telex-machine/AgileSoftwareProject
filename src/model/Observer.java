@@ -1,7 +1,8 @@
 package model;
 
+import model.boxes.Box;
 import model.facades.BoxFacade;
 
 public interface Observer {
-    void addBox(BoxFacade box);
+    public void addBox(BoxFacade box);
 }

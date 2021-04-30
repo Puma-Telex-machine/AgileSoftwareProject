@@ -5,11 +5,8 @@ import model.boxes.BoxType;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeMap;
 
 public class RelationManager {
-
-    TreeMap<Box, Relation> relations;
 
     public List<ArrowType> getPossibleRelations(Box from, Box to) {
         if (from.getType() == BoxType.BOX) {

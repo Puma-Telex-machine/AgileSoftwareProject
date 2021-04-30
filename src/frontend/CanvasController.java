@@ -39,12 +39,6 @@ public class CanvasController extends AnchorPane implements Observer {
         this.getChildren().add(box);
     }
 
-    public void addTestPoint (float x, float y)
-    {
-        TestPointController point = new TestPointController(x, y);
-        this.getChildren().add(point);
-    }
-
     public Point getMiddle(){
         return new Point(500,400);
     }

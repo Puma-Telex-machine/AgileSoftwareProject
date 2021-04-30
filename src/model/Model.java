@@ -1,11 +1,13 @@
 package model;
 
-import model.facades.ModelFacade;
+import model.boxes.Box;
+import model.boxes.Diagram;
+import model.facades.BoxFacade;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Model implements ModelFacade {
+public class Model {
 
     private static Model singleton;
     public static Model getModel() {
@@ -25,9 +27,9 @@ public class Model implements ModelFacade {
     }
 
     public void addBox(Point position) {
-        BoxManager boxManager = new BoxManager(diagram, position);
-        if (!boxManager.isEmpty()) {
-            observers.forEach(observer -> observer.addBox(boxManager));
-        }
+        diagram.createBox(position, "This is a box name");
+        Box box = diagram.getBox(0);
+        BoxFacade b = box;
+        observers.forEach(observer -> observer.addBox(box));
     }
 }

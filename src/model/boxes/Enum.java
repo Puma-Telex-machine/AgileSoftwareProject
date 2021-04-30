@@ -5,7 +5,7 @@ import java.awt.*;
 public class Enum extends Box {
 
     public Enum(Point position, String name) {
-        super(name, position);
+        super(position, name);
     }
 
     @Override

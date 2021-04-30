@@ -4,8 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import model.Model;
-import model.facades.ModelFacade;
 
 import java.awt.*;
 
@@ -13,82 +13,53 @@ import java.awt.*;
 public class BaseController{
 
     @FXML
-    AnchorPane UML;
+    private VBox context;
 
     @FXML
-    AnchorPane leftMenue;
+    AnchorPane UML;
 
     @FXML
     AnchorPane contextMenu;
 
-    ModelFacade model;
+    Model model;
 
-    FilesController recent;
+    RecentController recent;
 
     CanvasController canvas;
 
     ShapeController shapes;
 
-    OverviewController overview;
-
-    ExercisesController exercises;
-
 
 
     public BaseController() {
-        recent = new FilesController(model.getFileHandler());
+        recent = new RecentController();
         canvas = new CanvasController();
         shapes = new ShapeController(canvas);
-        overview = new OverviewController();
-        exercises = new ExercisesController();
         model = Model.getModel();
         model.addObserver(canvas);
     }
 
     private void init(){
-        leftMenue.getChildren().add(recent);
-        leftMenue.getChildren().add(shapes);
-        leftMenue.getChildren().add(overview);
-        leftMenue.getChildren().add(exercises);
-        LockPane(recent);
-        LockPane(shapes);
-        LockPane(overview);
-        LockPane(exercises);
-        closeMenueTabbs();
-        UML.getChildren().add(canvas);
-        LockPane(canvas);
-    }
-
-    private void LockPane(AnchorPane pane)
-    {
-        AnchorPane.setTopAnchor(pane, 0d);
-        AnchorPane.setLeftAnchor(pane, 0d);
-        AnchorPane.setRightAnchor(pane, 0d);
-        AnchorPane.setBottomAnchor(pane, 0d);
-    }
-
-    private void closeMenueTabbs()
-    {
+        UML.getChildren().add(recent);
+        UML.getChildren().add(shapes);
         recent.setVisible(false);
         shapes.setVisible(false);
-        overview.setVisible(false);
-        exercises.setVisible(false);
+        UML.getChildren().add(canvas);
     }
-
     @FXML
     private void handleContextMenu(ContextMenuEvent e){
-        contextMenu.setLayoutX(e.getX());
-        contextMenu.setLayoutY(e.getY());
-        contextMenu.setVisible(true);
+        context.setLayoutX(e.getX());
+        context.setLayoutY(e.getY());
+        contextMenu.toFront();
         e.consume();
     }
     @FXML
     private void exitContext(){
-        contextMenu.setVisible(false);
+        UML.toFront();
     }
     @FXML
     private void handleContextAddBox(MouseEvent e) {
-        model.addBox(new Point((int) contextMenu.getLayoutX()-80,(int) contextMenu.getLayoutY()-35));
+        model.addBox(new Point((int) context.getLayoutX()-80,(int) context.getLayoutY()-35));
         exitContext();
         e.consume();
     }
@@ -96,28 +67,17 @@ public class BaseController{
     //open Menus
     @FXML
     private void openRecent(){
-        openMenuItem(recent);
+        if(!UML.getChildren().contains(recent)) init();
+        shapes.setVisible(false);
+        recent.setVisible(!recent.isVisible());
+        canvas.toBack();
     }
     @FXML
     private void openShapes(){
-        openMenuItem(shapes);
-    }
-
-    @FXML
-    private void  openOverview()
-    {
-        openMenuItem(overview);
-    }
-
-    @FXML
-    private void openExercises() { openMenuItem(exercises);}
-
-    private void openMenuItem(AnchorPane menu)
-    {
-        boolean vis = menu.isVisible();
-        if(!leftMenue.getChildren().contains(menu)) init();
-        closeMenueTabbs();
-        menu.setVisible(!vis);
+        if(!UML.getChildren().contains(shapes)) init();
+        recent.setVisible(false);
+        shapes.setVisible(!shapes.isVisible());
+        canvas.toBack();
     }
     /*
     @FXML
