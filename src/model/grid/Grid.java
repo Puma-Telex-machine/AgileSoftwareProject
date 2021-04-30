@@ -14,6 +14,7 @@ public class Grid<V> {
         }
     });
 
+
     public boolean set(Point point, V value) {
         if (!isEmpty(point)){
             return false;

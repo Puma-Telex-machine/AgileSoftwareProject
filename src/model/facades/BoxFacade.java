@@ -2,11 +2,16 @@ package model.facades;
 
 import model.MethodData;
 import model.VariableData;
+import model.boxes.Box;
 //import model.VariableData;
 
 import java.awt.*;
 
 public interface BoxFacade {
+
+    //TODO: DELETE THIS
+
+    Box getBox();
 
     void deleteBox();
 

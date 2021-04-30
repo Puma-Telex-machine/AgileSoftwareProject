@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
+import model.grid.Scaler;
 
 import java.io.IOException;
 
@@ -30,7 +31,7 @@ public class ShapeController extends AnchorPane {
 
     @FXML
     private void addBox(){
-        model.addBox(canvas.getMiddle());
+        model.addBox(Scaler.convertToScale(canvas.getMiddle()));
     }
 
     @FXML

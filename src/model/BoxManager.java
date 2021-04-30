@@ -16,6 +16,11 @@ public class BoxManager implements BoxFacade {
     }
 
     @Override
+    public Box getBox() {
+        return box;
+    }
+
+    @Override
     public void deleteBox() {
         diagram.deleteBox(box);
     }

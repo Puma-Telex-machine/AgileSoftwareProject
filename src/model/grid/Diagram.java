@@ -3,45 +3,52 @@ package model.grid;
 import model.MethodData;
 import model.VariableData;
 import model.boxes.Box;
-import model.pathfinder.GridView;
-import model.pathfinder.Pathfinder;
 import model.relations.ArrowType;
 import model.relations.Relation;
 
 import java.awt.*;
-import java.util.HashSet;
 
-public class Diagram implements GridView {
+public class Diagram {
 
-    ScaledGrid<Box> boxGrid = new ScaledGrid<>(6, 8);
-    RelationGrid relationGrid = new RelationGrid(boxGrid, 3, 4);
-    Pathfinder pathfinder = new Pathfinder(boxGrid, relationGrid);
+    BoxGrid boxGrid = new BoxGrid(3, 4); // 6, 8
+    RelationGrid relationGrid = new RelationGrid(boxGrid, 3, 4); //3, 4
+    //Pathfinder pathfinder = new Pathfinder(boxGrid, relationGrid);
 
-    HashSet<Relation> relations = new HashSet<>();
+    //HashSet<Relation> relations = new HashSet<>();
 
     public Relation createRelation(Box to, Box from, ArrowType arrowType) {
         Relation relation = new Relation(to, from, arrowType);
-
+        //relation.setPath(relationGrid.findPath());
         return relation;
     }
 
 
     public Box createBox(Point position) {
+
+        return boxGrid.createBox(position);
+
+        /*
         Box box = new Box("Box", position);
 
         if (boxGrid.set(position, box)) {
             return box;
         }
         return null;
+
+         */
     }
 
-    public void moveBox(Box box, Point to) {
+    public void moveBox(Box box, Point position) {
+        boxGrid.moveBox(box, position);
+        /*
         Point newPosition = boxGrid.move(box.getPosition(), to);
         box.setPosition(newPosition);
+         */
     }
 
     public void removeBox(Point position) {
-        boxGrid.remove(position);
+        boxGrid.removeBox(position);
+        //boxGrid.remove(position);
     }
 
     public void deleteBox(Box box) {
@@ -60,21 +67,10 @@ public class Diagram implements GridView {
     }
 
     public void move(Box box, Point point) {
-
+        box.setPosition(boxGrid.moveBox(box, point));
     }
 
-    @Override
-    public int getMoveCost(Point point) {
-        return 0;
-    }
-
-    @Override
-    public int getEstimatedCost(Point from, Point to) {
-        return 0;
-    }
-
-    @Override
-    public boolean isOccupied(Point point) {
-        return false;
+    public BoxGrid getBoxGrid() {
+        return boxGrid;
     }
 }

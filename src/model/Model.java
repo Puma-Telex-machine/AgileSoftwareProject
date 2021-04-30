@@ -1,5 +1,6 @@
 package model;
 
+import model.grid.BoxGrid;
 import model.grid.Diagram;
 
 import java.awt.*;
@@ -32,7 +33,12 @@ public class Model {
 
         //runTest();
     }
-/*
+
+    public BoxGrid getBoxGrid() {
+        return diagram.getBoxGrid();
+    }
+
+    /*
     private void runTest() {
         BoxManager boxManager = new BoxManager(diagram, new Point(100, 100));
         if (!boxManager.isEmpty()) {

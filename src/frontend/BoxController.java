@@ -11,6 +11,7 @@ import javafx.scene.shape.Ellipse;
 import model.MethodData;
 //import model.VariableData;
 import model.facades.BoxFacade;
+import model.grid.Scaler;
 
 import java.awt.*;
 import java.io.IOException;
@@ -53,8 +54,11 @@ public class BoxController extends AnchorPane {
         }
         this.box = box;
         hideCircles();
-        this.setLayoutX(box.getPosition().x);
-        this.setLayoutY(box.getPosition().y);
+
+        Point position = Scaler.convertFromScale(new Point(box.getPosition()));
+
+        this.setLayoutX(position.x);
+        this.setLayoutY(position.y);
     }
 
     //for moving box
@@ -80,12 +84,13 @@ public class BoxController extends AnchorPane {
     @FXML
     private void handleLetGo(MouseEvent event){
         moving=false;
-        moving=false;
-        box.setPosition(new Point((int)this.getLayoutX(),(int)this.getLayoutY()));
+        box.setPosition(Scaler.convertToScale(new Point((int)this.getLayoutX(), (int)this.getLayoutY())));
+
+        Point position = Scaler.convertFromScale(new Point(box.getPosition()));
 
         //for snap to grid
-        this.setLayoutX(box.getPosition().x);
-        this.setLayoutY(box.getPosition().y);
+        this.setLayoutX(position.x);
+        this.setLayoutY(position.y);
         event.consume();
     }
     @FXML

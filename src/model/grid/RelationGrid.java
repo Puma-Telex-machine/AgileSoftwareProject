@@ -1,6 +1,5 @@
 package model.grid;
 
-import model.boxes.Box;
 import model.relations.Relation;
 
 import java.awt.*;
@@ -10,8 +9,8 @@ import java.util.TreeMap;
 
 public class RelationGrid {
 
-    ScaledGrid<GridNode> relationGrid;
-    ScaledGrid<Box> boxGrid;
+    Grid<GridNode> relationGrid;
+    BoxGrid boxGrid;
 
     TreeMap<Point, RelationNode> visited = new TreeMap<>((p1, p2) -> {
         if (p1.x < p2.x) return -1;
@@ -23,24 +22,27 @@ public class RelationGrid {
     PriorityQueue<RelationNode> discovered = new PriorityQueue<>();
 
     int stepCost = 1;
-    int bendCost = 100;
-    int crossCost = 1000;
+    int bendCost = 10;
+    int crossCost = 100;
 
-    RelationGrid(ScaledGrid<Box> boxGrid, int width, int height) {
+    public RelationGrid(BoxGrid boxGrid, int width, int height) {
         this.boxGrid = boxGrid;
-        this.relationGrid = new ScaledGrid<>(width, height);
+        this.relationGrid = new Grid<>();
     }
 
-    public void addRelation(Relation relation) {
+    public ArrayList<Point> addRelation(Relation relation) {
         RelationNode startNode = new RelationNode(relation);
-        startNode.position = relation.getFrom().getPosition();
+        startNode.position = new Point(relation.getFrom().getPosition());
+        //startNode.position.translate(5, -10);
         startNode.cost = 0;
         discovered.add(startNode);
 
         while (!discovered.isEmpty()) {
             RelationNode current = discovered.remove();
 
-            if (current.position == current.destination) return;
+            Point currentPoint = current.position;
+
+            if (current.position.equals(current.destination)) return compilePath(current);
 
             visited.put(current.position, current);
 
@@ -49,33 +51,73 @@ public class RelationGrid {
             discover(current, Direction.LEFT);
             discover(current, Direction.RIGHT);
         }
+        return null;
+    }
+
+    private ArrayList<Point> compilePath(RelationNode current) {
+        ArrayList<Point> path = new ArrayList<>();
+        while (current.previous != null) {
+            path.add(current.position);
+            current = current.previous;
+        }
+        return path;
     }
 
     void discover(RelationNode previous, Direction direction) {
         // Get the position to discover
         Point position = new Point(previous.position);
-        position.move(direction.x, direction.y);
+        position.translate(direction.x, direction.y);
 
-        if (boxGrid.isEmpty(position)) {
+        if (visited.containsKey(position)) {
+            return;
+        }
 
-            // Generate the newly discovered node
-            RelationNode node = new RelationNode(previous.relation);
-            node.previous = previous;
-            node.direction = direction;
-            node.position = position;
+        if (!boxGrid.isEmpty(position)) {
+            if (!position.equals(previous.destination)) {
+                return;
+            }
+        }
 
-            // Calculate the cost
-            int cost = previous.cost + stepCost;
+        // Generate the newly discovered node
+        RelationNode node = new RelationNode(previous.relation);
+        node.previous = previous;
+        node.direction = direction;
+        node.position = position;
 
-            // If direction changes add the cost of bending
-            if (direction != previous.direction) cost += bendCost;
+        // Calculate the cost
+        int cost = previous.cost + stepCost;
 
-            // If the node is occupied and the lines shouldn't merge
-            if (!relationGrid.get(position).canMergeLines(node)) cost += crossCost;
+        // If direction changes add the cost of bending
+        if (direction != previous.direction) cost += bendCost;
 
-            // Add the node to unvisited
-            node.cost = cost;
-            discovered.add(node);
+        // If the node is occupied and the lines shouldn't merge
+        //if (!relationGrid.get(position).canMergeLines(node)) cost += crossCost;
+
+        // Add the node to unvisited
+        node.cost = cost;
+        discovered.add(node);
+    }
+
+    private static int getCostEstimate(RelationNode node) {
+        return manhattanDistance(node.position, node.destination) + node.cost;
+    }
+
+    private static int manhattanDistance(Point from, Point to) {
+        return (int) (Math.abs(from.getX() - to.getX()) + Math.abs(from.getY() - to.getY()));
+    }
+
+    private enum Direction {
+        UP(0, -1),
+        DOWN(0, 1),
+        LEFT(-1, 0),
+        RIGHT(1, 0);
+
+        private final int x;
+        private final int y;
+
+        Direction(int x, int y) {
+            this.x = x;
+            this.y = y;
         }
     }
 
@@ -90,20 +132,12 @@ public class RelationGrid {
 
         public RelationNode(Relation relation) {
             this.relation = relation;
-            this.destination = relation.getTo().getPosition();
+            this.destination = relation.getTo().getPosition(); //Dumt?
         }
 
         @Override
         public int compareTo(RelationNode o) {
             return getCostEstimate(this) - getCostEstimate(o); // Correct order?
-        }
-
-        private int getCostEstimate(RelationNode node) {
-            return manhattanDistance(node.position, node.destination) + node.cost;
-        }
-
-        private int manhattanDistance(Point from, Point to) {
-            return (int) (Math.abs(from.getX() - to.getX()) + Math.abs(from.getY() - to.getY()));
         }
     }
 
@@ -124,21 +158,6 @@ public class RelationGrid {
 
         void removeRelation(RelationNode relationNode) {
             relationNodes.remove(relationNode);
-        }
-    }
-
-    private enum Direction {
-        UP(0, -1),
-        DOWN(0, 1),
-        LEFT(-1, 0),
-        RIGHT(1, 0);
-
-        private final int x;
-        private final int y;
-
-        Direction(int x, int y) {
-            this.x = x;
-            this.y = y;
         }
     }
 }

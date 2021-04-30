@@ -6,11 +6,17 @@ import java.awt.*;
 
 public class BoxGrid {
 
-    private final ScaledGrid<Box> boxGrid;
+    private final Grid<Box> boxGrid;
     private int boxCounter = 0; //Needs to be saved if we want to use it
 
     public BoxGrid(int gridWidth, int gridHeight) {
-        boxGrid = new ScaledGrid<>(gridWidth, gridHeight);
+        boxGrid = new Grid<>();
+    }
+
+    static BoxGrid singleton;
+    public static BoxGrid getGridTest() {
+        if (singleton == null) singleton = new BoxGrid(3, 4);
+        return singleton;
     }
 
     public Box createBox(Point position) {
@@ -24,7 +30,7 @@ public class BoxGrid {
         return null;
     }
 
-    public boolean moveBox(Box from, Point to) {
+    public Point moveBox(Box from, Point to) {
         return boxGrid.move(from.getPosition(), to);
     }
 

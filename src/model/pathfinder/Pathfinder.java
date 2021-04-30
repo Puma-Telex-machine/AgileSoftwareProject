@@ -43,4 +43,5 @@ public class Pathfinder implements GridView { // Is there a better way?
     public boolean isOccupied(Point point) {
         return !boxGrid.isEmpty(point);
     }
+
 }
