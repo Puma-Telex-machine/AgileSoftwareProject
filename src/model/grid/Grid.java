@@ -78,7 +78,7 @@ public class Grid<V> {
         // Check if move should be possible
         for (Point p : toPoints) {
             if (points.contains(p)) continue;       // Ignore points to be moved
-            if (!isEmpty(p)) return false;        // If no new point is occupied, continue
+            if (!isEmpty(p)) return false;          // If no new point is occupied, continue
         }
         // Move each point
         for (int i = 0; i < points.size(); i++) {

@@ -114,7 +114,7 @@ public class RelationGrid {
             for (RelationNode n : relationNodes) {
                 if (n.relation.getTo() == relationNode.relation.getTo() && n.relation.getArrowType() == relationNode.relation.getArrowType())
                     return true;
-            }
+                }
             return false;
         }
 

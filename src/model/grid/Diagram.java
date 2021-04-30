@@ -3,23 +3,25 @@ package model.grid;
 import model.MethodData;
 import model.VariableData;
 import model.boxes.Box;
-import model.grid.ScaledGrid;
+import model.pathfinder.GridView;
+import model.pathfinder.Pathfinder;
 import model.relations.ArrowType;
 import model.relations.Relation;
 
 import java.awt.*;
 import java.util.HashSet;
 
-public class Diagram {
+public class Diagram implements GridView {
 
     ScaledGrid<Box> boxGrid = new ScaledGrid<>(6, 8);
     RelationGrid relationGrid = new RelationGrid(boxGrid, 3, 4);
+    Pathfinder pathfinder = new Pathfinder(boxGrid, relationGrid);
 
     HashSet<Relation> relations = new HashSet<>();
 
     public Relation createRelation(Box to, Box from, ArrowType arrowType) {
         Relation relation = new Relation(to, from, arrowType);
-        relations.add(relation);
+
         return relation;
     }
 
@@ -59,5 +61,20 @@ public class Diagram {
 
     public void move(Box box, Point point) {
 
+    }
+
+    @Override
+    public int getMoveCost(Point point) {
+        return 0;
+    }
+
+    @Override
+    public int getEstimatedCost(Point from, Point to) {
+        return 0;
+    }
+
+    @Override
+    public boolean isOccupied(Point point) {
+        return false;
     }
 }
