@@ -46,7 +46,7 @@ public class MethodEditorController extends AnchorPane {
 
     private MethodArgumentEditorController currentEditArgument;
 
-    private List<MethodArgumentEditorController> arguments;
+    private List<MethodArgumentEditorController> arguments = new ArrayList<MethodArgumentEditorController>();
 
     private void AddArgument()
     {
@@ -62,13 +62,7 @@ public class MethodEditorController extends AnchorPane {
         this.setLayoutY(this.getLayoutY() - argument.getHeight()/2);
 
         //Creates a new current edit argument
-        currentEditArgument = new MethodArgumentEditorController();
-        argumentVBox.getChildren().add(currentEditArgument);
-        currentEditArgument.highlightPane.getStyleClass().clear();
-        currentEditArgument.highlightPane.getStyleClass().add("highlight");
-        currentEditArgument.argumentTypeField.getStyleClass().clear();
-        currentEditArgument.argumentTypeField.getStyleClass().add("box");
-        currentEditArgument.argumentTypeField.setOnAction((Action) -> AddArgument());
+        newCurrentEditArgument();
     }
 
     private void ChangeArgument(MethodArgumentEditorController argument)
@@ -100,7 +94,7 @@ public class MethodEditorController extends AnchorPane {
 
         methodData.methodReturnType = returnTypeField.getText();
 
-        box.EditMethod(methodData);
+        box.editMethod(methodData);
 
         this.setVisible(false);
     }
@@ -145,9 +139,15 @@ public class MethodEditorController extends AnchorPane {
             argument.argumentTypeField.setText(methodData.arguments[i]);
             argument.argumentTypeField.setOnAction((Action) -> ChangeArgument(argument));
             argumentVBox.getChildren().add(argument);
+            argument.paramLable.setText("Param " + arguments.size());
             this.setLayoutY(this.getLayoutY() - argument.getHeight()/2);
         }
 
+        newCurrentEditArgument();
+    }
+
+    private  void newCurrentEditArgument ()
+    {
         currentEditArgument = new MethodArgumentEditorController();
         argumentVBox.getChildren().add(currentEditArgument);
         currentEditArgument.highlightPane.getStyleClass().clear();
@@ -155,5 +155,6 @@ public class MethodEditorController extends AnchorPane {
         currentEditArgument.argumentTypeField.getStyleClass().clear();
         currentEditArgument.argumentTypeField.getStyleClass().add("box");
         currentEditArgument.argumentTypeField.setOnAction((Action) -> AddArgument());
+        currentEditArgument.paramLable.setText("Param " + arguments.size());
     }
 }

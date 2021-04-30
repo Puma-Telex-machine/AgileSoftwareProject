@@ -2,6 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/frontend/FileMenuItemController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/view/FileMenuItem.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/view/Files.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/facades/FileHandlerFacade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/facades/ModelFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AgileSoftwareProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AgileSoftwareProject.iml" afterDir="false" />
@@ -14,7 +19,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -37,18 +44,18 @@
     <property name="settings.editor.selected.configurable" value="preferences.pathVariables" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/view/Resources" />
+      <recent name="$PROJECT_DIR$/src/resources" />
+      <recent name="$PROJECT_DIR$/src/view" />
+      <recent name="$PROJECT_DIR$/src/viewmodel" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/view/Resources" />
       <recent name="$PROJECT_DIR$/src/view" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/view/Resources" />
-      <recent name="$PROJECT_DIR$/src/resources" />
-      <recent name="$PROJECT_DIR$/src/view" />
-      <recent name="$PROJECT_DIR$/src/viewmodel" />
     </key>
   </component>
   <component name="RunManager">

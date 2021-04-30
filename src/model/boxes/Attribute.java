@@ -1,5 +1,8 @@
 package model.boxes;
 
+import model.VariableData;
+
+import java.util.HashSet;
 import java.util.Set;
 
 /** Represents either a method argument or a variable.
@@ -9,7 +12,7 @@ import java.util.Set;
 public class Attribute {
 
     String name;
-    Set<Modifier> modifiers;
+    Set<Modifier> modifiers = new HashSet<>();
     Visibility visibility;
 
     enum Type{ //Probably requires non-enum solution
@@ -20,6 +23,11 @@ public class Attribute {
         this.name = name;
         this.modifiers = modifiers;
         this.visibility = visibility;
+    }
+
+    Attribute(VariableData data){
+        this.name = data.name;
+        this.visibility = data.visibility;
     }
 
     public void SetName(String name){
