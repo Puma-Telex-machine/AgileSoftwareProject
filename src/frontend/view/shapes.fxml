@@ -7,9 +7,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root id="pane2" fx:id="pane2" prefHeight="900.0" prefWidth="220.0" style="-fx-background-color: #3E4046;" stylesheets="@css/DarkMode.css" type="Pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root id="pane2" fx:id="pane2" prefHeight="900.0" prefWidth="220.0" style="-fx-background-color: #3E4046;" stylesheets="@css/DarkMode.css" type="Pane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button id="template1" layoutY="320.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="77.0" style="-fx-background-color: transparent;" />
+      <Button id="template1" layoutX="20.0" layoutY="310.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="77.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="74.0" fitWidth="77.0" pickOnBounds="true">
+               <image>
+                  <Image url="@Resources/template0@4x.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
       <Text id="uml_text" fill="#b8b8b8" layoutX="20.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-Large" text="BOXES">
          <font>
             <Font name="Roboto" size="13.0" />
@@ -20,19 +27,29 @@
             <Font name="Roboto" size="13.0" />
          </font>
       </Text>
-      <ImageView fitHeight="42.0" fitWidth="37.0" layoutX="186.0" layoutY="-25.0" onMouseClicked="#minimize" pickOnBounds="true">
+      <ImageView fitHeight="6.0" fitWidth="31.0" layoutX="181.0" layoutY="9.0" onMouseClicked="#minimize" pickOnBounds="true">
          <image>
-            <Image url="@Resources/outline_minimize_white_24dp.png" />
+            <Image url="@Resources/minimize@4x.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="74.0" fitWidth="77.0" layoutX="20.0" layoutY="304.0" pickOnBounds="true">
+      <ImageView fitHeight="74.0" fitWidth="84.0" layoutX="20.0" layoutY="60.0" onMouseClicked="#addBox" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Resources/outline_filter_list_white_24dp.png" />
+            <Image url="@Resources/class@4x.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="74.0" fitWidth="84.0" layoutX="20.0" layoutY="54.0" onMouseClicked="#addBox" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="74.0" fitWidth="75.0" layoutX="122.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Resources/outline_table_rows_white_24dp.png" />
+            <Image url="@Resources/interface@4x.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="74.0" fitWidth="84.0" layoutX="122.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Resources/abstract_class@4x.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="74.0" fitWidth="84.0" layoutX="20.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Resources/enum@4x.png" />
          </image>
       </ImageView>
    </children>
