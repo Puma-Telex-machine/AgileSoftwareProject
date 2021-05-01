@@ -9,12 +9,12 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<fx:root minHeight="40.0" minWidth="250.0" prefHeight="40.0" prefWidth="320.0" styleClass="box" stylesheets="@DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="40.0" minWidth="250.0" prefHeight="40.0" prefWidth="300.0" styleClass="box" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane fx:id="highlightPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="-5.0" />
-      <HBox alignment="CENTER_LEFT" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" stylesheets="@DarkMode.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER_LEFT" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/DarkMode.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label maxHeight="30.0" minHeight="30.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="100.0" styleClass="text-Large" text="Arg 1">
+            <Label fx:id="paramLable" maxHeight="30.0" minHeight="30.0" minWidth="75.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="130.0" styleClass="text-Large" text="Param 1">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
@@ -23,12 +23,12 @@
                </font>
             </Label>
             <Polygon fill="#585858" points="0.0, -29.0, 20.0, -37.0, 0.0, -47.0" stroke="BLACK" strokeType="INSIDE" />
-            <TextField fx:id="argumentTypeField" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" promptText="Add Argument..." styleClass="highlight">
+            <TextField fx:id="argumentTypeField" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" promptText="Add Parameter...">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
                <HBox.margin>
-                  <Insets left="10.0" right="10.0" />
+                  <Insets left="5.0" right="10.0" />
                </HBox.margin>
             </TextField>
          </children>

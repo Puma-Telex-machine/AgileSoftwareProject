@@ -1,6 +1,7 @@
 package frontend;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -16,6 +17,9 @@ public class MethodArgumentEditorController extends AnchorPane {
 
     @FXML
     protected Pane highlightPane;
+
+    @FXML
+    protected Label paramLable;
 
     public MethodArgumentEditorController()
     {
