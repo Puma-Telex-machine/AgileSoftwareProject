@@ -1,8 +1,7 @@
 package model.point;
 
 
-
-public class ScaledPoint {
+public class ScaledPoint implements Comparable<ScaledPoint> {
     private int x;
     private int y;
 
@@ -30,5 +29,20 @@ public class ScaledPoint {
 
     public void setY(Scale scale, int y) {
         this.y = y / scale.yScale;
+    }
+
+    public ScaledPoint move(ScaledPoint point, ScaledPoint movement) {
+        int movedX = point.x + movement.x;
+        int movedY = point.y + movement.y;
+        return new ScaledPoint(Scale.Internal, movedX, movedY);
+    }
+
+    @Override
+    public int compareTo(ScaledPoint point) {
+        if (x < point.x) return -1;
+        else if (x > point.x) return 1;
+        else {
+            return Integer.compare(y, point.y);
+        }
     }
 }

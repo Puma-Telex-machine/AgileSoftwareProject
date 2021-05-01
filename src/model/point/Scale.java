@@ -1,6 +1,7 @@
 package model.point;
 
 public enum Scale {
+    Internal(1, 1),
     Backend(1, 1),
     Frontend(30, 30);
 
