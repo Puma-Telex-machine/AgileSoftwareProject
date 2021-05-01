@@ -6,6 +6,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
 import model.facades.BoxFacade;
+import model.facades.ModelFacade;
 
 import java.awt.*;
 
@@ -17,8 +18,12 @@ public class BaseController{
 
     @FXML
     AnchorPane leftMenue;
+    @FXML
+    AnchorPane contextMenu;
 
-    RecentController recent;
+    ModelFacade model;
+
+    FilesController recent;
 
     CanvasController canvas;
 
@@ -31,7 +36,7 @@ public class BaseController{
 
 
     public BaseController() {
-        recent = new RecentController();
+        recent = new FilesController(model.getFileHandler());
         canvas = new CanvasController();
         shapes = new ShapeController(canvas);
         overview = new OverviewController();

@@ -1,11 +1,13 @@
 package model;
 
+
 import model.boxes.Box;
+import model.facades.ModelFacade;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Model {
+public class Model implements ModelFacade {
 
     private static Model singleton;
     public static Model getModel() {
