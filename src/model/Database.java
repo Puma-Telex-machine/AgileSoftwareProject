@@ -12,7 +12,7 @@ import java.util.List;
  * Class that handles saving-/loading functionality.
  * @author Filip Hanberg
  */
-public class Database {
+public class Database{
 
     /**
      * Parses the given textfile and returns a Diagram.
@@ -22,9 +22,11 @@ public class Database {
      */
     static public Diagram loadDiagram(String filename){
         try {
-            int boxcount;
+            int boxcount = 0;
             ArrayList<Box> boxes = new ArrayList<>();
             File toRead = new File("diagrams/" + filename + ".uml");
+            if(!toRead.exists())
+                return null;
             Scanner scanner = new Scanner(toRead);
             String[] nextSplit = scanner.nextLine().trim().split("=");
             if(nextSplit[0].toLowerCase().matches("boxcount"))
@@ -222,5 +224,38 @@ public class Database {
             writer.newLine();
             modnum++;
         }
+    }
+
+    public static String[] getAllFileNames() {
+        File folder = new File("diagrams/");
+        File[] matchingFiles = folder.listFiles((dir, name) ->  name.endsWith(".uml"));
+        if(matchingFiles.length != 0) {
+            String[] result = new String[matchingFiles.length];
+            for (int i = 0; i < matchingFiles.length; i++) {
+                result[i] = matchingFiles[i].getName();
+                result[i] = result[i].substring(0, result[i].length()-4);
+            }
+            return result;
+        }
+        return new String[0];
+    }
+
+    public static String newFile() {
+        File newFile = new File("diagrams/new.uml");
+        boolean firstTry = true;
+        int magicNumber = 0;
+        try {
+            while (!newFile.createNewFile()) { //if the filename already exists
+                newFile = new File("diagrams/new" + magicNumber + ".uml");
+                magicNumber++;
+            }
+            if(firstTry){
+                return "new";
+            }
+            return "new"+magicNumber;
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

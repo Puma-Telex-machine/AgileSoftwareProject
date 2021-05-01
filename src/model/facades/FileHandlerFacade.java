@@ -11,7 +11,7 @@ public interface FileHandlerFacade {
 
     /**
      * Loads the system with the file with this name.
-     * If the file doesn't exist don't right now don't do anything.
+     * If the file doesn't exist right now don't do anything.
      * @param fileName The name of the file we want to load
      */
     void loadFile(String fileName);
