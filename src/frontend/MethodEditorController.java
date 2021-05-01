@@ -89,7 +89,7 @@ public class MethodEditorController extends AnchorPane {
         }
         methodData.arguments = argRet;
 
-        Visibility visibility = Visibility.valueOf((String) accessComboBox.getValue());
+        Visibility visibility = Visibility.valueOf(accessComboBox.getValue().toString());
         methodData.visibility = visibility;
 
         methodData.methodReturnType = returnTypeField.getText();
