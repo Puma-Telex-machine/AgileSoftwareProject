@@ -1,5 +1,7 @@
 package model.facades;
 
+import frontend.Observers.UiObservable;
+import frontend.Observers.UiObserver;
 import model.MethodData;
 import model.VariableData;
 import model.boxes.BoxType;
@@ -7,7 +9,7 @@ import model.boxes.BoxType;
 
 import java.awt.*;
 
-public interface BoxFacade {
+public interface BoxFacade extends UiObservable {
 
     void deleteBox();
 
@@ -48,4 +50,8 @@ public interface BoxFacade {
     void setName(String name);
 
     BoxType getType();
+
+    VariableData[] getVariables();
+
+    MethodData[] getMethods();
 }

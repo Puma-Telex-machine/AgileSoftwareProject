@@ -2,6 +2,7 @@ package frontend;
 
 import frontend.Observers.ArrowObservable;
 import frontend.Observers.ArrowObserver;
+import frontend.Observers.UiObserver;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -24,7 +25,7 @@ import java.util.List;
 /**
  * controller for the boxes in frontend
  */
-public class BoxController extends AnchorPane implements ArrowObservable {
+public class BoxController extends AnchorPane implements ArrowObservable, UiObserver {
     @FXML
     private TextField nameField;
     @FXML
@@ -101,6 +102,7 @@ public class BoxController extends AnchorPane implements ArrowObservable {
         this.setLayoutY(box.getPosition().y);
 
         initAnchors();
+        box.subscribe(this);
     }
 
     private void initAnchors(){
@@ -347,4 +349,30 @@ public class BoxController extends AnchorPane implements ArrowObservable {
         return box;
     }
     //endregion
+
+    public void update()
+    {
+        VariableData[] variableData = box.getVariables();
+        MethodData[] methodData = box.getMethods();
+
+        for (int i = 0; i < variableData.length; i++)
+        {
+            String variable = "";
+
+            switch (variableData[i].visibility)
+            {
+                case PUBLIC: variable += "+"; break;
+                case PRIVATE: variable += "-"; break;
+                case PROTECTED: variable += "#"; break;
+                case PACKAGE_PRIVATE: variable += "~"; break;
+            }
+
+            variable += " ";
+            variable += variableData[i].name;
+            variable += ": ";
+            variable += variableData[i].variableType;
+
+            variables.getChildren().add(new BoxAttributeTextController(variable));
+        }
+    }
 }

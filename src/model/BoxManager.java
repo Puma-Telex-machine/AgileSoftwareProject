@@ -1,14 +1,31 @@
 package model;
 
+import frontend.Observers.UiObservable;
+import frontend.Observers.UiObserver;
 import model.boxes.Box;
 import model.boxes.BoxType;
 import model.facades.BoxFacade;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class BoxManager implements BoxFacade {
     private final Diagram diagram;
     private final Box box;
+    private ArrayList<UiObserver> observers = new ArrayList<UiObserver>();
+
+    public void subscribe(UiObserver newObserver)
+    {
+        observers.add(newObserver);
+    }
+
+    private  void updateObservers()
+    {
+        for (int i = 0; i < observers.size(); i++)
+        {
+            observers.get(i).update();
+        }
+    }
 
     public BoxManager(Diagram diagram, Point position) {
         this.diagram = diagram;
@@ -27,22 +44,28 @@ public class BoxManager implements BoxFacade {
 
     @Override
     public void editMethod(MethodData methodData) {
+
         diagram.editMethod(box, methodData);
+        updateObservers();
     }
 
     @Override
     public void editVariable(VariableData variableData) {
+
         diagram.editVariable(box, variableData);
+        updateObservers();
     }
 
     @Override
     public void deleteMethod(String methodName) {
         diagram.deleteMethod(box, methodName);
+        updateObservers();
     }
 
     @Override
     public void deleteVariable(String variableName) {
         diagram.deleteVariable(box, variableName);
+        updateObservers();
     }
 
     @Override
