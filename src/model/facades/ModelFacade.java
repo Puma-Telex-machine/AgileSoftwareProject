@@ -1,5 +1,6 @@
 package model.facades;
 
+import model.Model;
 import model.Observer;
 
 import java.awt.*;
@@ -11,6 +12,10 @@ public interface ModelFacade {
      * @return
      */
     FileHandlerFacade getFileHandler();
+
+    static ModelFacade getModel(){
+        return Model.getModel();
+    }
 
     void addObserver(Observer observer);
     void removeObserver(Observer observer);

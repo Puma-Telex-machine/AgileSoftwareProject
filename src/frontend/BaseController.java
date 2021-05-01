@@ -36,6 +36,7 @@ public class BaseController{
 
 
     public BaseController() {
+        model = ModelFacade.getModel();
         recent = new FilesController(model.getFileHandler());
         canvas = new CanvasController();
         shapes = new ShapeController(canvas);
