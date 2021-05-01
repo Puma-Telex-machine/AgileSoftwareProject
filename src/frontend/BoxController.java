@@ -15,6 +15,7 @@ import model.MethodData;
 //import model.VariableData;
 import model.VariableData;
 import model.boxes.BoxType;
+import model.boxes.Visibility;
 import model.facades.BoxFacade;
 
 import java.awt.*;
@@ -350,6 +351,9 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
     }
     //endregion
 
+    /**
+     * Updates all of the graphics of this box
+     */
     public void update()
     {
         VariableData[] variableData = box.getVariables();
@@ -358,15 +362,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         for (int i = 0; i < variableData.length; i++)
         {
             String variable = "";
-
-            switch (variableData[i].visibility)
-            {
-                case PUBLIC: variable += "+"; break;
-                case PRIVATE: variable += "-"; break;
-                case PROTECTED: variable += "#"; break;
-                case PACKAGE_PRIVATE: variable += "~"; break;
-            }
-
+            variable += attributeVisString(variableData[i].visibility);
             variable += " ";
             variable += variableData[i].name;
             variable += ": ";
@@ -374,5 +370,44 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
 
             variables.getChildren().add(new BoxAttributeTextController(variable));
         }
+
+        for(int i = 0; i < methodData.length; i++)
+        {
+            String method = "";
+            method += methodData[i].visibility;
+            method += " ";
+            method += methodData[i].methodName;
+            method += " (";
+            for (int j = 0; j < methodData[i].arguments.length; j++)
+            {
+                method += methodData[i].arguments[j];
+
+                if(j+1 != methodData[i].arguments.length)
+                    method += ", ";
+            }
+            method += ") : ";
+            method += methodData[i].methodReturnType;
+
+            methods.getChildren().add(new BoxAttributeTextController(method));
+        }
+    }
+
+    /**
+     * Returns the right sign for the visibility
+     * @param visibility
+     * @return
+     */
+    private String attributeVisString (Visibility visibility)
+    {
+        String ret = "";
+        switch (visibility)
+        {
+            case PUBLIC: ret = "+"; break;
+            case PRIVATE: ret = "-"; break;
+            case PROTECTED: ret = "#"; break;
+            case PACKAGE_PRIVATE: ret = "~"; break;
+        }
+
+        return ret;
     }
 }

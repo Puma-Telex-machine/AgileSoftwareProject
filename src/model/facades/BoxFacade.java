@@ -51,7 +51,15 @@ public interface BoxFacade extends UiObservable {
 
     BoxType getType();
 
+    /**
+     * Returns the data for all of the methods of this class
+     * @return
+     */
     VariableData[] getVariables();
 
+    /**
+     * Returns the data for all of the variables of this class
+      * @return
+     */
     MethodData[] getMethods();
 }
