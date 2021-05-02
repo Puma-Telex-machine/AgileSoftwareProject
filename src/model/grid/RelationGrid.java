@@ -106,21 +106,6 @@ public class RelationGrid {
         return (int) (Math.abs(from.getX() - to.getX()) + Math.abs(from.getY() - to.getY()));
     }
 
-    private enum Direction {
-        UP(0, -1),
-        DOWN(0, 1),
-        LEFT(-1, 0),
-        RIGHT(1, 0);
-
-        private final int x;
-        private final int y;
-
-        Direction(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-    }
-
     private static class RelationNode implements Comparable<RelationNode> {
         Relation relation;
         Point destination;
@@ -158,6 +143,21 @@ public class RelationGrid {
 
         void removeRelation(RelationNode relationNode) {
             relationNodes.remove(relationNode);
+        }
+    }
+
+    private enum Direction {
+        UP(0, -1),
+        DOWN(0, 1),
+        LEFT(-1, 0),
+        RIGHT(1, 0);
+
+        private final int x;
+        private final int y;
+
+        Direction(int x, int y) {
+            this.x = x;
+            this.y = y;
         }
     }
 }

@@ -1,5 +1,7 @@
 
-package model.grid;
+package model.teststuff;
+
+import model.grid.Grid;
 
 import java.awt.*;
 import java.util.ArrayList;

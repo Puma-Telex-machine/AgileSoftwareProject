@@ -1,12 +1,12 @@
 package model.point;
 
 public class ScaledArea {
-    private ScaledPoint topLeft;
-    private ScaledPoint bottomRight;
+    private final ScaledPoint topLeft;
+    private final ScaledPoint bottomRight;
 
-
-    ScaledPoint[] getFullArea(Scale scale) {
-
+    public ScaledArea(ScaledPoint topLeft, ScaledPoint bottomRight) {
+        this.topLeft = topLeft;
+        this.bottomRight = bottomRight;
     }
 
     ScaledPoint getTopLeft() {

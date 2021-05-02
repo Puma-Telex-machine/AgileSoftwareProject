@@ -2,7 +2,7 @@ package model.pathfinder;
 
 import model.boxes.Box;
 import model.grid.RelationGrid;
-import model.grid.ScaledGrid;
+import model.teststuff.ScaledGrid;
 import model.relations.Relation;
 
 import java.awt.*;
