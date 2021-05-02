@@ -20,4 +20,11 @@ public class RelationGrid {
         }
         return false;
     }
+
+    public void add(ArrayList<ScaledPoint> path, Relation relation) {
+        for (ScaledPoint p : path) {
+            ArrayList<Relation> relations = relationMap.get(p);
+            relations.add(relation);
+        }
+    }
 }

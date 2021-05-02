@@ -26,17 +26,14 @@ public class AStar {
         this.relationGrid = relationGrid;
     }
 
-    public ArrayList<Point> addRelation(Relation relation) {
+    public ArrayList<ScaledPoint> addRelation(Relation relation) {
         RelationNode startNode = new RelationNode(relation);
-        startNode.position = new Point(relation.getFrom().getPosition());
-        //startNode.position.translate(5, -10);
+        startNode.position = relation.getFrom().getPosition();
         startNode.cost = 0;
         discovered.add(startNode);
 
         while (!discovered.isEmpty()) {
             RelationNode current = discovered.remove();
-
-            Point currentPoint = current.position;
 
             if (current.position.equals(current.destination)) return compilePath(current);
 
@@ -50,8 +47,8 @@ public class AStar {
         return null;
     }
 
-    private ArrayList<Point> compilePath(RelationNode current) {
-        ArrayList<Point> path = new ArrayList<>();
+    private ArrayList<ScaledPoint> compilePath(RelationNode current) {
+        ArrayList<ScaledPoint> path = new ArrayList<>();
         while (current.previous != null) {
             path.add(current.position);
             current = current.previous;
@@ -61,8 +58,8 @@ public class AStar {
 
     void discover(RelationNode previous, Direction direction) {
         // Get the position to discover
-        ScaledPoint position = new ScaledPoint(previous.position);
-        position.translate(direction.x, direction.y);
+        ScaledPoint position = previous.position;
+        position.move(Scale.Backend, direction.x, direction.y);
 
         if (visited.containsKey(position)) {
             return;
@@ -87,7 +84,7 @@ public class AStar {
         if (direction != previous.direction) cost += bendCost;
 
         // If the node is occupied and the lines shouldn't merge
-        //if (!relationGrid.get(position).canMergeLines(node)) cost += crossCost;
+        if (!relationGrid.canMergeLines(previous.relation, position)) cost += crossCost;
 
         // Add the node to unvisited
         node.cost = cost;
@@ -99,7 +96,7 @@ public class AStar {
     }
 
     private static int manhattanDistance(ScaledPoint from, ScaledPoint to) {
-        return (int) (Math.abs(from.getX(Scale.Backend) - to.getX(Scale.Backend)) + Math.abs(from.getY(Scale.Backend) - to.getY(Scale.Backend)));
+        return (Math.abs(from.getX(Scale.Backend) - to.getX(Scale.Backend)) + Math.abs(from.getY(Scale.Backend) - to.getY(Scale.Backend)));
     }
 
     private static class RelationNode implements Comparable<RelationNode> {

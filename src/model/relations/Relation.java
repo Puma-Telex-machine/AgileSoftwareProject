@@ -2,26 +2,27 @@ package model.relations;
 
 import model.boxes.Box;
 import model.boxes.BoxType;
+import model.facades.BoxFacade;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Relation {
-    Box to;
-    Box from;
+    BoxFacade to;
+    BoxFacade from;
     ArrowType arrowType;
    
-    public Relation(Box from, Box to, ArrowType arrowType) {
+    public Relation(BoxFacade from, BoxFacade to, ArrowType arrowType) {
         this.from = from;
         this.to = to;
         this.arrowType = arrowType;
     }
 
-    public Box getTo() {
+    public BoxFacade getTo() {
         return to;
     }
 
-    public Box getFrom() {
+    public BoxFacade getFrom() {
         return from;
     }
 

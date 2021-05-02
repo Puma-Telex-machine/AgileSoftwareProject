@@ -44,7 +44,7 @@ public interface BoxFacade {
      */
     void deleteVariable(String variableName);
 
-    Point getPosition();
+    ScaledPoint getPosition();
 
     void setPosition(ScaledPoint point);
 

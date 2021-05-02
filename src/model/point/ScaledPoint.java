@@ -22,6 +22,11 @@ public class ScaledPoint implements Comparable<ScaledPoint> {
         setY(scale, y);
     }
 
+    public ScaledPoint(Scale scale, double x, double y) {
+        setX(scale, (int) x);
+        setY(scale, (int) y);
+    }
+
     private void setX(Scale scale, int x) {
         this.x = x / scale.xScale;
     }

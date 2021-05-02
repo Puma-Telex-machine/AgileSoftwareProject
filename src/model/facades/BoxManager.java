@@ -4,8 +4,6 @@ import model.boxes.Box;
 import model.grid.IBoxGrid;
 import model.point.ScaledPoint;
 
-import java.awt.*;
-
 public class BoxManager implements BoxFacade {
     private final IBoxGrid diagram;
     private Box box;
@@ -51,8 +49,8 @@ public class BoxManager implements BoxFacade {
     }
 
     @Override
-    public Point getPosition() {
-        return new Point(box.getPosition());
+    public ScaledPoint getPosition() {
+        return box.getPosition();
     }
 
     @Override

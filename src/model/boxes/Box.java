@@ -3,6 +3,7 @@ package model.boxes;
 import model.facades.MethodData;
 //import model.facades.VariableData;
 import model.facades.VariableData;
+import model.point.ScaledPoint;
 
 import java.awt.*;
 import java.util.*;
@@ -20,9 +21,9 @@ public class Box {
     private List<Attribute> attributes;
     private Set<Modifier> modifiers;
     private Visibility visibility;
-    private Point position;
+    private ScaledPoint position;
 
-    public Box(String name, Point position) {
+    public Box(String name, ScaledPoint position) {
         this.name = name;
         this.position = position;
         methods = new ArrayList<>();
@@ -38,7 +39,7 @@ public class Box {
         name = newName;
     }
 
-    public void setPosition(Point newPosition){
+    public void setPosition(ScaledPoint newPosition){
         position = newPosition;
     }
 
@@ -127,7 +128,7 @@ public class Box {
         }
     }
 
-    public Point getPosition(){return position; }
+    public ScaledPoint getPosition(){return position; }
 
     public List<Method> getMethods(){return methods;}
 

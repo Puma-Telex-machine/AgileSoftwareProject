@@ -1,8 +1,6 @@
 package model.grid;
 
 import model.boxes.Box;
-import model.grid.BoxGridView;
-import model.grid.IBoxGrid;
 import model.point.Scale;
 import model.point.ScaledPoint;
 
@@ -56,6 +54,11 @@ class BoxGrid implements IBoxGrid, BoxGridView {
         }
     }
 
+    @Override
+    public void update(Box box) {
+
+    }
+
     private void pushOthersDown(ScaledPoint point) {
         //This is inefficient and could be run less times by calculating how far it needs to be moved instead
         Box occupant = boxMap.get(point);
@@ -68,11 +71,11 @@ class BoxGrid implements IBoxGrid, BoxGridView {
 
     private ArrayList<ScaledPoint> getArea(Box box) {
         ArrayList<ScaledPoint> area = new ArrayList<>();
-        Point point = box.getPosition();
-        int x = point.x;
-        int y = point.y;
+        ScaledPoint point = box.getPosition();
+        int x = point.getX(Scale.Backend);
+        int y = point.getY(Scale.Backend);
         int xEnd = x + box.getHeight();  // NOTE: Method getWidth does not exist!
-        int yEnd = point.y + box.getHeight();
+        int yEnd = y + box.getHeight();
 
         for (; x < xEnd; x++) {
             for (; y < yEnd; y++) {
