@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/Arrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Arrow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/CanvasController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/Canvas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Canvas.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -109,7 +108,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/frontend/CanvasController.java</url>
-          <line>197</line>
+          <line>202</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

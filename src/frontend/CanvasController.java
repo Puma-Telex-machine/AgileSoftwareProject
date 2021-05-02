@@ -149,24 +149,29 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     private Arrow clickedArrow = null;
     @FXML
     private void handleArrowMenu(MouseEvent e){
+        Arrow closest = null;
+        double min = 10000;
         for (Arrow a:arrows) {
-            //todo maybe find closest
-            if(a.isClickOn(e)){
-                clickedArrow = a;
-                arrowTypeComboBox.getSelectionModel().select(a.getType());
-                openArrowMenu(e);
-                break;
+            System.out.println(a.getDistaceFromClick(e) + " min = " + min);
+            if(a.getDistaceFromClick(e)<min){
+                min = a.getDistaceFromClick(e);
+                closest = a;
             }
         }
+        if(min<=15){
+            clickedArrow = closest;
+            arrowTypeComboBox.getSelectionModel().select(closest.getType());
+            openArrowMenu(e.getX(),e.getY());
+        }
+        e.consume();
     }
 
-    private void openArrowMenu(MouseEvent e) {
+    private void openArrowMenu(double x, double y) {
         menuPane.setVisible(true);
         menuPane.toFront();
-        arrowMenu.setLayoutX(e.getX());
-        arrowMenu.setLayoutY(e.getY());
+        arrowMenu.setLayoutX(x);
+        arrowMenu.setLayoutY(y);
         arrowMenu.setVisible(true);
-        e.consume();
     }
 
     @FXML
@@ -196,6 +201,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     @FXML
     private void deleteArrow(Event e){
         this.getChildren().remove(clickedArrow);
+        arrows.remove(clickedArrow);
         closeMenu(e);
         e.consume();
     }
