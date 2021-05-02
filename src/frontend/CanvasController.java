@@ -32,8 +32,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     Model model = Model.getModel();
 
     List<BoxController> boxes = new ArrayList<>();
-    public CanvasController()
-    {
+    public CanvasController() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Canvas.fxml")));
 
         fxmlLoader.setRoot(this);
@@ -87,7 +86,8 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     private BoxController arrowBox = null;
     private Point arrowStart;
     private boolean toggleOn = false;
-    private Arrow clickedArrow = null;
+    private List<Arrow> arrows = new ArrayList<>();
+
 
     @Override
     public void arrowEvent(Point p, BoxController box) {
@@ -105,25 +105,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
 
                 Arrow newArrow = new Arrow(arrowStart,p,bends);
                 this.getChildren().addAll(newArrow);
-
-                newArrow.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        if(!newArrow.isClickOn(event)) return;
-                        clickedArrow=newArrow;
-                        arrowTypeComboBox.getSelectionModel().select(newArrow.getType());
-                        openArrowMenu(event);
-                    }
-
-                    private void openArrowMenu(MouseEvent e) {
-                        menuPane.setVisible(true);
-                        menuPane.toFront();
-                        arrowMenu.setLayoutX(e.getX());
-                        arrowMenu.setLayoutY(e.getY());
-                        arrowMenu.setVisible(true);
-                        e.consume();
-                    }
-                });
+                arrows.add(newArrow);
                 newArrow.toBack();
             }
         }
@@ -164,6 +146,28 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     //endregion
 
     //region Menus
+    private Arrow clickedArrow = null;
+    @FXML
+    private void handleArrowMenu(MouseEvent e){
+        for (Arrow a:arrows) {
+            //todo maybe find closest
+            if(a.isClickOn(e)){
+                clickedArrow = a;
+                arrowTypeComboBox.getSelectionModel().select(a.getType());
+                openArrowMenu(e);
+                break;
+            }
+        }
+    }
+
+    private void openArrowMenu(MouseEvent e) {
+        menuPane.setVisible(true);
+        menuPane.toFront();
+        arrowMenu.setLayoutX(e.getX());
+        arrowMenu.setLayoutY(e.getY());
+        arrowMenu.setVisible(true);
+        e.consume();
+    }
 
     @FXML
     private void handleContextMenu(ContextMenuEvent e){

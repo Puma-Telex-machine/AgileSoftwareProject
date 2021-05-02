@@ -233,23 +233,41 @@ public class Arrow extends AnchorPane{
     }
 
     /**
-     * check if a click is on this arrow
+     * check if a click is on this arrow (only works if lines are horizontal and vertical)
      * @param event the click
      * @return  if click is on
      */
     public boolean isClickOn(MouseEvent event) {
 
-        /* todo fix this
-        int diff = 30;
+        double x1 = event.getX();
+        double y1 = event.getY();
 
+        int diff = 10;
+        int i = 0;
         for (Line l:lines) {
-           if(     //vertical line
-                   (Math.abs(l.getStartX()-event.getSceneX())<=diff&&event.getSceneY()<l.getEndY()+diff&&event.getSceneY()>l.getStartY()-diff)||
-                   //horizontal line
-                   (Math.abs(l.getStartY()-event.getSceneY())<=diff&&event.getSceneX()<l.getEndX()+diff&&event.getSceneX()>l.getStartX()-diff)){
-               return true;
-           }
-        }*/
-        return true;
+            System.out.println(i);
+            i++;
+            //vertical line
+            if(l.getEndX()==l.getStartX()){
+                double minY = Math.min(l.getStartY(),l.getEndY());
+                double maxY = Math.max(l.getStartY(),l.getEndY());
+                if(x1>l.getStartX()-diff&&x1<l.getStartX()+diff&&y1>minY-diff&& y1<maxY+diff){
+                    return true;
+                }
+            }
+            //Horizontal line
+            if(l.getEndY()==l.getStartY()){
+                double minX = Math.min(l.getStartX(),l.getEndX());
+                double maxX = Math.max(l.getStartX(),l.getEndX());
+                System.out.println("X " + minX + " " + x1 + " " + maxX);
+                System.out.println("Y " + (l.getEndY()-30) + " " + y1 + " " + (l.getStartY()+30));
+
+                if(y1>l.getStartY()-diff&&y1<l.getStartY()+diff&&x1>minX-diff&& x1<maxX+diff){
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }
