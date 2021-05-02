@@ -1,18 +1,18 @@
-package model;
+package model.facades;
 
 import model.boxes.Box;
-import model.facades.BoxFacade;
-import model.grid.Diagram;
+import model.grid.IBoxGrid;
+import model.point.ScaledPoint;
 
 import java.awt.*;
 
 public class BoxManager implements BoxFacade {
-    private final Diagram diagram;
-    private final Box box;
+    private final IBoxGrid diagram;
+    private Box box;
 
-    public BoxManager(Diagram diagram, Point position) {
+    public BoxManager(IBoxGrid diagram, Box box) {
         this.diagram = diagram;
-        this.box = diagram.createBox(position);
+        this.box = box;
     }
 
     @Override
@@ -22,27 +22,32 @@ public class BoxManager implements BoxFacade {
 
     @Override
     public void deleteBox() {
-        diagram.deleteBox(box);
+        diagram.remove(box);
+        this.box = null;
     }
 
     @Override
     public void editMethod(MethodData methodData) {
-        diagram.editMethod(box, methodData);
+        box.editMethod(methodData);
+        diagram.update(box);
     }
 
     @Override
     public void editVariable(VariableData variableData) {
-        diagram.editVariable(box, variableData);
+        box.editVariable(variableData);
+        diagram.update(box);
     }
 
     @Override
     public void deleteMethod(String methodName) {
-        diagram.deleteMethod(box, methodName);
+        box.deleteMethod(methodName);
+        diagram.update(box);
     }
 
     @Override
     public void deleteVariable(String variableName) {
-        diagram.deleteVariable(box, variableName);
+        box.deleteVariable(variableName);
+        diagram.update(box);
     }
 
     @Override
@@ -51,13 +56,14 @@ public class BoxManager implements BoxFacade {
     }
 
     @Override
-    public void setPosition(Point point) {
+    public void setPosition(ScaledPoint point) {
         diagram.move(box, point);
     }
 
     @Override
     public void setName(String name) {
         box.setName(name);
+        diagram.update(box);
     }
 
     public boolean isEmpty() {

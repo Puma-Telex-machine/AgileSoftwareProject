@@ -1,4 +1,4 @@
-package model.teststuff;
+package model.grid;
 
 import model.point.ScaledPoint;
 

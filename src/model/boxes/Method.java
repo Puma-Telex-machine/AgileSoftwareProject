@@ -1,6 +1,6 @@
 package model.boxes;
 
-import model.MethodData;
+import model.facades.MethodData;
 
 import java.util.ArrayList;
 import java.util.HashSet;

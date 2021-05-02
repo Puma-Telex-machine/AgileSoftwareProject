@@ -1,9 +1,8 @@
 package model.boxes;
 
-import model.MethodData;
-//import model.VariableData;
-import model.VariableData;
-import model.facades.BoxFacade;
+import model.facades.MethodData;
+//import model.facades.VariableData;
+import model.facades.VariableData;
 
 import java.awt.*;
 import java.util.*;

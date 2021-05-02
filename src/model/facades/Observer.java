@@ -1,6 +1,4 @@
-package model;
-
-import model.facades.BoxFacade;
+package model.facades;
 
 public interface Observer {
     void addBox(BoxFacade box);

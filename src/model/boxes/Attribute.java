@@ -1,6 +1,6 @@
 package model.boxes;
 
-import model.VariableData;
+import model.facades.VariableData;
 
 import java.util.HashSet;
 import java.util.Set;

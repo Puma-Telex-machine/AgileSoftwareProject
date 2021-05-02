@@ -3,10 +3,9 @@ package frontend;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
-import model.Observer;
+import model.facades.Observer;
 import model.facades.BoxFacade;
-import model.grid.BoxGrid;
-import model.grid.RelationGrid;
+import model.grid.AStar;
 import model.grid.Scaler;
 import model.relations.ArrowType;
 import model.relations.Relation;
@@ -44,8 +43,8 @@ public class CanvasController extends AnchorPane implements Observer {
 
     private void test() {
         model = Model.getModel();
-        RelationGrid relationGrid = new RelationGrid(model.getBoxGrid(), 3, 4);
-        ArrayList<Point> path = relationGrid.addRelation(new Relation(boxFacades.get(0).getBox(), boxFacades.get(1).getBox(), ArrowType.EXTENDS));
+        AStar AStar = new AStar(model.getBoxGrid(), 3, 4);
+        ArrayList<Point> path = AStar.addRelation(new Relation(boxFacades.get(0).getBox(), boxFacades.get(1).getBox(), ArrowType.EXTENDS));
         for (Point p : path) {
             addTestPoint(p);
         }

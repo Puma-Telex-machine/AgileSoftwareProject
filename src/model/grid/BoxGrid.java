@@ -1,44 +1,84 @@
 package model.grid;
 
 import model.boxes.Box;
+import model.grid.BoxGridView;
+import model.grid.IBoxGrid;
+import model.point.Scale;
+import model.point.ScaledPoint;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeMap;
 
-public class BoxGrid {
+class BoxGrid implements IBoxGrid, BoxGridView {
+    TreeMap<ScaledPoint, Box> boxMap = new TreeMap<>();
 
-    private final Grid<Box> boxGrid;
-    private int boxCounter = 0; //Needs to be saved if we want to use it
-
-    public BoxGrid(int gridWidth, int gridHeight) {
-        boxGrid = new Grid<>();
-    }
-
-    static BoxGrid singleton;
-    public static BoxGrid getGridTest() {
-        if (singleton == null) singleton = new BoxGrid(3, 4);
-        return singleton;
-    }
-
-    public Box createBox(Point position) {
-        String boxName = "Box " + boxCounter;
-        Box box = new Box(boxName, position);
-
-        if (boxGrid.set(position, box)) {
-            boxCounter++;
-            return box;
-        }
+    public List<Box> getBoxes() {
         return null;
     }
 
-    public Point moveBox(Box from, Point to) {
-        return boxGrid.move(from.getPosition(), to);
+    @Override
+    public boolean isEmpty(ScaledPoint scaledPoint) {
+        return boxMap.containsKey(scaledPoint);
     }
 
-    public void removeBox(Point position) {
-        boxGrid.remove(position);
+    public void add(Box box) {
+        ArrayList<ScaledPoint> area = getArea(box);
+
+        // Move other boxes in the area down and add the box area to the grid
+        for (ScaledPoint p : area) {
+            pushOthersDown(p);
+            boxMap.put(p, box);
+        }
     }
 
-    public boolean isEmpty(Point point) {
-        return boxGrid.isEmpty(point);
+    @Override
+    public void move(Box box, ScaledPoint point) {
+
+        // Remove the old area of the box
+        remove(box);
+
+        // Update the position of the box
+        box.setPosition(point);
+
+        // Re-add the box to the grid
+        add(box);
+    }
+
+    @Override
+    public void remove(Box box) {
+        ArrayList<ScaledPoint> area = getArea(box);
+
+        // Remove the area from the grid
+        for (ScaledPoint p : area) {
+            boxMap.remove(p);
+        }
+    }
+
+    private void pushOthersDown(ScaledPoint point) {
+        //This is inefficient and could be run less times by calculating how far it needs to be moved instead
+        Box occupant = boxMap.get(point);
+        if (occupant != null) {
+            ScaledPoint oldPosition = new ScaledPoint(Scale.Backend, occupant.getPosition());
+            ScaledPoint newPosition = oldPosition.move(new ScaledPoint(Scale.Backend, 0, -1));
+            move(occupant, newPosition);
+        }
+    }
+
+    private ArrayList<ScaledPoint> getArea(Box box) {
+        ArrayList<ScaledPoint> area = new ArrayList<>();
+        Point point = box.getPosition();
+        int x = point.x;
+        int y = point.y;
+        int xEnd = x + box.getHeight();  // NOTE: Method getWidth does not exist!
+        int yEnd = point.y + box.getHeight();
+
+        for (; x < xEnd; x++) {
+            for (; y < yEnd; y++) {
+                area.add(new ScaledPoint(Scale.Backend, x, y));
+            }
+        }
+        return area;
     }
 }

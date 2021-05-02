@@ -1,9 +1,8 @@
 package model.facades;
 
-import model.MethodData;
-import model.VariableData;
 import model.boxes.Box;
-//import model.VariableData;
+import model.point.ScaledPoint;
+//import model.facades.VariableData;
 
 import java.awt.*;
 
@@ -47,7 +46,7 @@ public interface BoxFacade {
 
     Point getPosition();
 
-    void setPosition(Point point);
+    void setPosition(ScaledPoint point);
 
     void setName(String name);
 }

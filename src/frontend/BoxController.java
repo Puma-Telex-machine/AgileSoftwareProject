@@ -8,8 +8,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
 import javafx.scene.shape.Ellipse;
-import model.MethodData;
-//import model.VariableData;
+import model.facades.MethodData;
+//import model.facades.VariableData;
 import model.facades.BoxFacade;
 import model.grid.Scaler;
 
