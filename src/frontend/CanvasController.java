@@ -100,6 +100,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
                 //todo get bends from backend
                 //temporary
                 List<Point> bends = new ArrayList<>();
+                bends.add(new Point(1000,700));
                 bends.add(new Point(p.x-50,arrowStart.y));
                 bends.add(new Point(p.x-50,p.y));
 
@@ -152,9 +153,9 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         Arrow closest = null;
         double min = 10000;
         for (Arrow a:arrows) {
-            System.out.println(a.getDistaceFromClick(e) + " min = " + min);
-            if(a.getDistaceFromClick(e)<min){
-                min = a.getDistaceFromClick(e);
+            double distance = a.getDistaceFromClick(e);
+            if(distance<min){
+                min = distance;
                 closest = a;
             }
         }

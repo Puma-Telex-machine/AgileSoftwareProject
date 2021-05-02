@@ -250,50 +250,74 @@ public class Arrow extends AnchorPane{
         double min = 100000;
 
         for (Line l:lines) {
+
             //vertical line
-            if(l.getEndX()==l.getStartX()){
-                double minY = Math.min(l.getStartY(),l.getEndY());
-                double maxY = Math.max(l.getStartY(),l.getEndY());
-                double offsetX = Math.abs(l.getStartX()-x1);
-                if(y1>minY&& y1<maxY){
-                    min = Math.min(offsetX,min);
-                }
-                else if(y1>maxY){
+            if (l.getEndX() == l.getStartX()) {
+                double minY = Math.min(l.getStartY(), l.getEndY());
+                double maxY = Math.max(l.getStartY(), l.getEndY());
+                double offsetX = Math.abs(l.getStartX() - x1);
+                if (y1 > minY && y1 < maxY) {
+                    min = Math.min(offsetX, min);
+                } else if (y1 > maxY) {
                     //sqrt(a^2+b^2)
-                    min = Math.min(Math.sqrt(Math.pow(offsetX,2)+ Math.pow(y1-maxY,2)),min);
-                }
-                else if(y1<minY){
+                    min = Math.min(Math.sqrt(Math.pow(offsetX, 2) + Math.pow(y1 - maxY, 2)), min);
+                } else if (y1 < minY) {
                     //sqrt(a^2+b^2)
-                    min = Math.min(Math.sqrt(Math.pow(offsetX,2)+ Math.pow(minY-y1,2)),min);
+                    min = Math.min(Math.sqrt(Math.pow(offsetX, 2) + Math.pow(minY - y1, 2)), min);
                 }
             }
             //Horizontal line
-            else if(l.getEndY()==l.getStartY()){
-                double minX = Math.min(l.getStartX(),l.getEndX());
-                double maxX = Math.max(l.getStartX(),l.getEndX());
-                double offsetY = Math.abs(l.getStartY()-y1);
-                if(x1>minX&& x1<maxX){
-                    min = Math.min(offsetY,min);
+            else {
+                if (l.getEndY() == l.getStartY()) {
+                    double minX = Math.min(l.getStartX(), l.getEndX());
+                    double maxX = Math.max(l.getStartX(), l.getEndX());
+                    double offsetY = Math.abs(l.getStartY() - y1);
+                    if (x1 > minX && x1 < maxX) {
+                        min = Math.min(offsetY, min);
+                    } else if (x1 > maxX) {
+                        //sqrt(a^2+b^2)
+                        min = Math.min(Math.sqrt(Math.pow(offsetY, 2) + Math.pow(x1 - maxX, 2)), min);
+                    } else if (x1 < minX) {
+                        //sqrt(a^2+b^2)
+                        min = Math.min(Math.sqrt(Math.pow(offsetY, 2) + Math.pow(minX - x1, 2)), min);
+                    }
                 }
-                else if(x1>maxX){
-                    //sqrt(a^2+b^2)
-                    min = Math.min(Math.sqrt(Math.pow(offsetY,2)+ Math.pow(x1-maxX,2)),min);
+                //other line (does not work for horizontal or )
+                else {
+                    //line ax+bx+c=0  point (x1,y1)
+                    // Distance = (| a*x1 + b*y1 + c |) / (sqrt( a*a + b*b))
+                    double slope = (l.getEndY() - l.getStartY()) / (l.getEndX() - l.getStartX());
+                    double a = slope;
+                    double b = -1;
+                    double c = l.getStartY() - slope * l.getStartX();
+                    double minX = Math.min(l.getStartX(), l.getEndX());
+                    double maxX = Math.max(l.getStartX(), l.getEndX());
+                    double minY = Math.min(l.getStartY(), l.getEndY());
+                    double maxY = Math.max(l.getStartY(), l.getEndY());
+
+
+                    //if click is withing the rectangle between the startingpoints
+                    if(minX<x1&&x1<maxX&&minY<y1&&y1<maxY) {
+                        min = Math.min(Math.abs(a * x1 + b * y1 + c) / (Math.sqrt(a * a + b * b)), min);
+                    }
+                    //click is outside startingnode distance = distance to closest start/end node
+                    else{
+                        double dist1 = Math.sqrt(Math.pow(l.getStartX()-x1,2)+Math.pow(l.getStartY()-y1,2));
+                        double dist2 = Math.sqrt(Math.pow(l.getEndX()-x1,2)+Math.pow(l.getEndY()-y1,2));
+                        min = Math.min(Math.min(dist1,dist2),min);
+                    }
                 }
-                else if(x1<minX){
-                    //sqrt(a^2+b^2)
-                    min = Math.min(Math.sqrt(Math.pow(offsetY,2)+ Math.pow(minX-x1,2)),min);
-                }
-            }
-            else{
-                //line ax+bx+c=0  point (x1,y1)
-                // Distance = (| a*x1 + b*y1 + c |) / (sqrt( a*a + b*b))
-                double slope = l.getEndY()-l.getStartY()/(l.getEndX()-l.getStartX());
-                double a = slope;
-                double b = 1;
-                double c = l.getStartY()-slope*l.getStartX();
-                min = Math.min(Math.abs(a*x1 + b*y1 + c ) / (Math.sqrt( a*a + b*b)),min);
             }
         }
         return min;
+    }
+    // Function to find distance
+    static double shortest_distance(double x1, double y1,
+                                    double a, double b,
+                                    double c)
+    {
+        double d = Math.abs(((a * x1 + b * y1 + c)) /
+                (Math.sqrt(a * a + b * b)));
+        return d;
     }
 }
