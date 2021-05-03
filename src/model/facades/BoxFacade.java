@@ -6,10 +6,17 @@ import model.MethodData;
 import model.VariableData;
 import model.boxes.BoxType;
 //import model.VariableData;
+import model.boxes.Box;
+import model.point.ScaledPoint;
+//import model.facades.VariableData;
 
 import java.awt.*;
 
 public interface BoxFacade extends UiObservable {
+
+    //TODO: DELETE THIS
+
+    Box getBox();
 
     void deleteBox();
 
@@ -43,9 +50,9 @@ public interface BoxFacade extends UiObservable {
      */
     void deleteVariable(String variableName);
 
-    Point getPosition();
+    ScaledPoint getPosition();
 
-    void setPosition(Point point);
+    void setPosition(ScaledPoint point);
 
     void setName(String name);
 

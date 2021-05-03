@@ -5,8 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-//import model.VariableData;
-import model.VariableData;
+//import model.facades.VariableData;
+import model.facades.VariableData;
 import model.boxes.Visibility;
 import model.facades.BoxFacade;
 

@@ -17,6 +17,9 @@ import model.VariableData;
 import model.boxes.BoxType;
 import model.boxes.Visibility;
 import model.facades.BoxFacade;
+import model.grid.Scaler;
+import model.point.Scale;
+import model.point.ScaledPoint;
 
 import java.awt.*;
 import java.io.IOException;
@@ -99,11 +102,12 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         this.box = box;
         hideCircles();
 
-        this.setLayoutX(box.getPosition().x);
-        this.setLayoutY(box.getPosition().y);
-
         initAnchors();
         box.subscribe(this);
+        ScaledPoint position = box.getPosition();
+
+        this.setLayoutX(position.getX(Scale.Frontend));
+        this.setLayoutY(position.getY(Scale.Frontend));
     }
 
     private void initAnchors(){
@@ -181,10 +185,12 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
     @FXML
     private void handleLetGo(MouseEvent event){
         moving=false;
-        box.setPosition(new Point((int)this.getLayoutX(),(int)this.getLayoutY()));
+        box.setPosition(new ScaledPoint(Scale.Frontend, this.getLayoutX(), this.getLayoutY()));
+
+        ScaledPoint position = box.getPosition();
         //for snap to grid
-        this.setLayoutX(box.getPosition().x);
-        this.setLayoutY(box.getPosition().y);
+        this.setLayoutX(position.getX(Scale.Frontend));
+        this.setLayoutY(position.getY(Scale.Frontend));
         event.consume();
     }
     //endregion

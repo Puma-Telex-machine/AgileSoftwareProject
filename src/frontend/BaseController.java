@@ -3,6 +3,11 @@ package frontend;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import model.facades.ModelFacade;
+import model.Model;
+import model.point.Scale;
+import model.point.ScaledPoint;
+
+import java.awt.*;
 
 
 public class BaseController{
@@ -72,6 +77,24 @@ public class BaseController{
         exercises.toBack();
     }
 
+    @FXML
+    private void handleContextMenu(ContextMenuEvent e){
+        contextMenu.setLayoutX(e.getX());
+        contextMenu.setLayoutY(e.getY());
+        contextMenu.setVisible(true);
+        e.consume();
+    }
+    @FXML
+    private void exitContext(){
+        contextMenu.setVisible(false);
+    }
+    @FXML
+    private void handleContextAddBox(MouseEvent e) {
+        ScaledPoint newBoxPosition = new ScaledPoint(Scale.Frontend, contextMenu.getLayoutX()-80, contextMenu.getLayoutY()-35);
+        model.addBox(newBoxPosition);
+        exitContext();
+        e.consume();
+    }
 
     //open Menus
     @FXML

@@ -1,4 +1,4 @@
-package model;
+package model.facades;
 
 import model.boxes.Visibility;
 

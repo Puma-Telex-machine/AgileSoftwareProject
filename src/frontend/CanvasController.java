@@ -10,12 +10,14 @@ import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
-import model.Observer;
-import model.facades.BoxFacade;
 import model.relations.ArrowType;
 import model.relations.Relation;
+import model.facades.Observer;
+import model.facades.BoxFacade;
+import model.facades.RelationFacade;
+import model.point.Scale;
+import model.point.ScaledPoint;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
@@ -71,14 +73,13 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         box.toggleCircleVisibility(!toggleOn);
     }
 
-    public void addTestPoint (float x, float y)
-    {
-        TestPointController point = new TestPointController(x, y);
-        this.getChildren().add(point);
+    @Override
+    public void addRelation(RelationFacade relation) {
+        
     }
 
-    public Point getMiddle(){
-        return new Point(500,400);
+    public ScaledPoint getMiddle(){
+        return new ScaledPoint(Scale.Frontend,500, 400);
     }
 
     //region arrowmaking

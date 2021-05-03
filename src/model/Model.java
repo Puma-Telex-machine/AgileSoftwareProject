@@ -1,15 +1,21 @@
 package model;
 
 
-import model.facades.BoxFacade;
-import model.relations.ArrowType;
-import model.relations.Relation;
+
 
 import model.boxes.Box;
 import model.facades.FileHandlerFacade;
 import model.facades.ModelFacade;
 
 import java.awt.*;
+import model.facades.BoxFacade;
+import model.facades.Observer;
+import model.facades.RelationFacade;
+import model.grid.Diagram;
+import model.point.ScaledPoint;
+import model.relations.ArrowType;
+import model.relations.Relation;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,13 +44,16 @@ public class Model implements ModelFacade, FileHandlerFacade{
         observers.remove(observer);
     }
 
-    public void addBox(Point position) {
-        BoxManager boxManager = new BoxManager(diagram, position);
-        if (!boxManager.isEmpty()) {
-            observers.forEach(observer -> observer.addBox(boxManager));
-        }
-        Database.saveDiagram(diagram, name);
+	public void addBox(ScaledPoint position) {
+        BoxFacade boxManager = diagram.createBox(position);
+        observers.forEach(observer -> observer.addBox(boxManager));
+		Database.saveDiagram(diagram, name);
         System.out.println("saved "+name);
+    }
+	
+	public void addRelation(BoxFacade from, BoxFacade to, ArrowType arrowType) {
+        RelationFacade relation = diagram.createRelation(from, to, arrowType);
+        observers.forEach(observer -> observer.addRelation(relation));
     }
 
     @Override
@@ -82,5 +91,7 @@ public class Model implements ModelFacade, FileHandlerFacade{
     public List<Point> getArrowBends(BoxFacade from, BoxFacade to) {
         //todo add pathfinding to here
         return new ArrayList<>();
-    }
+    
+
+    
 }
