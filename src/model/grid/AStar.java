@@ -34,8 +34,6 @@ public class AStar {
         startNode.cost = 0;
         discovered.add(startNode);
 
-        ArrayList<ScaledPoint> path;
-
         while (!discovered.isEmpty()) {
             PathNode current = discovered.remove();
 

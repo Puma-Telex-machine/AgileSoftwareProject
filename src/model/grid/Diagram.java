@@ -7,6 +7,7 @@ import model.point.ScaledPoint;
 import model.relations.ArrowType;
 import model.relations.Relation;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Diagram {
@@ -24,7 +25,7 @@ public class Diagram {
         Relation relation = new Relation(from, to, arrowType);
         relations.add(relation);
         PathNode path = aStar.findPath(relation);
-        relationGrid.add(path);
-        return null; //TODO: hur gör vi här egentligen?
+        ArrayList<ScaledPoint> pathPoints = relationGrid.add(path);
+        return new RelationManagerLikeBoxManager(relation, pathPoints);
     }
 }
