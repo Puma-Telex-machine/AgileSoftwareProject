@@ -1,11 +1,12 @@
 package model;
 
-import model.boxes.Box;
-import model.boxes.Diagram;
 import model.facades.BoxFacade;
+import model.relations.ArrowType;
+import model.relations.Relation;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Model {
 
@@ -31,5 +32,17 @@ public class Model {
         Box box = diagram.getBox(0);
         BoxFacade b = box;
         observers.forEach(observer -> observer.addBox(box));
+    }
+    public Relation addRelation(BoxFacade from, BoxFacade to){
+        //todo add relation and return the apropriate type
+        return new Relation(null,null,ArrowType.ASSOCIATION);
+    }
+    public void changeRelation(Relation relation,ArrowType type){
+        //todo change relation
+    }
+
+    public List<Point> getArrowBends(BoxFacade from, BoxFacade to) {
+        //todo add pathfinding to here
+        return new ArrayList<>();
     }
 }

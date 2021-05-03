@@ -151,9 +151,23 @@ public class BoxController extends AnchorPane implements ArrowObservable {
             offsetY = event.getY();
             moving=true;
         }
-        //todo fix borders
-        this.setLayoutX(this.getLayoutX()+ event.getX() - offsetX);
-        this.setLayoutY(this.getLayoutY()+ event.getY() - offsetY);
+        //todo fix max borders
+
+        //move X
+        if(this.getLayoutX()+ event.getX() - offsetX<0){
+            this.setLayoutX(0);
+        }
+        else{
+            this.setLayoutX(this.getLayoutX()+ event.getX() - offsetX);
+        }
+
+        //move Y
+        if(this.getLayoutY()+ event.getY() - offsetY<0){
+            this.setLayoutY(0);
+        }
+        else{
+            this.setLayoutY(this.getLayoutY()+ event.getY() - offsetY);
+        }
         event.consume();
     }
 
