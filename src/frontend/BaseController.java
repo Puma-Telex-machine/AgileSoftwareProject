@@ -15,9 +15,6 @@ public class BaseController{
     @FXML
     AnchorPane UML;
 
-    @FXML
-    AnchorPane leftMenue;
-
     RecentController recent;
 
     CanvasController canvas;
@@ -39,10 +36,10 @@ public class BaseController{
     }
 
     private void init(){
-        leftMenue.getChildren().add(recent);
-        leftMenue.getChildren().add(shapes);
-        leftMenue.getChildren().add(overview);
-        leftMenue.getChildren().add(exercises);
+        UML.getChildren().add(recent);
+        UML.getChildren().add(shapes);
+        UML.getChildren().add(overview);
+        UML.getChildren().add(exercises);
         LockPane(recent);
         LockPane(shapes);
         LockPane(overview);
@@ -50,13 +47,13 @@ public class BaseController{
         closeMenueTabbs();
         UML.getChildren().add(canvas);
         LockPane(canvas);
+        AnchorPane.setRightAnchor(canvas,0d);
     }
 
     private void LockPane(AnchorPane pane)
     {
         AnchorPane.setTopAnchor(pane, 0d);
         AnchorPane.setLeftAnchor(pane, 0d);
-        AnchorPane.setRightAnchor(pane, 0d);
         AnchorPane.setBottomAnchor(pane, 0d);
     }
 
@@ -66,34 +63,38 @@ public class BaseController{
         shapes.setVisible(false);
         overview.setVisible(false);
         exercises.setVisible(false);
+        recent.toBack();
+        shapes.toBack();
+        overview.toBack();
+        exercises.toBack();
     }
 
 
     //open Menus
     @FXML
-    private void openRecent(){
-        openMenuItem(recent);
-    }
-    @FXML
-    private void openShapes(){
-        openMenuItem(shapes);
-    }
+    private void openRecent(){ openMenuItem(recent); }
 
     @FXML
-    private void  openOverview()
-    {
-        openMenuItem(overview);
-    }
+    private void openShapes(){ openMenuItem(shapes); }
+
+    @FXML
+    private void  openOverview() { openMenuItem(overview); }
 
     @FXML
     private void openExercises() { openMenuItem(exercises);}
 
     private void openMenuItem(AnchorPane menu)
     {
-        if(!leftMenue.getChildren().contains(menu)) init();
+        if(!UML.getChildren().contains(menu)) init();
         boolean vis = menu.isVisible();
         closeMenueTabbs();
-        menu.setVisible(!vis);
+        if(vis){
+            menu.toBack();
+        }
+        else{
+            menu.toFront();
+            menu.setVisible(true);
+        }
     }
 
 }

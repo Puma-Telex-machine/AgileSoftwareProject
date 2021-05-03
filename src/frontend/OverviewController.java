@@ -1,5 +1,6 @@
 package frontend;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
@@ -18,5 +19,10 @@ public class OverviewController extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+    }
+    @FXML
+    private void minimize(){
+        this.toBack();
+        this.setVisible(false);
     }
 }

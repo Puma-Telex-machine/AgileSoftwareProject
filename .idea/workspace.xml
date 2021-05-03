@@ -3,8 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/Arrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Arrow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BoxController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/CanvasController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/ExercisesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/ExercisesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/OverviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/OverviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/RecentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/RecentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/ShapeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/ShapeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/Anchorpoint.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Anchorpoint.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Base.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/relations/Relation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/Relation.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +117,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/frontend/CanvasController.java</url>
-          <line>202</line>
+          <line>209</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
