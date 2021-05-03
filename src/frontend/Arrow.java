@@ -209,6 +209,7 @@ public class Arrow extends AnchorPane{
     private void setArrowHead(double lineAngle){
         head.getChildren().clear();
         Point[] points = getArrowHeadPoints(lineAngle,endX,endY);
+
         Line l1 = new Line(endX,endY,points[0].x,points[0].y);
         l1.setStroke(( new Color(0.72,0.72,0.72,1)));
         head.getChildren().add(l1);
