@@ -11,13 +11,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
 import javafx.scene.shape.Ellipse;
-import model.MethodData;
-//import model.VariableData;
-import model.VariableData;
 import model.boxes.BoxType;
 import model.boxes.Visibility;
 import model.facades.BoxFacade;
-import model.grid.Scaler;
+import model.facades.MethodData;
+import model.facades.VariableData;
 import model.point.Scale;
 import model.point.ScaledPoint;
 

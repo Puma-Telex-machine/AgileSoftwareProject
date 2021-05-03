@@ -1,6 +1,8 @@
 package model.grid;
 
+import frontend.Observers.UiObserver;
 import model.boxes.Box;
+import model.boxes.BoxType;
 import model.facades.BoxFacade;
 import model.facades.MethodData;
 import model.facades.VariableData;
@@ -66,7 +68,27 @@ public class BoxManager implements BoxFacade {
         diagram.update(box);
     }
 
+    @Override
+    public BoxType getType() {
+        return null;
+    }
+
+    @Override
+    public VariableData[] getVariables() {
+        return new VariableData[0];
+    }
+
+    @Override
+    public MethodData[] getMethods() {
+        return new MethodData[0];
+    }
+
     public boolean isEmpty() {
         return box == null;
+    }
+
+    @Override
+    public void subscribe(UiObserver observer) {
+
     }
 }

@@ -11,9 +11,12 @@ import java.awt.*;
 import model.facades.BoxFacade;
 import model.facades.Observer;
 import model.facades.RelationFacade;
+import model.grid.BoxManager;
 import model.grid.Diagram;
+import model.grid.IBoxGrid;
 import model.point.ScaledPoint;
 import model.relations.ArrowType;
+import model.relations.Relation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +68,7 @@ public class Model implements ModelFacade, FileHandlerFacade{
         diagram = Database.loadDiagram(fileName);
         if(diagram != null) {
             for (Box box : diagram.boxGrid.getAllBoxes()) {
-                BoxManager boxManager = new BoxManager(diagram, box);
+                BoxManager boxManager = new BoxManager(diagram.boxGrid, box);
                 observers.forEach(observer -> observer.addBox(boxManager));
             }
             name = fileName;
@@ -83,13 +86,14 @@ public class Model implements ModelFacade, FileHandlerFacade{
         //todo add relation and return the apropriate type
         return new Relation(null,null,ArrowType.ASSOCIATION);
     }
-    public void changeRelation(Relation relation,ArrowType type){
+    public void changeRelation(Relation relation, ArrowType type){
         //todo change relation
     }
 
     public List<Point> getArrowBends(BoxFacade from, BoxFacade to) {
         //todo add pathfinding to here
         return new ArrayList<>();
+    }
     
 
     

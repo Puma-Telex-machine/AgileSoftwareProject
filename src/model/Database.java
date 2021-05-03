@@ -2,6 +2,9 @@ package model;
 
 import model.boxes.*;
 import model.boxes.Class;
+import model.grid.Diagram;
+import model.point.Scale;
+import model.point.ScaledPoint;
 
 import java.awt.*;
 import java.io.*;
@@ -74,7 +77,7 @@ public class Database{
             }else if(next.startsWith("<!")){
                 switch(type){
                     case BOX:
-                        Box box = new Box(name, new Point(xpos,ypos));
+                        Box box = new Box(name, new ScaledPoint(Scale.Frontend,new Point(xpos,ypos)));
                         box.setVisibility(visibility);
                         box.setMethods(methods);
                         box.setAttributes(attributes);
@@ -169,9 +172,9 @@ public class Database{
         writer.newLine();
         writer.write("  name=" + box.getName());
         writer.newLine();
-        writer.write("  xposition=" + box.getPosition().x);
+        writer.write("  xposition=" + box.getPosition().getX(Scale.Frontend));
         writer.newLine();
-        writer.write("  yposition=" + box.getPosition().y);
+        writer.write("  yposition=" + box.getPosition().getY(Scale.Frontend));
         writer.newLine();
         writer.write("  visibility=" + box.getVisibility());
         writer.newLine();

@@ -2,8 +2,6 @@ package model.facades;
 
 import frontend.Observers.UiObservable;
 import frontend.Observers.UiObserver;
-import model.MethodData;
-import model.VariableData;
 import model.boxes.BoxType;
 //import model.VariableData;
 import model.boxes.Box;

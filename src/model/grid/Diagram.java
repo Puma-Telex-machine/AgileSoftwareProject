@@ -12,13 +12,17 @@ import java.util.HashSet;
 
 public class Diagram {
 
-    BoxGrid boxGrid = new BoxGrid();
+    public BoxGrid boxGrid = new BoxGrid();
     RelationGrid relationGrid = new RelationGrid();
     AStar aStar = new AStar(boxGrid, relationGrid);
     HashSet<Relation> relations;
 
     public BoxFacade createBox(ScaledPoint position) {
         return new BoxManager(boxGrid, new Box("test", position));
+    }
+
+    public void addBox(Box box){
+        boxGrid.add(box);
     }
 
     public RelationFacade createRelation(BoxFacade from, BoxFacade to, ArrowType arrowType) {

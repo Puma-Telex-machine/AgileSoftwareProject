@@ -5,12 +5,12 @@ import model.point.Scale;
 import model.point.ScaledPoint;
 
 
+import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.TreeMap;
 
-class BoxGrid implements IBoxGrid, BoxGridView {
+public class BoxGrid implements IBoxGrid, BoxGridView {
     TreeMap<ScaledPoint, Box> boxMap = new TreeMap<>();
 
     public List<Box> getBoxes() {
@@ -54,22 +54,19 @@ class BoxGrid implements IBoxGrid, BoxGridView {
         }
     }
 
-    public void addBox(Box box){
-        if(boxGrid.set(box.getPosition(),box))
-            boxCounter++;
-    }
-
     public ArrayList<Box> getAllBoxes(){
-        return boxGrid.getAllEntries();
+        Set<Map.Entry<ScaledPoint, Box>> set = boxMap.entrySet();
+        ArrayList<Box> boxes = new ArrayList<>();
+        for (Map.Entry<ScaledPoint, Box> entry: set) {
+            boxes.add(entry.getValue());
+        }
+        return boxes;
     }
 
     public int getBoxCounter(){
-        return boxCounter;
+        return boxMap.size();
     }
 
-    public boolean moveBox(Box from, Point to) {
-        return boxGrid.move(from.getPosition(), to);
-    }
     @Override
     public void update(Box box) {
 

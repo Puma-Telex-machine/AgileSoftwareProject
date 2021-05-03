@@ -1,7 +1,7 @@
 package model.facades;
 
 import model.Model;
-import model.Observer;
+import model.point.ScaledPoint;
 
 import java.awt.*;
 
@@ -19,5 +19,5 @@ public interface ModelFacade {
 
     void addObserver(Observer observer);
     void removeObserver(Observer observer);
-    void addBox(Point position);
+    void addBox(ScaledPoint position);
 }
