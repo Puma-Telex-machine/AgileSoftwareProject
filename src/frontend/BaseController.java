@@ -15,6 +15,7 @@ public class BaseController{
     @FXML
     AnchorPane UML;
 
+<<<<<<< HEAD
     @FXML
     AnchorPane leftMenue;
     @FXML
@@ -23,6 +24,9 @@ public class BaseController{
     ModelFacade model;
 
     FilesController files;
+=======
+    RecentController recent;
+>>>>>>> parent of bc283b0... fix leftmenu
 
     CanvasController canvas;
 
@@ -44,11 +48,19 @@ public class BaseController{
     }
 
     private void init(){
+<<<<<<< HEAD
         leftMenue.getChildren().add(files);
         leftMenue.getChildren().add(shapes);
         leftMenue.getChildren().add(overview);
         leftMenue.getChildren().add(exercises);
         LockPane(files);
+=======
+        UML.getChildren().add(recent);
+        UML.getChildren().add(shapes);
+        UML.getChildren().add(overview);
+        UML.getChildren().add(exercises);
+        LockPane(recent);
+>>>>>>> parent of bc283b0... fix leftmenu
         LockPane(shapes);
         LockPane(overview);
         LockPane(exercises);

@@ -69,7 +69,7 @@ class BoxGrid implements IBoxGrid, BoxGridView {
 
     public boolean moveBox(Box from, Point to) {
         return boxGrid.move(from.getPosition(), to);
-		
+    }
     @Override
     public void update(Box box) {
 
@@ -101,3 +101,4 @@ class BoxGrid implements IBoxGrid, BoxGridView {
         return area;
     }
 }
+
