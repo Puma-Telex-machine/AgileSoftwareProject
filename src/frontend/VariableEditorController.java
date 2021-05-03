@@ -43,6 +43,7 @@ public class VariableEditorController extends AnchorPane {
     private void deleteVariable() //This method is called when the player wants to delete the variable
     {
         box.deleteVariable(nameField.getText());
+        this.setVisible(false);
     }
 
     @FXML
@@ -57,6 +58,7 @@ public class VariableEditorController extends AnchorPane {
         data.variableType = typeField.getText();
 
         box.editVariable(data);
+        this.setVisible(false);
     }
 
     public void EditVariable(BoxFacade box)
@@ -70,6 +72,11 @@ public class VariableEditorController extends AnchorPane {
 
         nameField.setText(variableData.name);
         typeField.setText(variableData.variableType);
+
+        //Sets the options for the accessibility combo box
+        accessComboBox.getItems().addAll(Visibility.values());
+
+        //Sets the current visibility
         accessComboBox.getSelectionModel().select(variableData.visibility.name());
     }
 

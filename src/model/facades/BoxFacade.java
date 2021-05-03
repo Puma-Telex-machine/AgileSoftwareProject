@@ -2,6 +2,7 @@ package model.facades;
 
 import model.MethodData;
 import model.VariableData;
+import model.boxes.BoxType;
 //import model.VariableData;
 
 import java.awt.*;
@@ -45,4 +46,6 @@ public interface BoxFacade {
     void setPosition(Point point);
 
     void setName(String name);
+
+    BoxType getType();
 }

@@ -1,6 +1,7 @@
 package model;
 
 import model.boxes.Box;
+import model.boxes.BoxType;
 import model.facades.BoxFacade;
 
 import java.awt.*;
@@ -52,6 +53,11 @@ public class BoxManager implements BoxFacade {
     @Override
     public void setName(String name) {
         box.setName(name);
+    }
+
+    @Override
+    public BoxType getType() {
+        return box.getType();
     }
 
     public boolean isEmpty() {

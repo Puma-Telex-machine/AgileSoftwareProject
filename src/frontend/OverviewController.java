@@ -1,24 +1,15 @@
 package frontend;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import model.Model;
 
 import java.io.IOException;
 
-public class RecentController extends AnchorPane{
-
-    @FXML
-    Button minimize_button;
-
-    Model model = Model.getModel();
-
-    public RecentController() {
+public class OverviewController extends AnchorPane {
+    public OverviewController() {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("view/recent_work.fxml"));
+                getClass().getResource("view/Overview.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -28,13 +19,6 @@ public class RecentController extends AnchorPane{
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-    }
-
-    @FXML
-    private void handleButtonAction(ActionEvent event){
-        //todo add new
-        //minimize_button 
-
     }
     @FXML
     private void minimize(){
