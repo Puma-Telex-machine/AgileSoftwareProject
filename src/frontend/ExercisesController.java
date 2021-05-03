@@ -40,6 +40,12 @@ public class ExercisesController extends AnchorPane {
     }
 
     @FXML
+    private void minimize(){
+        this.toBack();
+        this.setVisible(false);
+    }
+
+    @FXML
     private VBox leftBox;
 
     @FXML

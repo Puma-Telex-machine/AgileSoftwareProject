@@ -50,13 +50,13 @@ public class BaseController{
         closeMenueTabbs();
         UML.getChildren().add(canvas);
         LockPane(canvas);
+        AnchorPane.setRightAnchor(canvas,0d);
     }
 
     private void LockPane(AnchorPane pane)
     {
         AnchorPane.setTopAnchor(pane, 0d);
         AnchorPane.setLeftAnchor(pane, 0d);
-        AnchorPane.setRightAnchor(pane, 0d);
         AnchorPane.setBottomAnchor(pane, 0d);
     }
 
@@ -66,6 +66,10 @@ public class BaseController{
         shapes.setVisible(false);
         overview.setVisible(false);
         exercises.setVisible(false);
+        recent.toBack();
+        shapes.toBack();
+        overview.toBack();
+        exercises.toBack();
     }
 
 
@@ -75,25 +79,26 @@ public class BaseController{
         openMenuItem(files);
     }
     @FXML
-    private void openShapes(){
-        openMenuItem(shapes);
-    }
+    private void openShapes(){ openMenuItem(shapes); }
 
     @FXML
-    private void  openOverview()
-    {
-        openMenuItem(overview);
-    }
+    private void  openOverview() { openMenuItem(overview); }
 
     @FXML
     private void openExercises() { openMenuItem(exercises);}
 
     private void openMenuItem(AnchorPane menu)
     {
-        if(!leftMenue.getChildren().contains(menu)) init();
+        if(!UML.getChildren().contains(menu)) init();
         boolean vis = menu.isVisible();
         closeMenueTabbs();
-        menu.setVisible(!vis);
+        if(vis){
+            menu.toBack();
+        }
+        else{
+            menu.toFront();
+            menu.setVisible(true);
+        }
     }
 
 }

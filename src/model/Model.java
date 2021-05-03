@@ -1,12 +1,17 @@
 package model;
 
 
+import model.facades.BoxFacade;
+import model.relations.ArrowType;
+import model.relations.Relation;
+
 import model.boxes.Box;
 import model.facades.FileHandlerFacade;
 import model.facades.ModelFacade;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Model implements ModelFacade, FileHandlerFacade{
 
@@ -65,5 +70,17 @@ public class Model implements ModelFacade, FileHandlerFacade{
         name = Database.newFile();
         if(name != null)
             loadFile(name);
+    }
+    public Relation addRelation(BoxFacade from, BoxFacade to){
+        //todo add relation and return the apropriate type
+        return new Relation(null,null,ArrowType.ASSOCIATION);
+    }
+    public void changeRelation(Relation relation,ArrowType type){
+        //todo change relation
+    }
+
+    public List<Point> getArrowBends(BoxFacade from, BoxFacade to) {
+        //todo add pathfinding to here
+        return new ArrayList<>();
     }
 }
