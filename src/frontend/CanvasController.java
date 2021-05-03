@@ -102,7 +102,6 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
                 Relation startRelation = model.addRelation(arrowBox.getBox(),box.getBox());
                 List<Point> bends = model.getArrowBends(arrowBox.getBox(),box.getBox());
                 //temporary
-                bends.add(new Point(1000,700));
                 bends.add(new Point(p.x-50,arrowStart.y));
                 bends.add(new Point(p.x-50,p.y));
 
@@ -156,6 +155,12 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     private Arrow clickedArrow = null;
     @FXML
     private void handleArrowMenu(MouseEvent e){
+        if(makingArrow){
+            makingArrow=false;
+            this.getChildren().remove(dragArrow);
+            e.consume();
+            return;
+        }
         Arrow closest = null;
         double min = 10000;
         for (Arrow a:arrows){
@@ -184,6 +189,12 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
 
     @FXML
     private void handleContextMenu(ContextMenuEvent e){
+        if(makingArrow){
+            makingArrow=false;
+            this.getChildren().remove(dragArrow);
+            e.consume();
+            return;
+        }
         contextMenu.setLayoutX(e.getX());
         contextMenu.setLayoutY(e.getY());
         contextMenu.setVisible(true);
