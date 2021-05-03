@@ -18,7 +18,9 @@ public class FileMenuItemController extends AnchorPane {
 
     FileHandlerFacade fileHandler;
 
-    public FileMenuItemController(String fileName, FileHandlerFacade fileHandler) {
+    CanvasController canvas;
+
+    public FileMenuItemController(String fileName, FileHandlerFacade fileHandler, CanvasController canvas) {
         FXMLLoader fxmlLoader = new FXMLLoader(
                 getClass().getResource("view/FileMenuItem.fxml"));
 
@@ -34,11 +36,13 @@ public class FileMenuItemController extends AnchorPane {
         this.fileName = fileName;
         nameLable.setText(fileName);
         this.fileHandler = fileHandler;
+        this.canvas = canvas;
     }
 
     @FXML
     private void openFile()
     {
+        canvas.clearBoxes();
         fileHandler.loadFile(fileName);
     }
 }

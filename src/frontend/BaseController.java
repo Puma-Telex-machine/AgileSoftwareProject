@@ -30,9 +30,9 @@ public class BaseController{
 
 
     public BaseController() {
-        model = ModelFacade.getModel();
-        files = new FilesController(model.getFileHandler());
         canvas = new CanvasController();
+        model = ModelFacade.getModel();
+        files = new FilesController(model.getFileHandler(), canvas);
         shapes = new ShapeController(canvas);
         overview = new OverviewController();
         exercises = new ExercisesController();

@@ -205,5 +205,16 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     private void eventTrap(Event e){
         e.consume();
     }
+
     //endregion
+
+    public  void clearBoxes()
+    {
+        this.getChildren().removeAll();
+        for (int i = 0; i < boxes.size(); i++)
+        {
+            boxes.get(i).setVisible(false); //todo: Properly remove items here
+        }
+        boxes = new ArrayList<>();
+    }
 }

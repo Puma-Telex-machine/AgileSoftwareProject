@@ -23,7 +23,7 @@ public class FilesController extends AnchorPane{
 
     FileHandlerFacade fileHandler;
 
-    public FilesController(FileHandlerFacade fileHandler) {
+    public FilesController(FileHandlerFacade fileHandler, CanvasController canvas) {
         FXMLLoader fxmlLoader = new FXMLLoader(
                 getClass().getResource("view/Files.fxml"));
 
@@ -41,7 +41,7 @@ public class FilesController extends AnchorPane{
 
         for(int i = 0; i < files.length; i++)
         {
-            FileMenuItemController file = new FileMenuItemController(files[i], fileHandler);
+            FileMenuItemController file = new FileMenuItemController(files[i], fileHandler, canvas);
             filesBox.getChildren().add(file);
         }
     }
