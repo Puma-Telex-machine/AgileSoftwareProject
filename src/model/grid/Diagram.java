@@ -2,13 +2,11 @@ package model.grid;
 
 import model.boxes.Box;
 import model.facades.BoxFacade;
-import model.facades.BoxManager;
 import model.facades.RelationFacade;
 import model.point.ScaledPoint;
 import model.relations.ArrowType;
 import model.relations.Relation;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Diagram {
@@ -25,8 +23,8 @@ public class Diagram {
     public RelationFacade createRelation(BoxFacade from, BoxFacade to, ArrowType arrowType) {
         Relation relation = new Relation(from, to, arrowType);
         relations.add(relation);
-        ArrayList<ScaledPoint> path = aStar.addRelation(relation);
-        relationGrid.add(path, relation);
-        return null; //TODO: hur gör vi här?
+        PathNode path = aStar.findPath(relation);
+        relationGrid.add(path);
+        return null; //TODO: hur gör vi här egentligen?
     }
 }

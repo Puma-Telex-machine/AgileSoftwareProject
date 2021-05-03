@@ -1,5 +1,6 @@
 package model.grid;
 
+import model.point.Scale;
 import model.point.ScaledPoint;
 import model.relations.Relation;
 
@@ -8,23 +9,33 @@ import java.util.TreeMap;
 
 public class RelationGrid {
 
-    TreeMap<ScaledPoint, ArrayList<Relation>> relationMap = new TreeMap<>();
+    TreeMap<ScaledPoint, ArrayList<PathNode>> relationMap = new TreeMap<>();
+
+    ArrayList<ScaledPoint> getPath() {
+        return null;
+    }
 
     boolean canMergeLines(Relation relation, ScaledPoint position) {
         if (!relationMap.containsKey(position)) return true;
 
-        for (Relation n : relationMap.get(position)) {
-            if (n.getTo() == relation.getTo() && n.getArrowType() == relation.getArrowType()) {
+        for (PathNode n : relationMap.get(position)) {
+            if (n.relation.getTo() == relation.getTo() && n.relation.getArrowType() == relation.getArrowType()) {
                 return true;
             }
         }
         return false;
     }
 
-    public void add(ArrayList<ScaledPoint> path, Relation relation) {
-        for (ScaledPoint p : path) {
-            ArrayList<Relation> relations = relationMap.get(p);
-            relations.add(relation);
+    public void add(PathNode pathStart) {
+        PathNode current = pathStart;
+        while (current != null) {
+            ArrayList<PathNode> relations = relationMap.get(current.position);
+            relations.add(current);
+            current = current.previous;
         }
+    }
+
+    private double bearing(ScaledPoint from, ScaledPoint to) {
+        return Math.atan2(from.getY(Scale.Internal) - to.getY(Scale.Internal), to.getX(Scale.Internal) - from.getX(Scale.Internal));
     }
 }

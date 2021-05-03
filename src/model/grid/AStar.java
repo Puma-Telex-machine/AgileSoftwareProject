@@ -4,7 +4,6 @@ import model.point.Scale;
 import model.point.ScaledPoint;
 import model.relations.Relation;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
@@ -14,28 +13,33 @@ public class AStar {
     BoxGridView boxGrid;
     RelationGrid relationGrid;
 
-    TreeMap<ScaledPoint, RelationNode> visited = new TreeMap<>();
-    PriorityQueue<RelationNode> discovered = new PriorityQueue<>();
+    TreeMap<ScaledPoint, PathNode> visited = new TreeMap<>();
+    PriorityQueue<PathNode> discovered = new PriorityQueue<>();
 
     int stepCost = 1;
     int bendCost = 10;
     int crossCost = 100;
+    ScaledPoint destination;
 
     public AStar(BoxGridView boxGrid, RelationGrid relationGrid) {
         this.boxGrid = boxGrid;
         this.relationGrid = relationGrid;
     }
 
-    public ArrayList<ScaledPoint> addRelation(Relation relation) {
-        RelationNode startNode = new RelationNode(relation);
-        startNode.position = relation.getFrom().getPosition();
+    public PathNode findPath(Relation relation) {
+        destination = relation.getToPosition();
+
+        PathNode startNode = new PathNode(this, relation);
+        startNode.position = relation.getFromPosition();
         startNode.cost = 0;
         discovered.add(startNode);
 
-        while (!discovered.isEmpty()) {
-            RelationNode current = discovered.remove();
+        ArrayList<ScaledPoint> path;
 
-            if (current.position.equals(current.destination)) return compilePath(current);
+        while (!discovered.isEmpty()) {
+            PathNode current = discovered.remove();
+
+            if (current.position.equals(destination)) return current;
 
             visited.put(current.position, current);
 
@@ -47,32 +51,36 @@ public class AStar {
         return null;
     }
 
-    private ArrayList<ScaledPoint> compilePath(RelationNode current) {
+/*
+    private ArrayList<ScaledPoint> compilePath(PathNode current) {
         ArrayList<ScaledPoint> path = new ArrayList<>();
         while (current.previous != null) {
-            path.add(current.position);
+            if (current.direction != current.previous.direction) {
+                path.add(current.position);
+            }
             current = current.previous;
         }
         return path;
     }
+ */
 
-    void discover(RelationNode previous, Direction direction) {
+    void discover(PathNode previous, Direction direction) {
         // Get the position to discover
         ScaledPoint position = previous.position;
-        position.move(Scale.Backend, direction.x, direction.y);
+        position.move(Scale.Backend, direction.getX(), direction.getY());
 
         if (visited.containsKey(position)) {
             return;
         }
 
-        if (!boxGrid.isEmpty(position)) {
-            if (!position.equals(previous.destination)) {
+        if (!boxGrid.isOccupied(position)) {
+            if (position.equals(destination)) {
                 return;
             }
         }
 
         // Generate the newly discovered node
-        RelationNode node = new RelationNode(previous.relation);
+        PathNode node = new PathNode(this, previous.relation);
         node.previous = previous;
         node.direction = direction;
         node.position = position;
@@ -91,46 +99,21 @@ public class AStar {
         discovered.add(node);
     }
 
-    private static int getCostEstimate(RelationNode node) {
-        return manhattanDistance(node.position, node.destination) + node.cost;
+    int getCostEstimate(PathNode node) {
+        int costEstimate;
+        costEstimate  = node.cost;
+        costEstimate += manhattanDistance(node.position, destination);
+        costEstimate += minBends(node.position, destination);
+
+        return costEstimate;
     }
 
     private static int manhattanDistance(ScaledPoint from, ScaledPoint to) {
         return (Math.abs(from.getX(Scale.Backend) - to.getX(Scale.Backend)) + Math.abs(from.getY(Scale.Backend) - to.getY(Scale.Backend)));
     }
 
-    private static class RelationNode implements Comparable<RelationNode> {
-        Relation relation;
-        ScaledPoint destination;
-
-        RelationNode previous;
-        Direction direction;
-        ScaledPoint position;
-        int cost;
-
-        public RelationNode(Relation relation) {
-            this.relation = relation;
-            this.destination = relation.getTo().getPosition(); //Dumt?
-        }
-
-        @Override
-        public int compareTo(RelationNode o) {
-            return getCostEstimate(this) - getCostEstimate(o); // Correct order?
-        }
+    private static int minBends(ScaledPoint position, ScaledPoint destination) {
+        return 0; // Något något snabbare algoritm genom att inkludera
     }
 
-    private enum Direction {
-        UP(0, -1),
-        DOWN(0, 1),
-        LEFT(-1, 0),
-        RIGHT(1, 0);
-
-        private final int x;
-        private final int y;
-
-        Direction(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-    }
 }

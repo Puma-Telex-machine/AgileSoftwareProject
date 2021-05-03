@@ -3,6 +3,7 @@ package model.relations;
 import model.boxes.Box;
 import model.boxes.BoxType;
 import model.facades.BoxFacade;
+import model.point.ScaledPoint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ public class Relation {
     BoxFacade to;
     BoxFacade from;
     ArrowType arrowType;
-   
+
     public Relation(BoxFacade from, BoxFacade to, ArrowType arrowType) {
         this.from = from;
         this.to = to;
@@ -22,8 +23,16 @@ public class Relation {
         return to;
     }
 
+    public ScaledPoint getToPosition() {
+        return to.getPosition();
+    }
+
     public BoxFacade getFrom() {
         return from;
+    }
+
+    public ScaledPoint getFromPosition() {
+        return from.getPosition();
     }
 
     public ArrowType getArrowType() {
@@ -49,7 +58,7 @@ public class Relation {
         return null;
     }
 
-    private List<ArrowType> classRelations (BoxType to) {
+    private List<ArrowType> classRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
         if (to == BoxType.CLASS) {
             types.add(ArrowType.EXTENDS);
@@ -66,7 +75,7 @@ public class Relation {
         return types;
     }
 
-    private List<ArrowType> interfaceRelations (BoxType to) {
+    private List<ArrowType> interfaceRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
         if (to == BoxType.INTERFACE) {
             types.add(ArrowType.EXTENDS);

@@ -5,6 +5,8 @@ import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
+import model.point.Scale;
+import model.point.ScaledPoint;
 
 import java.awt.*;
 
@@ -81,7 +83,8 @@ public class BaseController{
     }
     @FXML
     private void handleContextAddBox(MouseEvent e) {
-        model.addBox(new Point((int) contextMenu.getLayoutX()-80,(int) contextMenu.getLayoutY()-35));
+        ScaledPoint newBoxPosition = new ScaledPoint(Scale.Frontend, contextMenu.getLayoutX()-80, contextMenu.getLayoutY()-35);
+        model.addBox(newBoxPosition);
         exitContext();
         e.consume();
     }

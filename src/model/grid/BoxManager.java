@@ -1,7 +1,9 @@
-package model.facades;
+package model.grid;
 
 import model.boxes.Box;
-import model.grid.IBoxGrid;
+import model.facades.BoxFacade;
+import model.facades.MethodData;
+import model.facades.VariableData;
 import model.point.ScaledPoint;
 
 public class BoxManager implements BoxFacade {

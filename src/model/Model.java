@@ -1,9 +1,13 @@
 package model;
 
-import model.grid.BoxGrid;
+import model.facades.BoxFacade;
+import model.facades.Observer;
+import model.facades.RelationFacade;
 import model.grid.Diagram;
+import model.point.ScaledPoint;
+import model.relations.ArrowType;
+import model.relations.Relation;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Model {
@@ -25,34 +29,13 @@ public class Model {
         observers.remove(observer);
     }
 
-    public void addBox(Point position) {
-        BoxManager boxManager = new BoxManager(diagram, position);
-        if (!boxManager.isEmpty()) {
-            observers.forEach(observer -> observer.addBox(boxManager));
-        }
-
-        //runTest();
+    public void addBox(ScaledPoint position) {
+        BoxFacade boxManager = diagram.createBox(position);
+        observers.forEach(observer -> observer.addBox(boxManager));
     }
 
-    public BoxGrid getBoxGrid() {
-        return diagram.getBoxGrid();
+    public void addRelation(BoxFacade from, BoxFacade to, ArrowType arrowType) {
+        RelationFacade relation = diagram.createRelation(from, to, arrowType);
+        observers.forEach(observer -> observer.addRelation(relation));
     }
-
-    /*
-    private void runTest() {
-        BoxManager boxManager = new BoxManager(diagram, new Point(100, 100));
-        if (!boxManager.isEmpty()) {
-            observers.forEach(observer -> observer.addBox(boxManager));
-        }
-
-        diagram.createRelation()
-        addTestPoint(new Point(10, 10));
-        //addBox(new Point(20, 20));
-    }
-
-    private void addTestPoint(Point point) {
-        observers.forEach(observer -> observer.addTestPoint(point.x, point.y));
-    }
-
- */
 }

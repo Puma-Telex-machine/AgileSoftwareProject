@@ -2,17 +2,13 @@ package frontend;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import model.Model;
 import model.facades.Observer;
 import model.facades.BoxFacade;
-import model.grid.AStar;
-import model.grid.Scaler;
-import model.relations.ArrowType;
-import model.relations.Relation;
+import model.facades.RelationFacade;
+import model.point.Scale;
+import model.point.ScaledPoint;
 
-import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class CanvasController extends AnchorPane implements Observer {
 
@@ -39,39 +35,19 @@ public class CanvasController extends AnchorPane implements Observer {
         methodEditor.setVisible(false);
     }
 
-    Model model;
-
-    private void test() {
-        model = Model.getModel();
-        AStar AStar = new AStar(model.getBoxGrid(), 3, 4);
-        ArrayList<Point> path = AStar.addRelation(new Relation(boxFacades.get(0).getBox(), boxFacades.get(1).getBox(), ArrowType.EXTENDS));
-        for (Point p : path) {
-            addTestPoint(p);
-        }
-    }
-
-    ArrayList<BoxFacade> boxFacades = new ArrayList<>();
-
     @Override
     public void addBox(BoxFacade b){
-        addTestPoint(new Point(10, 10));
-        boxFacades.add(b);
         BoxController box = new BoxController(b,variableEditor,methodEditor);
         this.getChildren().add(box);
-        if (boxFacades.size() >= 2) {
-            test();
-        }
     }
 
-    public void addTestPoint (Point p)
-    {
-        p = Scaler.convertFromScale(p);
-        TestPointController point = new TestPointController(p.x, p.y);
-        this.getChildren().add(point);
+    @Override
+    public void addRelation(RelationFacade relation) {
+        
     }
 
-    public Point getMiddle(){
-        return new Point(500,400);
+    public ScaledPoint getMiddle(){
+        return new ScaledPoint(Scale.Frontend,500, 400);
     }
 
 }

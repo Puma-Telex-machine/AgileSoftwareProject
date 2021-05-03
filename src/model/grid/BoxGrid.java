@@ -4,7 +4,6 @@ import model.boxes.Box;
 import model.point.Scale;
 import model.point.ScaledPoint;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -17,7 +16,7 @@ class BoxGrid implements IBoxGrid, BoxGridView {
     }
 
     @Override
-    public boolean isEmpty(ScaledPoint scaledPoint) {
+    public boolean isOccupied(ScaledPoint scaledPoint) {
         return boxMap.containsKey(scaledPoint);
     }
 
@@ -33,7 +32,6 @@ class BoxGrid implements IBoxGrid, BoxGridView {
 
     @Override
     public void move(Box box, ScaledPoint point) {
-
         // Remove the old area of the box
         remove(box);
 
