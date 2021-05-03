@@ -31,21 +31,21 @@ public class BaseController{
         recent = new RecentController();
         canvas = new CanvasController();
         shapes = new ShapeController(canvas);
-        overview = new OverviewController();
-        exercises = new ExercisesController();
+        //overview = new OverviewController();
+        //exercises = new ExercisesController();
     }
 
     private void init(){
         leftMenu.getChildren().add(recent);
         leftMenu.getChildren().add(shapes);
-        leftMenu.getChildren().add(overview);
-        leftMenu.getChildren().add(exercises);
+        //leftMenu.getChildren().add(overview);
+        //leftMenu.getChildren().add(exercises);
         LockPane(recent);
         LockPane(shapes);
-        LockPane(overview);
-        LockPane(exercises);
+        //LockPane(overview);
+        //LockPane(exercises);
         closeMenueTabbs();
-        UML.getChildren().add(canvas);
+        //UML.getChildren().add(canvas);
         LockPane(canvas);
 
     }
@@ -62,8 +62,8 @@ public class BaseController{
     {
         recent.setVisible(false);
         shapes.setVisible(false);
-        overview.setVisible(false);
-        exercises.setVisible(false);
+        //overview.setVisible(false);
+        //exercises.setVisible(false);
         leftMenu.toBack();
     }
 
@@ -75,11 +75,11 @@ public class BaseController{
     @FXML
     private void openShapes(){ openMenuItem(shapes); }
 
-    @FXML
+    /*@FXML
     private void  openOverview() { openMenuItem(overview); }
 
     @FXML
-    private void openExercises() { openMenuItem(exercises);}
+    private void openExercises() { openMenuItem(exercises);}*/
 
     private void openMenuItem(AnchorPane menu)
     {
