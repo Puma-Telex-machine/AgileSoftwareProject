@@ -2,6 +2,7 @@ package frontend;
 
 import frontend.Observers.ArrowObservable;
 import frontend.Observers.ArrowObserver;
+import frontend.Observers.UiObserver;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -14,6 +15,7 @@ import model.MethodData;
 //import model.VariableData;
 import model.VariableData;
 import model.boxes.BoxType;
+import model.boxes.Visibility;
 import model.facades.BoxFacade;
 
 import java.awt.*;
@@ -24,7 +26,7 @@ import java.util.List;
 /**
  * controller for the boxes in frontend
  */
-public class BoxController extends AnchorPane implements ArrowObservable {
+public class BoxController extends AnchorPane implements ArrowObservable, UiObserver {
     @FXML
     private TextField nameField;
     @FXML
@@ -101,6 +103,7 @@ public class BoxController extends AnchorPane implements ArrowObservable {
         this.setLayoutY(box.getPosition().y);
 
         initAnchors();
+        box.subscribe(this);
     }
 
     private void initAnchors(){
@@ -219,6 +222,7 @@ public class BoxController extends AnchorPane implements ArrowObservable {
         variableEditor.toFront();
         variableEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
         variableEditor.setLayoutY(this.getLayoutY()+this.getHeight()/2-variableEditor.getHeight()/2);
+        variableEditor.EditVariable(box);
         //variableEditor.EditVariable(box);
 
         //add lamda expression  ish currentEditArgument.argumentTypeField.setOnAction((Action) -> editVariable(variableData)
@@ -360,4 +364,67 @@ public class BoxController extends AnchorPane implements ArrowObservable {
         return box;
     }
     //endregion
+
+    /**
+     * Updates all of the graphics of this box
+     */
+    public void update()
+    {
+        variables.getChildren().setAll(new ArrayList<AnchorPane>(0));
+        methods.getChildren().setAll(new ArrayList<AnchorPane>(0));
+
+        VariableData[] variableData = box.getVariables();
+        MethodData[] methodData = box.getMethods();
+
+        for (int i = 0; i < variableData.length; i++)
+        {
+            String variable = "";
+            variable += attributeVisString(variableData[i].visibility);
+            variable += " ";
+            variable += variableData[i].name;
+            variable += ": ";
+            variable += variableData[i].variableType;
+
+            variables.getChildren().add(new BoxAttributeTextController(variable));
+        }
+
+        for(int i = 0; i < methodData.length; i++)
+        {
+            String method = "";
+            method += attributeVisString(methodData[i].visibility);
+            method += " ";
+            method += methodData[i].methodName;
+            method += " (";
+            for (int j = 0; j < methodData[i].arguments.length; j++)
+            {
+                method += methodData[i].arguments[j];
+
+                if(j+1 != methodData[i].arguments.length)
+                    method += ", ";
+            }
+            method += ") : ";
+            method += methodData[i].methodReturnType;
+
+            methods.getChildren().add(new BoxAttributeTextController(method));
+        }
+    }
+
+    /**
+     * Returns the right sign for the visibility
+     * @param visibility
+     * @return
+     */
+    private String attributeVisString (Visibility visibility)
+    {
+        String ret = "";
+        switch (visibility)
+        {
+            case PUBLIC: ret = "+"; break;
+            case PRIVATE: ret = "-"; break;
+            case PROTECTED: ret = "#"; break;
+            case PACKAGE_PRIVATE: ret = "~"; break;
+        }
+
+        return ret;
+    }
 }

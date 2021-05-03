@@ -26,9 +26,8 @@ public class ExercisesController extends AnchorPane {
             throw new RuntimeException(exception);
         }
 
+        //exercises = exercisesHandler.getAllExercises();
         /*
-        exercises = exercisesHandler.getAllExercises();
-
         for (int i = 0; i < exercises.length; i++) {
             ExerciseFacade exercise = exercises[i];
 

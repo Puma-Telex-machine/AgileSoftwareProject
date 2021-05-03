@@ -1,13 +1,8 @@
 package frontend;
 
 import javafx.fxml.FXML;
-import javafx.scene.input.ContextMenuEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import model.Model;
-import model.facades.BoxFacade;
-
-import java.awt.*;
+import model.facades.ModelFacade;
 
 
 public class BaseController{
@@ -15,7 +10,14 @@ public class BaseController{
     @FXML
     AnchorPane UML;
 
-    RecentController recent;
+    @FXML
+    AnchorPane leftMenue;
+    @FXML
+    AnchorPane contextMenu;
+
+    ModelFacade model;
+
+    FilesController files;
 
     CanvasController canvas;
 
@@ -28,7 +30,8 @@ public class BaseController{
 
 
     public BaseController() {
-        recent = new RecentController();
+        model = ModelFacade.getModel();
+        files = new FilesController(model.getFileHandler());
         canvas = new CanvasController();
         shapes = new ShapeController(canvas);
         overview = new OverviewController();
@@ -36,11 +39,11 @@ public class BaseController{
     }
 
     private void init(){
-        UML.getChildren().add(recent);
-        UML.getChildren().add(shapes);
-        UML.getChildren().add(overview);
-        UML.getChildren().add(exercises);
-        LockPane(recent);
+        leftMenue.getChildren().add(files);
+        leftMenue.getChildren().add(shapes);
+        leftMenue.getChildren().add(overview);
+        leftMenue.getChildren().add(exercises);
+        LockPane(files);
         LockPane(shapes);
         LockPane(overview);
         LockPane(exercises);
@@ -59,7 +62,7 @@ public class BaseController{
 
     private void closeMenueTabbs()
     {
-        recent.setVisible(false);
+        files.setVisible(false);
         shapes.setVisible(false);
         overview.setVisible(false);
         exercises.setVisible(false);
@@ -72,8 +75,9 @@ public class BaseController{
 
     //open Menus
     @FXML
-    private void openRecent(){ openMenuItem(recent); }
-
+    private void openRecent(){
+        openMenuItem(files);
+    }
     @FXML
     private void openShapes(){ openMenuItem(shapes); }
 
