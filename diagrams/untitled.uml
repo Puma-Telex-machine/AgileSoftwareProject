@@ -1,25 +1,7 @@
-boxcount=4
+boxcount=1
 <BOX>
   name=Box 0
-  xposition=410
-  yposition=208
-  visibility=PUBLIC
-<!BOX>
-<BOX>
-  name=Box 3
   xposition=500
   yposition=400
-  visibility=PUBLIC
-<!BOX>
-<BOX>
-  name=Box 1
-  xposition=801
-  yposition=429
-  visibility=PUBLIC
-<!BOX>
-<BOX>
-  name=Box 2
-  xposition=889
-  yposition=239
   visibility=PUBLIC
 <!BOX>

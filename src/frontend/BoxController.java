@@ -374,7 +374,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         for(int i = 0; i < methodData.length; i++)
         {
             String method = "";
-            method += methodData[i].visibility;
+            method += attributeVisString(methodData[i].visibility);
             method += " ";
             method += methodData[i].methodName;
             method += " (";
