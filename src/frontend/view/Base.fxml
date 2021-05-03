@@ -72,7 +72,11 @@
                         </VBox>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="UML" prefHeight="10000.0" prefWidth="10000.0" styleClass="background" />
+                  <AnchorPane fx:id="UML" prefHeight="10000.0" prefWidth="10000.0" styleClass="background">
+                     <children>
+                        <AnchorPane fx:id="leftMenu" prefHeight="850.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
                </children>
             </HBox>
          </children>
