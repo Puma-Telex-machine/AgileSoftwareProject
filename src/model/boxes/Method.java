@@ -15,14 +15,21 @@ import java.util.Set;
 public class Method {
 
     private String name;
-    private List<Attribute> arguments;
+    private List<Attribute> parameters = new ArrayList<>();
     private Set<Modifier> modifiers = new HashSet<>();
-    private Visibility visibility;
+    private Visibility visibility = Visibility.PUBLIC;
     String returnValue; // Unsure how to implement types, for now
+
+    public Method(String name, List<Attribute> parameters, Set<Modifier> modifiers, Visibility visibility){
+        this.name = name;
+        this.parameters = parameters;
+        this.modifiers = modifiers;
+        this.visibility = visibility;
+    }
 
     Method(MethodData data){
         this.name = data.methodName;
-        this.arguments = createArguments(data);
+        this.parameters = createArguments(data);
         this.visibility = data.visibility;
     }
 
@@ -34,7 +41,7 @@ public class Method {
         return result;
     }
 
-    public void SetName(String name){
+    public void setName(String name){
         this.name = name;
     }
 
@@ -43,7 +50,7 @@ public class Method {
      * @param data The new set of arguments.
      */
     public void SetArguments(MethodData data){
-        this.arguments = createArguments(data);
+        this.parameters = createArguments(data);
     }
 
     /**
@@ -51,7 +58,7 @@ public class Method {
      * @param argument The argument to be added.
      */
     public void AddArgument(Attribute argument){
-        arguments.add(argument);
+        parameters.add(argument);
     }
 
     /**
@@ -59,8 +66,8 @@ public class Method {
      * @param position the argument's position in the list.
      */
     public void RemoveArgument(int position){
-        if(position < arguments.size() && position >= 0)
-            arguments.remove(position);
+        if(position < parameters.size() && position >= 0)
+            parameters.remove(position);
     }
 
     /**
@@ -91,19 +98,19 @@ public class Method {
         this.visibility = visibility;
     }
 
-    public String GetName(){
+    public String getName(){
         return name;
     }
 
-    public List<Attribute> GetArguments(){
-        return arguments;
+    public List<Attribute> getParameters(){
+        return parameters;
     }
 
-    public Set<Modifier> GetModifiers(){
+    public Set<Modifier> getModifiers(){
         return modifiers;
     }
 
-    public Visibility GetVisibility(){
+    public Visibility getVisibility(){
         return visibility;
     }
 }

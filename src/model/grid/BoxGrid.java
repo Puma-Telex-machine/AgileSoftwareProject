@@ -3,6 +3,7 @@ package model.grid;
 import model.boxes.Box;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class BoxGrid {
 
@@ -22,6 +23,19 @@ public class BoxGrid {
             return box;
         }
         return null;
+    }
+
+    public void addBox(Box box){
+        if(boxGrid.set(box.getPosition(),box))
+            boxCounter++;
+    }
+
+    public ArrayList<Box> getAllBoxes(){
+        return boxGrid.getAllEntries();
+    }
+
+    public int getBoxCounter(){
+        return boxCounter;
     }
 
     public boolean moveBox(Box from, Point to) {

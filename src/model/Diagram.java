@@ -16,9 +16,13 @@ public class Diagram {
             box.setPosition(position);
         }
     }
-
+    
     public Box createBox(Point point) {
         return boxGrid.createBox(point);
+    }
+
+    void addBox(Box box){
+        boxGrid.addBox(box);
     }
 
     public void deleteMethod(Box box, String methodName) {

@@ -1,0 +1,7 @@
+boxcount=1
+<BOX>
+  name=Box 0
+  xposition=500
+  yposition=400
+  visibility=PUBLIC
+<!BOX>
