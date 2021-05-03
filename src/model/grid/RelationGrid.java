@@ -11,10 +11,6 @@ public class RelationGrid {
 
     TreeMap<ScaledPoint, ArrayList<PathNode>> relationMap = new TreeMap<>();
 
-    ArrayList<ScaledPoint> getPath() {
-        return null;
-    }
-
     boolean canMergeLines(Relation relation, ScaledPoint position) {
         if (!relationMap.containsKey(position)) return true;
 
@@ -26,13 +22,21 @@ public class RelationGrid {
         return false;
     }
 
-    public void add(PathNode pathStart) {
+    public ArrayList<ScaledPoint> add(PathNode pathStart) {
+        ArrayList<ScaledPoint> pathPoints = new ArrayList<>();
         PathNode current = pathStart;
         while (current != null) {
             ArrayList<PathNode> relations = relationMap.get(current.position);
             relations.add(current);
+
+            if (current.previous != null) {
+                if (current.direction != current.previous.direction) {
+                    pathPoints.add(current.position);
+                }
+            }
             current = current.previous;
         }
+        return pathPoints;
     }
 
     private double bearing(ScaledPoint from, ScaledPoint to) {

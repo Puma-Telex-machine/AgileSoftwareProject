@@ -6,7 +6,6 @@ import model.facades.RelationFacade;
 import model.grid.Diagram;
 import model.point.ScaledPoint;
 import model.relations.ArrowType;
-import model.relations.Relation;
 
 import java.util.ArrayList;
 
