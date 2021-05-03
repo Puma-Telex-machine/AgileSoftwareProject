@@ -114,7 +114,7 @@ public class BaseController{
 
     private void openMenuItem(AnchorPane menu)
     {
-        if(!UML.getChildren().contains(menu)) init();
+        if(!leftMenue.getChildren().contains(menu)) init();
         boolean vis = menu.isVisible();
         closeMenueTabbs();
         if(vis){

@@ -70,7 +70,7 @@ public class BoxManager implements BoxFacade {
 
     @Override
     public BoxType getType() {
-        return null;
+        return box.getType();
     }
 
     @Override

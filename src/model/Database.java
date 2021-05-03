@@ -31,6 +31,8 @@ public class Database{
             if(!toRead.exists())
                 return null;
             Scanner scanner = new Scanner(toRead);
+            if(!scanner.hasNextLine())
+                return null;
             String[] nextSplit = scanner.nextLine().trim().split("=");
             if(nextSplit[0].toLowerCase().matches("boxcount"))
                 boxcount = Integer.parseInt(nextSplit[1]); // not used for anything yet
