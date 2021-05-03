@@ -16,9 +16,13 @@ public class BaseController{
     AnchorPane UML;
 
     @FXML
-    AnchorPane leftMenu;
+    AnchorPane leftMenue;
+    @FXML
+    AnchorPane contextMenu;
 
-    RecentController recent;
+    ModelFacade model;
+
+    FilesController files;
 
     CanvasController canvas;
 
@@ -41,9 +45,9 @@ public class BaseController{
 
     private void init(){
         leftMenue.getChildren().add(files);
-        leftMenu.getChildren().add(shapes);
-        leftMenu.getChildren().add(overview);
-        leftMenu.getChildren().add(exercises);
+        leftMenue.getChildren().add(shapes);
+        leftMenue.getChildren().add(overview);
+        leftMenue.getChildren().add(exercises);
         LockPane(files);
         LockPane(shapes);
         LockPane(overview);
@@ -51,7 +55,7 @@ public class BaseController{
         closeMenueTabbs();
         UML.getChildren().add(canvas);
         LockPane(canvas);
-
+        AnchorPane.setRightAnchor(canvas,0d);
     }
 
     private void LockPane(AnchorPane pane)
@@ -59,7 +63,6 @@ public class BaseController{
         AnchorPane.setTopAnchor(pane, 0d);
         AnchorPane.setLeftAnchor(pane, 0d);
         AnchorPane.setBottomAnchor(pane, 0d);
-        AnchorPane.setRightAnchor(pane,0d);
     }
 
     private void closeMenueTabbs()
@@ -68,7 +71,10 @@ public class BaseController{
         shapes.setVisible(false);
         overview.setVisible(false);
         exercises.setVisible(false);
-        leftMenu.toBack();
+        recent.toBack();
+        shapes.toBack();
+        overview.toBack();
+        exercises.toBack();
     }
 
     @FXML
@@ -106,14 +112,14 @@ public class BaseController{
 
     private void openMenuItem(AnchorPane menu)
     {
-        if(!leftMenu.getChildren().contains(menu)) init();
+        if(!UML.getChildren().contains(menu)) init();
         boolean vis = menu.isVisible();
         closeMenueTabbs();
         if(vis){
-            leftMenu.toBack();
+            menu.toBack();
         }
         else{
-            leftMenu.toFront();
+            menu.toFront();
             menu.setVisible(true);
         }
     }
