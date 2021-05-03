@@ -209,6 +209,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         variableEditor.toFront();
         variableEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
         variableEditor.setLayoutY(this.getLayoutY()+this.getHeight()/2-variableEditor.getHeight()/2);
+        variableEditor.EditVariable(box);
         //variableEditor.EditVariable(box);
 
         //add lamda expression  ish currentEditArgument.argumentTypeField.setOnAction((Action) -> editVariable(variableData)
@@ -356,6 +357,9 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      */
     public void update()
     {
+        variables.getChildren().setAll(new ArrayList<AnchorPane>(0));
+        methods.getChildren().setAll(new ArrayList<AnchorPane>(0));
+
         VariableData[] variableData = box.getVariables();
         MethodData[] methodData = box.getMethods();
 
