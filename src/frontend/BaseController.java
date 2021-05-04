@@ -8,8 +8,6 @@ import model.facades.ModelFacade;
 import model.point.Scale;
 import model.point.ScaledPoint;
 
-import java.awt.*;
-
 
 public class BaseController{
 
@@ -18,7 +16,7 @@ public class BaseController{
 
 
     @FXML
-    AnchorPane leftMenue;
+    AnchorPane leftMenu;
     @FXML
     AnchorPane contextMenu;
 
@@ -46,15 +44,15 @@ public class BaseController{
     }
 
     private void init(){
-        leftMenue.getChildren().add(files);
-        leftMenue.getChildren().add(shapes);
-        leftMenue.getChildren().add(overview);
-        leftMenue.getChildren().add(exercises);
+        leftMenu.getChildren().add(files);
+        leftMenu.getChildren().add(shapes);
+        leftMenu.getChildren().add(overview);
+        leftMenu.getChildren().add(exercises);
         LockPane(files);
         LockPane(shapes);
         LockPane(overview);
         LockPane(exercises);
-        closeMenueTabbs();
+        closeMenuTabs();
         UML.getChildren().add(canvas);
         LockPane(canvas);
         AnchorPane.setRightAnchor(canvas,0d);
@@ -67,7 +65,7 @@ public class BaseController{
         AnchorPane.setBottomAnchor(pane, 0d);
     }
 
-    private void closeMenueTabbs()
+    private void closeMenuTabs()
     {
         files.setVisible(false);
         shapes.setVisible(false);
@@ -114,9 +112,9 @@ public class BaseController{
 
     private void openMenuItem(AnchorPane menu)
     {
-        if(!leftMenue.getChildren().contains(menu)) init();
+        if(!leftMenu.getChildren().contains(menu)) init();
         boolean vis = menu.isVisible();
-        closeMenueTabbs();
+        closeMenuTabs();
         if(vis){
             menu.toBack();
         }
