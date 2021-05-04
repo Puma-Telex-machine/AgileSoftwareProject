@@ -30,7 +30,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <ComboBox fx:id="accessComboBox" prefHeight="30.0" prefWidth="145.0" styleClass="highlight" stylesheets="@css/DarkMode.css">
+                        <ComboBox fx:id="accessComboBox" prefHeight="30.0" prefWidth="120.0" styleClass="highlight" stylesheets="@DarkMode.css">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -55,7 +55,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                      <children>
-                        <Button minHeight="30.0" mnemonicParsing="false" onAction="#DeleteMethod" prefHeight="30.0" prefWidth="145.0" styleClass="highlight-red" stylesheets="@css/DarkMode.css" text="Delete">
+                        <Button minHeight="30.0" mnemonicParsing="false" onAction="#DeleteMethod" prefHeight="30.0" prefWidth="120.0" styleClass="highlight-red" stylesheets="@DarkMode.css" text="Delete">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>

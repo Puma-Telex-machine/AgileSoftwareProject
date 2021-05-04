@@ -36,9 +36,4 @@ public class RecentController extends AnchorPane{
         //minimize_button 
 
     }
-    @FXML
-    private void minimize(){
-        this.toBack();
-        this.setVisible(false);
-    }
 }

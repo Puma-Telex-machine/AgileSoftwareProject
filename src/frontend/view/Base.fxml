@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.control.Label?>
@@ -52,7 +54,7 @@
             </AnchorPane>
             <StackPane prefHeight="900.0" prefWidth="1440.0">
                <children>
-                  <AnchorPane id="left_anchorpane" fx:id="left_anchorpane1" prefWidth="65.0" style="-fx-background-color: #2A314A;" styleClass="text-Large">
+                  <AnchorPane fx:id="contextMenu" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#exitContext" onMouseDragged="#exitContext" prefHeight="900.0" prefWidth="625.0" stylesheets="@DarkMode.css">
                      <children>
                         <VBox fx:id="context" alignment="TOP_CENTER" layoutX="205.0" layoutY="336.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
                            <children>
@@ -68,11 +70,7 @@
                         </VBox>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="UML" prefHeight="10000.0" prefWidth="10000.0" styleClass="background">
-                     <children>
-                        <AnchorPane fx:id="leftMenu" prefHeight="850.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
+                  <AnchorPane fx:id="UML" onContextMenuRequested="#handleContextMenu" styleClass="background" />
                </children>
             </StackPane>
          </children>

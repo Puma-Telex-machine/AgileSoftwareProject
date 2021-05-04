@@ -52,8 +52,8 @@ public class ExercisesController extends AnchorPane {
     @FXML
     private VBox rightBox;
 
-    //private ExercisesHandlerFacade exercisesHandler;
+    /*private ExercisesHandlerFacade exercisesHandler;
 
-    //private ExerciseFacade[] exercises;
-    //private ExercisesMenuItemController[] exerciseMenuItems;
+    private ExerciseFacade[] exercises;
+    private ExercisesMenuItemController[] exerciseMenuItems;*/
 }
