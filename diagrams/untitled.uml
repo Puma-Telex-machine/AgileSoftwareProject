@@ -1,7 +1,7 @@
 boxcount=1
 <BOX>
   name=Box 0
-  xposition=500
-  yposition=400
+  xposition=739
+  yposition=292
   visibility=PUBLIC
 <!BOX>
