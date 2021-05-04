@@ -1,10 +1,12 @@
 package model.boxes;
 
+import model.point.ScaledPoint;
+
 import java.awt.*;
 
 public class Enum extends Box {
 
-    public Enum(Point position, String name) {
+    public Enum(ScaledPoint position, String name) {
         super(name, position);
     }
 

@@ -9,13 +9,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
 import javafx.scene.shape.Ellipse;
 import model.facades.MethodData;
-//import model.facades.VariableData;
 import model.facades.BoxFacade;
-import model.grid.Scaler;
 import model.point.Scale;
 import model.point.ScaledPoint;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;

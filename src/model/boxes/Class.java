@@ -1,5 +1,7 @@
 package model.boxes;
 
+import model.point.ScaledPoint;
+
 import java.awt.*;
 
 /**
@@ -9,7 +11,7 @@ import java.awt.*;
  */
 public class Class extends Box {
 
-    public Class(Point position, String name) {
+    public Class(ScaledPoint position, String name) {
         super(name, position);
     }
 
