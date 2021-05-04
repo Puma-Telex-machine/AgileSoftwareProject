@@ -66,14 +66,12 @@ public class Model implements ModelFacade, FileHandlerFacade{
     @Override
     public void loadFile(String fileName) {
         diagram = Database.loadDiagram(fileName);
-        if(diagram != null) {
-            for (Box box : diagram.boxGrid.getAllBoxes()) {
-                BoxManager boxManager = new BoxManager(diagram.boxGrid, box);
-                observers.forEach(observer -> observer.addBox(boxManager));
-            }
-            name = fileName;
-            System.out.println("loaded " + name);
+        for (Box box : diagram.boxGrid.getAllBoxes()) {
+            BoxManager boxManager = new BoxManager(diagram.boxGrid, box);
+            observers.forEach(observer -> observer.addBox(boxManager));
         }
+        name = fileName;
+        System.out.println("loaded " + name);
     }
 
     @Override
@@ -82,6 +80,7 @@ public class Model implements ModelFacade, FileHandlerFacade{
         if(name != null)
             loadFile(name);
     }
+
     public Relation addRelation(BoxFacade from, BoxFacade to){
         //todo add relation and return the apropriate type
         return new Relation(null,null,ArrowType.ASSOCIATION);
