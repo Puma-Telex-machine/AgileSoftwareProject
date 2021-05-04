@@ -7,8 +7,8 @@ import java.awt.*;
 
 public class Enum extends Box {
 
-    public Enum(Point position, String name) {
-        super(name, new ScaledPoint(Scale.Internal,position));
+    public Enum(ScaledPoint position, String name) {
+        super(name, position);
     }
 
     @Override
