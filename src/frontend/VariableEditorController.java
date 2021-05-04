@@ -11,6 +11,7 @@ import model.boxes.Visibility;
 import model.facades.BoxFacade;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class VariableEditorController extends AnchorPane {
 
@@ -52,7 +53,7 @@ public class VariableEditorController extends AnchorPane {
         VariableData data = new VariableData();
         data.name = nameField.getText();
 
-        Visibility visibility = Visibility.valueOf((String) accessComboBox.getValue());
+        Visibility visibility = Visibility.valueOf((String)accessComboBox.getValue());
         data.visibility = visibility;
 
         data.variableType = typeField.getText();
@@ -74,7 +75,7 @@ public class VariableEditorController extends AnchorPane {
         typeField.setText(variableData.variableType);
 
         //Sets the options for the accessibility combo box
-        accessComboBox.getItems().addAll(Visibility.values());
+        accessComboBox.getItems().setAll(Visibility.values());
 
         //Sets the current visibility
         accessComboBox.getSelectionModel().select(variableData.visibility.name());

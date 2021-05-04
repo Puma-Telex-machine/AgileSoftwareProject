@@ -61,15 +61,15 @@ public class Relation {
     private List<ArrowType> classRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
         if (to == BoxType.CLASS) {
-            types.add(ArrowType.EXTENDS);
+            types.add(ArrowType.INHERITANCE);
             return types;
         }
         if (to == BoxType.INTERFACE) {
-            types.add(ArrowType.IMPLEMENTS);
+            types.add(ArrowType.IMPLEMENTATION);
             return types;
         }
         if (to == BoxType.ABSTRACTCLASS) {
-            types.add(ArrowType.EXTENDS);
+            types.add(ArrowType.INHERITANCE);
             return types;
         }
         return types;
@@ -78,7 +78,7 @@ public class Relation {
     private List<ArrowType> interfaceRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
         if (to == BoxType.INTERFACE) {
-            types.add(ArrowType.EXTENDS);
+            types.add(ArrowType.INHERITANCE);
             return types;
         }
         return types;
@@ -87,15 +87,15 @@ public class Relation {
     private List<ArrowType> abstractClassRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
         if (to == BoxType.INTERFACE) {
-            types.add(ArrowType.IMPLEMENTS);
+            types.add(ArrowType.IMPLEMENTATION);
             return types;
         }
         if (to == BoxType.ABSTRACTCLASS) {
-            types.add(ArrowType.IMPLEMENTS);
+            types.add(ArrowType.IMPLEMENTATION);
             return types;
         }
         if (to == BoxType.CLASS) {
-            types.add(ArrowType.IMPLEMENTS);
+            types.add(ArrowType.IMPLEMENTATION);
             return types;
         }
         return types;
@@ -104,7 +104,7 @@ public class Relation {
     private List<ArrowType> enumRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
         if (to == BoxType.INTERFACE) {
-            types.add(ArrowType.IMPLEMENTS);
+            types.add(ArrowType.IMPLEMENTATION);
             return types;
         }
         return types;

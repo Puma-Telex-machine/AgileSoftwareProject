@@ -17,18 +17,15 @@ import java.util.List;
 public class Box {
 
     private String name;
-    private List<Method> methods;
-    private List<Attribute> attributes;
-    private Set<Modifier> modifiers;
-    private Visibility visibility;
+    private List<Method> methods = new ArrayList<>();
+    private List<Attribute> attributes = new ArrayList<>();
+    private Set<Modifier> modifiers = new HashSet<>();
+    private Visibility visibility = Visibility.PUBLIC;
     private ScaledPoint position;
 
     public Box(String name, ScaledPoint position) {
         this.name = name;
         this.position = position;
-        methods = new ArrayList<>();
-        attributes = new ArrayList<>();
-        modifiers = new HashSet<>();
     }
 
     public BoxType getType(){
@@ -41,6 +38,14 @@ public class Box {
 
     public void setPosition(ScaledPoint newPosition){
         position = newPosition;
+    }
+
+    public void setMethods(List<Method> newMethods){
+        methods = newMethods;
+    }
+
+    public void setAttributes(List<Attribute> newAttributes){
+        attributes = newAttributes;
     }
 
     public Method getMethod(int position){
@@ -78,7 +83,7 @@ public class Box {
     public void editMethod(MethodData methodData) {
         boolean exists = false;
         for (Method method: methods) {
-            if(methodData.methodName == method.GetName()){
+            if(methodData.methodName == method.getName()){
                 exists = true;
                 //method.SetName(methodData.methodName); todo: identify methods
                 method.SetVisibility(methodData.visibility);
@@ -94,10 +99,10 @@ public class Box {
     public void editVariable(VariableData variableData) {
         boolean exists = false;
         for (Attribute attribute: attributes) {
-            if(variableData.name == attribute.GetName()){
+            if(variableData.name == attribute.getName()){
                 exists = true;
                 //attribute.SetName(variableData.name); todo: identify attributes
-                attribute.SetVisibility(variableData.visibility);
+                attribute.setVisibility(variableData.visibility);
                 break;
             }
         }
@@ -109,7 +114,7 @@ public class Box {
     public void deleteMethod(String methodName) {
         int counter = 0;
         for (Method method: methods) {
-            if(methodName == method.GetName()) {
+            if(methodName == method.getName()) {
                 methods.remove(counter);
                 break;
             }
@@ -120,7 +125,7 @@ public class Box {
     public void deleteVariable(String variableName) {
         int counter = 0;
         for (Attribute attribute: attributes) {
-            if(variableName == attribute.GetName()) {
+            if(variableName == attribute.getName()) {
                 attributes.remove(counter);
                 break;
             }
@@ -136,7 +141,7 @@ public class Box {
 
     public Set<Modifier> getModifiers(){return modifiers;}
 
-    public Visibility GetVisibility(){
+    public Visibility getVisibility(){
         return visibility;
     }
 

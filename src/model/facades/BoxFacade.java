@@ -1,12 +1,16 @@
 package model.facades;
 
+import frontend.Observers.UiObservable;
+import frontend.Observers.UiObserver;
+import model.boxes.BoxType;
+//import model.VariableData;
 import model.boxes.Box;
 import model.point.ScaledPoint;
 //import model.facades.VariableData;
 
 import java.awt.*;
 
-public interface BoxFacade {
+public interface BoxFacade extends UiObservable {
 
     //TODO: DELETE THIS
 
@@ -49,4 +53,18 @@ public interface BoxFacade {
     void setPosition(ScaledPoint point);
 
     void setName(String name);
+
+    BoxType getType();
+
+    /**
+     * Returns the data for all of the methods of this class
+     * @return
+     */
+    VariableData[] getVariables();
+
+    /**
+     * Returns the data for all of the variables of this class
+      * @return
+     */
+    MethodData[] getMethods();
 }

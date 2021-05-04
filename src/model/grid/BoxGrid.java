@@ -4,11 +4,13 @@ import model.boxes.Box;
 import model.point.Scale;
 import model.point.ScaledPoint;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TreeMap;
 
-class BoxGrid implements IBoxGrid, BoxGridView {
+import javax.swing.*;
+import java.awt.*;
+import java.util.*;
+import java.util.List;
+
+public class BoxGrid implements IBoxGrid, BoxGridView {
     TreeMap<ScaledPoint, Box> boxMap = new TreeMap<>();
 
     public List<Box> getBoxes() {
@@ -52,6 +54,19 @@ class BoxGrid implements IBoxGrid, BoxGridView {
         }
     }
 
+    public ArrayList<Box> getAllBoxes(){
+        Set<Map.Entry<ScaledPoint, Box>> set = boxMap.entrySet();
+        ArrayList<Box> boxes = new ArrayList<>();
+        for (Map.Entry<ScaledPoint, Box> entry: set) {
+            boxes.add(entry.getValue());
+        }
+        return boxes;
+    }
+
+    public int getBoxCounter(){
+        return boxMap.size();
+    }
+
     @Override
     public void update(Box box) {
 
@@ -83,3 +98,4 @@ class BoxGrid implements IBoxGrid, BoxGridView {
         return area;
     }
 }
+

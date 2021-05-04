@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import model.Model;
+import model.facades.ModelFacade;
 import model.point.Scale;
 import model.point.ScaledPoint;
 
@@ -16,15 +16,15 @@ public class BaseController{
     @FXML
     AnchorPane UML;
 
+
     @FXML
     AnchorPane leftMenue;
-
     @FXML
     AnchorPane contextMenu;
 
-    Model model;
+    ModelFacade model;
 
-    RecentController recent;
+    FilesController files;
 
     CanvasController canvas;
 
@@ -32,42 +32,51 @@ public class BaseController{
 
     OverviewController overview;
 
+    ExercisesController exercises;
+
 
 
     public BaseController() {
-        recent = new RecentController();
         canvas = new CanvasController();
+        model = ModelFacade.getModel();
+        files = new FilesController(model.getFileHandler(), canvas);
         shapes = new ShapeController(canvas);
         overview = new OverviewController();
-        model = Model.getModel();
-        model.addObserver(canvas);
+        exercises = new ExercisesController();
     }
 
     private void init(){
-        leftMenue.getChildren().add(recent);
+        leftMenue.getChildren().add(files);
         leftMenue.getChildren().add(shapes);
         leftMenue.getChildren().add(overview);
-        LockPane(recent);
+        leftMenue.getChildren().add(exercises);
+        LockPane(files);
         LockPane(shapes);
         LockPane(overview);
+        LockPane(exercises);
         closeMenueTabbs();
         UML.getChildren().add(canvas);
         LockPane(canvas);
+        AnchorPane.setRightAnchor(canvas,0d);
     }
 
     private void LockPane(AnchorPane pane)
     {
         AnchorPane.setTopAnchor(pane, 0d);
         AnchorPane.setLeftAnchor(pane, 0d);
-        AnchorPane.setRightAnchor(pane, 0d);
         AnchorPane.setBottomAnchor(pane, 0d);
     }
 
     private void closeMenueTabbs()
     {
-        recent.setVisible(false);
+        files.setVisible(false);
         shapes.setVisible(false);
         overview.setVisible(false);
+        exercises.setVisible(false);
+        files.toBack();
+        shapes.toBack();
+        overview.toBack();
+        exercises.toBack();
     }
 
     @FXML
@@ -92,37 +101,29 @@ public class BaseController{
     //open Menus
     @FXML
     private void openRecent(){
-        openMenuItem(recent);
+        openMenuItem(files);
     }
     @FXML
-    private void openShapes(){
-        openMenuItem(shapes);
-    }
+    private void openShapes(){ openMenuItem(shapes); }
 
     @FXML
-    private void  openOverview()
-    {
-        openMenuItem(overview);
-    }
+    private void  openOverview() { openMenuItem(overview); }
+
+    @FXML
+    private void openExercises() { openMenuItem(exercises);}
 
     private void openMenuItem(AnchorPane menu)
     {
-        boolean vis = menu.isVisible();
         if(!leftMenue.getChildren().contains(menu)) init();
+        boolean vis = menu.isVisible();
         closeMenueTabbs();
-        menu.setVisible(!vis);
+        if(vis){
+            menu.toBack();
+        }
+        else{
+            menu.toFront();
+            menu.setVisible(true);
+        }
     }
-    /*
-    @FXML
-    private void openRecent(){
-        recent.setVisible(!recent.isVisible());
-    }
-    @FXML
-    private void openRecent(){
-        recent.setVisible(!recent.isVisible());
-    }
-    @FXML
-    private void openRecent(){
-        recent.setVisible(!recent.isVisible());
-    }*/
+
 }

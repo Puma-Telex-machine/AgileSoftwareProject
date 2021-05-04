@@ -56,6 +56,27 @@
     -fx-text-fill: "DBDBDB";
 }
 
+.combo-box .arrow{
+    -fx-background-color: "DBDBDB";;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: "#686868";
+
+}
+.combo-box .list-cell
+{
+    -fx-background-color: "585858";
+     -fx-text-fill: "DBDBDB";
+}
+
+.combo-box .combo-box-popup .list-cell:selected {
+ -fx-background-color:"6D6D6D";
+ }
+
+.combo-box .combo-box-popup .list-view{
+    -fx-background-color: "000000";
+}
 .leftSideMenu{
     -fx-fill: "#3E4046";
     -fx-font-size: 16px;

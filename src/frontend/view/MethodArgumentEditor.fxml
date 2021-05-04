@@ -9,10 +9,10 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<fx:root minHeight="40.0" minWidth="250.0" prefHeight="40.0" prefWidth="300.0" styleClass="box" stylesheets="@DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="40.0" minWidth="250.0" prefHeight="40.0" prefWidth="300.0" styleClass="box" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane fx:id="highlightPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="-5.0" />
-      <HBox alignment="CENTER_LEFT" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" stylesheets="@DarkMode.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER_LEFT" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" stylesheets="@css/DarkMode.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="paramLable" maxHeight="30.0" minHeight="30.0" minWidth="75.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="130.0" styleClass="text-Large" text="Param 1">
                <HBox.margin>

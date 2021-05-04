@@ -35,6 +35,7 @@ public class ShapeController extends AnchorPane {
 
     @FXML
     private void minimize(){
+        this.toBack();
         this.setVisible(false);
     }
 

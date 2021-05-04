@@ -1,5 +1,6 @@
 package model.boxes;
 
+import model.point.Scale;
 import model.point.ScaledPoint;
 
 import java.awt.*;
@@ -11,8 +12,8 @@ import java.awt.*;
  */
 public class Class extends Box {
 
-    public Class(ScaledPoint position, String name) {
-        super(name, position);
+    public Class(Point position, String name) {
+        super(name, new ScaledPoint(Scale.Frontend,position)); //todo: fix scale
     }
 
     @Override
