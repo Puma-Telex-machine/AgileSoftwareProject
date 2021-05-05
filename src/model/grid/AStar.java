@@ -19,12 +19,13 @@ public class AStar {
     PriorityQueue<PathNode> discovered = new PriorityQueue<>(Comparator.comparingInt(this::getCostEstimate));
     TreeMap<ScaledPoint, PathNode> visited = new TreeMap<>();
 
-    public AStar(IDiagram grid) {
+    AStar(IDiagram grid) {
+        this.grid = grid;
     }
 
     ScaledPoint destination;
 
-    public PathNode findPath(Relation relation) {
+    public PathNode findPath(Relation relation) throws Exception {
         destination = relation.getToPosition();
 
         PathNode startNode = new PathNode(relation);
@@ -44,10 +45,10 @@ public class AStar {
             discover(current, Direction.LEFT);
             discover(current, Direction.RIGHT);
         }
-        return null;
+        throw new Exception("No path found (There should always be a path)");
     }
 
-    void discover(PathNode previous, Direction direction) {
+    private void discover(PathNode previous, Direction direction) {
         // Get the position to discover
         ScaledPoint position = previous.position;
         position.move(Scale.Backend, direction.getX(), direction.getY());
@@ -56,7 +57,7 @@ public class AStar {
             return;
         }
 
-        if (!boxGrid.isOccupied(position)) {
+        if (!grid.isOccupied(position)) {
             if (position.equals(destination)) {
                 return;
             }
@@ -75,14 +76,14 @@ public class AStar {
         if (direction != previous.direction) cost += bendCost;
 
         // If the node is occupied and the lines shouldn't merge
-        if (!relationGrid.canMergeLines(previous.relation, position)) cost += crossCost;
+        if (!grid.canMergeLines(previous.relation, position)) cost += crossCost;
 
         // Add the node to unvisited
         node.cost = cost;
         discovered.add(node);
     }
 
-    int getCostEstimate(PathNode node) {
+    private int getCostEstimate(PathNode node) {
         return node.cost + manhattanDistance(node.position, destination);
     }
 

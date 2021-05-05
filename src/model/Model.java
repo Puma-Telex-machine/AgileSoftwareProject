@@ -44,7 +44,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
         //TODO: boxfactory (statisk?) lukas
         Box box = BoxFactory.createBox("testname", position, boxType);
 
-        BoxFacade boxManager = diagram.addBox(new BoxManager(diagram.boxGrid, new Box("name", position)));
+        BoxFacade boxManager = diagram.add(new BoxManager(diagram.boxGrid, new Box("name", position)));
         observers.forEach(observer -> observer.addBox(boxManager));
 		Database.saveDiagram(diagram, name);
         System.out.println("saved "+name);
@@ -52,7 +52,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
 	
 	public void addRelation(BoxFacade from, BoxFacade to, ArrowType arrowType) {
         Relation relation = new Relation(from, to, arrowType);
-        diagram.addRelation(relation);
+        diagram.add(relation);
         observers.forEach(observer -> observer.addRelation(relation));
     }
 
@@ -63,6 +63,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
 
     @Override
     public void loadFile(String fileName) {
+        //TODO: Behöver vi spara innan detta händer eller e det automatiskt lugnt?
         diagram = Database.loadDiagram(fileName);
         if(diagram != null) {
             for (Box box : diagram.boxGrid.getAllBoxes()) {
@@ -77,7 +78,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
     @Override
     public void newFile() {
         name = Database.newFile();
-        if(name != null)
+        if(name != null) //TODO: Samma som förra
             loadFile(name);
     }
 }

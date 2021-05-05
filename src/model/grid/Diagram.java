@@ -8,26 +8,27 @@ import java.util.ArrayList;
 
 public class Diagram implements IDiagram {
 
-    public BoxGrid boxGrid = new BoxGrid();
-    RelationGrid relationGrid = new RelationGrid();
-    AStar aStar = new AStar(this);
+    //TODO: Box implementerar BoxFacade
 
+    public BoxGrid boxGrid = new BoxGrid(); //TODO: denna borde inte behöva vara public
+    RelationGrid relationGrid = new RelationGrid(this);
 
-    public void addBox(Box box) {
+    public void add(Box box) {
         boxGrid.add(box);
-        for (Relation r : relations) {
-            findPath(r);
-        }
+        relationGrid.refreshAllPaths();
     }
 
-    public void addRelation(Relation relation) {
-        relations.add(relation);
-        findPath(relation);
+    public void add(Relation relation) {
+        relationGrid.add(relation);
     }
 
-    private void findPath(Relation relation) {
-        PathNode path = aStar.findPath(relation);
-        ArrayList<ScaledPoint> pathPoints = relationGrid.add(path);
-        relation.setPath(pathPoints);
+    @Override
+    public boolean isOccupied(ScaledPoint position) {
+        return boxGrid.isOccupied(position);
+    }
+
+    @Override
+    public boolean canMergeLines(Relation relation, ScaledPoint position) {
+        return relationGrid.canMergeLines(relation, position);
     }
 }

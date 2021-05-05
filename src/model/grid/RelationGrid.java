@@ -9,23 +9,36 @@ import java.util.TreeMap;
 
 public class RelationGrid {
 
-    TreeMap<ScaledPoint, HashSet<PathNode>> relationMap = new TreeMap<>();
-    HashSet<Relation> relations = new HashSet<>();
+    AStar aStar;
+    TreeMap<ScaledPoint, HashSet<PathNode>> relationMap;
+    HashSet<Relation> relations;
 
-    boolean canMergeLines(Relation relation, ScaledPoint position) {
-        if (!relationMap.containsKey(position)) return true;
-
-        for (PathNode n : relationMap.get(position)) {
-            if (n.relation.getTo() == relation.getTo() && n.relation.getArrowType() == relation.getArrowType()) {
-                return true;
-            }
-        }
-        return false;
+    public RelationGrid(IDiagram diagram) {
+        this.aStar = new AStar(diagram);
+        this.relationMap = new TreeMap<>();
+        this.relations = new HashSet<>();
     }
 
-    public ArrayList<ScaledPoint> add(PathNode pathStart) {
+    public void add(Relation relation) {
+        relations.add(relation);
+        findPath(relation);
+    }
+
+    public void refreshAllPaths() {
+        for (Relation r : relations) {
+            findPath(r);
+        }
+    }
+
+    private void findPath(Relation relation) {
+        PathNode current = null;
+        try {
+            current = aStar.findPath(relation);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         ArrayList<ScaledPoint> pathPoints = new ArrayList<>();
-        PathNode current = pathStart;
         while (current != null) {
             HashSet<PathNode> relations = relationMap.get(current.position);
             relations.add(current);
@@ -37,6 +50,17 @@ public class RelationGrid {
             }
             current = current.previous;
         }
-        return pathPoints;
+        relation.setPath(pathPoints);
+    }
+
+    boolean canMergeLines(Relation relation, ScaledPoint position) {
+        if (!relationMap.containsKey(position)) return true;
+
+        for (PathNode n : relationMap.get(position)) {
+            if (n.relation.getTo() == relation.getTo() && n.relation.getArrowType() == relation.getArrowType()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

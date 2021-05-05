@@ -43,7 +43,7 @@ public class Database{
             }
             Diagram result = new Diagram();
             for (Box box: boxes) {
-                result.addBox(box);
+                result.add(box);
             }
             return result;
         } catch (FileNotFoundException e){

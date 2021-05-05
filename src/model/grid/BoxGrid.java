@@ -4,18 +4,15 @@ import model.boxes.Box;
 import model.point.Scale;
 import model.point.ScaledPoint;
 
-
 import java.util.*;
-import java.util.List;
 
-public class BoxGrid implements IBoxGrid, BoxGridView { //TODO: try collision detection instead
+public class BoxGrid { //TODO: try collision detection instead
     TreeMap<ScaledPoint, Box> boxMap = new TreeMap<>();
 
     public List<Box> getBoxes() {
         return null;
     }
 
-    @Override
     public boolean isOccupied(ScaledPoint scaledPoint) {
         return boxMap.containsKey(scaledPoint);
     }
@@ -30,7 +27,6 @@ public class BoxGrid implements IBoxGrid, BoxGridView { //TODO: try collision de
         }
     }
 
-    @Override
     public void move(Box box, ScaledPoint point) {
         // Remove the old area of the box
         remove(box);
@@ -42,7 +38,6 @@ public class BoxGrid implements IBoxGrid, BoxGridView { //TODO: try collision de
         add(box);
     }
 
-    @Override
     public void remove(Box box) {
         ArrayList<ScaledPoint> area = getArea(box);
 
@@ -52,10 +47,10 @@ public class BoxGrid implements IBoxGrid, BoxGridView { //TODO: try collision de
         }
     }
 
-    public ArrayList<Box> getAllBoxes(){
+    public ArrayList<Box> getAllBoxes() {
         Set<Map.Entry<ScaledPoint, Box>> set = boxMap.entrySet();
         ArrayList<Box> boxes = new ArrayList<>();
-        for (Map.Entry<ScaledPoint, Box> entry: set) {
+        for (Map.Entry<ScaledPoint, Box> entry : set) {
             boxes.add(entry.getValue());
         }
         return boxes;
@@ -63,11 +58,6 @@ public class BoxGrid implements IBoxGrid, BoxGridView { //TODO: try collision de
 
     public int getBoxCounter() {
         return boxMap.size();
-    }
-
-    @Override
-    public void update(Box box) {
-
     }
 
     private void pushOthersDown(ScaledPoint point) {
