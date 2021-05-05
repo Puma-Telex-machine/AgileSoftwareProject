@@ -10,14 +10,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.Box;
 import javafx.scene.shape.Ellipse;
 import model.MethodData;
 //import model.VariableData;
 import model.VariableData;
 import model.boxes.BoxType;
+import model.boxes.Method;
 import model.boxes.Visibility;
 import model.facades.BoxFacade;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.*;
@@ -202,6 +205,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         methodEditor.setLayoutY(this.getLayoutY()+this.getHeight()/2-methodEditor.getHeight()/2);
         methodEditor.EditMethod(box);
 
+
         /*
         String method = "+ getNumber() : int";
         methodList.add(method);
@@ -240,18 +244,26 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      * Editing a variable on box
      */
     @FXML
-    private void editVariable(){
-        //todo
-        //box.getVariableData()
+    private void editVariable(VariableData variable){
+        methodEditor.setVisible(false);
+        variableEditor.setVisible(true);
+        variableEditor.toFront();
+        variableEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
+        variableEditor.setLayoutY(this.getLayoutY()+this.getHeight()/2-variableEditor.getHeight()/2);
+        variableEditor.EditVariable(variable, box);
     }
 
     /**
      * Editing a method on box
      */
     @FXML
-    private void editMethod(){
-        //todo
-        //box.getVariableData()
+    private void editMethod(MethodData method){
+        variableEditor.setVisible(false);
+        methodEditor.setVisible(true);
+        methodEditor.toFront();
+        methodEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
+        methodEditor.setLayoutY(this.getLayoutY()+this.getHeight()/2-methodEditor.getHeight()/2);
+        methodEditor.EditMethod(method, box);
     }
 
     private void updateMethods(List<MethodData> methods){
@@ -385,7 +397,11 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
             variable += ": ";
             variable += variableData[i].variableType;
 
-            variables.getChildren().add(new BoxAttributeTextController(variable));
+            BoxAttributeTextController attribute = new BoxAttributeTextController(variable);
+            variables.getChildren().add(attribute);
+            VariableData var = variableData[i];
+            attribute.setOnMouseClicked((Action) -> editVariable(var));
+
         }
 
         for(int i = 0; i < methodData.length; i++)
@@ -405,7 +421,10 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
             method += ") : ";
             method += methodData[i].methodReturnType;
 
-            methods.getChildren().add(new BoxAttributeTextController(method));
+            BoxAttributeTextController attribute = new BoxAttributeTextController(method);
+            methods.getChildren().add(attribute);
+            MethodData met = methodData[i];
+            attribute.setOnMouseClicked((Action) -> editMethod(met));
         }
     }
 

@@ -140,6 +140,7 @@ public class MethodEditorController extends AnchorPane {
             argument.argumentTypeField.setOnAction((Action) -> ChangeArgument(argument));
             argumentVBox.getChildren().add(argument);
             argument.paramLable.setText("Param " + arguments.size());
+            argument.argumentTypeField.getStyleClass().add("highlight");
             this.setLayoutY(this.getLayoutY() - argument.getHeight()/2);
         }
 
