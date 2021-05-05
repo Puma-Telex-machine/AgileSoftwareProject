@@ -60,18 +60,28 @@ public class Model implements ModelFacade, FileHandlerFacade{
 
     @Override
     public String[] getAllFileNames() {
-        return Database.getAllFileNames();
+        return Database.getAllFileNames("diagrams/");
     }
 
     @Override
     public void loadFile(String fileName) {
-        diagram = Database.loadDiagram(fileName);
+        diagram = Database.loadDiagram("diagrams/",fileName);
         for (Box box : diagram.boxGrid.getAllBoxes()) {
             BoxManager boxManager = new BoxManager(diagram.boxGrid, box);
             observers.forEach(observer -> observer.addBox(boxManager));
         }
         name = fileName;
         System.out.println("loaded " + name);
+    }
+
+    public void loadTemplate(String fileName){
+        Diagram template = Database.loadDiagram("templates/", fileName);
+        for(Box box : template.boxGrid.getAllBoxes()){
+            diagram.addBox(box);
+            BoxManager boxManager = new BoxManager(diagram.boxGrid, box);
+            observers.forEach(observer -> observer.addBox(boxManager));
+        }
+        System.out.println("loaded template " + fileName);
     }
 
     @Override
