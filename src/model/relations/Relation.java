@@ -81,6 +81,10 @@ public class Relation implements RelationFacade {
     private static List<ArrowType> classRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
         switch(to){
+            case BOX:
+            ArrayList<ArrowType> defaultArrow = new ArrayList<ArrowType>();
+            defaultArrow.add(ArrowType.DEFAULT);
+            return defaultArrow;
             case CLASS:
                 types.add(ArrowType.INHERITANCE);
                 types.add(ArrowType.AGGREGATION);
@@ -99,6 +103,10 @@ public class Relation implements RelationFacade {
     private static List<ArrowType> interfaceRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
         switch(to){
+            case BOX:
+            ArrayList<ArrowType> defaultArrow = new ArrayList<ArrowType>();
+            defaultArrow.add(ArrowType.DEFAULT);
+            return defaultArrow;
             case INTERFACE:
                 types.add(ArrowType.INHERITANCE);
         // TODO: kolla vidare på det här     types.add(ArrowType.EXTENDS);
@@ -111,6 +119,10 @@ public class Relation implements RelationFacade {
     private static List<ArrowType> abstractclassRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
         switch(to){
+            case BOX:
+            ArrayList<ArrowType> defaultArrow = new ArrayList<ArrowType>();
+            defaultArrow.add(ArrowType.DEFAULT);
+            return defaultArrow;
             case INTERFACE:
                 types.add(ArrowType.IMPLEMENTATION);
                 return types;
@@ -128,12 +140,22 @@ public class Relation implements RelationFacade {
     private static List<ArrowType> enumRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
         switch(to){
+            case BOX:
+            ArrayList<ArrowType> defaultArrow = new ArrayList<ArrowType>();
+            defaultArrow.add(ArrowType.DEFAULT);
+            return defaultArrow;
             case INTERFACE:
                 types.add(ArrowType.IMPLEMENTATION);
                 return types;
             default:
                 return null;
         }
+        // Metoden boxRelations behövs förmodligen inte.
+    private static List<ArrowType> boxRelations(BoxType to){
+        List<ArrowType> types = new Arraylist<>();
+        types.add(ArrowType.DEFAULT);
+        return types;
+    }    
     }
 }
    
