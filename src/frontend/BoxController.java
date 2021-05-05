@@ -74,24 +74,13 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
                 vBox.getChildren().remove(identifier);
                 break;
             case INTERFACE:
-                identifier.setText("<<Interfacew>>");
-                vBox.getChildren().remove(variables);
-                //remove line and +
-                vBox.getChildren().remove(6);
-                vBox.getChildren().remove(5);
+                identifier.setText("<<Interface>>");
                 break;
             case ABSTRACTCLASS:
                 identifier.setText("<Abstract>");
                 break;
             case ENUM:
                 identifier.setText("Enum");
-                vBox.getChildren().remove(methods);
-                vBox.getChildren().remove(variables);
-                //remove lines and +'s
-                vBox.getChildren().remove(5);
-                vBox.getChildren().remove(4);
-                vBox.getChildren().remove(3);
-                vBox.getChildren().remove(2);
                 break;
         }
 
@@ -156,21 +145,30 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         }
         //todo fix max borders
 
+        double moveX=0;
+        double moveY=0;
         //move X
         if(this.getLayoutX()+ event.getX() - offsetX<0){
             this.setLayoutX(0);
+            moveX=-1;
         }
         else{
             this.setLayoutX(this.getLayoutX()+ event.getX() - offsetX);
+            moveX= event.getX() - offsetX;
         }
 
         //move Y
         if(this.getLayoutY()+ event.getY() - offsetY<0){
             this.setLayoutY(0);
+            moveY=-1;
         }
         else{
             this.setLayoutY(this.getLayoutY()+ event.getY() - offsetY);
+            moveY= event.getY() - offsetY;
         }
+
+        notifyBoxDrag(new Point((int)moveX,(int)moveY));
+
         event.consume();
     }
 
@@ -312,6 +310,11 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         }
         showCircles();
         e.consume();
+    }
+
+    @Override
+    public void notifyBoxDrag(Point offset) {
+        arrowObserver.boxDrag(box,offset);
     }
     //endregion
     //region name

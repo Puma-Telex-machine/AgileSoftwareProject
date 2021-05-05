@@ -1,7 +1,13 @@
-boxcount=1
+boxcount=2
 <BOX>
   name=Box 0
-  xposition=739
-  yposition=292
+  xposition=500
+  yposition=400
+  visibility=PUBLIC
+<!BOX>
+<BOX>
+  name=Box 1
+  xposition=757
+  yposition=320
   visibility=PUBLIC
 <!BOX>

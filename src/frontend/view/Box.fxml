@@ -16,7 +16,7 @@
             <Label fx:id="identifier" graphicTextGap="0.0" prefHeight="15.0" prefWidth="148.0" styleClass="text-small" text="&lt;&lt;Interface&gt;&gt;" />
             <VBox fx:id="vBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="148.0" styleClass="box_clickable">
                <children>
-                  <Label fx:id="name" alignment="BOTTOM_LEFT" layoutX="1.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" onDragDetected="#unableToChangeName" onMouseClicked="#changeName" onMouseReleased="#handleLetGo" prefHeight="32.0" prefWidth="147.0" text="Class">
+                  <Label fx:id="name" alignment="BOTTOM_LEFT" layoutX="1.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" onDragDetected="#unableToChangeName" onMouseClicked="#changeName" onMouseReleased="#handleLetGo" prefHeight="32.0" prefWidth="147.0" style="-fx-background-radius: 3;" text="Class">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -27,7 +27,7 @@
                   </Label>
                   <Line fx:id="line" endX="148.0" />
                   <VBox fx:id="methods" prefWidth="150.0" styleClass="box" />
-                  <Label alignment="TOP_CENTER" onMouseClicked="#addMethod" prefWidth="150.0" text="+">
+                  <Label alignment="TOP_CENTER" onMouseClicked="#addMethod" prefWidth="150.0" style="-fx-background-radius: 3;" text="+">
                      <VBox.margin>
                         <Insets left="60.0" right="60.0" />
                      </VBox.margin>
@@ -38,7 +38,7 @@
                   </Label>
                   <Line fx:id="line1" endX="148.0" />
                   <VBox fx:id="variables" prefWidth="149.0" />
-                  <Label alignment="TOP_CENTER" onMouseClicked="#addVariable" prefHeight="15.0" prefWidth="28.0" text="+">
+                  <Label alignment="TOP_CENTER" onMouseClicked="#addVariable" prefHeight="15.0" prefWidth="28.0" style="-fx-background-radius: 3;" text="+">
                      <VBox.margin>
                         <Insets left="60.0" right="60.0" />
                      </VBox.margin>

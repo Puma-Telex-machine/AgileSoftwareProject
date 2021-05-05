@@ -321,4 +321,11 @@ public class Arrow extends AnchorPane{
                 (Math.sqrt(a * a + b * b)));
         return d;
     }
+
+    public Point getStart(){
+        return new Point((int)startX,(int)startY);
+    }
+    public Point getEnd(){
+        return new Point((int)endX,(int)endY);
+    }
 }

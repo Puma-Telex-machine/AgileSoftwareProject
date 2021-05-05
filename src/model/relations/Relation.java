@@ -1,6 +1,7 @@
 package model.relations;
 
 import model.boxes.Box;
+import model.facades.BoxFacade;
 
 import java.util.*;
 
@@ -16,6 +17,15 @@ public class Relation {
     }
     public ArrowType getArrowType(){
         return arrowType;
+    }
+
+    public BoxFacade getTo() {
+        //todo
+        return null;
+    }
+    public BoxFacade getFrom() {
+        //todo
+        return null;
     }
 }
    

@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
 import model.Observer;
+import model.boxes.Box;
 import model.facades.BoxFacade;
 import model.relations.ArrowType;
 import model.relations.Relation;
@@ -34,6 +35,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     Model model = Model.getModel();
 
     List<BoxController> boxes = new ArrayList<>();
+
     public CanvasController() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Canvas.fxml")));
 
@@ -89,7 +91,8 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     private Point arrowStart;
     private boolean toggleOn = false;
     private List<Arrow> arrows = new ArrayList<>();
-    private Dictionary<Arrow, Relation> arrowMap = new Hashtable<>();
+    private Dictionary<Relation, Arrow> arrowMap = new Hashtable<>();
+    private Dictionary<Arrow,Relation> relationMap = new Hashtable<>();
 
 
     @Override
@@ -101,17 +104,8 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
             if (box != arrowBox) {
                 Relation startRelation = model.addRelation(arrowBox.getBox(),box.getBox());
                 List<Point> bends = model.getArrowBends(arrowBox.getBox(),box.getBox());
-                //temporary
-                bends.add(new Point(p.x-50,arrowStart.y));
-                bends.add(new Point(p.x-50,p.y));
 
-                Arrow newArrow = new Arrow(arrowStart,p,bends);
-                newArrow.setType(startRelation.getArrowType());
-
-                this.getChildren().addAll(newArrow);
-                newArrow.toBack();
-                arrowMap.put(newArrow,startRelation);
-                arrows.add(newArrow);
+                addArrow(arrowBox.getBox(),box.getBox(),arrowStart,p,startRelation);
             }
         }
         //start making arrow
@@ -123,6 +117,50 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         }
         toggleAnchorPoints();
         makingArrow=!makingArrow;
+    }
+
+    @Override
+    public void boxDrag(BoxFacade box, Point offset) {
+        List<Relation> relations = model.getRelationStart(box);
+        for (Relation r:relations) {
+            Arrow arrow = arrowMap.get(r);
+            this.getChildren().remove(arrow);
+            arrows.remove(arrow);
+            arrowMap.remove(r);
+            relationMap.remove(arrow);
+
+            Point start = new Point((int) arrow.getStart().x+offset.x,(int) arrow.getStart().y+offset.y);
+
+            addArrow(box,r.getTo(),start,arrow.getEnd(),r);
+        }
+        relations = model.getRelationEnd(box);
+        for (Relation r:relations) {
+            Arrow arrow = arrowMap.get(r);
+            this.getChildren().remove(arrow);
+            arrows.remove(arrow);
+            arrowMap.remove(r);
+            relationMap.remove(arrow);
+
+            Point end = new Point((int) arrow.getEnd().x+offset.x,(int) arrow.getEnd().y+offset.y);
+
+            addArrow(box,r.getTo(),arrow.getStart(),end,r);
+        }
+    }
+
+    private void addArrow(BoxFacade from, BoxFacade to,Point start, Point end,Relation relation){
+        List<Point> bends = model.getArrowBends(from,to);
+        //temporary
+        bends.add(new Point(end.x-50,start.y));
+        bends.add(new Point(end.x-50,end.y));
+
+        Arrow newArrow = new Arrow(start,end,bends);
+        newArrow.setType(relation.getArrowType());
+
+        this.getChildren().addAll(newArrow);
+        newArrow.toBack();
+        arrowMap.put(relation,newArrow);
+        relationMap.put(newArrow,relation);
+        arrows.add(newArrow);
     }
 
     /**
@@ -228,7 +266,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     private void changeArrow(Event e){
         ArrowType type = arrowTypeComboBox.getValue();
         clickedArrow.setType(type);
-        model.changeRelation(arrowMap.get(clickedArrow),type);
+        model.changeRelation(relationMap.get(clickedArrow),type);
         closeMenu(e);
         e.consume();
     }

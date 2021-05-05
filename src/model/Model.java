@@ -83,4 +83,18 @@ public class Model implements ModelFacade, FileHandlerFacade{
         //todo add pathfinding to here
         return new ArrayList<>();
     }
+
+    /**
+     * get all relations going out from this box
+     */
+    public List<Relation> getRelationStart(BoxFacade box){
+        return new ArrayList<>();
+    }
+
+    /**
+     *get all relations going into this box
+     */
+    public List<Relation> getRelationEnd(BoxFacade box) {
+        return new ArrayList<>();
+    }
 }
