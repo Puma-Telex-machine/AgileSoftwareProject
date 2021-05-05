@@ -57,76 +57,105 @@ public class Relation implements RelationFacade {
     }
 
     public static List<ArrowType> getPossibleRelations(Box from, Box to) {
-        //TODO: Refactor to switch
-
-        if (from.getType() == BoxType.BOX) {
-            //TODO: fix
+        BoxType toType = to.getType();
+        switch (from.getType()){
+            case BOX:
+                ArrayList<ArrowType> defaultArrow = new ArrayList<ArrowType>();
+                defaultArrow.add(ArrowType.DEFAULT);
+                return defaultArrow;
+            case CLASS:
+                return classRelations(toType);
+            case INTERFACE:
+                return interfaceRelations(toType);
+            case ABSTRACTCLASS:
+                return abstractclassRelations(toType);
+            case ENUM:
+                return enumRelations(toType);
+            default:
+                return null;
         }
-        if (from.getType() == BoxType.CLASS) {
-            return classRelations(to.getType());
-        }
-        if (from.getType() == BoxType.INTERFACE) {
-            return interfaceRelations(to.getType());
-        }
-        if (from.getType() == BoxType.ABSTRACTCLASS) {
-            return abstractclassRelations(to.getType());
-        }
-        if (from.getType() == BoxType.ENUM) {
-            return enumRelations(to.getType());
-        }
-        return null;
     }
+    
+    
 
     private static List<ArrowType> classRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
-        if (to == BoxType.CLASS) {
-            types.add(ArrowType.INHERITANCE);
-            return types;
+        switch(to){
+            case BOX:
+            ArrayList<ArrowType> defaultArrow = new ArrayList<ArrowType>();
+            defaultArrow.add(ArrowType.DEFAULT);
+            return defaultArrow;
+            case CLASS:
+                types.add(ArrowType.INHERITANCE);
+                types.add(ArrowType.AGGREGATION);
+                return types;
+            case INTERFACE:
+                types.add(ArrowType.IMPLEMENTATION);
+                return types;
+            case ABSTRACTCLASS:
+                types.add(ArrowType.INHERITANCE);
+                return types;
+            default:
+                return null;      
         }
-        if (to == BoxType.INTERFACE) {
-            types.add(ArrowType.IMPLEMENTATION);
-            return types;
-        }
-        if (to == BoxType.ABSTRACTCLASS) {
-            types.add(ArrowType.INHERITANCE);
-            return types;
-        }
-        return types;
     }
 
     private static List<ArrowType> interfaceRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
-        if (to == BoxType.INTERFACE) {
-            types.add(ArrowType.INHERITANCE);
-            return types;
+        switch(to){
+            case BOX:
+            ArrayList<ArrowType> defaultArrow = new ArrayList<ArrowType>();
+            defaultArrow.add(ArrowType.DEFAULT);
+            return defaultArrow;
+            case INTERFACE:
+                types.add(ArrowType.INHERITANCE);
+        // TODO: kolla vidare på det här     types.add(ArrowType.EXTENDS);
+                return types;  
+            default:
+                return null;    
         }
-        return types;
     }
 
     private static List<ArrowType> abstractclassRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
-        if (to == BoxType.INTERFACE) {
-            types.add(ArrowType.IMPLEMENTATION);
-            return types;
+        switch(to){
+            case BOX:
+            ArrayList<ArrowType> defaultArrow = new ArrayList<ArrowType>();
+            defaultArrow.add(ArrowType.DEFAULT);
+            return defaultArrow;
+            case INTERFACE:
+                types.add(ArrowType.IMPLEMENTATION);
+                return types;
+            case ABSTRACTCLASS:
+                types.add(ArrowType.IMPLEMENTATION);
+                return types;
+            case CLASS:
+                types.add(ArrowType.IMPLEMENTATION);
+                return types;   
+            default:
+                return null;       
         }
-        if (to == BoxType.ABSTRACTCLASS) {
-            types.add(ArrowType.IMPLEMENTATION);
-            return types;
-        }
-        if (to == BoxType.CLASS) {
-            types.add(ArrowType.IMPLEMENTATION);
-            return types;
-        }
-        return types;
     }
 
     private static List<ArrowType> enumRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
-        if (to == BoxType.INTERFACE) {
-            types.add(ArrowType.IMPLEMENTATION);
-            return types;
+        switch(to){
+            case BOX:
+            ArrayList<ArrowType> defaultArrow = new ArrayList<ArrowType>();
+            defaultArrow.add(ArrowType.DEFAULT);
+            return defaultArrow;
+            case INTERFACE:
+                types.add(ArrowType.IMPLEMENTATION);
+                return types;
+            default:
+                return null;
         }
+        // Metoden boxRelations behövs förmodligen inte.
+    private static List<ArrowType> boxRelations(BoxType to){
+        List<ArrowType> types = new Arraylist<>();
+        types.add(ArrowType.DEFAULT);
         return types;
+    }    
     }
 }
    
