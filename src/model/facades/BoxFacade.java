@@ -1,20 +1,10 @@
 package model.facades;
 
 import frontend.Observers.UiObservable;
-import frontend.Observers.UiObserver;
 import model.boxes.BoxType;
-//import model.VariableData;
-import model.boxes.Box;
 import model.point.ScaledPoint;
-//import model.facades.VariableData;
 
-import java.awt.*;
-
-public interface BoxFacade extends UiObservable {
-
-    //TODO: DELETE THIS
-
-    Box getBox();
+public interface BoxFacade {
 
     void deleteBox();
 

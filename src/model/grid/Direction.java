@@ -1,6 +1,6 @@
 package model.grid;
 
-enum Direction {
+public enum Direction {
     UP(0, -1),
     DOWN(0, 1),
     LEFT(-1, 0),

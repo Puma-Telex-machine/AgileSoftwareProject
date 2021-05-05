@@ -4,32 +4,30 @@ import model.point.Scale;
 import model.point.ScaledPoint;
 import model.relations.Relation;
 
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
 
 public class AStar {
 
-    BoxGridView boxGrid;
-    RelationGrid relationGrid;
-
-    TreeMap<ScaledPoint, PathNode> visited = new TreeMap<>();
-    PriorityQueue<PathNode> discovered = new PriorityQueue<>();
+    IDiagram grid;
 
     int stepCost = 1;
     int bendCost = 10;
     int crossCost = 100;
-    ScaledPoint destination;
 
-    public AStar(BoxGridView boxGrid, RelationGrid relationGrid) {
-        this.boxGrid = boxGrid;
-        this.relationGrid = relationGrid;
+    PriorityQueue<PathNode> discovered = new PriorityQueue<>(Comparator.comparingInt(this::getCostEstimate));
+    TreeMap<ScaledPoint, PathNode> visited = new TreeMap<>();
+
+    public AStar(IDiagram grid) {
     }
+
+    ScaledPoint destination;
 
     public PathNode findPath(Relation relation) {
         destination = relation.getToPosition();
 
-        PathNode startNode = new PathNode(this, relation);
+        PathNode startNode = new PathNode(relation);
         startNode.position = relation.getFromPosition();
         startNode.cost = 0;
         discovered.add(startNode);
@@ -49,19 +47,6 @@ public class AStar {
         return null;
     }
 
-/*
-    private ArrayList<ScaledPoint> compilePath(PathNode current) {
-        ArrayList<ScaledPoint> path = new ArrayList<>();
-        while (current.previous != null) {
-            if (current.direction != current.previous.direction) {
-                path.add(current.position);
-            }
-            current = current.previous;
-        }
-        return path;
-    }
- */
-
     void discover(PathNode previous, Direction direction) {
         // Get the position to discover
         ScaledPoint position = previous.position;
@@ -78,7 +63,7 @@ public class AStar {
         }
 
         // Generate the newly discovered node
-        PathNode node = new PathNode(this, previous.relation);
+        PathNode node = new PathNode(previous.relation);
         node.previous = previous;
         node.direction = direction;
         node.position = position;
@@ -98,20 +83,10 @@ public class AStar {
     }
 
     int getCostEstimate(PathNode node) {
-        int costEstimate;
-        costEstimate  = node.cost;
-        costEstimate += manhattanDistance(node.position, destination);
-        costEstimate += minBends(node.position, destination);
-
-        return costEstimate;
+        return node.cost + manhattanDistance(node.position, destination);
     }
 
     private static int manhattanDistance(ScaledPoint from, ScaledPoint to) {
         return (Math.abs(from.getX(Scale.Backend) - to.getX(Scale.Backend)) + Math.abs(from.getY(Scale.Backend) - to.getY(Scale.Backend)));
     }
-
-    private static int minBends(ScaledPoint position, ScaledPoint destination) {
-        return 0; // Något något snabbare algoritm genom att inkludera
-    }
-
 }

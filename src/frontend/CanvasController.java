@@ -2,7 +2,6 @@ package frontend;
 
 import frontend.Observers.ArrowObserver;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
@@ -11,7 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
 import model.relations.ArrowType;
-import model.relations.Relation;
 import model.facades.Observer;
 import model.facades.BoxFacade;
 import model.facades.RelationFacade;
@@ -22,7 +20,6 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class CanvasController extends AnchorPane implements Observer, ArrowObserver {
 
@@ -88,32 +85,33 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     private boolean makingArrow = false;
     private Arrow dragArrow;
     private BoxController arrowBox = null;
-    private Point arrowStart;
+    private ScaledPoint arrowStart;
     private boolean toggleOn = false;
     private List<Arrow> arrows = new ArrayList<>();
-    private Dictionary<Arrow, Relation> arrowMap = new Hashtable<>();
+    private Dictionary<Arrow, RelationFacade> arrowMap = new Hashtable<>();
 
 
     @Override
-    public void arrowEvent(Point p, BoxController box) {
+    public void arrowEvent(ScaledPoint p, BoxController box) {
         //attach arrow
         if(makingArrow) {
             this.getChildren().removeAll(dragArrow);
             //box == arrowBox => aborting arrowcreation
             if (box != arrowBox) {
-                Relation startRelation = model.addRelation(arrowBox.getBox(),box.getBox());
-                List<Point> bends = model.getArrowBends(arrowBox.getBox(),box.getBox());
+                RelationFacade startRelation = model.addRelation(arrowBox.getBox(), box.getBox(), ArrowType.ASSOCIATION);
+                List<ScaledPoint> bends = startRelation.getPath();
                 //temporary
+                /*
                 bends.add(new Point(1000,700));
                 bends.add(new Point(p.x-50,arrowStart.y));
                 bends.add(new Point(p.x-50,p.y));
-
-                Arrow newArrow = new Arrow(arrowStart,p,bends);
+                 */
+                Arrow newArrow = new Arrow(arrowStart, p, bends);
                 newArrow.setType(startRelation.getArrowType());
 
                 this.getChildren().addAll(newArrow);
                 newArrow.toBack();
-                arrowMap.put(newArrow,startRelation);
+                arrowMap.put(newArrow, startRelation);
                 arrows.add(newArrow);
             }
         }
@@ -145,7 +143,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     private void dragArrow(MouseEvent e){
         if(makingArrow){
             this.getChildren().remove(dragArrow);
-            dragArrow=new Arrow(arrowStart, new Point((int)e.getX(),(int)e.getY()),new ArrayList<>());
+            dragArrow=new Arrow(arrowStart, new ScaledPoint(Scale.Frontend, e.getX(), e.getY()),new ArrayList<>());
             this.getChildren().add(dragArrow);
             dragArrow.toBack();
         }
@@ -219,7 +217,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     private void changeArrow(Event e){
         ArrowType type = arrowTypeComboBox.getValue();
         clickedArrow.setType(type);
-        model.changeRelation(arrowMap.get(clickedArrow),type);
+        arrowMap.get(clickedArrow).changeRelation(type);
         closeMenu(e);
         e.consume();
     }

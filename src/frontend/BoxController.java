@@ -311,7 +311,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         for (AnchorPointController a:anchorPoints) {
             if(a.getPressed()){
                 a.setNotPressed();
-                arrowObserver.arrowEvent(new Point ((int)(a.getMid().x+this.getLayoutX()),(int)(a.getMid().y+this.getLayoutY())),this);
+                arrowObserver.arrowEvent(new ScaledPoint(Scale.Frontend, a.getMid().x + this.getLayoutX(), a.getMid().y + this.getLayoutY()),this);
             }
         }
         showCircles();

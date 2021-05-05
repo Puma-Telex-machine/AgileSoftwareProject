@@ -1,6 +1,5 @@
 package model.grid;
 
-import frontend.Observers.UiObserver;
 import model.boxes.Box;
 import model.boxes.BoxType;
 import model.facades.BoxFacade;
@@ -15,11 +14,6 @@ public class BoxManager implements BoxFacade {
     public BoxManager(IBoxGrid diagram, Box box) {
         this.diagram = diagram;
         this.box = box;
-    }
-
-    @Override
-    public Box getBox() {
-        return box;
     }
 
     @Override
@@ -85,10 +79,5 @@ public class BoxManager implements BoxFacade {
 
     public boolean isEmpty() {
         return box == null;
-    }
-
-    @Override
-    public void subscribe(UiObserver observer) {
-
     }
 }

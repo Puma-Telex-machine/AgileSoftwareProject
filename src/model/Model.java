@@ -1,27 +1,21 @@
 package model;
 
-
-
-
 import model.boxes.Box;
+import model.boxes.BoxType;
 import model.facades.FileHandlerFacade;
 import model.facades.ModelFacade;
 
-import java.awt.*;
 import model.facades.BoxFacade;
 import model.facades.Observer;
-import model.facades.RelationFacade;
 import model.grid.BoxManager;
 import model.grid.Diagram;
-import model.grid.IBoxGrid;
 import model.point.ScaledPoint;
 import model.relations.ArrowType;
 import model.relations.Relation;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Model implements ModelFacade, FileHandlerFacade{
+public class Model implements ModelFacade, FileHandlerFacade {
 
     private static Model singleton;
     public static Model getModel() {
@@ -46,15 +40,19 @@ public class Model implements ModelFacade, FileHandlerFacade{
         observers.remove(observer);
     }
 
-	public void addBox(ScaledPoint position) {
-        BoxFacade boxManager = diagram.createBox(position);
+	public void addBox(ScaledPoint position, BoxType boxType) {
+        //TODO: boxfactory (statisk?) lukas
+        Box box = BoxFactory.createBox("testname", position, boxType);
+
+        BoxFacade boxManager = diagram.addBox(new BoxManager(diagram.boxGrid, new Box("name", position)));
         observers.forEach(observer -> observer.addBox(boxManager));
 		Database.saveDiagram(diagram, name);
         System.out.println("saved "+name);
     }
 	
 	public void addRelation(BoxFacade from, BoxFacade to, ArrowType arrowType) {
-        RelationFacade relation = diagram.createRelation(from, to, arrowType);
+        Relation relation = new Relation(from, to, arrowType);
+        diagram.addRelation(relation);
         observers.forEach(observer -> observer.addRelation(relation));
     }
 
@@ -82,19 +80,4 @@ public class Model implements ModelFacade, FileHandlerFacade{
         if(name != null)
             loadFile(name);
     }
-    public Relation addRelation(BoxFacade from, BoxFacade to){
-        //todo add relation and return the apropriate type
-        return new Relation(null,null,ArrowType.ASSOCIATION);
-    }
-    public void changeRelation(Relation relation, ArrowType type){
-        //todo change relation
-    }
-
-    public List<Point> getArrowBends(BoxFacade from, BoxFacade to) {
-        //todo add pathfinding to here
-        return new ArrayList<>();
-    }
-    
-
-    
 }

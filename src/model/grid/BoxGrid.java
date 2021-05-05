@@ -5,12 +5,10 @@ import model.point.Scale;
 import model.point.ScaledPoint;
 
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 
-public class BoxGrid implements IBoxGrid, BoxGridView {
+public class BoxGrid implements IBoxGrid, BoxGridView { //TODO: try collision detection instead
     TreeMap<ScaledPoint, Box> boxMap = new TreeMap<>();
 
     public List<Box> getBoxes() {
@@ -63,7 +61,7 @@ public class BoxGrid implements IBoxGrid, BoxGridView {
         return boxes;
     }
 
-    public int getBoxCounter(){
+    public int getBoxCounter() {
         return boxMap.size();
     }
 
@@ -77,7 +75,7 @@ public class BoxGrid implements IBoxGrid, BoxGridView {
         Box occupant = boxMap.get(point);
         if (occupant != null) {
             ScaledPoint oldPosition = new ScaledPoint(Scale.Backend, occupant.getPosition());
-            ScaledPoint newPosition = oldPosition.move(new ScaledPoint(Scale.Backend, 0, -1));
+            ScaledPoint newPosition = oldPosition.move(new ScaledPoint(Scale.Backend, 0, 1));
             move(occupant, newPosition);
         }
     }

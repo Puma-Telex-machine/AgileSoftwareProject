@@ -1,11 +1,9 @@
 package model.boxes;
 
 import model.facades.MethodData;
-//import model.facades.VariableData;
 import model.facades.VariableData;
 import model.point.ScaledPoint;
 
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 

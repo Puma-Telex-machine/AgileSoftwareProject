@@ -3,8 +3,7 @@ package model.grid;
 import model.point.ScaledPoint;
 import model.relations.Relation;
 
-class PathNode implements Comparable<PathNode> {
-    private final AStar aStar;
+class PathNode {
     Relation relation;
 
     PathNode previous;
@@ -12,13 +11,7 @@ class PathNode implements Comparable<PathNode> {
     ScaledPoint position;
     int cost;
 
-    public PathNode(AStar aStar, Relation relation) {
-        this.aStar = aStar;
+    public PathNode(Relation relation) {
         this.relation = relation;
-    }
-
-    @Override
-    public int compareTo(PathNode o) {
-        return aStar.getCostEstimate(this) - aStar.getCostEstimate(o); // Correct order?
     }
 }
