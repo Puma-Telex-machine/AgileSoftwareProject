@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<fx:root id="pane1" fx:id="pane1" prefHeight="900.0" prefWidth="220.0" style="-fx-background-color: #3E4046;" stylesheets="@css/DarkMode.css" type="Pane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root id="pane1" fx:id="pane1" prefHeight="900.0" prefWidth="220.0" style="-fx-background-color: #3E4046;" stylesheets="@css/DarkMode.css" type="Pane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <children>
       <Text id="recentworktext" fill="#b8b8b8" layoutX="20.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-Large" text="RECENT WORK" textAlignment="CENTER" />
       <Button id="new_button" layoutX="88.0" layoutY="645.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="45.0" prefWidth="83.0" stylesheets="@css/DarkMode.css" text="NEW" />

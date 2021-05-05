@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<Pane id="pane5" fx:id="pane5" prefHeight="900.0" prefWidth="220.0" style="-fx-background-color: #3E4046;" stylesheets="@css/DarkMode.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<Pane id="pane5" fx:id="pane5" prefHeight="900.0" prefWidth="220.0" style="-fx-background-color: #3E4046;" stylesheets="@css/DarkMode.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <children>
       <Text id="commenttext" fx:id="commenttext" fill="#b8b8b8" layoutX="20.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-Large" text="COMMENTS" />
       <ListView id="commentlist" fx:id="commentlist" layoutX="10.0" layoutY="87.0" prefHeight="801.0" prefWidth="200.0" />
