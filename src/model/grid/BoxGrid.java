@@ -28,8 +28,8 @@ public class BoxGrid implements IBoxGrid, BoxGridView {
         // Move other boxes in the area down and add the box area to the grid
         for (ScaledPoint p : area) {
             pushOthersDown(p);
-            boxMap.put(p, box);
         }
+        boxMap.put(box.getPosition(), box);
     }
 
     @Override

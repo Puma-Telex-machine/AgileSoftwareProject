@@ -18,7 +18,9 @@ public class Diagram {
     HashSet<Relation> relations;
 
     public BoxFacade createBox(ScaledPoint position) {
-        return new BoxManager(boxGrid, new Box("test", position));
+        Box box = new Box("test", position);
+        boxGrid.add(box);
+        return new BoxManager(boxGrid, box);
     }
 
     public void addBox(Box box){
