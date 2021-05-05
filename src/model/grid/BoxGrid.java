@@ -28,8 +28,8 @@ public class BoxGrid implements IBoxGrid, BoxGridView {
         // Move other boxes in the area down and add the box area to the grid
         for (ScaledPoint p : area) {
             pushOthersDown(p);
+            boxMap.put(p, box);
         }
-        boxMap.put(box.getPosition(), box);
     }
 
     @Override
@@ -58,7 +58,8 @@ public class BoxGrid implements IBoxGrid, BoxGridView {
         Set<Map.Entry<ScaledPoint, Box>> set = boxMap.entrySet();
         ArrayList<Box> boxes = new ArrayList<>();
         for (Map.Entry<ScaledPoint, Box> entry: set) {
-            boxes.add(entry.getValue());
+            if(!boxes.contains(entry.getValue()))
+                boxes.add(entry.getValue());
         }
         return boxes;
     }
@@ -77,7 +78,7 @@ public class BoxGrid implements IBoxGrid, BoxGridView {
         Box occupant = boxMap.get(point);
         if (occupant != null) {
             ScaledPoint oldPosition = new ScaledPoint(Scale.Backend, occupant.getPosition());
-            ScaledPoint newPosition = oldPosition.move(new ScaledPoint(Scale.Backend, 0, -1));
+            ScaledPoint newPosition = oldPosition.move(new ScaledPoint(Scale.Backend, 0, 1));
             move(occupant, newPosition);
         }
     }
@@ -91,6 +92,7 @@ public class BoxGrid implements IBoxGrid, BoxGridView {
         int yEnd = y + box.getHeight();
 
         for (; x < xEnd; x++) {
+            y = point.getY(Scale.Backend);
             for (; y < yEnd; y++) {
                 area.add(new ScaledPoint(Scale.Backend, x, y));
             }
