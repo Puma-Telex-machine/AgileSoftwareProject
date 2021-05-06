@@ -244,12 +244,12 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      * Editing a variable on box
      */
     @FXML
-    private void editVariable(VariableData variable){
+    private void editVariable(VariableData variable, AnchorPane pos){
         methodEditor.setVisible(false);
         variableEditor.setVisible(true);
         variableEditor.toFront();
         variableEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
-        variableEditor.setLayoutY(this.getLayoutY()+this.getHeight()/2-variableEditor.getHeight()/2);
+        variableEditor.setLayoutY(this.getLayoutY()+variables.getLayoutY()+25+pos.getLayoutY()-variableEditor.getHeight()/2);
         variableEditor.EditVariable(variable, box);
     }
 
@@ -257,12 +257,12 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      * Editing a method on box
      */
     @FXML
-    private void editMethod(MethodData method){
+    private void editMethod(MethodData method, AnchorPane pos){
         variableEditor.setVisible(false);
         methodEditor.setVisible(true);
         methodEditor.toFront();
         methodEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
-        methodEditor.setLayoutY(this.getLayoutY()+this.getHeight()/2-methodEditor.getHeight()/2);
+        methodEditor.setLayoutY(this.getLayoutY()+methods.getLayoutY()+25+pos.getLayoutY()-methodEditor.getHeight()/2);
         methodEditor.EditMethod(method, box);
     }
 
@@ -400,7 +400,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
             BoxAttributeTextController attribute = new BoxAttributeTextController(variable);
             variables.getChildren().add(attribute);
             VariableData var = variableData[i];
-            attribute.setOnMouseClicked((Action) -> editVariable(var));
+            attribute.setOnMouseClicked((Action) -> editVariable(var, attribute));
 
         }
 
@@ -424,7 +424,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
             BoxAttributeTextController attribute = new BoxAttributeTextController(method);
             methods.getChildren().add(attribute);
             MethodData met = methodData[i];
-            attribute.setOnMouseClicked((Action) -> editMethod(met));
+            attribute.setOnMouseClicked((Action) -> editMethod(met, attribute));
         }
     }
 
