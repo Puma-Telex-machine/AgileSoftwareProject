@@ -29,10 +29,17 @@ public class Box implements BoxFacade {
     public Box(IDiagram observer, ScaledPoint position, BoxType type) {
         String defaultName;
         switch (type) {
-            case CLASS -> defaultName = "Class";
-            case ABSTRACT_CLASS -> defaultName =  "Abstract Class";
-            case INTERFACE -> defaultName = "Interface";
-            default -> defaultName = "Box";
+            case CLASS:
+                defaultName = "Class";
+                break;
+            case ABSTRACT_CLASS:
+                defaultName =  "Abstract Class";
+                break;
+            case INTERFACE:
+                defaultName = "Interface";
+                break;
+            default:
+                defaultName = "Box";
         }
         this.name = defaultName;
         this.position = position;

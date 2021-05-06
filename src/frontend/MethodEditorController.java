@@ -94,7 +94,7 @@ public class MethodEditorController extends AnchorPane {
 
         methodData.methodReturnType = returnTypeField.getText();
 
-        box.editMethod(methodData);
+        box.editMethod(methodData); //todo: implement MethodFacade to fix this
 
         this.setVisible(false);
     }
