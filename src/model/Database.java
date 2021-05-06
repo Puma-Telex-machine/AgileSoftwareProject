@@ -96,7 +96,7 @@ public class Database{
                     }else if(next.startsWith("<!")){
                         switch(type){
                             case BOX:
-                                Box box = new Box(name, new ScaledPoint(Scale.Backend,new Point(xpos,ypos)));
+                                Box box = new Box(name, new ScaledPoint(Scale.Backend, xpos, ypos));
                                 box.setVisibility(visibility);
                                 box.setMethods(methods);
                                 box.setAttributes(attributes);

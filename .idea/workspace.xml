@@ -2,19 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/model/grid/BoxGrid2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/BoxManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Model.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/boxes/BoxFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/boxes/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/facades/BoxFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/facades/BoxFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/BoxGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/BoxGrid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/BoxManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/Diagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/Diagram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/IDiagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/IDiagram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/point/Scale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/point/Scale.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/point/ScaledArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/point/ScaledArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/point/ScaledPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/point/ScaledPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/boxes/BoxType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/BoxType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -26,7 +26,7 @@ public class Box implements BoxFacade {
     private ScaledPoint position;
     private final IDiagram observer;
 
-    public Box(IDiagram observer, String name, ScaledPoint position, BoxType type) {
+    Box(IDiagram observer, String name, ScaledPoint position, BoxType type) {
         this.name = name;
         this.position = position;
         this.type = type;
