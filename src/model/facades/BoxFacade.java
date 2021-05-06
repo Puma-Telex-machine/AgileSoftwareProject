@@ -1,5 +1,7 @@
 package model.facades;
 
+import frontend.BoxController;
+import frontend.Observers.UiObserver;
 import model.boxes.*;
 import model.point.ScaledPoint;
 
@@ -92,4 +94,6 @@ public interface BoxFacade {
     ScaledPoint getPosition();
 
     ScaledPoint getWidthAndHeight();
+
+    void subscribe(UiObserver observer);
 }

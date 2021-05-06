@@ -14,7 +14,7 @@ public class Diagram implements IDiagram {
     RelationGrid relationGrid = new RelationGrid(this);
 
     @Override
-    public void set(Box box) {
+    public void update(Box box) {
         boxGrid.update(box);
         relationGrid.refreshAllPaths();
     }
@@ -22,19 +22,23 @@ public class Diagram implements IDiagram {
     @Override
     public void remove(Box box) {
         boxGrid.remove(box);
+        relationGrid.refreshAllPaths();
     }
 
     public List<Box> getAllBoxes() {
         return boxGrid.getBoxes();
     }
 
-    public void set(Relation relation) {
+    public void update(Relation relation) {
         relationGrid.add(relation);
+        relationGrid.refreshAllPaths();     // Detta gör om arbetet i add, det beror på vilken funktionalitet vi vill ha.
+                                            // Hur "känns det" när alla relationer uppdateras är väl det som är viktigast.
     }
 
     @Override
     public void remove(Relation relation) {
         relationGrid.remove(relation);
+        relationGrid.refreshAllPaths();
     }
 
     public List<Relation> getAllRelations() {
