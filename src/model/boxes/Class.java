@@ -1,9 +1,6 @@
 package model.boxes;
 
-import model.point.Scale;
 import model.point.ScaledPoint;
-
-import java.awt.*;
 
 /**
  * Represents a class. Subclass of the "Box" class.
@@ -19,7 +16,7 @@ public class Class extends Box {
     @Override
     public BoxType getType(){
         if(getModifiers().contains(Modifier.ABSTRACT))
-            return BoxType.ABSTRACTCLASS;
+            return BoxType.ABSTRACT_CLASS;
         return BoxType.CLASS;
     }
 }

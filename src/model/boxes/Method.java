@@ -1,6 +1,5 @@
 package model.boxes;
 
-import model.facades.MethodData;
 import model.facades.MethodFacade;
 
 import java.util.ArrayList;
@@ -19,35 +18,15 @@ public class Method implements MethodFacade {
     private final List<String> parameters = new ArrayList<>();
     private final Set<Modifier> modifiers = new HashSet<>();
     private Visibility visibility = Visibility.PUBLIC;
-    //String returnValue; // Unsure how to implement types, for now
-
-    /*
-    public Method(String name, List<Attribute> parameters, Set<Modifier> modifiers, Visibility visibility){
-        this.name = name;
-        this.parameters = parameters;
-        this.modifiers = modifiers;
-        this.visibility = visibility;
-    }
-
-    Method(MethodData data){
-        this.name = data.methodName;
-        this.parameters = createArguments(data);
-        this.visibility = data.visibility;
-    }
-
-
-    private List<Attribute> createArguments(MethodData methodData){
-        List<Attribute> result = new ArrayList<>();
-        for (String argument: methodData.arguments) {
-            result.add(new Attribute(argument,null, null));
-        }
-        return result;
-    }
-     */
 
     @Override
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 
     /**
@@ -55,17 +34,22 @@ public class Method implements MethodFacade {
      * @param argument The argument to be added.
      */
     @Override
-    public void addArgument(String argument){
+    public void addArgument(String argument) {
         parameters.add(argument);
     }
 
     /**
      * Removes an argument from the Method
-     * @param position the argument's position in the list.
+     * @param argument the argument to be removed.
      */
     @Override
-    public void removeArgument(String argument){
+    public void removeArgument(String argument) {
         parameters.remove(argument);
+    }
+
+    @Override
+    public List<String> getArguments() {
+        return parameters;
     }
 
     /**
@@ -73,7 +57,7 @@ public class Method implements MethodFacade {
      * @param modifier The modifier to be added.
      */
     @Override
-    public void addModifier(Modifier modifier){
+    public void addModifier(Modifier modifier) {
         modifiers.add(modifier);
     }
 
@@ -82,32 +66,22 @@ public class Method implements MethodFacade {
      * @param modifier The modifier to be removed.
      */
     @Override
-    public void removeModifier(Modifier modifier){
+    public void removeModifier(Modifier modifier) {
         modifiers.remove(modifier);
     }
 
     @Override
-    public void setVisibility(Visibility visibility){
-        this.visibility = visibility;
-    }
-
-    @Override
-    public String getName(){
-        return name;
-    }
-
-    @Override
-    public List<String> getParameters(){
-        return parameters;
-    }
-
-    @Override
-    public Set<Modifier> getModifiers(){
+    public Set<Modifier> getModifiers() {
         return modifiers;
     }
 
     @Override
-    public Visibility getVisibility(){
+    public void setVisibility(Visibility visibility) {
+        this.visibility = visibility;
+    }
+
+    @Override
+    public Visibility getVisibility() {
         return visibility;
     }
 }

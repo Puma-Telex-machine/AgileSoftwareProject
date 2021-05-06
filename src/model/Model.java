@@ -40,14 +40,14 @@ public class Model implements ModelFacade, FileHandlerFacade {
     }
 
 	public void addBox(ScaledPoint position, BoxType boxType) {
-        observers.forEach(observer -> observer.addBox(new Box(diagram, "test", position, boxType)));
-		Database.saveDiagram(diagram, name);
-        System.out.println("Saved diagram as: " + name);
+        observers.forEach(observer -> observer.addBox(new Box(diagram, position, boxType)));
+		//TODO: Sätt i diagram: Database.saveDiagram(diagram, name);
+        //TODO: Sätt i databasen: System.out.println("Saved diagram as: " + name);
     }
 	
 	public void addRelation(BoxFacade from, BoxFacade to, ArrowType arrowType) {
         Relation relation = new Relation(from, to, arrowType);
-        diagram.add(relation);
+        diagram.set(relation);
         observers.forEach(observer -> observer.addRelation(relation));
     }
 
@@ -58,23 +58,20 @@ public class Model implements ModelFacade, FileHandlerFacade {
 
     @Override
     public void loadFile(String fileName) {
-        diagram = Database.loadDiagram("diagrams/",fileName);
-        for (Box box : diagram.boxGrid.getAllBoxes()) {
-            BoxManager boxManager = new BoxManager(diagram.boxGrid, box);
-            observers.forEach(observer -> observer.addBox(boxManager));
+        diagram = Database.loadDiagram("diagrams/", fileName);
+        for (Box box : diagram.getAllBoxes()) {
+            observers.forEach(observer -> observer.addBox(box));
         }
-        name = fileName;
-        System.out.println("loaded " + name);
+        //TODO: Sätt i databasen: name = fileName;
+        //TODO: Sätt i databasen: System.out.println("loaded " + name);
     }
 
     public void loadTemplate(String fileName){
         Diagram template = Database.loadDiagram("templates/", fileName);
-        for(Box box : template.boxGrid.getAllBoxes()){
-            diagram.addBox(box);
-            BoxManager boxManager = new BoxManager(diagram.boxGrid, box);
-            observers.forEach(observer -> observer.addBox(boxManager));
+        for(Box box : template.getAllBoxes()){
+            observers.forEach(observer -> observer.addBox(box));
         }
-        System.out.println("loaded template " + fileName);
+        //TODO: Sätt i databasen: System.out.println("loaded template " + fileName);
     }
 
     @Override

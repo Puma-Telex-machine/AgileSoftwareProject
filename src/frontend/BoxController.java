@@ -78,7 +78,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
                 vBox.getChildren().remove(6);
                 vBox.getChildren().remove(5);
                 break;
-            case ABSTRACTCLASS:
+            case ABSTRACT_CLASS:
                 identifier.setText("<Abstract>");
                 break;
             case ENUM:

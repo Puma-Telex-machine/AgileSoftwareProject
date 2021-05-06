@@ -1,10 +1,12 @@
 package model.grid;
 
+import model.boxes.Box;
 import model.point.ScaledPoint;
 import model.relations.Relation;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.TreeMap;
 
 public class RelationGrid {
@@ -62,5 +64,13 @@ public class RelationGrid {
             }
         }
         return false;
+    }
+
+    public List<Relation> getRelations() {
+        return relations.stream().toList();
+    }
+
+    public void remove(Relation relation) {
+        relations.remove(relation);
     }
 }

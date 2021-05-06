@@ -9,58 +9,10 @@ import java.util.Set;
 public interface BoxFacade {
 
     /**
-     * Delete this box from the diagram.
+     * Set the name of the box.
+     * @param name the name of the box.
      */
-    void deleteBox();
-
-    /**
-     * Should edit the method if the method already exists.
-     * If the method doesn't exist the method should be added instead.
-     * @param methodData The data for the new method. Should replace the old data.
-     */
-    void editMethod(MethodData methodData);
-
-    /**
-     * Should edit the variable if the variable exists.
-     * If the variable doesn't exist the variable should be added instead.
-     */
-    void addVariable();
-
-    /**
-     * If a method with this name exists then delete the method.
-     * If the method doesn't exist then do nothing.
-     * @param methodName The name of the method that should be deleted
-     */
-    void deleteMethod(String methodName);
-
-    /**
-     * If a variable with this name exists then delete that variable.
-     * If the variable doesn't exist then do nothing.
-     * @param variableName The name of the variable that should be deleted.
-     */
-    void deleteVariable(String variableName);
-
-    /**
-     * Get the position of the box.
-     * @return the position as a ScaledPoint
-     */
-    ScaledPoint getPosition();
-
-    void removeModifier(Modifier modifier);
-
-    void setVisibility(Visibility visibility);
-
-    Visibility getVisibility();
-
-    /**
-     * Set the position of the box.
-     * @param point the position to move the box to.
-     */
-    void setPosition(ScaledPoint point);
-
-    void addModifier(Modifier modifier);
-
-    Set<Modifier> getModifiers();
+    void setName(String name);
 
     /**
      * Get the name of the box.
@@ -68,11 +20,6 @@ public interface BoxFacade {
      */
     String getName();
 
-    /**
-     * Set the name of the box.
-     * @param name the name of the box.
-     */
-    void setName(String name);
 
     /**
      * Get the box type (Class, Interface, Enum).
@@ -80,16 +27,69 @@ public interface BoxFacade {
      */
     BoxType getType();
 
+
     /**
-     * Returns the data for all of the methods of this class
+     * Delete this box from the diagram.
+     */
+    void deleteBox();
+
+
+    MethodFacade addMethod();
+    /**
+     * If a method with this name exists then delete the method.
+     * If the method doesn't exist then do nothing.
+     * @param method The method that should be deleted
+     */
+
+    void deleteMethod(MethodFacade method);
+
+    /**
+     * Returns all methods of this class.
+     */
+    List<MethodFacade> getMethods();
+
+
+    /**
+     * Creates and returns a new attribute.
+     */
+    AttributeFacade addAttribute();
+
+    /**
+     * If this attribute exists then delete it.
+     * If the variable doesn't exist then do nothing.
+     * @param attribute The attribute that should be deleted.
+     */
+    void deleteAttribute(AttributeFacade attribute);
+
+    /**
+     * Returns the all attributes of this class
      */
     List<AttributeFacade> getAttributes();
 
+
+    void setVisibility(Visibility visibility);
+
+    Visibility getVisibility();
+
+
+    void addModifier(Modifier modifier);
+
+    void removeModifier(Modifier modifier);
+
+    Set<Modifier> getModifiers();
+
+
     /**
-     * Returns the data for all of the variables of this class
-     * @return
+     * Set the position of the box.
+     * @param point the position to move the box to.
      */
-    List<MethodFacade> getMethods();
+    void setPosition(ScaledPoint point);
+
+    /**
+     * Get the position of the box.
+     * @return the position as a ScaledPoint
+     */
+    ScaledPoint getPosition();
 
     ScaledPoint getWidthAndHeight();
 }

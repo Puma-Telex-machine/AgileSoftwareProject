@@ -201,7 +201,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     }
     @FXML
     private void handleContextAddBox(MouseEvent e) {
-        model.addBox(new ScaledPoint(Scale.Frontend,new Point((int) contextMenu.getLayoutX()-80,(int) contextMenu.getLayoutY()-35)));
+        model.addBox(new ScaledPoint(Scale.Frontend,new Point((int) contextMenu.getLayoutX()-80,(int) contextMenu.getLayoutY()-35)), );
         closeMenu(e);
         e.consume();
     }

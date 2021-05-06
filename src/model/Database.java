@@ -42,7 +42,7 @@ public class Database{
                 else if(next.startsWith("<CLASS>"))
                     boxes.add(loadBox(scanner, BoxType.CLASS));
                 else if(next.startsWith("<ABSTRACTCLASS>"))
-                    boxes.add(loadBox(scanner, BoxType.ABSTRACTCLASS));
+                    boxes.add(loadBox(scanner, BoxType.ABSTRACT_CLASS));
                 else if(next.startsWith("<INTERFACE>"))
                     boxes.add(loadBox(scanner, BoxType.INTERFACE));
                 else if(next.startsWith("<ENUM>"))
@@ -50,7 +50,7 @@ public class Database{
             }
             Diagram result = new Diagram();
             for (Box box: boxes) {
-                result.add(box);
+                result.set(box);
             }
             return result;
         } catch (FileNotFoundException e){
@@ -103,7 +103,7 @@ public class Database{
                                 box.setModifiers(modifiers);
                                 return box;
                             case CLASS:
-                            case ABSTRACTCLASS:
+                            case ABSTRACT_CLASS:
                                 Class newClass = new Class(new ScaledPoint(Scale.Backend,new Point(xpos,ypos)), name);
                                 newClass.setVisibility(visibility);
                                 newClass.setMethods(methods);
@@ -236,7 +236,7 @@ public class Database{
         writeLine(tab + "<METHOD>", writer);
         writeLine(tab + "  " + nameMatch + lineSplit + method.getName(), writer);
         writeLine(tab + "  " + visibilityMatch + lineSplit + method.getVisibility(), writer);
-        for(Attribute attribute : method.getParameters()){
+        for(Attribute attribute : method.getArguments()){
             writeLine(tab + "  <PARAMETER>", writer);
             saveAttribute(attribute, writer, tab + "  ");
             writeLine(tab + "  <!PARAMETER>", writer);

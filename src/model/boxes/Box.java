@@ -1,6 +1,8 @@
 package model.boxes;
 
-import model.facades.*;
+import model.facades.AttributeFacade;
+import model.facades.BoxFacade;
+import model.facades.MethodFacade;
 import model.grid.IDiagram;
 import model.point.Scale;
 import model.point.ScaledPoint;
@@ -17,81 +19,32 @@ public class Box implements BoxFacade {
 
     private String name;
     private final BoxType type;
-    private List<Method> methods = new ArrayList<>();
-    private List<Attribute> attributes = new ArrayList<>();
-    private Set<Modifier> modifiers = new HashSet<>();
+    private final List<MethodFacade> methods = new ArrayList<>();
+    private final List<AttributeFacade> attributes = new ArrayList<>();
+    private final Set<Modifier> modifiers = new HashSet<>();
     private Visibility visibility = Visibility.PUBLIC;
     private ScaledPoint position;
     private final IDiagram observer;
 
-    Box(IDiagram observer, String name, ScaledPoint position, BoxType type) {
-        this.name = name;
+    public Box(IDiagram observer, ScaledPoint position, BoxType type) {
+        String defaultName;
+        switch (type) {
+            case CLASS -> defaultName = "Class";
+            case ABSTRACT_CLASS -> defaultName =  "Abstract Class";
+            case INTERFACE -> defaultName = "Interface";
+            default -> defaultName = "Box";
+        }
+        this.name = defaultName;
         this.position = position;
         this.type = type;
         this.observer = observer;
+        observer.set(this);
     }
 
     @Override
-    public void setName(String newName) {
-        name = newName;
-        observer.update(this);
-    }
-
-    @Override
-    public void deleteBox() {
-        name = "THIS SHOULD NOT BE VISIBLE: BOX DELETED";
-        observer.remove(this);
-    }
-
-    @Override
-    public void editMethod(MethodData methodData) {
-        boolean exists = false;
-        for (Method method: methods) {
-            if(methodData.methodName.equals(method.getName())) {
-                exists = true;
-                //method.SetName(methodData.methodName); todo: identify methods
-                method.setVisibility(methodData.visibility);
-                method.SetArguments(methodData);
-                break;
-            }
-        }
-        if(!exists){
-            methods.add(new Method(methodData));
-        }
-        observer.update(this);
-    }
-
-    @Override
-    public void deleteMethod(String methodName) {
-        int counter = 0;
-        for (Method method: methods) {
-            if(methodName.equals(method.getName())) {
-                methods.remove(counter);
-                break;
-            }
-            counter++;
-        }
-        observer.update(this);
-    }
-
-    @Override
-    public void addVariable() {
-        attributes.add(new Attribute());
-        observer.update(this);
-    }
-
-    @Override
-    public void deleteVariable(String variableName) {
-        // TODO: deleteAttribute?
-        int counter = 0;
-        for (Attribute attribute: attributes) {
-            if(variableName.equals(attribute.getName())) {
-                attributes.remove(counter);
-                break;
-            }
-            counter++;
-        }
-        observer.update(this);
+    public void setName(String name) {
+        this.name = name;
+        observer.set(this);
     }
 
     @Override
@@ -105,8 +58,39 @@ public class Box implements BoxFacade {
     }
 
     @Override
-    public List<MethodFacade> getMethods() { //TODO: Method interface return?
+    public void deleteBox() {
+        name = "THIS SHOULD NOT BE VISIBLE: BOX IS DELETED";
+        observer.remove(this);
+    }
+
+    @Override
+    public MethodFacade addMethod() {
+        return new Method();
+    }
+
+    @Override
+    public void deleteMethod(MethodFacade method) {
+        methods.remove(method);
+        observer.set(this);
+    }
+
+    @Override
+    public List<MethodFacade> getMethods() {
         return new ArrayList<>(methods);
+    }
+
+    @Override
+    public AttributeFacade addAttribute() {
+        AttributeFacade attribute = new Attribute();
+        attributes.add(attribute);
+        observer.set(this);
+        return attribute;
+    }
+
+    @Override
+    public void deleteAttribute(AttributeFacade attribute) {
+        attributes.remove(attribute);
+        observer.set(this);
     }
 
     @Override
@@ -115,27 +99,9 @@ public class Box implements BoxFacade {
     }
 
     @Override
-    public void addModifier(Modifier modifier) {
-        modifiers.add(modifier);
-        observer.update(this); //Behövs denna?
-    }
-
-    @Override
-    public void removeModifier(Modifier modifier) {
-        // TODO: deleteModifier? (consistency)
-        modifiers.remove(modifier);
-        observer.update(this);
-    }
-
-    @Override
-    public Set<Modifier> getModifiers() {
-        return modifiers;
-    }
-
-    @Override
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
-        observer.update(this); //Behövs denna?
+        observer.set(this); //Behövs denna?
     }
 
     @Override
@@ -144,9 +110,27 @@ public class Box implements BoxFacade {
     }
 
     @Override
-    public void setPosition(ScaledPoint newPosition) {
-        position = newPosition;
-        observer.update(this);
+    public void addModifier(Modifier modifier) {
+        modifiers.add(modifier);
+        observer.set(this); //Behövs denna?
+    }
+
+    @Override
+    public void removeModifier(Modifier modifier) {
+        // TODO: deleteModifier? (consistency)
+        modifiers.remove(modifier);
+        observer.set(this);
+    }
+
+    @Override
+    public Set<Modifier> getModifiers() {
+        return modifiers;
+    }
+
+    @Override
+    public void setPosition(ScaledPoint point) {
+        position = point;
+        observer.set(this);
     }
 
     @Override
@@ -167,11 +151,11 @@ public class Box implements BoxFacade {
         ArrayList<String> names = new ArrayList<>();
 
         names.add(name);
-        for (Method method : methods) {
+        for (MethodFacade method : methods) {
             names.add(method.getName());
         }
-        for (Method method : methods) {
-            names.add(method.getName());
+        for (AttributeFacade attribute : attributes) {
+            names.add(attribute.getName());
         }
 
         ArrayList<Integer> longest = new ArrayList<>();

@@ -8,28 +8,37 @@ import java.util.List;
 
 public class Diagram implements IDiagram {
 
-    //TODO: Box implementerar BoxFacade
+    //TODO: update database whenever diagram is updated
 
-    public BoxGrid2 boxGrid = new BoxGrid2(); //TODO: denna borde inte behöva vara public
+    BoxGrid2 boxGrid = new BoxGrid2();
     RelationGrid relationGrid = new RelationGrid(this);
 
-    public void add(Box box) {
+    @Override
+    public void set(Box box) {
         boxGrid.update(box);
         relationGrid.refreshAllPaths();
     }
 
     @Override
-    public void update(Box box) {
-        boxGrid.update(box);
-        relationGrid.refreshAllPaths();
+    public void remove(Box box) {
+        boxGrid.remove(box);
     }
 
     public List<Box> getAllBoxes() {
         return boxGrid.getBoxes();
     }
 
-    public void add(Relation relation) {
+    public void set(Relation relation) {
         relationGrid.add(relation);
+    }
+
+    @Override
+    public void remove(Relation relation) {
+        relationGrid.remove(relation);
+    }
+
+    public List<Relation> getAllRelations() {
+        return relationGrid.getRelations();
     }
 
     @Override

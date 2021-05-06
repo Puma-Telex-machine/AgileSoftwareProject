@@ -3,7 +3,7 @@ package model.boxes;
 public enum BoxType {
     BOX,
     CLASS,
-    ABSTRACTCLASS,
+    ABSTRACT_CLASS,
     INTERFACE,
     ENUM
 }

@@ -67,7 +67,7 @@ public class Relation implements RelationFacade {
                 return classRelations(toType);
             case INTERFACE:
                 return interfaceRelations(toType);
-            case ABSTRACTCLASS:
+            case ABSTRACT_CLASS:
                 return abstractclassRelations(toType);
             case ENUM:
                 return enumRelations(toType);
@@ -92,7 +92,7 @@ public class Relation implements RelationFacade {
             case INTERFACE:
                 types.add(ArrowType.IMPLEMENTATION);
                 return types;
-            case ABSTRACTCLASS:
+            case ABSTRACT_CLASS:
                 types.add(ArrowType.INHERITANCE);
                 return types;
             default:
@@ -126,7 +126,7 @@ public class Relation implements RelationFacade {
             case INTERFACE:
                 types.add(ArrowType.IMPLEMENTATION);
                 return types;
-            case ABSTRACTCLASS:
+            case ABSTRACT_CLASS:
                 types.add(ArrowType.IMPLEMENTATION);
                 return types;
             case CLASS:

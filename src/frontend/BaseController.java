@@ -91,7 +91,7 @@ public class BaseController{
     @FXML
     private void handleContextAddBox(MouseEvent e) {
         ScaledPoint newBoxPosition = new ScaledPoint(Scale.Frontend, contextMenu.getLayoutX()-80, contextMenu.getLayoutY()-35);
-        model.addBox(newBoxPosition);
+        model.addBox(newBoxPosition, );
         exitContext();
         e.consume();
     }
