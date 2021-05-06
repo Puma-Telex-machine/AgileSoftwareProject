@@ -73,10 +73,11 @@ public class BoxGrid { //TODO: try collision detection instead
     private ArrayList<ScaledPoint> getArea(Box box) {
         ArrayList<ScaledPoint> area = new ArrayList<>();
         ScaledPoint point = box.getPosition();
+        ScaledPoint endPoint = box.getWidthAndHeight();
         int x = point.getX(Scale.Backend);
         int y = point.getY(Scale.Backend);
-        int xEnd = x + box.getHeight();  // NOTE: Method getWidth does not exist!
-        int yEnd = y + box.getHeight();
+        int xEnd = x + endPoint.getX(Scale.Backend);
+        int yEnd = y + endPoint.getX(Scale.Backend);
 
         for (; x < xEnd; x++) {
             for (; y < yEnd; y++) {

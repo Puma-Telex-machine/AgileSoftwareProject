@@ -41,13 +41,9 @@ public class Model implements ModelFacade, FileHandlerFacade {
     }
 
 	public void addBox(ScaledPoint position, BoxType boxType) {
-        //TODO: boxfactory (statisk?) lukas
-        Box box = BoxFactory.createBox("testname", position, boxType);
-
-        BoxFacade boxManager = diagram.add(new BoxManager(diagram.boxGrid, new Box("name", position)));
-        observers.forEach(observer -> observer.addBox(boxManager));
+        observers.forEach(observer -> observer.addBox(new Box(diagram, "test", position, boxType)));
 		Database.saveDiagram(diagram, name);
-        System.out.println("saved "+name);
+        System.out.println("Saved diagram as: " + name);
     }
 	
 	public void addRelation(BoxFacade from, BoxFacade to, ArrowType arrowType) {
@@ -66,7 +62,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
         //TODO: Behöver vi spara innan detta händer eller e det automatiskt lugnt?
         diagram = Database.loadDiagram(fileName);
         if(diagram != null) {
-            for (Box box : diagram.boxGrid.getAllBoxes()) {
+            for (Box box : diagram.getAllBoxes()) {
                 BoxManager boxManager = new BoxManager(diagram.boxGrid, box);
                 observers.forEach(observer -> observer.addBox(boxManager));
             }

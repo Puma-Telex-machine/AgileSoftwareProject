@@ -1,11 +1,19 @@
 package model.facades;
 
-import frontend.Observers.UiObservable;
+import model.boxes.Attribute;
 import model.boxes.BoxType;
+import model.boxes.Modifier;
+import model.boxes.Visibility;
 import model.point.ScaledPoint;
+
+import java.util.List;
+import java.util.Set;
 
 public interface BoxFacade {
 
+    /**
+     * Delete this box from the diagram.
+     */
     void deleteBox();
 
     /**
@@ -26,7 +34,6 @@ public interface BoxFacade {
      * If a method with this name exists then delete the method.
      * If the method doesn't exist then do nothing.
      * @param methodName The name of the method that should be deleted
-     * @return
      */
     void deleteMethod(String methodName);
 
@@ -34,27 +41,60 @@ public interface BoxFacade {
      * If a variable with this name exists then delete that variable.
      * If the variable doesn't exist then do nothing.
      * @param variableName The name of the variable that should be deleted.
-     * @return
      */
     void deleteVariable(String variableName);
 
+    /**
+     * Get the position of the box.
+     * @return the position as a ScaledPoint
+     */
     ScaledPoint getPosition();
 
+    void removeModifier(Modifier modifier);
+
+    void setVisibility(Visibility visibility);
+
+    Visibility getVisibility();
+
+    /**
+     * Set the position of the box.
+     * @param point the position to move the box to.
+     */
     void setPosition(ScaledPoint point);
 
+    List<Attribute> getAttributes();
+
+    void addModifier(Modifier modifier);
+
+    Set<Modifier> getModifiers();
+
+    /**
+     * Get the name of the box.
+     * @return the name of the box.
+     */
+    String getName();
+
+    /**
+     * Set the name of the box.
+     * @param name the name of the box.
+     */
     void setName(String name);
 
+    /**
+     * Get the box type (Class, Interface, Enum).
+     * @return the name of the box.
+     */
     BoxType getType();
 
     /**
      * Returns the data for all of the methods of this class
-     * @return
      */
     VariableData[] getVariables();
 
     /**
      * Returns the data for all of the variables of this class
-      * @return
      */
     MethodData[] getMethods();
+
+    ScaledPoint getWidthAndHeight();
 }
