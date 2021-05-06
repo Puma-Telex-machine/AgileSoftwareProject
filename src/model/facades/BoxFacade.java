@@ -23,9 +23,8 @@ public interface BoxFacade {
     /**
      * Should edit the variable if the variable exists.
      * If the variable doesn't exist the variable should be added instead.
-     * @param variableData The data for the new variable. Should replace the old data.
      */
-    void editVariable(VariableData variableData);
+    void addVariable();
 
     /**
      * If a method with this name exists then delete the method.

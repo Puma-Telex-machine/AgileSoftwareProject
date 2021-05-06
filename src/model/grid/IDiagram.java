@@ -6,6 +6,7 @@ import model.relations.Relation;
 
 public interface IDiagram {
     void update(Box box);
+    void remove(Box box);
     boolean isOccupied(ScaledPoint position);
     boolean canMergeLines(Relation relation, ScaledPoint position);
 }

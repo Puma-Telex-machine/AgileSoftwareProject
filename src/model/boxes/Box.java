@@ -38,13 +38,19 @@ public class Box implements BoxFacade {
     }
 
     @Override
+    public void deleteBox() {
+        name = "THIS SHOULD NOT BE VISIBLE: BOX DELETED";
+        observer.remove(this);
+    }
+
+    @Override
     public void editMethod(MethodData methodData) {
         boolean exists = false;
         for (Method method: methods) {
             if(methodData.methodName.equals(method.getName())) {
                 exists = true;
                 //method.SetName(methodData.methodName); todo: identify methods
-                method.SetVisibility(methodData.visibility);
+                method.setVisibility(methodData.visibility);
                 method.SetArguments(methodData);
                 break;
             }
@@ -52,6 +58,7 @@ public class Box implements BoxFacade {
         if(!exists){
             methods.add(new Method(methodData));
         }
+        observer.update(this);
     }
 
     @Override
@@ -64,22 +71,13 @@ public class Box implements BoxFacade {
             }
             counter++;
         }
+        observer.update(this);
     }
 
     @Override
-    public void editVariable(VariableData variableData) {
-        boolean exists = false;
-        for (Attribute attribute: attributes) {
-            if(variableData.name.equals(attribute.getName())) {
-                exists = true;
-                //attribute.SetName(variableData.name); todo: identify attributes
-                attribute.setVisibility(variableData.visibility);
-                break;
-            }
-        }
-        if(!exists){
-            attributes.add(new Attribute(variableData));
-        }
+    public void addVariable() {
+        attributes.add(new Attribute());
+        observer.update(this);
     }
 
     @Override
@@ -87,12 +85,13 @@ public class Box implements BoxFacade {
         // TODO: deleteAttribute?
         int counter = 0;
         for (Attribute attribute: attributes) {
-            if(variableName == attribute.getName()) {
+            if(variableName.equals(attribute.getName())) {
                 attributes.remove(counter);
                 break;
             }
             counter++;
         }
+        observer.update(this);
     }
 
     @Override
@@ -118,6 +117,14 @@ public class Box implements BoxFacade {
     @Override
     public void addModifier(Modifier modifier) {
         modifiers.add(modifier);
+        observer.update(this); //Behövs denna?
+    }
+
+    @Override
+    public void removeModifier(Modifier modifier) {
+        // TODO: deleteModifier? (consistency)
+        modifiers.remove(modifier);
+        observer.update(this);
     }
 
     @Override
@@ -126,14 +133,9 @@ public class Box implements BoxFacade {
     }
 
     @Override
-    public void removeModifier(Modifier modifier) {
-        // TODO: deleteModifier? (consistency)
-        modifiers.remove(modifier);
-    }
-
-    @Override
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
+        observer.update(this); //Behövs denna?
     }
 
     @Override

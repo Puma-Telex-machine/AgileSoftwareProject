@@ -7,7 +7,6 @@ import model.facades.ModelFacade;
 
 import model.facades.BoxFacade;
 import model.facades.Observer;
-import model.grid.BoxManager;
 import model.grid.Diagram;
 import model.point.ScaledPoint;
 import model.relations.ArrowType;

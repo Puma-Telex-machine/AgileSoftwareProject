@@ -11,7 +11,6 @@ import model.boxes.Visibility;
 import model.facades.BoxFacade;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class VariableEditorController extends AnchorPane {
 
@@ -58,7 +57,7 @@ public class VariableEditorController extends AnchorPane {
 
         data.variableType = typeField.getText();
 
-        box.editVariable(data);
+        box.addVariable();
         this.setVisible(false);
     }
 
