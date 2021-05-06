@@ -13,8 +13,6 @@ public class Enum extends Box {
 
     @Override
     public BoxType getType(){
-        if(getModifiers().contains(Modifier.ABSTRACT))
-            return BoxType.ABSTRACTCLASS;
-        return BoxType.CLASS;
+        return BoxType.ENUM;
     }
 }

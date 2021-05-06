@@ -50,8 +50,9 @@ public class BoxGrid { //TODO: try collision detection instead
     public ArrayList<Box> getAllBoxes() {
         Set<Map.Entry<ScaledPoint, Box>> set = boxMap.entrySet();
         ArrayList<Box> boxes = new ArrayList<>();
-        for (Map.Entry<ScaledPoint, Box> entry : set) {
-            boxes.add(entry.getValue());
+        for (Map.Entry<ScaledPoint, Box> entry: set) {
+            if(!boxes.contains(entry.getValue()))
+                boxes.add(entry.getValue());
         }
         return boxes;
     }
@@ -80,6 +81,7 @@ public class BoxGrid { //TODO: try collision detection instead
         int yEnd = y + endPoint.getX(Scale.Backend);
 
         for (; x < xEnd; x++) {
+            y = point.getY(Scale.Backend);
             for (; y < yEnd; y++) {
                 area.add(new ScaledPoint(Scale.Backend, x, y));
             }
