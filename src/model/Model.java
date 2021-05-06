@@ -61,14 +61,12 @@ public class Model implements ModelFacade, FileHandlerFacade {
     public void loadFile(String fileName) {
         //TODO: Behöver vi spara innan detta händer eller e det automatiskt lugnt?
         diagram = Database.loadDiagram(fileName);
-        if(diagram != null) {
-            for (Box box : diagram.getAllBoxes()) {
-                BoxManager boxManager = new BoxManager(diagram.boxGrid, box);
-                observers.forEach(observer -> observer.addBox(boxManager));
-            }
-            name = fileName;
-            System.out.println("loaded " + name);
+        for (Box box : diagram.boxGrid.getAllBoxes()) {
+            BoxManager boxManager = new BoxManager(diagram.boxGrid, box);
+            observers.forEach(observer -> observer.addBox(boxManager));
         }
+        name = fileName;
+        System.out.println("loaded " + name);
     }
 
     @Override

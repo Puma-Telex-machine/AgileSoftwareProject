@@ -12,8 +12,8 @@ import java.awt.*;
  */
 public class Class extends Box {
 
-    public Class(Point position, String name) {
-        super(name, new ScaledPoint(Scale.Frontend,position)); //todo: fix scale
+    public Class(ScaledPoint position, String name) {
+        super(name, position); //todo: fix scale
     }
 
     @Override

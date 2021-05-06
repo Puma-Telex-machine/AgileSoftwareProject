@@ -25,17 +25,9 @@ public class Database{
      */
     static public Diagram loadDiagram(String filename){
         try {
-            int boxcount = 0;
             ArrayList<Box> boxes = new ArrayList<>();
             File toRead = new File("diagrams/" + filename + ".uml");
-            if(!toRead.exists())
-                return null;
             Scanner scanner = new Scanner(toRead);
-            if(!scanner.hasNextLine())
-                return null;
-            String[] nextSplit = scanner.nextLine().trim().split("=");
-            if(nextSplit[0].toLowerCase().matches("boxcount"))
-                boxcount = Integer.parseInt(nextSplit[1]); // not used for anything yet
             while (scanner.hasNextLine()){
                 String next = scanner.nextLine().trim();
                 if(next.startsWith("<BOX>"))
@@ -60,6 +52,7 @@ public class Database{
         List<Method> methods = new ArrayList<>();
         List<Attribute> attributes = new ArrayList<>();
         Set<Modifier> modifiers = new HashSet<>();
+
         while (scanner.hasNextLine()){
             String next = scanner.nextLine().trim();
             if(next.startsWith("name=")){
@@ -79,7 +72,7 @@ public class Database{
             }else if(next.startsWith("<!")){
                 switch(type){
                     case BOX:
-                        Box box = new Box(name, new ScaledPoint(Scale.Frontend,new Point(xpos,ypos)));
+                        Box box = new Box(name, new ScaledPoint(Scale.Backend,new Point(xpos,ypos)));
                         box.setVisibility(visibility);
                         box.setMethods(methods);
                         box.setAttributes(attributes);
@@ -87,14 +80,14 @@ public class Database{
                         return box;
                     case CLASS:
                     case ABSTRACTCLASS:
-                        Class newClass = new Class(new Point(xpos,ypos), name);
+                        Class newClass = new Class(new ScaledPoint(Scale.Backend,new Point(xpos,ypos)), name);
                         newClass.setVisibility(visibility);
                         newClass.setMethods(methods);
                         newClass.setAttributes(attributes);
                         newClass.setModifiers(modifiers);
                         return newClass;
                     case INTERFACE:
-                        Interface newInterface = new Interface(new Point(xpos,ypos),name);
+                        Interface newInterface = new Interface(new ScaledPoint(Scale.Backend,new Point(xpos,ypos)),name);
                         newInterface.setVisibility(visibility);
                         newInterface.setMethods(methods);
                         newInterface.setAttributes(attributes);
@@ -156,9 +149,7 @@ public class Database{
     static public void saveDiagram(Diagram target, String filename) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("diagrams/" + filename + ".uml"));
-            writer.write("boxcount=" + target.boxGrid.getBoxCounter());
-            writer.newLine();
-            ArrayList<Box> boxes =  new ArrayList<>(target.boxGrid.getAllBoxes()); //probably useful for relations later
+            ArrayList<Box> boxes = target.boxGrid.getAllBoxes(); //probably useful for relations later
             for (Box box: boxes) {
                 saveBox(box, writer);
             }
@@ -174,9 +165,9 @@ public class Database{
         writer.newLine();
         writer.write("  name=" + box.getName());
         writer.newLine();
-        writer.write("  xposition=" + box.getPosition().getX(Scale.Frontend));
+        writer.write("  xposition=" + box.getPosition().getX(Scale.Backend));
         writer.newLine();
-        writer.write("  yposition=" + box.getPosition().getY(Scale.Frontend));
+        writer.write("  yposition=" + box.getPosition().getY(Scale.Backend));
         writer.newLine();
         writer.write("  visibility=" + box.getVisibility());
         writer.newLine();
@@ -253,6 +244,7 @@ public class Database{
             while (!newFile.createNewFile()) { //if the filename already exists
                 newFile = new File("diagrams/new" + magicNumber + ".uml");
                 magicNumber++;
+                firstTry = false;
             }
             if(firstTry){
                 return "new";
