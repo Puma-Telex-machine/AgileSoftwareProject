@@ -47,7 +47,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
 	
 	public void addRelation(BoxFacade from, BoxFacade to, ArrowType arrowType) {
         Relation relation = new Relation(from, to, arrowType);
-        diagram.set(relation);
+        diagram.update(relation);
         observers.forEach(observer -> observer.addRelation(relation));
     }
 

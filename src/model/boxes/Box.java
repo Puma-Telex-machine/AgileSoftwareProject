@@ -1,8 +1,10 @@
 package model.boxes;
 
+import frontend.Observers.UiObserver;
 import model.facades.AttributeFacade;
 import model.facades.BoxFacade;
 import model.facades.MethodFacade;
+import model.facades.Observer;
 import model.grid.IDiagram;
 import model.point.Scale;
 import model.point.ScaledPoint;
@@ -14,7 +16,7 @@ import java.util.*;
  * Originally created by Emil Holmsten,
  * Expanded by Filip Hanberg.
  */
-public class Box implements BoxFacade {
+public class Box implements BoxFacade, UiObserver {
     private static final int SYMBOLS_PER_WIDTH_UNIT = 10;
 
     private String name;
@@ -24,9 +26,9 @@ public class Box implements BoxFacade {
     private final Set<Modifier> modifiers = new HashSet<>();
     private Visibility visibility = Visibility.PUBLIC;
     private ScaledPoint position;
-    private final IDiagram observer;
+    private final IDiagram diagram;
 
-    public Box(IDiagram observer, ScaledPoint position, BoxType type) {
+    public Box(IDiagram diagram, ScaledPoint position, BoxType type) {
         String defaultName;
         switch (type) {
             case CLASS -> defaultName = "Class";
@@ -37,14 +39,14 @@ public class Box implements BoxFacade {
         this.name = defaultName;
         this.position = position;
         this.type = type;
-        this.observer = observer;
-        observer.set(this);
+        this.diagram = diagram;
+        update();
     }
 
     @Override
     public void setName(String name) {
         this.name = name;
-        observer.set(this);
+        update();
     }
 
     @Override
@@ -60,18 +62,21 @@ public class Box implements BoxFacade {
     @Override
     public void deleteBox() {
         name = "THIS SHOULD NOT BE VISIBLE: BOX IS DELETED";
-        observer.remove(this);
+        diagram.remove(this);
     }
 
     @Override
     public MethodFacade addMethod() {
-        return new Method();
+        Method method = new Method();
+        methods.add(method);
+        method.subscribe(this);
+        return method;
     }
 
     @Override
     public void deleteMethod(MethodFacade method) {
         methods.remove(method);
-        observer.set(this);
+        update();
     }
 
     @Override
@@ -81,16 +86,17 @@ public class Box implements BoxFacade {
 
     @Override
     public AttributeFacade addAttribute() {
-        AttributeFacade attribute = new Attribute();
+        Attribute attribute = new Attribute();
         attributes.add(attribute);
-        observer.set(this);
+        attribute.subscribe(this);
+        update();
         return attribute;
     }
 
     @Override
     public void deleteAttribute(AttributeFacade attribute) {
         attributes.remove(attribute);
-        observer.set(this);
+        update();
     }
 
     @Override
@@ -101,7 +107,7 @@ public class Box implements BoxFacade {
     @Override
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
-        observer.set(this); //Behövs denna?
+        update(); //Behövs denna?
     }
 
     @Override
@@ -112,14 +118,14 @@ public class Box implements BoxFacade {
     @Override
     public void addModifier(Modifier modifier) {
         modifiers.add(modifier);
-        observer.set(this); //Behövs denna?
+        update(); //Behövs denna?
     }
 
     @Override
     public void removeModifier(Modifier modifier) {
         // TODO: deleteModifier? (consistency)
         modifiers.remove(modifier);
-        observer.set(this);
+        update();
     }
 
     @Override
@@ -130,7 +136,7 @@ public class Box implements BoxFacade {
     @Override
     public void setPosition(ScaledPoint point) {
         position = point;
-        observer.set(this);
+        update();
     }
 
     @Override
@@ -167,4 +173,20 @@ public class Box implements BoxFacade {
 
         return maxLength * SYMBOLS_PER_WIDTH_UNIT;
     }
-}  
+
+
+    ArrayList<UiObserver> observers = new ArrayList<>();
+
+    @Override
+    public void subscribe(UiObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void update() {
+        diagram.update(this);
+        for (UiObserver o : observers) {
+            o.update();
+        }
+    }
+}

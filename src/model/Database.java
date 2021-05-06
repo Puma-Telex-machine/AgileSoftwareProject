@@ -16,7 +16,7 @@ import java.util.List;
  * Class that handles saving-/loading functionality.
  * @author Filip Hanberg
  */
-public class Database{
+public class Database {
 
     private static final String nameMatch = "name";
     private static final String visibilityMatch = "visibility";
@@ -50,7 +50,7 @@ public class Database{
             }
             Diagram result = new Diagram();
             for (Box box: boxes) {
-                result.set(box);
+                result.update(box);
             }
             return result;
         } catch (FileNotFoundException e){

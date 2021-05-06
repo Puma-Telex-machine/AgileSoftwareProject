@@ -1,5 +1,7 @@
 package model.boxes;
 
+import frontend.Observers.UiObservable;
+import frontend.Observers.UiObserver;
 import model.facades.MethodFacade;
 
 import java.util.ArrayList;
@@ -12,7 +14,7 @@ import java.util.Set;
  * Originally created by Emil Holmsten,
  * Updated by Filip Hanberg.
  */
-public class Method implements MethodFacade {
+public class Method implements MethodFacade, UiObservable {
 
     private String name = "method";
     private final List<String> parameters = new ArrayList<>();
@@ -22,6 +24,7 @@ public class Method implements MethodFacade {
     @Override
     public void setName(String name) {
         this.name = name;
+        observer.update();
     }
 
     @Override
@@ -36,6 +39,7 @@ public class Method implements MethodFacade {
     @Override
     public void addArgument(String argument) {
         parameters.add(argument);
+        observer.update();
     }
 
     /**
@@ -45,6 +49,7 @@ public class Method implements MethodFacade {
     @Override
     public void removeArgument(String argument) {
         parameters.remove(argument);
+        observer.update();
     }
 
     @Override
@@ -59,6 +64,7 @@ public class Method implements MethodFacade {
     @Override
     public void addModifier(Modifier modifier) {
         modifiers.add(modifier);
+        observer.update();
     }
 
     /**
@@ -68,6 +74,7 @@ public class Method implements MethodFacade {
     @Override
     public void removeModifier(Modifier modifier) {
         modifiers.remove(modifier);
+        observer.update();
     }
 
     @Override
@@ -78,10 +85,17 @@ public class Method implements MethodFacade {
     @Override
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
+        observer.update();
     }
 
     @Override
     public Visibility getVisibility() {
         return visibility;
+    }
+
+    UiObserver observer;
+    @Override
+    public void subscribe(UiObserver observer) {
+       this.observer = observer;
     }
 }
