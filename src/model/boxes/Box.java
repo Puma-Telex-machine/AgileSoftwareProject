@@ -1,8 +1,6 @@
 package model.boxes;
 
-import model.facades.BoxFacade;
-import model.facades.MethodData;
-import model.facades.VariableData;
+import model.facades.*;
 import model.grid.IDiagram;
 import model.point.Scale;
 import model.point.ScaledPoint;
@@ -15,7 +13,7 @@ import java.util.*;
  * Expanded by Filip Hanberg.
  */
 public class Box implements BoxFacade {
-    private static final int symbolsPerWidth = 10;
+    private static final int SYMBOLS_PER_WIDTH_UNIT = 10;
 
     private String name;
     private final BoxType type;
@@ -108,13 +106,13 @@ public class Box implements BoxFacade {
     }
 
     @Override
-    public List<Method> getMethods() {
-        return methods;
+    public List<MethodFacade> getMethods() { //TODO: Method interface return?
+        return new ArrayList<>(methods);
     }
 
     @Override
-    public List<Attribute> getAttributes() {
-        return attributes;
+    public List<AttributeFacade> getAttributes() {
+        return new ArrayList<>(attributes);
     }
 
     @Override
@@ -166,12 +164,12 @@ public class Box implements BoxFacade {
     private int getWidth() {
         ArrayList<String> names = new ArrayList<>();
 
-        names.add(getName());
-        for (int i = 0; i < getMethods().size(); i++) {
-            names.add(getMethods().get(i).getName());
+        names.add(name);
+        for (Method method : methods) {
+            names.add(method.getName());
         }
-        for (int i = 0; i < getAttributes().size(); i++) {
-            names.add(getAttributes().get(i).getName());
+        for (Method method : methods) {
+            names.add(method.getName());
         }
 
         ArrayList<Integer> longest = new ArrayList<>();
@@ -181,6 +179,6 @@ public class Box implements BoxFacade {
 
         int maxLength = Collections.max(longest);
 
-        return maxLength * symbolsPerWidth;
+        return maxLength * SYMBOLS_PER_WIDTH_UNIT;
     }
 }  

@@ -1,9 +1,6 @@
 package model.facades;
 
-import model.boxes.Attribute;
-import model.boxes.BoxType;
-import model.boxes.Modifier;
-import model.boxes.Visibility;
+import model.boxes.*;
 import model.point.ScaledPoint;
 
 import java.util.List;
@@ -62,8 +59,6 @@ public interface BoxFacade {
      */
     void setPosition(ScaledPoint point);
 
-    List<Attribute> getAttributes();
-
     void addModifier(Modifier modifier);
 
     Set<Modifier> getModifiers();
@@ -89,12 +84,13 @@ public interface BoxFacade {
     /**
      * Returns the data for all of the methods of this class
      */
-    VariableData[] getVariables();
+    List<AttributeFacade> getAttributes();
 
     /**
      * Returns the data for all of the variables of this class
+     * @return
      */
-    MethodData[] getMethods();
+    List<MethodFacade> getMethods();
 
     ScaledPoint getWidthAndHeight();
 }

@@ -10,8 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
-import javafx.scene.shape.Ellipse;
-import model.boxes.BoxType;
 import model.boxes.Visibility;
 import model.facades.BoxFacade;
 import model.facades.MethodData;
@@ -19,7 +17,6 @@ import model.facades.VariableData;
 import model.point.Scale;
 import model.point.ScaledPoint;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
@@ -377,7 +374,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         variables.getChildren().setAll(new ArrayList<AnchorPane>(0));
         methods.getChildren().setAll(new ArrayList<AnchorPane>(0));
 
-        VariableData[] variableData = box.getVariables();
+        VariableData[] variableData = box.getAttributes();
         MethodData[] methodData = box.getMethods();
 
         for (int i = 0; i < variableData.length; i++)

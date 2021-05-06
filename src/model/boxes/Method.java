@@ -1,6 +1,7 @@
 package model.boxes;
 
 import model.facades.MethodData;
+import model.facades.MethodFacade;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -12,7 +13,7 @@ import java.util.Set;
  * Originally created by Emil Holmsten,
  * Updated by Filip Hanberg.
  */
-public class Method {
+public class Method implements MethodFacade {
 
     private String name;
     private List<Attribute> parameters = new ArrayList<>();

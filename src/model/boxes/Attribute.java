@@ -1,5 +1,6 @@
 package model.boxes;
 
+import model.facades.AttributeFacade;
 import model.facades.VariableData;
 
 import java.util.HashSet;
@@ -9,13 +10,13 @@ import java.util.Set;
  *  Originally created by Emil Holmsten,
  *  Updated by Filip Hanberg.
  */
-public class Attribute {
+public class Attribute implements AttributeFacade {
 
     private String name;
     private Set<Modifier> modifiers = new HashSet<>();
     private Visibility visibility;
 
-    enum Type{ //Probably requires non-enum solution
+    enum Type { //Probably requires non-enum solution
         INT
     }
 
