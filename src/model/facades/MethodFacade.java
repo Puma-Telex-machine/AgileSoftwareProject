@@ -11,11 +11,27 @@ public interface MethodFacade {
     void setName(String name);
     String getName();
 
+    /**
+     * Sets the return type of the method
+     * @param type
+     */
+    void setType(String type);
+
+    /**
+     * Returns the return type of the method
+     * @return
+     */
+    String getType();
+
+    /**
+     * Completely clears the previous arguments
+     */
+    void removeAllArguments();
     void addArgument(String argument);
-    void removeArgument(String argument);
+    void removeArgument(String argument); //FYI I don't need this / Emil E
     List<String> getArguments();
 
-    void addModifier(Modifier modifier);
+    void addModifier(Modifier modifier); //Please explain what this is / Emil E
     void removeModifier(Modifier modifier);
     Set<Modifier> getModifiers();
 
