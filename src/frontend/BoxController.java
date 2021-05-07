@@ -261,9 +261,9 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         variableEditor.setVisible(false);
         methodEditor.setVisible(true);
         methodEditor.toFront();
+        methodEditor.EditMethod(method, box);
         methodEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
         methodEditor.setLayoutY(this.getLayoutY()+methods.getLayoutY()+25+pos.getLayoutY()-methodEditor.getHeight()/2);
-        methodEditor.EditMethod(method, box);
     }
 
     private void updateMethods(List<MethodData> methods){

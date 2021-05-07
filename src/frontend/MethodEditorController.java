@@ -38,7 +38,7 @@ public class MethodEditorController extends AnchorPane {
     private TextField returnTypeField;
 
     @FXML
-    private VBox argumentVBox;
+    public VBox argumentVBox;
 
     private BoxFacade box;
 
@@ -95,7 +95,7 @@ public class MethodEditorController extends AnchorPane {
         methodData.methodReturnType = returnTypeField.getText();
 
         box.editMethod(methodData);
-
+        argumentVBox.getChildren().setAll();
         this.setVisible(false);
     }
 
@@ -131,6 +131,8 @@ public class MethodEditorController extends AnchorPane {
 
         //Sets the method type field
         returnTypeField.setText(methodData.methodReturnType);
+
+        argumentVBox.getChildren().clear();
 
         //Sets the arguments for this method
         for (int i = 0; i < methodData.arguments.length; i++)
