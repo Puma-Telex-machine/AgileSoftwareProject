@@ -20,6 +20,7 @@ public class Method implements MethodFacade, UiObservable {
     private final List<String> parameters = new ArrayList<>();
     private final Set<Modifier> modifiers = new HashSet<>();
     private Visibility visibility = Visibility.PUBLIC;
+    private String returnType = "void";
 
     @Override
     public void setName(String name) {
@@ -30,6 +31,23 @@ public class Method implements MethodFacade, UiObservable {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void setType(String type) {
+        returnType = type;
+        observer.update();
+    }
+
+    @Override
+    public String getType() {
+        return returnType;
+    }
+
+    @Override
+    public void removeAllArguments() {
+        parameters.clear();
+        observer.update();
     }
 
     /**
