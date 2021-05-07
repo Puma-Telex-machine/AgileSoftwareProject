@@ -14,9 +14,10 @@ import java.util.Set;
  */
 public class Attribute implements AttributeFacade, UiObservable {
 
-    private String name;
+    private String name = "foo";
     private final Set<Modifier> modifiers = new HashSet<>();
-    private Visibility visibility;
+    private Visibility visibility = Visibility.PRIVATE;
+    private String type = "int";
 
     @Override
     public void setName(String name) {
@@ -53,6 +54,17 @@ public class Attribute implements AttributeFacade, UiObservable {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void setType(String type) {
+        this.type = type;
+        observer.update();
+    }
+
+    @Override
+    public String getType() {
+        return type;
     }
 
     @Override
