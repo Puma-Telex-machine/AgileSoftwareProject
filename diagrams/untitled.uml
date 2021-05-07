@@ -7,7 +7,12 @@ boxcount=2
 <!BOX>
 <BOX>
   name=Box 1
+<<<<<<< Updated upstream
   xposition=757
   yposition=320
+=======
+  xposition=788
+  yposition=299
+>>>>>>> Stashed changes
   visibility=PUBLIC
 <!BOX>

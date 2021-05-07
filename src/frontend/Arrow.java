@@ -216,13 +216,9 @@ public class Arrow extends AnchorPane{
         Line l2 = new Line(endX,endY,points[1].x,points[1].y);
         l2.setStroke(( new Color(0.72,0.72,0.72,1)));
         head.getChildren().add(l2);
-        Line l3 = new Line(endX,endY,points[3].x,points[3].y);
-        l3.setStroke(( new Color(0.72,0.72,0.72,1)));
-        head.getChildren().add(l3);
 
-        endline.setEndX(points[3].x);
-        endline.setEndY(points[3].y);
-
+        endline.setEndX(endX);
+        endline.setEndY(endY);
     }
 
     public List<Point> getBends(){

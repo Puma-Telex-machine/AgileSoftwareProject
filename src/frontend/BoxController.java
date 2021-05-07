@@ -20,6 +20,7 @@ import model.facades.BoxFacade;
 
 import java.awt.*;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.*;
 import java.util.List;
 
@@ -110,14 +111,15 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         p3.rotateProperty().setValue(270);
         p4.rotateProperty().setValue(90);
 
-        p1.setLayoutX(65);
-        AnchorPane.setTopAnchor(p1, -7.0);
-        p2.setLayoutX(65);
-        AnchorPane.setBottomAnchor(p2, -7.0);
-        p3.setLayoutY(28);
-        AnchorPane.setLeftAnchor(p3, -10.0);
-        p4.setLayoutY(28);
-        AnchorPane.setRightAnchor(p4, -10.0);
+
+        p1.setLayoutX(75-7.5);
+        AnchorPane.setTopAnchor(p1, -5.0);
+        p2.setLayoutX(75-7.5);
+        AnchorPane.setBottomAnchor(p2, -5.0);
+        p3.setLayoutY(77/2-5);
+        AnchorPane.setLeftAnchor(p3, -7.5);
+        p4.setLayoutY(77/2-5);
+        AnchorPane.setRightAnchor(p4, -7.5);
         anchorPoints.add(p1);
         anchorPoints.add(p2);
         anchorPoints.add(p3);

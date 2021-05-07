@@ -1,11 +1,14 @@
 package frontend;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import model.facades.ModelFacade;
 
+import java.io.IOException;
 
-public class BaseController{
+
+public class BaseController extends AnchorPane{
 
     @FXML
     AnchorPane UML;
@@ -30,15 +33,24 @@ public class BaseController{
 
 
     public BaseController() {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Base.fxml")));
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+
         canvas = new CanvasController();
         model = ModelFacade.getModel();
         files = new FilesController(model.getFileHandler(), canvas);
         shapes = new ShapeController(canvas);
         overview = new OverviewController();
         exercises = new ExercisesController();
-    }
 
-    private void init(){
+
         leftMenu.getChildren().add(files);
         leftMenu.getChildren().add(shapes);
         leftMenu.getChildren().add(overview);
@@ -87,7 +99,6 @@ public class BaseController{
 
     private void openMenuItem(AnchorPane menu)
     {
-        if(!leftMenu.getChildren().contains(menu)) init();
         boolean vis = menu.isVisible();
         closeMenueTabbs();
         if(vis){
