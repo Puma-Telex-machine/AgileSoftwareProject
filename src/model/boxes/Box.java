@@ -96,6 +96,7 @@ public class Box implements BoxFacade, UiObserver {
         Attribute attribute = new Attribute();
         attributes.add(attribute);
         attribute.subscribe(this);
+        update();
         return attribute;
     }
 

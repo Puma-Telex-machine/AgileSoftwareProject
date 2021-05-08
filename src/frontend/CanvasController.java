@@ -112,6 +112,19 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
             this.getChildren().removeAll(dragArrow);
             //box == arrowBox => aborting arrowcreation
             if (box != arrowBox) {
+                Relation startRelation = model.addRelation(arrowBox.getBox(),box.getBox());
+                List<Point> bends = model.getArrowBends(arrowBox.getBox(),box.getBox());
+                //temporary
+                bends.add(new Point(p.x-50,arrowStart.y));
+                bends.add(new Point(p.x-50,p.y));
+
+                Arrow newArrow = new Arrow(arrowStart,p,bends);
+                newArrow.setType(startRelation.getArrowType());
+
+                this.getChildren().addAll(newArrow);
+                newArrow.toBack();
+                arrowMap.put(newArrow,startRelation);
+                arrows.add(newArrow);
                 model.addRelation(arrowBox.getBox(), box.getBox(), ArrowType.ASSOCIATION);
             }
         }
