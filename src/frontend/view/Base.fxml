@@ -1,85 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.control.Label?>
 
-<fx:root fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@css/DarkMode.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="frontend.BaseController">
    <children>
-      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox prefHeight="900.0" prefWidth="1440.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane minHeight="50.0" prefHeight="50.0" style="-fx-background-color: #2A314A;" styleClass="text-Large">
+            <AnchorPane id="left_anchorpane" fx:id="left_anchorpane1" prefHeight="900.0" prefWidth="110.0" style="-fx-background-color: #2A314A;" styleClass="text-Large" stylesheets="@DarkMode.css">
+               <effect>
+                  <DropShadow />
+               </effect>
                <children>
-                  <Text fill="#b8b8b8" strokeType="OUTSIDE" strokeWidth="0.0" text="UML 2000" wrappingWidth="150.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </Text>
+                  <ImageView fitHeight="49.0" fitWidth="62.0" layoutX="8.0" layoutY="98.0" onMouseClicked="#openRecent" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0">
+                     <image>
+                        <Image url="@Resources/folder@4x.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="69.0" fitWidth="55.0" layoutX="8.0" layoutY="467.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="8.0">
+                     <image>
+                        <Image url="@Resources/text@4x.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="59.0" fitWidth="62.0" layoutX="5.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0">
+                     <image>
+                        <Image url="@Resources/comment@4x.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="44.0" fitWidth="62.0" layoutX="7.0" layoutY="184.0" onMouseClicked="#openShapes" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0">
+                     <image>
+                        <Image url="@Resources/box@4x.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="69.0" fitWidth="68.0" layoutX="6.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="6.0">
+                     <image>
+                        <Image url="@Resources/exercise@4x.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="#b8b8b8" layoutX="20.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-Large" text="UML" textAlignment="CENTER" wrappingWidth="59.28372636269103" AnchorPane.leftAnchor="5.0" />
                </children>
             </AnchorPane>
-            <HBox>
+            <StackPane prefHeight="900.0" prefWidth="1440.0">
                <children>
-                  <AnchorPane id="left_anchorpane" fx:id="left_anchorpane1" prefWidth="65.0" style="-fx-background-color: #2A314A;" styleClass="text-Large">
+                  <AnchorPane fx:id="contextMenu" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#exitContext" onMouseDragged="#exitContext" prefHeight="900.0" prefWidth="625.0" stylesheets="@DarkMode.css">
                      <children>
-                        <VBox prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                        <VBox fx:id="context" alignment="TOP_CENTER" layoutX="205.0" layoutY="336.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
                            <children>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#openRecent" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Resources/outline_folder_open_white_24dp.png" />
-                                 </image>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </ImageView>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#openShapes" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Resources/outline_add_box_white_24dp.png" />
-                                 </image>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </ImageView>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#openExercises" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Resources/outline_text_snippet_white_24dp.png" />
-                                 </image>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </ImageView>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Resources/outline_comment_white_24dp.png" />
-                                 </image>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </ImageView>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#openOverview" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Resources/outline_bubble_chart_white_24dp.png" />
-                                 </image>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </ImageView>
+                              <Label alignment="CENTER" onMouseClicked="#handleContextAddBox" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add Class" textAlignment="CENTER" />
+                              <Label alignment="CENTER" onMouseClicked="#handleContextAddBox" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add interface" textAlignment="CENTER" />
+                              <Label alignment="CENTER" onMouseClicked="#handleContextAddBox" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add Abstract Class" textAlignment="CENTER" />
+                              <Line endX="149.0" />
                            </children>
+                           <styleClass>
+                              <String fx:value="highlight" />
+                              <String fx:value="border" />
+                           </styleClass>
                         </VBox>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="UML" prefHeight="10000.0" prefWidth="10000.0" styleClass="background">
-                     <children>
-                        <AnchorPane fx:id="leftMenu" prefHeight="850.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
+                  <AnchorPane fx:id="UML" onContextMenuRequested="#handleContextMenu" styleClass="background" />
                </children>
-            </HBox>
+            </StackPane>
          </children>
-      </VBox>
+      </HBox>
    </children>
-</fx:root>
+</AnchorPane>

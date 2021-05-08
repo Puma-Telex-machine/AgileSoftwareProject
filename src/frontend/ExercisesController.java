@@ -4,8 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import model.facades.ExerciseFacade;
-import model.facades.ExercisesHandlerFacade;
+//import model.facades.ExerciseFacade;
+//import model.facades.ExercisesHandlerFacade;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,8 +26,9 @@ public class ExercisesController extends AnchorPane {
             throw new RuntimeException(exception);
         }
 
-        //exercises = exercisesHandler.getAllExercises();
         /*
+        exercises = exercisesHandler.getAllExercises();
+
         for (int i = 0; i < exercises.length; i++) {
             ExerciseFacade exercise = exercises[i];
 
@@ -51,8 +52,8 @@ public class ExercisesController extends AnchorPane {
     @FXML
     private VBox rightBox;
 
-    private ExercisesHandlerFacade exercisesHandler;
+    /*private ExercisesHandlerFacade exercisesHandler;
 
     private ExerciseFacade[] exercises;
-    private ExercisesMenuItemController[] exerciseMenuItems;
+    private ExercisesMenuItemController[] exerciseMenuItems;*/
 }

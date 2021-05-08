@@ -11,7 +11,6 @@ import model.boxes.Visibility;
 import model.facades.BoxFacade;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class VariableEditorController extends AnchorPane {
 
@@ -43,8 +42,7 @@ public class VariableEditorController extends AnchorPane {
     @FXML
     private void deleteVariable() //This method is called when the player wants to delete the variable
     {
-        box.deleteVariable(nameField.getText());
-        this.setVisible(false);
+        box.DeleteVariable(nameField.getText());
     }
 
     @FXML
@@ -53,13 +51,12 @@ public class VariableEditorController extends AnchorPane {
         VariableData data = new VariableData();
         data.name = nameField.getText();
 
-        Visibility visibility = Visibility.valueOf((String)accessComboBox.getValue());
+        Visibility visibility = Visibility.valueOf((String) accessComboBox.getValue());
         data.visibility = visibility;
 
         data.variableType = typeField.getText();
 
-        box.editVariable(data);
-        this.setVisible(false);
+        box.EditVariable(data);
     }
 
     public void EditVariable(BoxFacade box)
@@ -73,11 +70,6 @@ public class VariableEditorController extends AnchorPane {
 
         nameField.setText(variableData.name);
         typeField.setText(variableData.variableType);
-
-        //Sets the options for the accessibility combo box
-        accessComboBox.getItems().setAll(Visibility.values());
-
-        //Sets the current visibility
         accessComboBox.getSelectionModel().select(variableData.visibility.name());
     }
 

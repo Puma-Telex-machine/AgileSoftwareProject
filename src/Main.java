@@ -1,4 +1,3 @@
-import frontend.BaseController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,8 +19,9 @@ public class Main extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setRoot(this);
-        BaseController base = new BaseController();
-        Scene scene = new Scene(base, 1440, 900);
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("frontend/view/Base.fxml")));
+        Scene scene = new Scene(root, 1440, 900);
+        //fxmlLoader.setController(new frontend.BaseController());
        
         stage.setTitle("UML 2000");
         stage.setScene(scene);

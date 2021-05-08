@@ -2,7 +2,6 @@ package frontend;
 
 import frontend.Observers.ArrowObservable;
 import frontend.Observers.ArrowObserver;
-import frontend.Observers.UiObserver;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -15,19 +14,17 @@ import model.MethodData;
 //import model.VariableData;
 import model.VariableData;
 import model.boxes.BoxType;
-import model.boxes.Visibility;
 import model.facades.BoxFacade;
 
 import java.awt.*;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.*;
 import java.util.List;
 
 /**
  * controller for the boxes in frontend
  */
-public class BoxController extends AnchorPane implements ArrowObservable, UiObserver {
+public class BoxController extends AnchorPane implements ArrowObservable {
     @FXML
     private TextField nameField;
     @FXML
@@ -75,13 +72,24 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
                 vBox.getChildren().remove(identifier);
                 break;
             case INTERFACE:
-                identifier.setText("<<Interface>>");
+                identifier.setText("<<Interfacew>>");
+                vBox.getChildren().remove(variables);
+                //remove line and +
+                vBox.getChildren().remove(6);
+                vBox.getChildren().remove(5);
                 break;
             case ABSTRACTCLASS:
                 identifier.setText("<Abstract>");
                 break;
             case ENUM:
                 identifier.setText("Enum");
+                vBox.getChildren().remove(methods);
+                vBox.getChildren().remove(variables);
+                //remove lines and +'s
+                vBox.getChildren().remove(5);
+                vBox.getChildren().remove(4);
+                vBox.getChildren().remove(3);
+                vBox.getChildren().remove(2);
                 break;
         }
 
@@ -93,7 +101,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         this.setLayoutY(box.getPosition().y);
 
         initAnchors();
-        box.subscribe(this);
     }
 
     private void initAnchors(){
@@ -111,15 +118,14 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         p3.rotateProperty().setValue(270);
         p4.rotateProperty().setValue(90);
 
-
-        p1.setLayoutX(75-7.5);
-        AnchorPane.setTopAnchor(p1, -5.0);
-        p2.setLayoutX(75-7.5);
-        AnchorPane.setBottomAnchor(p2, -5.0);
-        p3.setLayoutY(77/2-5);
-        AnchorPane.setLeftAnchor(p3, -7.5);
-        p4.setLayoutY(77/2-5);
-        AnchorPane.setRightAnchor(p4, -7.5);
+        p1.setLayoutX(65);
+        AnchorPane.setTopAnchor(p1, -7.0);
+        p2.setLayoutX(65);
+        AnchorPane.setBottomAnchor(p2, -7.0);
+        p3.setLayoutY(28);
+        AnchorPane.setLeftAnchor(p3, -10.0);
+        p4.setLayoutY(28);
+        AnchorPane.setRightAnchor(p4, -10.0);
         anchorPoints.add(p1);
         anchorPoints.add(p2);
         anchorPoints.add(p3);
@@ -145,32 +151,9 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
             offsetY = event.getY();
             moving=true;
         }
-        //todo fix max borders
-
-        double moveX=0;
-        double moveY=0;
-        //move X
-        if(this.getLayoutX()+ event.getX() - offsetX<0){
-            this.setLayoutX(0);
-            moveX=-1;
-        }
-        else{
-            this.setLayoutX(this.getLayoutX()+ event.getX() - offsetX);
-            moveX= event.getX() - offsetX;
-        }
-
-        //move Y
-        if(this.getLayoutY()+ event.getY() - offsetY<0){
-            this.setLayoutY(0);
-            moveY=-1;
-        }
-        else{
-            this.setLayoutY(this.getLayoutY()+ event.getY() - offsetY);
-            moveY= event.getY() - offsetY;
-        }
-
-        notifyBoxDrag(new Point((int)moveX,(int)moveY));
-
+        //todo fix borders
+        this.setLayoutX(this.getLayoutX()+ event.getX() - offsetX);
+        this.setLayoutY(this.getLayoutY()+ event.getY() - offsetY);
         event.consume();
     }
 
@@ -195,7 +178,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      */
     @FXML
     private void addMethod(MouseEvent e){
-        variableEditor.setVisible(false);
         methodEditor.setVisible(true);
         methodEditor.toFront();
         methodEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
@@ -217,12 +199,10 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      */
     @FXML
     private void addVariable(MouseEvent e){
-        methodEditor.setVisible(false);
         variableEditor.setVisible(true);
         variableEditor.toFront();
         variableEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
         variableEditor.setLayoutY(this.getLayoutY()+this.getHeight()/2-variableEditor.getHeight()/2);
-        variableEditor.EditVariable(box);
         //variableEditor.EditVariable(box);
 
         //add lamda expression  ish currentEditArgument.argumentTypeField.setOnAction((Action) -> editVariable(variableData)
@@ -313,11 +293,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         showCircles();
         e.consume();
     }
-
-    @Override
-    public void notifyBoxDrag(Point offset) {
-        arrowObserver.boxDrag(box,offset);
-    }
     //endregion
     //region name
 
@@ -369,67 +344,4 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         return box;
     }
     //endregion
-
-    /**
-     * Updates all of the graphics of this box
-     */
-    public void update()
-    {
-        variables.getChildren().setAll(new ArrayList<AnchorPane>(0));
-        methods.getChildren().setAll(new ArrayList<AnchorPane>(0));
-
-        VariableData[] variableData = box.getVariables();
-        MethodData[] methodData = box.getMethods();
-
-        for (int i = 0; i < variableData.length; i++)
-        {
-            String variable = "";
-            variable += attributeVisString(variableData[i].visibility);
-            variable += " ";
-            variable += variableData[i].name;
-            variable += ": ";
-            variable += variableData[i].variableType;
-
-            variables.getChildren().add(new BoxAttributeTextController(variable));
-        }
-
-        for(int i = 0; i < methodData.length; i++)
-        {
-            String method = "";
-            method += attributeVisString(methodData[i].visibility);
-            method += " ";
-            method += methodData[i].methodName;
-            method += " (";
-            for (int j = 0; j < methodData[i].arguments.length; j++)
-            {
-                method += methodData[i].arguments[j];
-
-                if(j+1 != methodData[i].arguments.length)
-                    method += ", ";
-            }
-            method += ") : ";
-            method += methodData[i].methodReturnType;
-
-            methods.getChildren().add(new BoxAttributeTextController(method));
-        }
-    }
-
-    /**
-     * Returns the right sign for the visibility
-     * @param visibility
-     * @return
-     */
-    private String attributeVisString (Visibility visibility)
-    {
-        String ret = "";
-        switch (visibility)
-        {
-            case PUBLIC: ret = "+"; break;
-            case PRIVATE: ret = "-"; break;
-            case PROTECTED: ret = "#"; break;
-            case PACKAGE_PRIVATE: ret = "~"; break;
-        }
-
-        return ret;
-    }
 }
