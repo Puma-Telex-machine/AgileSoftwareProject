@@ -19,10 +19,6 @@ import model.boxes.BoxType;
 import model.boxes.Method;
 import model.boxes.Visibility;
 import model.facades.BoxFacade;
-import model.facades.MethodData;
-import model.facades.VariableData;
-import model.point.Scale;
-import model.point.ScaledPoint;
 
 import javax.swing.*;
 import java.awt.*;
@@ -87,7 +83,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
                 vBox.getChildren().remove(6);
                 vBox.getChildren().remove(5);
                 break;
-            case ABSTRACT_CLASS:
+            case ABSTRACTCLASS:
                 identifier.setText("<Abstract>");
                 break;
             case ENUM:
@@ -106,12 +102,11 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         this.box = box;
         hideCircles();
 
+        this.setLayoutX(box.getPosition().x);
+        this.setLayoutY(box.getPosition().y);
+
         initAnchors();
         box.subscribe(this);
-        ScaledPoint position = box.getPosition();
-
-        this.setLayoutX(position.getX(Scale.Frontend));
-        this.setLayoutY(position.getY(Scale.Frontend));
     }
 
     private void initAnchors(){
@@ -189,12 +184,10 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
     @FXML
     private void handleLetGo(MouseEvent event){
         moving=false;
-        box.setPosition(new ScaledPoint(Scale.Frontend, this.getLayoutX(), this.getLayoutY()));
-
-        ScaledPoint position = box.getPosition();
+        box.setPosition(new Point((int)this.getLayoutX(),(int)this.getLayoutY()));
         //for snap to grid
-        this.setLayoutX(position.getX(Scale.Frontend));
-        this.setLayoutY(position.getY(Scale.Frontend));
+        this.setLayoutX(box.getPosition().x);
+        this.setLayoutY(box.getPosition().y);
         event.consume();
     }
     //endregion
@@ -326,7 +319,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         for (AnchorPointController a:anchorPoints) {
             if(a.getPressed()){
                 a.setNotPressed();
-                arrowObserver.arrowEvent(new ScaledPoint(Scale.Frontend, a.getMid().x + this.getLayoutX(), a.getMid().y + this.getLayoutY()),this);
+                arrowObserver.arrowEvent(new Point ((int)(a.getMid().x+this.getLayoutX()),(int)(a.getMid().y+this.getLayoutY())),this);
             }
         }
         showCircles();
@@ -392,7 +385,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         variables.getChildren().setAll(new ArrayList<AnchorPane>(0));
         methods.getChildren().setAll(new ArrayList<AnchorPane>(0));
 
-        VariableData[] variableData = box.getAttributes(); // todo implement facades
+        VariableData[] variableData = box.getVariables();
         MethodData[] methodData = box.getMethods();
 
         for (int i = 0; i < variableData.length; i++)

@@ -1,8 +1,6 @@
 package model.boxes;
 
-import frontend.Observers.UiObservable;
-import frontend.Observers.UiObserver;
-import model.facades.MethodFacade;
+import model.MethodData;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,88 +12,105 @@ import java.util.Set;
  * Originally created by Emil Holmsten,
  * Updated by Filip Hanberg.
  */
-public class Method implements MethodFacade, UiObservable {
+public class Method {
 
-    private String name = "method";
-    private final List<String> parameters = new ArrayList<>();
-    private final Set<Modifier> modifiers = new HashSet<>();
+    private String name;
+    private List<Attribute> parameters = new ArrayList<>();
+    private Set<Modifier> modifiers = new HashSet<>();
     private Visibility visibility = Visibility.PUBLIC;
+    String returnValue; // Unsure how to implement types, for now
 
-    @Override
-    public void setName(String name) {
+    public Method(String name, List<Attribute> parameters, Set<Modifier> modifiers, Visibility visibility){
         this.name = name;
-        observer.update();
+        this.parameters = parameters;
+        this.modifiers = modifiers;
+        this.visibility = visibility;
     }
 
-    @Override
-    public String getName() {
-        return name;
+    Method(MethodData data){
+        this.name = data.methodName;
+        this.parameters = createArguments(data);
+        this.visibility = data.visibility;
+    }
+
+    private List<Attribute> createArguments(MethodData methodData){
+        List<Attribute> result = new ArrayList<>();
+        for (String argument: methodData.arguments) {
+            result.add(new Attribute(argument,null, null));
+        }
+        return result;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    /**
+     * Changes all of the Method's arguments.
+     * @param data The new set of arguments.
+     */
+    public void SetArguments(MethodData data){
+        this.parameters = createArguments(data);
     }
 
     /**
      * Adds an argument to the Method.
      * @param argument The argument to be added.
      */
-    @Override
-    public void addArgument(String argument) {
+    public void AddArgument(Attribute argument){
         parameters.add(argument);
-        observer.update();
     }
 
     /**
      * Removes an argument from the Method
-     * @param argument the argument to be removed.
+     * @param position the argument's position in the list.
      */
-    @Override
-    public void removeArgument(String argument) {
-        parameters.remove(argument);
-        observer.update();
+    public void RemoveArgument(int position){
+        if(position < parameters.size() && position >= 0)
+            parameters.remove(position);
     }
 
-    @Override
-    public List<String> getArguments() {
-        return parameters;
+    /**
+     * Changes all of the Method's modifiers.
+     * @param modifiers The new set of modifiers.
+     *  */
+    public void SetModifiers(Set<Modifier> modifiers){
+        this.modifiers = modifiers;
     }
 
     /**
      * Adds a modifier to the Method.
      * @param modifier The modifier to be added.
      */
-    @Override
-    public void addModifier(Modifier modifier) {
+    public void AddModifier(Modifier modifier){
         modifiers.add(modifier);
-        observer.update();
     }
 
     /**
      * Removes a modifier from the Method.
      * @param modifier The modifier to be removed.
      */
-    @Override
-    public void removeModifier(Modifier modifier) {
+    public void RemoveModifier(Modifier modifier){
         modifiers.remove(modifier);
-        observer.update();
     }
 
-    @Override
-    public Set<Modifier> getModifiers() {
+    public void SetVisibility(Visibility visibility){
+        this.visibility = visibility;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public List<Attribute> getParameters(){
+        return parameters;
+    }
+
+    public Set<Modifier> getModifiers(){
         return modifiers;
     }
 
-    @Override
-    public void setVisibility(Visibility visibility) {
-        this.visibility = visibility;
-        observer.update();
-    }
-
-    @Override
-    public Visibility getVisibility() {
+    public Visibility getVisibility(){
         return visibility;
-    }
-
-    UiObserver observer;
-    @Override
-    public void subscribe(UiObserver observer) {
-       this.observer = observer;
     }
 }

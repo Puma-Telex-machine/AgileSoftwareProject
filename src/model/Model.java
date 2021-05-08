@@ -1,20 +1,19 @@
 package model;
 
-import model.boxes.Box;
-import model.boxes.BoxType;
-import model.facades.FileHandlerFacade;
-import model.facades.ModelFacade;
 
 import model.facades.BoxFacade;
-import model.facades.Observer;
-import model.grid.Diagram;
-import model.point.ScaledPoint;
 import model.relations.ArrowType;
 import model.relations.Relation;
 
-import java.util.ArrayList;
+import model.boxes.Box;
+import model.facades.FileHandlerFacade;
+import model.facades.ModelFacade;
 
-public class Model implements ModelFacade, FileHandlerFacade {
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Model implements ModelFacade, FileHandlerFacade{
 
     private static Model singleton;
     public static Model getModel() {
@@ -39,45 +38,49 @@ public class Model implements ModelFacade, FileHandlerFacade {
         observers.remove(observer);
     }
 
-	public void addBox(ScaledPoint position, BoxType boxType) {
-        observers.forEach(observer -> observer.addBox(new Box(diagram, position, boxType)));
-		//TODO: Sätt i diagram: Database.saveDiagram(diagram, name);
-        //TODO: Sätt i databasen: System.out.println("Saved diagram as: " + name);
-    }
-	
-	public void addRelation(BoxFacade from, BoxFacade to, ArrowType arrowType) {
-        Relation relation = new Relation(from, to, arrowType);
-        diagram.update(relation);
-        observers.forEach(observer -> observer.addRelation(relation));
+    public void addBox(Point position) {
+        BoxManager boxManager = new BoxManager(diagram, position);
+        if (!boxManager.isEmpty()) {
+            observers.forEach(observer -> observer.addBox(boxManager));
+        }
+        Database.saveDiagram(diagram, name);
+        System.out.println("saved "+name);
     }
 
     @Override
     public String[] getAllFileNames() {
-        return Database.getAllFileNames("diagrams/");
+        return Database.getAllFileNames();
     }
 
     @Override
     public void loadFile(String fileName) {
-        diagram = Database.loadDiagram("diagrams/", fileName);
-        for (Box box : diagram.getAllBoxes()) {
-            observers.forEach(observer -> observer.addBox(box));
+        diagram = Database.loadDiagram(fileName);
+        if(diagram != null) {
+            for (Box box : diagram.boxGrid.getAllBoxes()) {
+                BoxManager boxManager = new BoxManager(diagram, box);
+                observers.forEach(observer -> observer.addBox(boxManager));
+            }
+            name = fileName;
+            System.out.println("loaded " + name);
         }
-        //TODO: Sätt i databasen: name = fileName;
-        //TODO: Sätt i databasen: System.out.println("loaded " + name);
-    }
-
-    public void loadTemplate(String fileName){
-        Diagram template = Database.loadDiagram("templates/", fileName);
-        for(Box box : template.getAllBoxes()){
-            observers.forEach(observer -> observer.addBox(box));
-        }
-        //TODO: Sätt i databasen: System.out.println("loaded template " + fileName);
     }
 
     @Override
     public void newFile() {
         name = Database.newFile();
-        if(name != null) //TODO: Samma som förra
+        if(name != null)
             loadFile(name);
+    }
+    public Relation addRelation(BoxFacade from, BoxFacade to){
+        //todo add relation and return the apropriate type
+        return new Relation(null,null,ArrowType.ASSOCIATION);
+    }
+    public void changeRelation(Relation relation,ArrowType type){
+        //todo change relation
+    }
+
+    public List<Point> getArrowBends(BoxFacade from, BoxFacade to) {
+        //todo add pathfinding to here
+        return new ArrayList<>();
     }
 }
