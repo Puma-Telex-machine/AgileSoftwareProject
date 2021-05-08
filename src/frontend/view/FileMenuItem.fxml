@@ -5,14 +5,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<fx:root prefHeight="40.0" prefWidth="250.0" styleClass="box" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="40.0" prefWidth="250.0" styleClass="box" stylesheets="@DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="149.0" layoutY="8.0" mnemonicParsing="false" onAction="#openFile" prefHeight="40.0" prefWidth="47.0" text="Load" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <Button layoutX="149.0" layoutY="8.0" mnemonicParsing="false" onAction="#openFile" prefHeight="40.0" prefWidth="47.0" stylesheets="@DarkMode.css" text="Load" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <styleClass>
             <String fx:value="highlight" />
             <String fx:value="text-small" />
          </styleClass>
       </Button>
-      <Label fx:id="nameLable" layoutX="44.0" layoutY="12.0" prefHeight="40.0" prefWidth="180.0" styleClass="text-medium" text="Label" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="0.0" />
+      <Label fx:id="nameLable" layoutX="44.0" layoutY="12.0" prefHeight="40.0" prefWidth="180.0" styleClass="text-medium" stylesheets="@DarkMode.css" text="Label" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="0.0" />
    </children>
 </fx:root>

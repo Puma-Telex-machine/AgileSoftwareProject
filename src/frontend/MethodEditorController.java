@@ -82,7 +82,6 @@ public class MethodEditorController extends AnchorPane {
     {
         method.setName(nameField.getText());
 
-        method.removeAllArguments();
         //Gets the arguments for the method data
         for (int i = 0; i < arguments.size(); i++)
         {
