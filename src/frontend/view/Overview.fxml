@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root prefHeight="900.0" prefWidth="250.0" styleClass="leftSideMenu" stylesheets="@DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane id="minimizeButton" prefHeight="900.0" prefWidth="250.0" styleClass="leftSideMenu" stylesheets="@css/DarkMode.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label prefWidth="300.0" styleClass="leftSideMenu-textLarge" text="Overview" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
-         <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-         </children>
-      </AnchorPane>
-      <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
+      <Label prefHeight="29.0" prefWidth="103.0" styleClass="leftSideMenu-textLarge" stylesheets="@css/DarkMode.css" text="Overview" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="30.0" />
+      <ImageView id="minimizebutton" fx:id="minimizebutton" fitHeight="6.0" fitWidth="31.0" layoutX="186.0" layoutY="23.0" onMouseClicked="#minimize" pickOnBounds="true" styleClass="minimizebutton" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="13.0">
          <image>
             <Image url="@Resources/minimize@4x.png" />
          </image>
       </ImageView>
+      <AnchorPane layoutX="10.0" layoutY="83.0" prefHeight="836.0" prefWidth="220.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="73.0">
+         <children>
+            <VBox prefHeight="836.0" prefWidth="217.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <children>
+                  <ListView prefHeight="836.0" prefWidth="217.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
    </children>
-</fx:root>
+</AnchorPane>

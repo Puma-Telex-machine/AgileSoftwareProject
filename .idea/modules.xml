@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AgileSoftwareProject1.iml" filepath="$PROJECT_DIR$/AgileSoftwareProject1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../javafx-sdk-11.0.2 3/lib/lib.iml" filepath="$PROJECT_DIR$/../javafx-sdk-11.0.2 3/lib/lib.iml" />
     </modules>
   </component>
 </project>

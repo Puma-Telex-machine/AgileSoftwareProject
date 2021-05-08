@@ -6,6 +6,5 @@ module AgileSoftwareProject {
 
     requires java.desktop;
 
-
     opens sample;
 }
