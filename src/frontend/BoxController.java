@@ -18,7 +18,9 @@ import model.VariableData;
 import model.boxes.BoxType;
 import model.boxes.Method;
 import model.boxes.Visibility;
+import model.facades.AttributeFacade;
 import model.facades.BoxFacade;
+import model.facades.MethodFacade;
 
 import javax.swing.*;
 import java.awt.*;
@@ -244,7 +246,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      * Editing a variable on box
      */
     @FXML
-    private void editVariable(VariableData variable, AnchorPane pos){
+    private void editVariable(AttributeFacade variable, AnchorPane pos){
         methodEditor.setVisible(false);
         variableEditor.setVisible(true);
         variableEditor.toFront();
@@ -257,7 +259,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      * Editing a method on box
      */
     @FXML
-    private void editMethod(MethodData method, AnchorPane pos){
+    private void editMethod(MethodFacade method, AnchorPane pos){
         variableEditor.setVisible(false);
         methodEditor.setVisible(true);
         methodEditor.toFront();
@@ -385,21 +387,21 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         variables.getChildren().setAll(new ArrayList<AnchorPane>(0));
         methods.getChildren().setAll(new ArrayList<AnchorPane>(0));
 
-        VariableData[] variableData = box.getVariables();
-        MethodData[] methodData = box.getMethods();
+        AttributeFacade[] variableData = box.getVariables();
+        MethodFacade[] methodData = box.getMethods();
 
         for (int i = 0; i < variableData.length; i++)
         {
             String variable = "";
-            variable += attributeVisString(variableData[i].visibility);
+            variable += attributeVisString(variableData[i].getVisibility());
             variable += " ";
-            variable += variableData[i].name;
+            variable += variableData[i].getName();
             variable += ": ";
-            variable += variableData[i].variableType;
+            variable += variableData[i].getType();
 
             BoxAttributeTextController attribute = new BoxAttributeTextController(variable);
             variables.getChildren().add(attribute);
-            VariableData var = variableData[i];
+            AttributeFacade var = variableData[i];
             attribute.setOnMouseClicked((Action) -> editVariable(var, attribute));
 
         }
@@ -407,23 +409,24 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         for(int i = 0; i < methodData.length; i++)
         {
             String method = "";
-            method += attributeVisString(methodData[i].visibility);
+            method += attributeVisString(methodData[i].getVisibility());
             method += " ";
-            method += methodData[i].methodName;
+            method += methodData[i].getName();
             method += " (";
-            for (int j = 0; j < methodData[i].arguments.length; j++)
+            String[] param = methodData[i].getParameters();
+            for (int j = 0; j < param.length; j++)
             {
-                method += methodData[i].arguments[j];
+                method += param[j];
 
-                if(j+1 != methodData[i].arguments.length)
+                if(j+1 != param.length)
                     method += ", ";
             }
             method += ") : ";
-            method += methodData[i].methodReturnType;
+            method += methodData[i].getType();
 
             BoxAttributeTextController attribute = new BoxAttributeTextController(method);
             methods.getChildren().add(attribute);
-            MethodData met = methodData[i];
+            MethodFacade met = methodData[i];
             attribute.setOnMouseClicked((Action) -> editMethod(met, attribute));
         }
     }
