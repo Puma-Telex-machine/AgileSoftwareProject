@@ -1,98 +1,113 @@
 package frontend;
 
 import javafx.fxml.FXML;
-import javafx.scene.input.ContextMenuEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import model.Model;
-import model.facades.BoxFacade;
+import model.facades.ModelFacade;
 
-import java.awt.*;
+import java.io.IOException;
 
 
-public class BaseController{
-
-    @FXML
-    private VBox context;
+public class BaseController extends AnchorPane{
 
     @FXML
     AnchorPane UML;
 
     @FXML
+    AnchorPane leftMenu;
+    @FXML
     AnchorPane contextMenu;
 
-    Model model;
+    ModelFacade model;
 
-    RecentController recent;
+    FilesController files;
 
     CanvasController canvas;
 
     ShapeController shapes;
 
+    OverviewController overview;
+
+    ExercisesController exercises;
+
 
 
     public BaseController() {
-        recent = new RecentController();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Base.fxml")));
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+
         canvas = new CanvasController();
+        model = ModelFacade.getModel();
+        files = new FilesController(model.getFileHandler(), canvas);
         shapes = new ShapeController(canvas);
-        model = Model.getModel();
-        model.addObserver(canvas);
+        overview = new OverviewController();
+        exercises = new ExercisesController();
+
+
+        leftMenu.getChildren().add(files);
+        leftMenu.getChildren().add(shapes);
+        leftMenu.getChildren().add(overview);
+        leftMenu.getChildren().add(exercises);
+        LockPane(files);
+        LockPane(shapes);
+        LockPane(overview);
+        LockPane(exercises);
+        closeMenueTabbs();
+        UML.getChildren().add(canvas);
+        LockPane(canvas);
+
     }
 
-    private void init(){
-        UML.getChildren().add(recent);
-        UML.getChildren().add(shapes);
-        recent.setVisible(false);
+    private void LockPane(AnchorPane pane)
+    {
+        AnchorPane.setTopAnchor(pane, 0d);
+        AnchorPane.setLeftAnchor(pane, 0d);
+        AnchorPane.setBottomAnchor(pane, 0d);
+        AnchorPane.setRightAnchor(pane,0d);
+    }
+
+    private void closeMenueTabbs()
+    {
+        files.setVisible(false);
         shapes.setVisible(false);
-        UML.getChildren().add(canvas);
+        overview.setVisible(false);
+        exercises.setVisible(false);
+        leftMenu.toBack();
     }
-    @FXML
-    private void handleContextMenu(ContextMenuEvent e){
-        context.setLayoutX(e.getX());
-        context.setLayoutY(e.getY());
-        contextMenu.toFront();
-        e.consume();
-    }
-    @FXML
-    private void exitContext(){
-        UML.toFront();
-    }
-    @FXML
-    private void handleContextAddBox(MouseEvent e) {
-        model.addBox(new Point((int) context.getLayoutX()-80,(int) context.getLayoutY()-35));
-        exitContext();
-        e.consume();
-    }
+
 
     //open Menus
     @FXML
     private void openRecent(){
-        if(!UML.getChildren().contains(recent)) init();
-        shapes.setVisible(false);
-        recent.setVisible(!recent.isVisible());
-        canvas.toBack();
+        openMenuItem(files);
     }
     @FXML
-    private void openShapes(){
-        if(!UML.getChildren().contains(shapes)) init();
-        recent.setVisible(false);
-        shapes.setVisible(!shapes.isVisible());
-        canvas.toBack();
+    private void openShapes(){ openMenuItem(shapes); }
+
+    @FXML
+    private void  openOverview() { openMenuItem(overview); }
+
+    @FXML
+    private void openExercises() { openMenuItem(exercises);}
+
+    private void openMenuItem(AnchorPane menu)
+    {
+        boolean vis = menu.isVisible();
+        closeMenueTabbs();
+        if(vis){
+            leftMenu.toBack();
+        }
+        else{
+            leftMenu.toFront();
+            menu.setVisible(true);
+        }
     }
 
-
-    /*
-    @FXML
-    private void openRecent(){
-        recent.setVisible(!recent.isVisible());
-    }
-    @FXML
-    private void openRecent(){
-        recent.setVisible(!recent.isVisible());
-    }
-    @FXML
-    private void openRecent(){
-        recent.setVisible(!recent.isVisible());
-    }*/
 }

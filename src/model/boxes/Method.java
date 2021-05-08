@@ -1,5 +1,9 @@
 package model.boxes;
 
+import model.MethodData;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -11,28 +15,42 @@ import java.util.Set;
 public class Method {
 
     private String name;
-    private List<Attribute> arguments;
-    private Set<Modifier> modifiers;
-    private Visibility visibility;
+    private List<Attribute> parameters = new ArrayList<>();
+    private Set<Modifier> modifiers = new HashSet<>();
+    private Visibility visibility = Visibility.PUBLIC;
     String returnValue; // Unsure how to implement types, for now
 
-    Method(String name, List<Attribute> arguments, Set<Modifier> modifiers, Visibility visibility){
+    public Method(String name, List<Attribute> parameters, Set<Modifier> modifiers, Visibility visibility){
         this.name = name;
-        this.arguments = arguments;
+        this.parameters = parameters;
         this.modifiers = modifiers;
         this.visibility = visibility;
     }
 
-    public void SetName(String name){
+    Method(MethodData data){
+        this.name = data.methodName;
+        this.parameters = createArguments(data);
+        this.visibility = data.visibility;
+    }
+
+    private List<Attribute> createArguments(MethodData methodData){
+        List<Attribute> result = new ArrayList<>();
+        for (String argument: methodData.arguments) {
+            result.add(new Attribute(argument,null, null));
+        }
+        return result;
+    }
+
+    public void setName(String name){
         this.name = name;
     }
 
     /**
      * Changes all of the Method's arguments.
-     * @param arguments The new set of arguments.
+     * @param data The new set of arguments.
      */
-    public void SetArguments(List<Attribute> arguments){
-        this.arguments = arguments;
+    public void SetArguments(MethodData data){
+        this.parameters = createArguments(data);
     }
 
     /**
@@ -40,7 +58,7 @@ public class Method {
      * @param argument The argument to be added.
      */
     public void AddArgument(Attribute argument){
-        arguments.add(argument);
+        parameters.add(argument);
     }
 
     /**
@@ -48,8 +66,8 @@ public class Method {
      * @param position the argument's position in the list.
      */
     public void RemoveArgument(int position){
-        if(position < arguments.size() && position >= 0)
-            arguments.remove(position);
+        if(position < parameters.size() && position >= 0)
+            parameters.remove(position);
     }
 
     /**
@@ -80,19 +98,19 @@ public class Method {
         this.visibility = visibility;
     }
 
-    public String GetName(){
+    public String getName(){
         return name;
     }
 
-    public List<Attribute> GetArguments(){
-        return arguments;
+    public List<Attribute> getParameters(){
+        return parameters;
     }
 
-    public Set<Modifier> GetModifiers(){
+    public Set<Modifier> getModifiers(){
         return modifiers;
     }
 
-    public Visibility GetVisibility(){
+    public Visibility getVisibility(){
         return visibility;
     }
 }
