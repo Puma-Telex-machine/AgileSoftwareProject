@@ -5,10 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BoxController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/MethodEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/MethodEditorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/VariableEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/VariableEditorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/facades/AttributeFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/facades/AttributeFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/facades/BoxFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/facades/BoxFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/facades/MethodFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/facades/MethodFacade.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,5 +93,16 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/frontend/CanvasController.java</url>
+          <line>219</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

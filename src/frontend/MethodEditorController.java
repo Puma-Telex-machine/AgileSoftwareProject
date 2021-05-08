@@ -9,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import model.facades.MethodData;
 import model.boxes.Visibility;
 import model.facades.BoxFacade;
-import model.facades.MethodFacade;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,7 +42,7 @@ public class MethodEditorController extends AnchorPane {
 
     private BoxFacade box;
 
-    private MethodFacade method;
+    private MethodData methodData;
 
     private MethodArgumentEditorController currentEditArgument;
 
@@ -80,20 +79,22 @@ public class MethodEditorController extends AnchorPane {
     @FXML
     public void ConfirmMethod()
     {
-        method.setName(nameField.getText());
+        methodData.methodName = nameField.getText();
 
         //Gets the arguments for the method data
-        for (int i = 0; i < arguments.size(); i++)
+        String[] argRet = new String[arguments.size()];
+        for (int i = 0; i < argRet.length; i++)
         {
-            method.addArgument(arguments.get(i).argumentTypeField.getText());
+            argRet[i] = arguments.get(i).argumentTypeField.getText();
         }
-
+        methodData.arguments = argRet;
 
         Visibility visibility = Visibility.valueOf(accessComboBox.getValue().toString());
-        method.setVisibility(visibility);
+        methodData.visibility = visibility;
 
-        method.setType(returnTypeField.getText());
+        methodData.methodReturnType = returnTypeField.getText();
 
+        box.editMethod(methodData);
         argumentVBox.getChildren().setAll();
         this.setVisible(false);
     }
@@ -107,37 +108,37 @@ public class MethodEditorController extends AnchorPane {
 
     public void EditMethod(BoxFacade box)
     {
-        EditMethod(box.addMethod(), box);
+        EditMethod(new MethodData(), box);
     }
 
-    public void EditMethod(MethodFacade methodData, BoxFacade box)
+    public void EditMethod(MethodData methodData,  BoxFacade box)
     {
         this.box = box;
-        method = methodData;
+        this.methodData = methodData;
 
         //Resets the arguments array
         arguments = new ArrayList<MethodArgumentEditorController>(0);
         argumentVBox.getChildren().setAll();
 
         //Set name
-        nameField.setText(methodData.getName());
+        nameField.setText(methodData.methodName);
 
         //Sets the options for the accessibility combo box
         accessComboBox.getItems().setAll(Visibility.values());
 
         //Sets the current visibility
-        accessComboBox.getSelectionModel().select(methodData.getVisibility().name());
+        accessComboBox.getSelectionModel().select(methodData.visibility.name());
 
         //Sets the method type field
-        returnTypeField.setText(methodData.getType());
+        returnTypeField.setText(methodData.methodReturnType);
 
         argumentVBox.getChildren().clear();
 
         //Sets the arguments for this method
-        for (int i = 0; i < methodData.getArguments().size(); i++)
+        for (int i = 0; i < methodData.arguments.length; i++)
         {
             MethodArgumentEditorController argument = new MethodArgumentEditorController();
-            argument.argumentTypeField.setText(methodData.getArguments().get(i));
+            argument.argumentTypeField.setText(methodData.arguments[i]);
             argument.argumentTypeField.setOnAction((Action) -> ChangeArgument(argument));
             argumentVBox.getChildren().add(argument);
             argument.paramLable.setText("Param " + arguments.size());

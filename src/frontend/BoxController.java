@@ -12,10 +12,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
 import javafx.scene.shape.Box;
 import javafx.scene.shape.Ellipse;
+import model.MethodData;
+//import model.VariableData;
+import model.VariableData;
 import model.boxes.BoxType;
 import model.boxes.Method;
 import model.boxes.Visibility;
-import model.facades.*;
+import model.facades.BoxFacade;
+import model.facades.MethodData;
+import model.facades.VariableData;
 import model.point.Scale;
 import model.point.ScaledPoint;
 
@@ -246,7 +251,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      * Editing a variable on box
      */
     @FXML
-    private void editVariable(AttributeFacade variable, AnchorPane pos){
+    private void editVariable(VariableData variable, AnchorPane pos){
         methodEditor.setVisible(false);
         variableEditor.setVisible(true);
         variableEditor.toFront();
@@ -259,7 +264,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      * Editing a method on box
      */
     @FXML
-    private void editMethod(MethodFacade method, AnchorPane pos){
+    private void editMethod(MethodData method, AnchorPane pos){
         variableEditor.setVisible(false);
         methodEditor.setVisible(true);
         methodEditor.toFront();
@@ -387,45 +392,45 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         variables.getChildren().setAll(new ArrayList<AnchorPane>(0));
         methods.getChildren().setAll(new ArrayList<AnchorPane>(0));
 
-        List<AttributeFacade> variableData = box.getAttributes(); // todo implement facades
-        List<MethodFacade> methodData = box.getMethods();
+        VariableData[] variableData = box.getAttributes(); // todo implement facades
+        MethodData[] methodData = box.getMethods();
 
-        for (int i = 0; i < variableData.size(); i++)
+        for (int i = 0; i < variableData.length; i++)
         {
             String variable = "";
-            variable += attributeVisString(variableData.get(i).getVisibility());
+            variable += attributeVisString(variableData[i].visibility);
             variable += " ";
-            variable += variableData.get(i).getName();
+            variable += variableData[i].name;
             variable += ": ";
-            variable += variableData.get(i).getType();
+            variable += variableData[i].variableType;
 
             BoxAttributeTextController attribute = new BoxAttributeTextController(variable);
             variables.getChildren().add(attribute);
-            AttributeFacade var = variableData.get(i);
+            VariableData var = variableData[i];
             attribute.setOnMouseClicked((Action) -> editVariable(var, attribute));
 
         }
 
-        for(int i = 0; i < methodData.size(); i++)
+        for(int i = 0; i < methodData.length; i++)
         {
             String method = "";
-            method += attributeVisString(methodData.get(i).getVisibility());
+            method += attributeVisString(methodData[i].visibility);
             method += " ";
-            method += methodData.get(i).getName();
+            method += methodData[i].methodName;
             method += " (";
-            for (int j = 0; j < methodData.get(i).getArguments().size(); j++)
+            for (int j = 0; j < methodData[i].arguments.length; j++)
             {
-                method += methodData.get(i).getArguments().get(j);
+                method += methodData[i].arguments[j];
 
-                if(j+1 != methodData.get(i).getArguments().size())
+                if(j+1 != methodData[i].arguments.length)
                     method += ", ";
             }
             method += ") : ";
-            method += methodData.get(i).getType();
+            method += methodData[i].methodReturnType;
 
             BoxAttributeTextController attribute = new BoxAttributeTextController(method);
             methods.getChildren().add(attribute);
-            MethodFacade met = methodData.get(i);
+            MethodData met = methodData[i];
             attribute.setOnMouseClicked((Action) -> editMethod(met, attribute));
         }
     }

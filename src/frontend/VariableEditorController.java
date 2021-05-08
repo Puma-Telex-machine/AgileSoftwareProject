@@ -6,7 +6,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 //import model.facades.VariableData;
-import model.facades.AttributeFacade;
 import model.facades.VariableData;
 import model.boxes.Visibility;
 import model.facades.BoxFacade;
@@ -39,46 +38,46 @@ public class VariableEditorController extends AnchorPane {
     private TextField typeField; //The text field for the type of the variable
 
     BoxFacade box;
-    AttributeFacade variable;
 
     @FXML
     private void deleteVariable() //This method is called when the player wants to delete the variable
     {
-        //box.deleteAttribute(variable); //todo implement Attributefacade to fix
+        box.deleteAttribute(nameField.getText()); //todo implement Attributefacade to fix
         this.setVisible(false);
     }
 
     @FXML
     private void confirmVariable() //This method is called when the player wants to confirm and stop editing this variable
     {
-        variable.setName(nameField.getText());
+        VariableData data = new VariableData();
+        data.name = nameField.getText();
 
         Visibility visibility = Visibility.valueOf((String)accessComboBox.getValue());
-        variable.setVisibility(visibility);
+        data.visibility = visibility;
 
-        variable.setType(typeField.getText());
+        data.variableType = typeField.getText();
 
+        box.addAttribute();
         this.setVisible(false);
     }
 
     public void EditVariable(BoxFacade box)
     {
-        EditVariable(box.addAttribute(), box);
+        EditVariable(new VariableData(), box);
     }
 
-    public void EditVariable(AttributeFacade variableData, BoxFacade box)
+    public void EditVariable(VariableData variableData, BoxFacade box)
     {
-        variable = variableData;
         this.box = box;
 
-        nameField.setText(variableData.getName());
-        typeField.setText(variableData.getType());
+        nameField.setText(variableData.name);
+        typeField.setText(variableData.variableType);
 
         //Sets the options for the accessibility combo box
         accessComboBox.getItems().setAll(Visibility.values());
 
         //Sets the current visibility
-        accessComboBox.getSelectionModel().select(variableData.getVisibility().name());
+        accessComboBox.getSelectionModel().select(variableData.visibility.name());
     }
 
 }
