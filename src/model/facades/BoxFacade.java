@@ -36,12 +36,18 @@ public interface BoxFacade extends UiObservable {
     void deleteMethod(String methodName);
 
     /**
-     * If a variable with this name exists then delete that variable.
-     * If the variable doesn't exist then do nothing.
-     * @param variableName The name of the variable that should be deleted.
-     * @return
+     * Deletes this variable if the variable exists on the box.
+     * If the variable doesn't exist then do nothing
+     * @param variable
      */
-    void deleteVariable(String variableName);
+    void deleteVariable(AttributeFacade variable);
+
+    /**
+     * Deletes this method if it exists on the box.
+     * If it doesn't exist then do nothing
+     * @param method
+     */
+    void deleteMethod(MethodFacade method);
 
     Point getPosition();
 

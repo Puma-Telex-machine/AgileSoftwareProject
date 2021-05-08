@@ -102,7 +102,7 @@ public class MethodEditorController extends AnchorPane {
     @FXML
     public void DeleteMethod()
     {
-        //box.DeleteMethod(methodData.methodName);
+        box.deleteMethod(methodData);
         this.setVisible(false);
     }
 
