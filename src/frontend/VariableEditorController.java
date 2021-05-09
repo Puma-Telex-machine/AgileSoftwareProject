@@ -5,13 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-//import model.VariableData;
-import model.VariableData;
+//import model.facades.VariableData;
+import model.facades.VariableData;
 import model.boxes.Visibility;
 import model.facades.BoxFacade;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class VariableEditorController extends AnchorPane {
 
@@ -43,7 +42,7 @@ public class VariableEditorController extends AnchorPane {
     @FXML
     private void deleteVariable() //This method is called when the player wants to delete the variable
     {
-        box.deleteVariable(nameField.getText());
+        box.deleteAttribute(nameField.getText());
         this.setVisible(false);
     }
 
@@ -58,7 +57,7 @@ public class VariableEditorController extends AnchorPane {
 
         data.variableType = typeField.getText();
 
-        box.editVariable(data);
+        box.addAttribute();
         this.setVisible(false);
     }
 
