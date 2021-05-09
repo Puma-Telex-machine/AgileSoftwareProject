@@ -80,8 +80,17 @@
 
 .leftSideMenu-textLarge {
     -fx-font-size: 24px;
+    -fx-text-fill: "#B8B8B8"
 }
 
-.minimize:hover{
-    -fx-background-color: "#FF0000";
+.lighter:hover{
+    -fx-text-fill: "#DBDBDB";
+}
+
+.iconLighter:hover{
+    -fx-effect: dropshadow(one-pass-box, rgba(219, 219, 219, 0.3), 4, 1, 0.0, 0.0);
+}
+
+.iconLighter:pressed{
+    -fx-effect: dropshadow(one-pass-box, rgba(59, 59, 59, 0.3), 10, 1, 0.0, 0.0);
 }

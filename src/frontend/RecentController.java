@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
+import model.boxes.Diagram;
 
 import java.io.IOException;
 
@@ -31,9 +32,14 @@ public class RecentController extends AnchorPane{
     }
 
     @FXML
-    private void handleButtonAction(ActionEvent event){
-        //todo add new
-        //minimize_button 
+    private void minimize(){
+        this.setVisible(false);
+    }
 
+
+    @FXML
+    private void saveWork(){
+        //save the diagram
+        //Diagram.boxes.add();
     }
 }

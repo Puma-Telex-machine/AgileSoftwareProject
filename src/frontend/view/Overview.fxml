@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="minimizeButton" prefHeight="900.0" prefWidth="250.0" styleClass="leftSideMenu" stylesheets="@css/DarkMode.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="minimizeButton" prefHeight="900.0" prefWidth="250.0" styleClass="leftSideMenu" stylesheets="@css/DarkMode.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <children>
       <Label prefHeight="29.0" prefWidth="103.0" styleClass="leftSideMenu-textLarge" stylesheets="@css/DarkMode.css" text="Overview" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="30.0" />
       <ImageView id="minimizebutton" fx:id="minimizebutton" fitHeight="6.0" fitWidth="31.0" layoutX="186.0" layoutY="23.0" onMouseClicked="#minimize" pickOnBounds="true" styleClass="minimizebutton" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="13.0">

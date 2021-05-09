@@ -2,17 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="Switched to intellij, fixed errors">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/facades/TemplateFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AgileSoftwareProject1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AgileSoftwareProject1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/Overview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Overview.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/RecentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/RecentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/ShapeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/ShapeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Base.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/view/comments.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/comments.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/view/css/DarkMode.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/css/DarkMode.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/view/exercise.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/exercise.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/overview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/overview.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/view/recent_work.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/recent_work.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/view/shapes.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/shapes.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/view/textform.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/textform.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/BoxManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/BoxManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Model.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,10 +26,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="FxmlFile" />
         <option value="Class" />
         <option value="module-info" />
+        <option value="Interface" />
       </list>
     </option>
   </component>

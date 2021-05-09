@@ -63,6 +63,4 @@ public class BoxManager implements BoxFacade {
     public boolean isEmpty() {
         return box == null;
     }
-}
-
-*/
+}*/

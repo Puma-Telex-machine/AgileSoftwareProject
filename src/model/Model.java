@@ -16,7 +16,7 @@ public class Model {
     }
 
     ArrayList<Observer> observers = new ArrayList<>();
-    //Diagram diagram = new Diagram();
+    Diagram diagram = new Diagram();
 
     public void addObserver(Observer observer) {
         observers.add(observer);
@@ -27,9 +27,9 @@ public class Model {
     }
 
     public void addBox(Point position) {
-        //diagram.createBox(position, "This is a box name");
-        //Box box = diagram.getBox(0);
-        //BoxFacade b = box;
-        //observers.forEach(observer -> observer.addBox(box));
+        diagram.createBox(position, "This is a box name");
+        Box box = diagram.getBox(0);
+        BoxFacade b = box;
+        observers.forEach(observer -> observer.addBox(box));
     }
 }

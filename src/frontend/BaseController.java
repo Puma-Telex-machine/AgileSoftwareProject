@@ -84,15 +84,15 @@ public class BaseController{
 
     /*
     @FXML
-    private void openRecent(){
-        recent.setVisible(!recent.isVisible());
+    private void openComments(){
+        comments.setVisible(!comments.isVisible());
     }
     @FXML
-    private void openRecent(){
-        recent.setVisible(!recent.isVisible());
+    private void openExecise(){
+        exercise.setVisible(!exercise.isVisible());
     }
     @FXML
-    private void openRecent(){
-        recent.setVisible(!recent.isVisible());
+    private void openTextform(){
+        textform.setVisible(!textform.isVisible());
     }*/
 }

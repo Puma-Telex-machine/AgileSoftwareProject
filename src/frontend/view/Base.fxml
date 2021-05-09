@@ -11,9 +11,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.control.Label?>
-
 
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@css/DarkMode.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="frontend.BaseController">
    <children>
@@ -24,27 +21,27 @@
                   <DropShadow />
                </effect>
                <children>
-                  <ImageView fitHeight="49.0" fitWidth="62.0" layoutX="8.0" layoutY="98.0" onMouseClicked="#openRecent" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0">
+                  <ImageView fitHeight="49.0" fitWidth="62.0" layoutX="8.0" layoutY="98.0" onMouseClicked="#openRecent" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter" AnchorPane.leftAnchor="5.0">
                      <image>
                         <Image url="@Resources/folder@4x.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="69.0" fitWidth="55.0" layoutX="8.0" layoutY="467.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="8.0">
+                  <ImageView fitHeight="69.0" fitWidth="55.0" layoutX="8.0" layoutY="467.0" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter" AnchorPane.leftAnchor="8.0">
                      <image>
                         <Image url="@Resources/text@4x.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="59.0" fitWidth="62.0" layoutX="5.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0">
+                  <ImageView fitHeight="59.0" fitWidth="62.0" layoutX="5.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter" AnchorPane.leftAnchor="5.0">
                      <image>
                         <Image url="@Resources/comment@4x.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="44.0" fitWidth="62.0" layoutX="7.0" layoutY="184.0" onMouseClicked="#openShapes" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0">
+                  <ImageView fitHeight="44.0" fitWidth="62.0" layoutX="7.0" layoutY="184.0" onMouseClicked="#openShapes" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter" AnchorPane.leftAnchor="5.0">
                      <image>
                         <Image url="@Resources/box@4x.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="69.0" fitWidth="68.0" layoutX="6.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="6.0">
+                  <ImageView fitHeight="69.0" fitWidth="68.0" layoutX="6.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter" AnchorPane.leftAnchor="6.0">
                      <image>
                         <Image url="@Resources/exercise@4x.png" />
                      </image>
