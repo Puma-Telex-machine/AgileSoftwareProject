@@ -14,6 +14,11 @@ public class Diagram implements IDiagram {
     RelationGrid relationGrid = new RelationGrid(this);
 
     @Override
+    public void add(Box box) {
+        boxGrid.add(box);
+    }
+
+    @Override
     public void update(Box box) {
         boxGrid.update(box);
         relationGrid.refreshAllPaths();
@@ -25,10 +30,13 @@ public class Diagram implements IDiagram {
         relationGrid.refreshAllPaths();
     }
 
-    public List<Box> getAllBoxes() {
-        return boxGrid.getBoxes();
+    @Override
+    public void add(Relation relation) {
+        relationGrid.add(relation);
+        relationGrid.refreshAllPaths();
     }
 
+    @Override
     public void update(Relation relation) {
         relationGrid.add(relation);
         relationGrid.refreshAllPaths();     // Detta gör om arbetet i add, det beror på vilken funktionalitet vi vill ha.
@@ -39,6 +47,10 @@ public class Diagram implements IDiagram {
     public void remove(Relation relation) {
         relationGrid.remove(relation);
         relationGrid.refreshAllPaths();
+    }
+
+    public List<Box> getAllBoxes() {
+        return boxGrid.getBoxes();
     }
 
     public List<Relation> getAllRelations() {

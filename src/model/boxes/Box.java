@@ -40,6 +40,7 @@ public class Box implements BoxFacade, UiObserver {
         this.position = position;
         this.type = type;
         this.diagram = diagram;
+        diagram.add(this);
         update();
     }
 
