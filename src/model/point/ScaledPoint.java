@@ -66,4 +66,11 @@ public class ScaledPoint implements Comparable<ScaledPoint> {
             return Integer.compare(y, point.y);
         }
     }
+
+    public boolean equals(Object o) {
+        if (o instanceof ScaledPoint p) {
+            return x == p.x && y == p.y;
+        }
+        return false;
+    }
 }

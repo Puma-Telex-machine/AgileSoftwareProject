@@ -77,7 +77,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
                 vBox.getChildren().remove(identifier);
                 break;
             case INTERFACE:
-                identifier.setText("<<Interfacew>>");
+                identifier.setText("<<Interface>>");
                 vBox.getChildren().remove(variables);
                 //remove line and +
                 vBox.getChildren().remove(6);
@@ -104,10 +104,29 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
 
         initAnchors();
         box.subscribe(this);
+        updatePositionTEST();
+        updateWidthAndHeightTEST();
+        /*
         ScaledPoint position = box.getPosition();
 
         this.setLayoutX(position.getX(Scale.Frontend));
         this.setLayoutY(position.getY(Scale.Frontend));
+
+         */
+    }
+
+    private void updatePositionTEST() {
+        ScaledPoint position = box.getPosition();
+
+        this.setLayoutX(position.getX(Scale.Frontend));
+        this.setLayoutY(position.getY(Scale.Frontend));
+    }
+
+    private void updateWidthAndHeightTEST() {
+        ScaledPoint widthAndHeight = box.getWidthAndHeight();
+
+        this.setWidth(widthAndHeight.getX(Scale.Frontend));
+        this.setHeight(widthAndHeight.getY(Scale.Frontend));
     }
 
     private void initAnchors(){
@@ -187,11 +206,16 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         moving=false;
         box.setPosition(new ScaledPoint(Scale.Frontend, this.getLayoutX(), this.getLayoutY()));
 
+        updatePositionTEST();
+        event.consume();
+        /*
         ScaledPoint position = box.getPosition();
         //for snap to grid
         this.setLayoutX(position.getX(Scale.Frontend));
         this.setLayoutY(position.getY(Scale.Frontend));
-        event.consume();
+
+
+         */
     }
     //endregion
     //region methods
@@ -384,6 +408,9 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      */
     public void update()
     {
+        updatePositionTEST();
+        updateWidthAndHeightTEST();
+
         variables.getChildren().setAll(new ArrayList<AnchorPane>(0));
         methods.getChildren().setAll(new ArrayList<AnchorPane>(0));
 

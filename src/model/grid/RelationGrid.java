@@ -41,18 +41,25 @@ public class RelationGrid {
         }
 
         ArrayList<ScaledPoint> pathPoints = new ArrayList<>();
+
         while (current != null) {
             HashSet<PathNode> relations = relationMap.get(current.position);
+            if (relations == null) relations = new HashSet<>();
             relations.add(current);
 
+            pathPoints.add(current.position);
+            /*
             if (current.previous != null) {
                 if (current.direction != current.previous.direction) {
                     pathPoints.add(current.position);
                 }
             }
+
+             */
             current = current.previous;
         }
-        relation.setPath(pathPoints);
+
+        relation.setPath(pathPoints); //TODO: Något är fel, pathpoints innehåller två av samma punkt (sista)
     }
 
     boolean canMergeLines(Relation relation, ScaledPoint position) {

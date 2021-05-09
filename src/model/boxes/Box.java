@@ -4,7 +4,6 @@ import frontend.Observers.UiObserver;
 import model.facades.AttributeFacade;
 import model.facades.BoxFacade;
 import model.facades.MethodFacade;
-import model.facades.Observer;
 import model.grid.IDiagram;
 import model.point.Scale;
 import model.point.ScaledPoint;
@@ -27,23 +26,15 @@ public class Box implements BoxFacade, UiObserver {
     private Visibility visibility = Visibility.PUBLIC;
     private ScaledPoint position;
     private final IDiagram diagram;
+    private final int MAGICNUMBERTEST = 2;
 
     public Box(IDiagram diagram, ScaledPoint position, BoxType type) {
-        String defaultName;
-        switch (type) {
-            case CLASS:
-                defaultName = "Class";
-                break;
-            case ABSTRACT_CLASS:
-                defaultName =  "Abstract Class";
-                break;
-            case INTERFACE:
-                defaultName = "Interface";
-                break;
-            default:
-                defaultName = "Box";
-        }
-        this.name = defaultName;
+        this.name = switch (type) {
+            case CLASS -> "Class";
+            case ABSTRACT_CLASS -> "Abstract Class";
+            case INTERFACE -> "Interface";
+            default -> "Box";
+        };
         this.position = position;
         this.type = type;
         this.diagram = diagram;
@@ -157,7 +148,7 @@ public class Box implements BoxFacade, UiObserver {
     }
 
     private int getHeight() {
-        return getMethods().size() + getAttributes().size();
+        return getMethods().size() + getAttributes().size() + MAGICNUMBERTEST;
     }
 
     private int getWidth() {
@@ -178,7 +169,7 @@ public class Box implements BoxFacade, UiObserver {
 
         int maxLength = Collections.max(longest);
 
-        return maxLength * SYMBOLS_PER_WIDTH_UNIT;
+        return 5; //maxLength * SYMBOLS_PER_WIDTH_UNIT;
     }
 
 

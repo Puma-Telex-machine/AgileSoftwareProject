@@ -81,7 +81,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
                 bends.add(new Point(p.x-50,arrowStart.y));
                 bends.add(new Point(p.x-50,p.y));
                  */
-        Arrow newArrow = new Arrow(arrowStart, bends.get(bends.size()), bends);
+        Arrow newArrow = new Arrow(arrowStart, bends.get(bends.size()-1), bends);
         newArrow.setType(relation.getArrowType());
 
         this.getChildren().addAll(newArrow);
