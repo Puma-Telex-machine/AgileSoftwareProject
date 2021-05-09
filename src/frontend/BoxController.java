@@ -12,9 +12,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
 import javafx.scene.shape.Box;
 import javafx.scene.shape.Ellipse;
-import model.MethodData;
-//import model.VariableData;
-import model.VariableData;
 import model.boxes.BoxType;
 import model.boxes.Method;
 import model.boxes.Visibility;
@@ -393,7 +390,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         variables.getChildren().setAll(new ArrayList<AnchorPane>(0));
         methods.getChildren().setAll(new ArrayList<AnchorPane>(0));
 
-        VariableData[] variableData = box.getAttributes(); // todo implement facades
+        /*VariableData[] variableData = box.getAttributes(); // todo implement facades
         MethodData[] methodData = box.getMethods();
 
         for (int i = 0; i < variableData.length; i++)
@@ -433,7 +430,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
             methods.getChildren().add(attribute);
             MethodData met = methodData[i];
             attribute.setOnMouseClicked((Action) -> editMethod(met, attribute));
-        }
+        } */
     }
 
     /**
