@@ -6,7 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.fxml.FXMLLoader;
-import model.MethodData;
+import model.facades.MethodData;
 import model.boxes.Visibility;
 import model.facades.BoxFacade;
 
