@@ -93,7 +93,6 @@ public class MethodEditorController extends AnchorPane {
         Visibility visibility = Visibility.valueOf(accessComboBox.getValue().toString());
         method.setVisibility(visibility);
 
-        //box.editMethod(methodData);
         method.setType(returnTypeField.getText());
         argumentVBox.getChildren().setAll();
         this.setVisible(false);
