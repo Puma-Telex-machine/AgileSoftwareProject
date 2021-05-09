@@ -12,7 +12,7 @@ public class BoxGrid2 {
 
     ArrayList<Box> boxes = new ArrayList<>();
 
-    public List<Box> getBoxes() {
+    public ArrayList<Box> getBoxes() {
         return boxes;
     }
 
@@ -25,6 +25,8 @@ public class BoxGrid2 {
     }
 
     public void update(Box box) {
+        if(!boxes.contains(box))
+            boxes.add(box);
         Rectangle bounds = getBounds(box);
 
         for (Box b : boxes) {

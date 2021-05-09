@@ -24,7 +24,6 @@ public class Model implements ModelFacade, FileHandlerFacade {
 
     ArrayList<Observer> observers = new ArrayList<>();
     Diagram diagram = new Diagram();
-    String name = "untitled"; //name of the currently opened file/diagram
 
     @Override
     public FileHandlerFacade getFileHandler() {
@@ -41,8 +40,6 @@ public class Model implements ModelFacade, FileHandlerFacade {
 
 	public void addBox(ScaledPoint position, BoxType boxType) {
         observers.forEach(observer -> observer.addBox(new Box(diagram, position, boxType)));
-		//TODO: Sätt i diagram: Database.saveDiagram(diagram, name);
-        //TODO: Sätt i databasen: System.out.println("Saved diagram as: " + name);
     }
 	
 	public void addRelation(BoxFacade from, BoxFacade to, ArrowType arrowType) {
@@ -62,7 +59,6 @@ public class Model implements ModelFacade, FileHandlerFacade {
         for (Box box : diagram.getAllBoxes()) {
             observers.forEach(observer -> observer.addBox(box));
         }
-        //TODO: Sätt i databasen: name = fileName;
         //TODO: Sätt i databasen: System.out.println("loaded " + name);
     }
 
@@ -76,8 +72,8 @@ public class Model implements ModelFacade, FileHandlerFacade {
 
     @Override
     public void newFile() {
-        name = Database.newFile();
-        if(name != null) //TODO: Samma som förra
-            loadFile(name);
+        diagram.setName(Database.newFile());
+        if(diagram.getName() != null) //TODO: Samma som förra
+            loadFile(diagram.getName());
     }
 }

@@ -44,7 +44,6 @@ public interface BoxFacade {
      * If the method doesn't exist then do nothing.
      * @param method The method that should be deleted
      */
-
     void deleteMethod(MethodFacade method);
 
     /**

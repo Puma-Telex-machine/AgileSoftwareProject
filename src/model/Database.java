@@ -35,6 +35,8 @@ public class Database {
             File toRead = new File(folder + filename + ".uml");
             Scanner scanner = new Scanner(toRead);
             Diagram result = new Diagram();
+            result.setName(filename);
+            result.lockSaving();
             while (scanner.hasNextLine()){
                 String next = scanner.nextLine().trim();
                 if(next.startsWith("<BOX>"))
@@ -51,6 +53,8 @@ public class Database {
             for (Box box: boxes) {
                 result.update(box);
             }
+            System.out.println("Successfully loaded " + filename + ".uml");
+            result.unlockSaving();
             return result;
         } catch (FileNotFoundException e){
             e.printStackTrace();
@@ -195,12 +199,11 @@ public class Database {
     /**
      * Saves the given diagram as a .uml-file, with the given name.
      * @param target The diagram to be saved
-     * @param filename The name of the saved file. Currently not including filepath or ".uml"
      */
-    static public void saveDiagram(Diagram target, String filename) {
+    static public void saveDiagram(Diagram target) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("diagrams/" + filename + ".uml"));
-            ArrayList<Box> boxes = (ArrayList<Box>) target.getAllBoxes(); //probably useful for relations later
+            BufferedWriter writer = new BufferedWriter(new FileWriter("diagrams/" + target.getName() + ".uml"));
+            ArrayList<Box> boxes = target.getAllBoxes(); //probably useful for relations later
             for (Box box: boxes) {
                 saveBox(box, writer);
             }
