@@ -93,7 +93,6 @@ public class MethodEditorController extends AnchorPane {
         methodData.visibility = visibility;
 
         methodData.methodReturnType = returnTypeField.getText();
-
         box.editMethod(methodData);
         argumentVBox.getChildren().setAll();
         this.setVisible(false);

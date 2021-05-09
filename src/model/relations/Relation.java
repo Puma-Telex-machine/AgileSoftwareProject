@@ -139,23 +139,23 @@ public class Relation implements RelationFacade {
 
     private static List<ArrowType> enumRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
-        switch(to){
+        switch (to) {
             case BOX:
-            ArrayList<ArrowType> defaultArrow = new ArrayList<ArrowType>();
-            defaultArrow.add(ArrowType.DEFAULT);
-            return defaultArrow;
+                ArrayList<ArrowType> defaultArrow = new ArrayList<ArrowType>();
+                defaultArrow.add(ArrowType.DEFAULT);
+                return defaultArrow;
             case INTERFACE:
                 types.add(ArrowType.IMPLEMENTATION);
                 return types;
             default:
                 return null;
         }
+    }
         // Metoden boxRelations behövs förmodligen inte.
     private static List<ArrowType> boxRelations(BoxType to){
-        List<ArrowType> types = new Arraylist<>();
+        List<ArrowType> types = new ArrayList<>();
         types.add(ArrowType.DEFAULT);
         return types;
-    }    
-    }
+        }
 }
    

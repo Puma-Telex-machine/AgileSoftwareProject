@@ -393,7 +393,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         variables.getChildren().setAll(new ArrayList<AnchorPane>(0));
         methods.getChildren().setAll(new ArrayList<AnchorPane>(0));
 
-        VariableData[] variableData = box.getAttributes();
+        VariableData[] variableData = box.getAttributes(); // todo implement facades
         MethodData[] methodData = box.getMethods();
 
         for (int i = 0; i < variableData.length; i++)
