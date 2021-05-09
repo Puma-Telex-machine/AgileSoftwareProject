@@ -4,6 +4,8 @@ import frontend.BoxController;
 import frontend.Observers.UiObserver;
 import model.boxes.*;
 import model.point.ScaledPoint;
+import model.facades.VariableData;
+import model.facades.MethodData;
 
 import java.util.List;
 import java.util.Set;
@@ -42,7 +44,6 @@ public interface BoxFacade {
      * If the method doesn't exist then do nothing.
      * @param method The method that should be deleted
      */
-
     void deleteMethod(MethodFacade method);
 
     /**

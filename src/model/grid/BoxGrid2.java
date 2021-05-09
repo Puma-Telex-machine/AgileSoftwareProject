@@ -12,15 +12,7 @@ public class BoxGrid2 {
 
     ArrayList<Box> boxes = new ArrayList<>();
 
-    public void add(Box box) {
-        boxes.add(box);
-    }
-
-    public void remove(Box box) {
-        boxes.remove(box);
-    }
-
-    public List<Box> getBoxes() {
+    public ArrayList<Box> getBoxes() {
         return boxes;
     }
 

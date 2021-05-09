@@ -9,6 +9,7 @@ import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
+import model.boxes.BoxType;
 import model.relations.ArrowType;
 import model.facades.Observer;
 import model.facades.BoxFacade;
@@ -73,7 +74,20 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
 
     @Override
     public void addRelation(RelationFacade relation) {
-        
+        List<ScaledPoint> bends = relation.getPath();
+        //temporary
+                /*
+                bends.add(new Point(1000,700));
+                bends.add(new Point(p.x-50,arrowStart.y));
+                bends.add(new Point(p.x-50,p.y));
+                 */
+        Arrow newArrow = new Arrow(arrowStart, bends.get(bends.size()), bends);
+        newArrow.setType(relation.getArrowType());
+
+        this.getChildren().addAll(newArrow);
+        newArrow.toBack();
+        arrowMap.put(newArrow, relation);
+        arrows.add(newArrow);
     }
 
     public ScaledPoint getMiddle(){
@@ -98,21 +112,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
             this.getChildren().removeAll(dragArrow);
             //box == arrowBox => aborting arrowcreation
             if (box != arrowBox) {
-                RelationFacade startRelation = model.addRelation(arrowBox.getBox(), box.getBox(), ArrowType.ASSOCIATION);
-                List<ScaledPoint> bends = startRelation.getPath();
-                //temporary
-                /*
-                bends.add(new Point(1000,700));
-                bends.add(new Point(p.x-50,arrowStart.y));
-                bends.add(new Point(p.x-50,p.y));
-                 */
-                Arrow newArrow = new Arrow(arrowStart, p, bends);
-                newArrow.setType(startRelation.getArrowType());
-
-                this.getChildren().addAll(newArrow);
-                newArrow.toBack();
-                arrowMap.put(newArrow, startRelation);
-                arrows.add(newArrow);
+                model.addRelation(arrowBox.getBox(), box.getBox(), ArrowType.ASSOCIATION);
             }
         }
         //start making arrow
@@ -156,6 +156,12 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     private Arrow clickedArrow = null;
     @FXML
     private void handleArrowMenu(MouseEvent e){
+        if(makingArrow){
+            makingArrow=false;
+            this.getChildren().remove(dragArrow);
+            e.consume();
+            return;
+        }
         Arrow closest = null;
         double min = 10000;
         for (Arrow a:arrows){
@@ -184,6 +190,12 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
 
     @FXML
     private void handleContextMenu(ContextMenuEvent e){
+        if(makingArrow){
+            makingArrow=false;
+            this.getChildren().remove(dragArrow);
+            e.consume();
+            return;
+        }
         contextMenu.setLayoutX(e.getX());
         contextMenu.setLayoutY(e.getY());
         contextMenu.setVisible(true);
@@ -201,7 +213,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     }
     @FXML
     private void handleContextAddBox(MouseEvent e) {
-        model.addBox(new ScaledPoint(Scale.Frontend,new Point((int) contextMenu.getLayoutX()-80,(int) contextMenu.getLayoutY()-35)), );
+        model.addBox(new ScaledPoint(Scale.Frontend,new Point((int) contextMenu.getLayoutX()-80,(int) contextMenu.getLayoutY()-35)), BoxType.BOX);
         closeMenu(e);
         e.consume();
     }

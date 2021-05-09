@@ -67,7 +67,7 @@ public class RelationGrid {
     }
 
     public List<Relation> getRelations() {
-        return relations.stream().toList();
+        return new ArrayList<>(relations);
     }
 
     public void remove(Relation relation) {

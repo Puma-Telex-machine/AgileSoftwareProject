@@ -1,13 +1,12 @@
 package model;
 
 import model.boxes.*;
-import model.boxes.Class;
-import model.boxes.Enum;
+import model.facades.AttributeFacade;
+import model.facades.MethodFacade;
 import model.grid.Diagram;
 import model.point.Scale;
 import model.point.ScaledPoint;
 
-import java.awt.*;
 import java.io.*;
 import java.util.*;
 import java.util.List;
@@ -35,23 +34,27 @@ public class Database {
             ArrayList<Box> boxes = new ArrayList<>();
             File toRead = new File(folder + filename + ".uml");
             Scanner scanner = new Scanner(toRead);
+            Diagram result = new Diagram();
+            result.setName(filename);
+            result.lockSaving();
             while (scanner.hasNextLine()){
                 String next = scanner.nextLine().trim();
                 if(next.startsWith("<BOX>"))
-                    boxes.add(loadBox(scanner, BoxType.BOX));
+                    boxes.add(loadBox(scanner, BoxType.BOX, result));
                 else if(next.startsWith("<CLASS>"))
-                    boxes.add(loadBox(scanner, BoxType.CLASS));
+                    boxes.add(loadBox(scanner, BoxType.CLASS, result));
                 else if(next.startsWith("<ABSTRACTCLASS>"))
-                    boxes.add(loadBox(scanner, BoxType.ABSTRACT_CLASS));
+                    boxes.add(loadBox(scanner, BoxType.ABSTRACT_CLASS, result));
                 else if(next.startsWith("<INTERFACE>"))
-                    boxes.add(loadBox(scanner, BoxType.INTERFACE));
+                    boxes.add(loadBox(scanner, BoxType.INTERFACE, result));
                 else if(next.startsWith("<ENUM>"))
-                    boxes.add(loadBox(scanner, BoxType.ENUM));
+                    boxes.add(loadBox(scanner, BoxType.ENUM, result));
             }
-            Diagram result = new Diagram();
             for (Box box: boxes) {
                 result.update(box);
             }
+            System.out.println("Successfully loaded " + filename + ".uml");
+            result.unlockSaving();
             return result;
         } catch (FileNotFoundException e){
             e.printStackTrace();
@@ -59,7 +62,7 @@ public class Database {
         }
     }
 
-    static private Box loadBox(Scanner scanner, BoxType type){
+    static private Box loadBox(Scanner scanner, BoxType type, Diagram target) {
         String name = "";
         int xpos = 0;
         int ypos = 0;
@@ -68,10 +71,10 @@ public class Database {
         List<Attribute> attributes = new ArrayList<>();
         Set<Modifier> modifiers = new HashSet<>();
 
-        while (scanner.hasNextLine()){
+        while (scanner.hasNextLine()) {
             String next = scanner.nextLine().trim();
             String[] nextSplit = next.split(lineSplit);
-            switch (nextSplit[0]){
+            switch (nextSplit[0]) {
                 case nameMatch:
                     name = nextSplit[1];
                     break;
@@ -91,40 +94,34 @@ public class Database {
                     attributes.add(loadAttribute(scanner));
                     break;
                 default:
-                    if(next.startsWith(modifierMatch)){
+                    if (next.startsWith(modifierMatch)) {
                         modifiers.add(Modifier.valueOf(nextSplit[1]));
-                    }else if(next.startsWith("<!")){
-                        switch(type){
-                            case BOX:
-                                Box box = new Box(name, new ScaledPoint(Scale.Backend, xpos, ypos));
-                                box.setVisibility(visibility);
-                                box.setMethods(methods);
-                                box.setAttributes(attributes);
-                                box.setModifiers(modifiers);
-                                return box;
-                            case CLASS:
-                            case ABSTRACT_CLASS:
-                                Class newClass = new Class(new ScaledPoint(Scale.Backend,new Point(xpos,ypos)), name);
-                                newClass.setVisibility(visibility);
-                                newClass.setMethods(methods);
-                                newClass.setAttributes(attributes);
-                                newClass.setModifiers(modifiers);
-                                return newClass;
-                            case INTERFACE:
-                                Interface newInterface = new Interface(new ScaledPoint(Scale.Backend,new Point(xpos,ypos)),name);
-                                newInterface.setVisibility(visibility);
-                                newInterface.setMethods(methods);
-                                newInterface.setAttributes(attributes);
-                                newInterface.setModifiers(modifiers);
-                                return newInterface;
-                            case ENUM:
-                                Enum newEnum = new Enum(new ScaledPoint(Scale.Backend, new Point(xpos,ypos)), name);
-                                newEnum.setVisibility(visibility);
-                                newEnum.setMethods(methods);
-                                newEnum.setAttributes(attributes);
-                                newEnum.setModifiers(modifiers);
-                                return newEnum;
+                    } else if (next.startsWith("<!")) {
+                        Box box = new Box(target, new ScaledPoint(Scale.Backend, xpos, ypos), type);
+                        box.setVisibility(visibility);
+                        for (Method method : methods) {
+                            MethodFacade newMet = box.addMethod();
+                            newMet.setName(method.getName());
+                            newMet.setVisibility(method.getVisibility());
+                            for (String param : method.getArguments()) {
+                                newMet.addArgument(param);
+                            }
+                            for (Modifier modifier : method.getModifiers()) {
+                                newMet.addModifier(modifier);
+                            }
                         }
+                        for (Attribute attribute : attributes) {
+                            AttributeFacade newAttr = box.addAttribute();
+                            newAttr.setName(attribute.getName());
+                            newAttr.setVisibility(attribute.getVisibility());
+                            for (Modifier modifier : attribute.getModifiers()) {
+                                newAttr.addModifier(modifier);
+                            }
+                        }
+                        for (Modifier modifier : modifiers) {
+                            box.addModifier(modifier);
+                        }
+                        return box;
                     }
             }
 
@@ -150,8 +147,16 @@ public class Database {
                 case "<PARAMETER>":
                     parameters.add(loadAttribute(scanner));
                     break;
-                case "<!PARAMETER>":
-                    return new Method(name, parameters, modifiers, visibility);
+                case "<!METHOD>":
+                    Method method = new Method();
+                    method.setName(name);
+                    for (Attribute attribute: parameters) {
+                        method.addArgument(attribute.getName());
+                    }
+                    for (Modifier modifier: modifiers) {
+                        method.addModifier(modifier);
+                    }
+                    return method;
                 default:
                     if(next[0].startsWith(modifierMatch))
                         modifiers.add(Modifier.valueOf(next[1]));
@@ -177,8 +182,15 @@ public class Database {
                 default:
                     if(next[0].startsWith(modifierMatch)) {
                         modifiers.add(Modifier.valueOf(next[0]));
-                    }else if(next[0].startsWith("<!"))
-                        return new Attribute(name, modifiers, visibility);
+                    }else if(next[0].startsWith("<!")) {
+                        Attribute attribute = new Attribute();
+                        attribute.setName(name);
+                        for (Modifier modifier: modifiers) {
+                            attribute.addModifier(modifier);
+                        }
+                        attribute.setVisibility(visibility);
+                        return attribute;
+                    }
             }
         }
         return null;
@@ -187,12 +199,11 @@ public class Database {
     /**
      * Saves the given diagram as a .uml-file, with the given name.
      * @param target The diagram to be saved
-     * @param filename The name of the saved file. Currently not including filepath or ".uml"
      */
-    static public void saveDiagram(Diagram target, String filename) {
+    static public void saveDiagram(Diagram target) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("diagrams/" + filename + ".uml"));
-            ArrayList<Box> boxes = target.boxGrid.getAllBoxes(); //probably useful for relations later
+            BufferedWriter writer = new BufferedWriter(new FileWriter("diagrams/" + target.getName() + ".uml"));
+            ArrayList<Box> boxes = target.getAllBoxes(); //probably useful for relations later
             for (Box box: boxes) {
                 saveBox(box, writer);
             }
@@ -220,10 +231,10 @@ public class Database {
         writeLine("  xposition" + lineSplit + box.getPosition().getX(Scale.Backend), writer);
         writeLine("  yposition" + lineSplit + box.getPosition().getY(Scale.Backend), writer);
         writeLine("  " + visibilityMatch + lineSplit + box.getVisibility(), writer);
-        for (Method method: box.getMethods()) {
+        for (MethodFacade method: box.getMethods()) {
             saveMethod(method, writer, "  ");
         }
-        for(Attribute attribute: box.getAttributes()){
+        for(AttributeFacade attribute: box.getAttributes()){
             writeLine("  <ATTRIBUTE>", writer);
             saveAttribute(attribute, writer, "  ");
             writeLine("  <!ATTRIBUTE>", writer);
@@ -232,20 +243,22 @@ public class Database {
         writeLine("<!"+box.getType()+">", writer);
     }
 
-    static private void saveMethod(Method method, BufferedWriter writer, String tab) throws  IOException{
+    static private void saveMethod(MethodFacade method, BufferedWriter writer, String tab) throws  IOException{
         writeLine(tab + "<METHOD>", writer);
         writeLine(tab + "  " + nameMatch + lineSplit + method.getName(), writer);
         writeLine(tab + "  " + visibilityMatch + lineSplit + method.getVisibility(), writer);
-        for(Attribute attribute : method.getArguments()){
+        for(String param : method.getArguments()){
             writeLine(tab + "  <PARAMETER>", writer);
-            saveAttribute(attribute, writer, tab + "  ");
+            Attribute newParam = new Attribute();
+            newParam.setName(param);
+            saveAttribute(newParam, writer, tab + "  ");
             writeLine(tab + "  <!PARAMETER>", writer);
         }
         saveModifiers(method.getModifiers(), writer, tab + "  ");
         writeLine(tab + "<!METHOD>", writer);
     }
 
-    static private void saveAttribute(Attribute attribute, BufferedWriter writer, String tab) throws IOException{
+    static private void saveAttribute(AttributeFacade attribute, BufferedWriter writer, String tab) throws IOException{
         writeLine(tab + "  " + nameMatch + lineSplit + attribute.getName(), writer);
         writeLine(tab + "  " + visibilityMatch + lineSplit + attribute.getVisibility(), writer);
         saveModifiers(attribute.getModifiers(), writer, tab + "  ");

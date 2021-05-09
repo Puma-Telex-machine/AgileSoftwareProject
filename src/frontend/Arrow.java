@@ -245,6 +245,8 @@ public class Arrow extends AnchorPane {
         }
     }
 
+
+
     /**
      * check if a click is on this arrow (only works if lines are horizontal and vertical)
      *

@@ -31,10 +31,17 @@ public class Box implements BoxFacade, UiObserver {
     public Box(IDiagram diagram, ScaledPoint position, BoxType type) {
         String defaultName;
         switch (type) {
-            case CLASS -> defaultName = "Class";
-            case ABSTRACT_CLASS -> defaultName =  "Abstract Class";
-            case INTERFACE -> defaultName = "Interface";
-            default -> defaultName = "Box";
+            case CLASS:
+                defaultName = "Class";
+                break;
+            case ABSTRACT_CLASS:
+                defaultName =  "Abstract Class";
+                break;
+            case INTERFACE:
+                defaultName = "Interface";
+                break;
+            default:
+                defaultName = "Box";
         }
         this.name = defaultName;
         this.position = position;
@@ -90,7 +97,6 @@ public class Box implements BoxFacade, UiObserver {
         Attribute attribute = new Attribute();
         attributes.add(attribute);
         attribute.subscribe(this);
-        update();
         return attribute;
     }
 
