@@ -155,29 +155,25 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         }
         //todo fix max borders
 
-        double moveX=0;
-        double moveY=0;
+        double posX=0;
+        double posY=0;
         //move X
-        if (this.getLayoutX() + event.getX() - offsetX < 0) {
-            this.setLayoutX(0);
-            moveX=-1;
-        }
-        else{
-            this.setLayoutX(this.getLayoutX()+ event.getX() - offsetX);
-            moveX= event.getX() - offsetX;
+        if (this.getLayoutX() + event.getX() - offsetX > 0) {
+            posX=this.getLayoutX()+ event.getX() - offsetX;
         }
 
         //move Y
-        if (this.getLayoutY() + event.getY() - offsetY < 0) {
-            this.setLayoutY(0);
-            moveY=-1;
-        }
-        else{
-            this.setLayoutY(this.getLayoutY()+ event.getY() - offsetY);
-            moveY= event.getY() - offsetY;
+        if (this.getLayoutY() + event.getY() - offsetY > 0) {
+            posY = this.getLayoutY()+ event.getY() - offsetY;
         }
 
-        notifyBoxDrag(new Point((int)moveX,(int)moveY));
+        //todo this needs testing and refining
+        this.setLayoutX(posX);
+        this.setLayoutX(posY);
+        box.setPosition(new ScaledPoint(Scale.Frontend,posX,posY));
+
+
+        notifyBoxDrag();
 
         event.consume();
     }
