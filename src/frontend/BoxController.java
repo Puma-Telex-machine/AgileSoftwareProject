@@ -158,7 +158,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         double moveX=0;
         double moveY=0;
         //move X
-<<<<<<< Updated upstream
         if (this.getLayoutX() + event.getX() - offsetX < 0) {
             this.setLayoutX(0);
             moveX=-1;
@@ -166,14 +165,9 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         else{
             this.setLayoutX(this.getLayoutX()+ event.getX() - offsetX);
             moveX= event.getX() - offsetX;
-=======
-        if (this.getLayoutX() + event.getX() - offsetX > 0) {
-            posX=this.getLayoutX()+ event.getX() - offsetX;
->>>>>>> Stashed changes
         }
 
         //move Y
-<<<<<<< Updated upstream
         if (this.getLayoutY() + event.getY() - offsetY < 0) {
             this.setLayoutY(0);
             moveY=-1;
@@ -182,16 +176,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
             this.setLayoutY(this.getLayoutY()+ event.getY() - offsetY);
             moveY= event.getY() - offsetY;
         }
-=======
-        if (this.getLayoutY() + event.getY() - offsetY > 0) {
-            posY=this.getLayoutY()+ event.getY() - offsetY;
-        }
-
-        //todo this needs testing and refining when arrows can move
-        box.setPosition(new ScaledPoint(Scale.Frontend,posX,posY));
-        this.setLayoutX(posX);
-        this.setLayoutY(posY);
->>>>>>> Stashed changes
 
         notifyBoxDrag(new Point((int)moveX,(int)moveY));
 
