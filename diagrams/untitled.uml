@@ -1,31 +1,24 @@
-<<<<<<< HEAD
-boxcount=2
 <BOX>
-  name=Box 0
-  xposition=500
-  yposition=400
-  visibility=PUBLIC
-<!BOX>
-<BOX>
-  name=Box 1
-<<<<<<< Updated upstream
-  xposition=757
-  yposition=320
-=======
-  xposition=788
-  yposition=299
->>>>>>> Stashed changes
-=======
-<BOX>
-  name=Box
-  xposition=16
-  yposition=13
+  name=Classasd
+  xposition=18
+  yposition=8
   visibility=PUBLIC
 <!BOX>
 <BOX>
   name=Box
   xposition=30
-  yposition=6
->>>>>>> Production
+  yposition=15
+  visibility=PUBLIC
+<!BOX>
+<BOX>
+  name=Box
+  xposition=21
+  yposition=4
+  visibility=PUBLIC
+<!BOX>
+<BOX>
+  name=Box
+  xposition=15
+  yposition=15
   visibility=PUBLIC
 <!BOX>

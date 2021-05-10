@@ -2,7 +2,6 @@ package frontend;
 
 import frontend.Observers.ArrowObserver;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
@@ -10,8 +9,6 @@ import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
-import model.Observer;
-import model.boxes.Box;
 import model.boxes.BoxType;
 import model.facades.Observer;
 import model.facades.BoxFacade;
@@ -20,12 +17,10 @@ import model.point.Scale;
 import model.point.ScaledPoint;
 import model.relations.ArrowType;
 import model.relations.Relation;
-
 import java.awt.*;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class CanvasController extends AnchorPane implements Observer, ArrowObserver {
 
@@ -91,6 +86,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     private boolean toggleOn = false;
     private List<Arrow> arrows = new ArrayList<>();
     private Dictionary<Arrow, RelationFacade> arrowMap = new Hashtable<>();
+    private Dictionary<RelationFacade, Arrow> relationMap = new Hashtable<>();
 
 
     @Override
@@ -101,8 +97,8 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
             //box == arrowBox => aborting arrowcreation
             if (box != arrowBox) {
 
-                ScaledPoint offsetFrom = new ScaledPoint(Scale.Frontend, (int) (p.x - box.getLayoutX()), (int) (p.y - box.getLayoutY()));
-                ScaledPoint offsetTo = new ScaledPoint(Scale.Frontend, (int) (arrowStart.x - arrowBox.getLayoutX()), (arrowStart.y - arrowBox.getLayoutY()));
+                ScaledPoint offsetTo = new ScaledPoint(Scale.Frontend, (int) (p.x - box.getLayoutX()), (int) (p.y - box.getLayoutY()));
+                ScaledPoint offsetFrom = new ScaledPoint(Scale.Frontend, (int) (arrowStart.x - arrowBox.getLayoutX()), (arrowStart.y - arrowBox.getLayoutY()));
 
                 model.addRelation(arrowBox.getBox(), offsetFrom, box.getBox(), offsetTo, ArrowType.ASSOCIATION);
             }
@@ -122,58 +118,38 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     public void addRelation(RelationFacade relation) {
         List<ScaledPoint> bends = relation.getPath();
         ScaledPoint last = bends.get(bends.size() - 1);
+        ScaledPoint first = bends.get(0);
 
-        Arrow newArrow = new Arrow(arrowStart, new Point(last.getX(Scale.Frontend), last.getY(Scale.Frontend)), bends);
+        Point end = new Point(last.getX(Scale.Frontend), last.getY(Scale.Frontend));
+        Point start = new Point(first.getX(Scale.Frontend), first.getY(Scale.Frontend));
+
+        Arrow newArrow = new Arrow(start, end, bends);
         newArrow.setType(relation.getArrowType());
-
         this.getChildren().addAll(newArrow);
         newArrow.toBack();
         arrowMap.put(newArrow, relation);
+        relationMap.put(relation,newArrow);
         arrows.add(newArrow);
+    }
+    private void removeRelation(RelationFacade r){
+        Arrow arrow = relationMap.get(r);
+        this.getChildren().remove(arrow);
+        arrows.remove(arrow);
+        relationMap.remove(arrow);
+        arrowMap.remove(r);
     }
 
     @Override
     public void boxDrag(BoxFacade box, Point offset) {
         List<Relation> relations = model.getRelationStart(box);
+        relations.addAll(model.getRelationEnd(box));
+        //for all relations going out or into box
         for (Relation r:relations) {
-            Arrow arrow = arrowMap.get(r);
-            this.getChildren().remove(arrow);
-            arrows.remove(arrow);
-            arrowMap.remove(r);
-            relationMap.remove(arrow);
-
-            Point start = new Point((int) arrow.getStart().x+offset.x,(int) arrow.getStart().y+offset.y);
-
-            addArrow(box,r.getTo(),start,arrow.getEnd(),r);
+            //remove old arrow
+            removeRelation(r);
+            //add new arrow
+            addRelation(r);
         }
-        relations = model.getRelationEnd(box);
-        for (Relation r:relations) {
-            Arrow arrow = arrowMap.get(r);
-            this.getChildren().remove(arrow);
-            arrows.remove(arrow);
-            arrowMap.remove(r);
-            relationMap.remove(arrow);
-
-            Point end = new Point((int) arrow.getEnd().x+offset.x,(int) arrow.getEnd().y+offset.y);
-
-            addArrow(box,r.getTo(),arrow.getStart(),end,r);
-        }
-    }
-
-    private void addArrow(BoxFacade from, BoxFacade to,Point start, Point end,Relation relation){
-        List<Point> bends = model.getArrowBends(from,to);
-        //temporary
-        bends.add(new Point(end.x-50,start.y));
-        bends.add(new Point(end.x-50,end.y));
-
-        Arrow newArrow = new Arrow(start,end,bends);
-        newArrow.setType(relation.getArrowType());
-
-        this.getChildren().addAll(newArrow);
-        newArrow.toBack();
-        arrowMap.put(relation,newArrow);
-        relationMap.put(newArrow,relation);
-        arrows.add(newArrow);
     }
 
     /**

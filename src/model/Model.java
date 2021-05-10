@@ -10,6 +10,7 @@ import model.relations.ArrowType;
 import model.relations.Relation;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Model implements ModelFacade, FileHandlerFacade {
 
@@ -78,6 +79,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
      * get all relations going out from this box
      */
     public List<Relation> getRelationStart(BoxFacade box){
+        //todo
         return new ArrayList<>();
     }
 
@@ -85,6 +87,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
      *get all relations going into this box
      */
     public List<Relation> getRelationEnd(BoxFacade box) {
+        //todo
         return new ArrayList<>();
     }
 }

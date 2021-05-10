@@ -21,14 +21,6 @@ public class Relation implements RelationFacade {
         this.arrowType = arrowType;
     }
 
-    public BoxFacade getTo() {
-        return to;
-    }
-
-    public BoxFacade getFrom() {
-        return from;
-    }
-
     public ScaledPoint getToPosition() {
         return to.getPosition();
     }
