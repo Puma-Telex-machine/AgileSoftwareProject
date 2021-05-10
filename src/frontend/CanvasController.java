@@ -140,9 +140,8 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     }
 
     @Override
-    public void boxDrag(BoxFacade box, Point offset) {
-        List<Relation> relations = model.getRelationStart(box);
-        relations.addAll(model.getRelationEnd(box));
+    public void boxDrag(BoxFacade box) {
+        List<Relation> relations = model.getRelations(box);
         //for all relations going out or into box
         for (Relation r:relations) {
             //remove old arrow
