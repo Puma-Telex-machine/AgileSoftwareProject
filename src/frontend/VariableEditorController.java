@@ -45,7 +45,7 @@ public class VariableEditorController extends AnchorPane {
     @FXML
     private void deleteVariable() //This method is called when the player wants to delete the variable
     {
-        box.deleteVariable(variable);
+        box.deleteAttribute(variable);
         this.setVisible(false);
     }
 
@@ -64,7 +64,7 @@ public class VariableEditorController extends AnchorPane {
 
     public void EditVariable(BoxFacade box)
     {
-        EditVariable(box.addVairable(), box);
+        EditVariable(box.addAttribute(), box);
     }
 
     public void EditVariable(AttributeFacade variableData, BoxFacade box)

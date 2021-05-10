@@ -1,17 +1,40 @@
 package model.facades;
 
-public interface MethodFacade extends AttributeFacade{
+import model.boxes.Modifier;
+import model.boxes.Visibility;
+
+import java.util.List;
+import java.util.Set;
+
+public interface MethodFacade {
+
+    void setName(String name);
+    String getName();
 
     /**
-     * Returns all of the parameters of this method
+     * Sets the return type of the method
+     * @param type
+     */
+    void setType(String type);
+
+    /**
+     * Returns the return type of the method
      * @return
      */
-    String[] getParameters();
+    String getType();
 
     /**
-     * Sets all of the parameters of the method.
-     * If the method already has parameters those are first cleared.
-     * @param parameters
+     * Completely clears the previous arguments
      */
-    void setParameters(String[] parameters);
+    void removeAllArguments();
+    void addArgument(String argument);
+    void removeArgument(String argument); //FYI I don't need this / Emil E
+    List<String> getArguments();
+
+    void addModifier(Modifier modifier); //Please explain what this is / Emil E
+    void removeModifier(Modifier modifier);
+    Set<Modifier> getModifiers();
+
+    void setVisibility(Visibility visibility);
+    Visibility getVisibility();
 }

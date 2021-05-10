@@ -21,6 +21,8 @@ import model.boxes.Visibility;
 import model.facades.AttributeFacade;
 import model.facades.BoxFacade;
 import model.facades.MethodFacade;
+import model.point.Scale;
+import model.point.ScaledPoint;
 
 import javax.swing.*;
 import java.awt.*;
@@ -79,13 +81,13 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
                 vBox.getChildren().remove(identifier);
                 break;
             case INTERFACE:
-                identifier.setText("<<Interfacew>>");
+                identifier.setText("<<Interface>>");
                 vBox.getChildren().remove(variables);
                 //remove line and +
                 vBox.getChildren().remove(6);
                 vBox.getChildren().remove(5);
                 break;
-            case ABSTRACTCLASS:
+            case ABSTRACT_CLASS:
                 identifier.setText("<Abstract>");
                 break;
             case ENUM:
@@ -104,8 +106,8 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         this.box = box;
         hideCircles();
 
-        this.setLayoutX(box.getPosition().x);
-        this.setLayoutY(box.getPosition().y);
+        this.setLayoutX(box.getPosition().getX(Scale.Frontend));
+        this.setLayoutY(box.getPosition().getY(Scale.Frontend));
 
         initAnchors();
         box.subscribe(this);
@@ -186,10 +188,10 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
     @FXML
     private void handleLetGo(MouseEvent event){
         moving=false;
-        box.setPosition(new Point((int)this.getLayoutX(),(int)this.getLayoutY()));
+        box.setPosition(new ScaledPoint(Scale.Frontend,(int)this.getLayoutX(),(int)this.getLayoutY()));
         //for snap to grid
-        this.setLayoutX(box.getPosition().x);
-        this.setLayoutY(box.getPosition().y);
+        this.setLayoutX(box.getPosition().getX(Scale.Frontend));
+        this.setLayoutY(box.getPosition().getY(Scale.Frontend));
         event.consume();
     }
     //endregion
@@ -384,50 +386,51 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      */
     public void update()
     {
+
         variables.getChildren().setAll(new ArrayList<AnchorPane>(0));
         methods.getChildren().setAll(new ArrayList<AnchorPane>(0));
 
-        AttributeFacade[] variableData = box.getVariables();
-        MethodFacade[] methodData = box.getMethods();
+        List<AttributeFacade> variableData = box.getAttributes();
+        List<MethodFacade> methodData = box.getMethods();
 
-        for (int i = 0; i < variableData.length; i++)
+        for (int i = 0; i < variableData.size(); i++)
         {
             String variable = "";
-            variable += attributeVisString(variableData[i].getVisibility());
+            variable += attributeVisString(variableData.get(i).getVisibility());
             variable += " ";
-            variable += variableData[i].getName();
+            variable += variableData.get(i).getName();
             variable += ": ";
-            variable += variableData[i].getType();
+            variable += variableData.get(i).getType();
 
             BoxAttributeTextController attribute = new BoxAttributeTextController(variable);
             variables.getChildren().add(attribute);
-            AttributeFacade var = variableData[i];
-            attribute.setOnMouseClicked((Action) -> editVariable(var, attribute));
+            AttributeFacade var = variableData.get(i);
+            attribute.setOnMousePressed((Action) -> editVariable(var, attribute));
 
         }
 
-        for(int i = 0; i < methodData.length; i++)
+        for(int i = 0; i < methodData.size(); i++)
         {
             String method = "";
-            method += attributeVisString(methodData[i].getVisibility());
+            method += attributeVisString(methodData.get(i).getVisibility());
             method += " ";
-            method += methodData[i].getName();
+            method += methodData.get(i).getName();
             method += " (";
-            String[] param = methodData[i].getParameters();
-            for (int j = 0; j < param.length; j++)
+            List<String> param = methodData.get(i).getArguments();
+            for (int j = 0; j < param.size(); j++)
             {
-                method += param[j];
+                method += param.get(j);
 
-                if(j+1 != param.length)
+                if(j+1 != param.size())
                     method += ", ";
             }
             method += ") : ";
-            method += methodData[i].getType();
+            method += methodData.get(i).getType();
 
             BoxAttributeTextController attribute = new BoxAttributeTextController(method);
             methods.getChildren().add(attribute);
-            MethodFacade met = methodData[i];
-            attribute.setOnMouseClicked((Action) -> editMethod(met, attribute));
+            MethodFacade met = methodData.get(i);
+            attribute.setOnMousePressed((Action) -> editMethod(met, attribute));
         }
     }
 

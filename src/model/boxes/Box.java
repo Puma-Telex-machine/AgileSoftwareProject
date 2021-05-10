@@ -1,150 +1,190 @@
 package model.boxes;
 
-import model.MethodData;
-//import model.VariableData;
-import model.VariableData;
+import frontend.Observers.UiObserver;
+import model.facades.AttributeFacade;
+import model.facades.BoxFacade;
+import model.facades.MethodFacade;
+import model.grid.IDiagram;
+import model.point.Scale;
+import model.point.ScaledPoint;
 
-import java.awt.*;
 import java.util.*;
-import java.util.List;
 
 /**
  * A generalized class representing a UML object, specifically classes/interfaces/enums.
  * Originally created by Emil Holmsten,
  * Expanded by Filip Hanberg.
  */
-public class Box {
+public class Box implements BoxFacade, UiObserver {
+    private static final int SYMBOLS_PER_WIDTH_UNIT = 10;
 
     private String name;
-    private List<Method> methods = new ArrayList<>();
-    private List<Attribute> attributes = new ArrayList<>();
-    private Set<Modifier> modifiers = new HashSet<>();
+    private final BoxType type;
+    private final List<MethodFacade> methods = new ArrayList<>();
+    private final List<AttributeFacade> attributes = new ArrayList<>();
+    private final Set<Modifier> modifiers = new HashSet<>();
     private Visibility visibility = Visibility.PUBLIC;
-    private Point position;
+    private ScaledPoint position;
+    private final IDiagram diagram;
+    private final int MAGICNUMBERTEST = 2;
 
-    public Box(String name, Point position) {
-        this.name = name;
+    public Box(IDiagram diagram, ScaledPoint position, BoxType type) {
+        this.name = switch (type) {
+            case CLASS -> "Class";
+            case ABSTRACT_CLASS -> "Abstract Class";
+            case INTERFACE -> "Interface";
+            default -> "Box";
+        };
         this.position = position;
+        this.type = type;
+        this.diagram = diagram;
+        diagram.add(this);
+        update();
     }
 
-    public BoxType getType(){
-        return BoxType.BOX;
+    @Override
+    public void setName(String name) {
+        this.name = name;
+        update();
     }
 
-    public void setName(String newName){
-        name = newName;
-    }
-
-    public void setPosition(Point newPosition){
-        position = newPosition;
-    }
-
-    public void setMethods(List<Method> newMethods){
-        methods = newMethods;
-    }
-
-    public void setAttributes(List<Attribute> newAttributes){
-        attributes = newAttributes;
-    }
-
-    public Method getMethod(int position){
-        if(position < methods.size() && position >= 0)
-            return methods.get(position);
-        return null;
-    }
-
-    public Attribute getAttribute(int position){
-        if(position < attributes.size() && position >= 0)
-            return attributes.get(position);
-        return null;
-    }
-
-    public void setModifiers(Set<Modifier> modifiers){
-        this.modifiers = modifiers;
-    }
-
-    public void addModifier(Modifier modifier){
-        modifiers.add(modifier);
-    }
-
-    public void removeModifier(Modifier modifier){
-        modifiers.remove(modifier);
-    }
-
-    public void setVisibility(Visibility visibility){
-        this.visibility = visibility;
-    }
-
+    @Override
     public String getName() {
         return name;
     }
 
-    public void editMethod(MethodData methodData) {
-        boolean exists = false;
-        for (Method method: methods) {
-            if(methodData.methodName == method.getName()){
-                exists = true;
-                //method.SetName(methodData.methodName); todo: identify methods
-                method.SetVisibility(methodData.visibility);
-                method.SetArguments(methodData);
-                break;
-            }
-        }
-        if(!exists){
-            methods.add(new Method(methodData));
-        }
+    @Override
+    public BoxType getType() {
+        return type;
     }
 
-    public void editVariable(VariableData variableData) {
-        boolean exists = false;
-        for (Attribute attribute: attributes) {
-            if(variableData.name == attribute.getName()){
-                exists = true;
-                //attribute.SetName(variableData.name); todo: identify attributes
-                attribute.setVisibility(variableData.visibility);
-                break;
-            }
-        }
-        if(!exists){
-            attributes.add(new Attribute(variableData));
-        }
+    @Override
+    public void deleteBox() {
+        name = "THIS SHOULD NOT BE VISIBLE: BOX IS DELETED";
+        diagram.remove(this);
     }
 
-    public void deleteMethod(String methodName) {
-        int counter = 0;
-        for (Method method: methods) {
-            if(methodName == method.getName()) {
-                methods.remove(counter);
-                break;
-            }
-            counter++;
-        }
+    @Override
+    public MethodFacade addMethod() {
+        Method method = new Method();
+        methods.add(method);
+        method.subscribe(this);
+        return method;
     }
 
-    public void deleteVariable(String variableName) {
-        int counter = 0;
-        for (Attribute attribute: attributes) {
-            if(variableName == attribute.getName()) {
-                attributes.remove(counter);
-                break;
-            }
-            counter++;
-        }
+    @Override
+    public void deleteMethod(MethodFacade method) {
+        methods.remove(method);
+        update();
     }
 
-    public Point getPosition(){return position; }
+    @Override
+    public List<MethodFacade> getMethods() {
+        return new ArrayList<>(methods);
+    }
 
-    public List<Method> getMethods(){return methods;}
+    @Override
+    public AttributeFacade addAttribute() {
+        Attribute attribute = new Attribute();
+        attributes.add(attribute);
+        attribute.subscribe(this);
+        return attribute;
+    }
 
-    public List<Attribute> getAttributes(){return attributes;}
+    @Override
+    public void deleteAttribute(AttributeFacade attribute) {
+        attributes.remove(attribute);
+        update();
+    }
 
-    public Set<Modifier> getModifiers(){return modifiers;}
+    @Override
+    public List<AttributeFacade> getAttributes() {
+        return new ArrayList<>(attributes);
+    }
 
-    public Visibility getVisibility(){
+    @Override
+    public void setVisibility(Visibility visibility) {
+        this.visibility = visibility;
+        update(); //Behövs denna?
+    }
+
+    @Override
+    public Visibility getVisibility() {
         return visibility;
     }
 
-    public int getHeight() {
-        return 0;
+    @Override
+    public void addModifier(Modifier modifier) {
+        modifiers.add(modifier);
+        update(); //Behövs denna?
+    }
+
+    @Override
+    public void removeModifier(Modifier modifier) {
+        // TODO: deleteModifier? (consistency)
+        modifiers.remove(modifier);
+        update();
+    }
+
+    @Override
+    public Set<Modifier> getModifiers() {
+        return modifiers;
+    }
+
+    @Override
+    public void setPosition(ScaledPoint point) {
+        position = point;
+        update();
+    }
+
+    @Override
+    public ScaledPoint getPosition() {
+        return position;
+    }
+
+    @Override
+    public ScaledPoint getWidthAndHeight() {
+        return new ScaledPoint(Scale.Backend, getWidth(), getHeight());
+    }
+
+    private int getHeight() {
+        return getMethods().size() + getAttributes().size() + MAGICNUMBERTEST;
+    }
+
+    private int getWidth() {
+        ArrayList<String> names = new ArrayList<>();
+
+        names.add(name);
+        for (MethodFacade method : methods) {
+            names.add(method.getName());
+        }
+        for (AttributeFacade attribute : attributes) {
+            names.add(attribute.getName());
+        }
+
+        ArrayList<Integer> longest = new ArrayList<>();
+        for (String n : names) {
+            longest.add(n.length());
+        }
+
+        int maxLength = Collections.max(longest);
+
+        return 5; //maxLength * SYMBOLS_PER_WIDTH_UNIT;
+    }
+
+
+    ArrayList<UiObserver> observers = new ArrayList<>();
+
+    @Override
+    public void subscribe(UiObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void update() {
+        diagram.update(this);
+        for (UiObserver o : observers) {
+            o.update();
+        }
     }
 }

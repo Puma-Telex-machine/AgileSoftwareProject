@@ -1,41 +1,31 @@
 package model.facades;
 
+import model.boxes.Modifier;
 import model.boxes.Visibility;
 
+import java.util.Set;
+
 public interface AttributeFacade {
-    /**
-     * Returns the name of the attribute
-     * @return
-     */
+
+    void setName(String name);
     String getName();
 
     /**
-     * Sets the name of the attribute
-     * @param name
-     */
-    void setName(String name);
-
-    /**
-     * Returns the type of the attribute, return-type for methods
-     * @return
-     */
-    String getType();
-
-    /**
-     * Sets the type of the attribute
+     * Sets the type of the variable
      * @param type
      */
     void setType(String type);
 
     /**
-     * Return the visibility for the attribute
+     * Returns the the type of the variable
      * @return
      */
+    String getType();
+
+    void setVisibility(Visibility visibility);
     Visibility getVisibility();
 
-    /**
-     * Sets the visibility for the attribute
-     * @param visibility
-     */
-    void setVisibility(Visibility visibility);
+    void addModifier(Modifier modifier); // Please explain what this is / Emil E
+    void removeModifier(Modifier modifier);
+    Set<Modifier> getModifiers();
 }
