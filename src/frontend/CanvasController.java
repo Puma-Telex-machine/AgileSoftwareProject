@@ -75,12 +75,6 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         box.toggleCircleVisibility(!toggleOn);
     }
 
-    public void addTestPoint (float x, float y)
-    {
-        TestPointController point = new TestPointController(x, y);
-        this.getChildren().add(point);
-    }
-
     public Point getMiddle(){
         return new Point(500,400);
     }

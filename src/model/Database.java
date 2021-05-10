@@ -203,7 +203,7 @@ public class Database {
     static public void saveDiagram(Diagram target) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("diagrams/" + target.getName() + ".uml"));
-            ArrayList<Box> boxes = target.getAllBoxes(); //probably useful for relations later
+            List<Box> boxes = target.getAllBoxes(); //probably useful for relations later
             for (Box box: boxes) {
                 saveBox(box, writer);
             }

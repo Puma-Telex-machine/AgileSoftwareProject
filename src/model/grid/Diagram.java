@@ -18,6 +18,11 @@ public class Diagram implements IDiagram {
     Boolean saveLocked = false;
 
     @Override
+    public void add(Box box) {
+        boxGrid.add(box);
+    }
+
+    @Override
     public void update(Box box) {
         boxGrid.update(box);
         relationGrid.refreshAllPaths();
@@ -31,12 +36,16 @@ public class Diagram implements IDiagram {
         saveThis();
     }
 
-    public ArrayList<Box> getAllBoxes() {
-        return boxGrid.getBoxes();
+    @Override
+    public void add(Relation relation) {
+        relationGrid.add(relation);
+        //relationGrid.refreshAllPaths();
+        saveThis();
     }
 
+    @Override
     public void update(Relation relation) {
-        relationGrid.add(relation);
+        //relationGrid.add(relation);
         relationGrid.refreshAllPaths();     // Detta gör om arbetet i add, det beror på vilken funktionalitet vi vill ha.
         saveThis();                         // Hur "känns det" när alla relationer uppdateras är väl det som är viktigast.
     }
@@ -46,6 +55,10 @@ public class Diagram implements IDiagram {
         relationGrid.remove(relation);
         relationGrid.refreshAllPaths();
         saveThis();
+    }
+
+    public List<Box> getAllBoxes() {
+        return boxGrid.getBoxes();
     }
 
     public List<Relation> getAllRelations() {

@@ -51,14 +51,14 @@ public class AStar {
     private void discover(PathNode previous, Direction direction) {
         // Get the position to discover
         ScaledPoint position = previous.position;
-        position.move(Scale.Backend, direction.getX(), direction.getY());
+        position = position.move(Scale.Backend, direction.getX(), direction.getY());
 
         if (visited.containsKey(position)) {
             return;
         }
 
-        if (!grid.isOccupied(position)) {
-            if (position.equals(destination)) {
+        if (grid.isOccupied(position)) {
+            if (!position.equals(destination)) {
                 return;
             }
         }
@@ -84,7 +84,13 @@ public class AStar {
     }
 
     private int getCostEstimate(PathNode node) {
-        return node.cost + manhattanDistance(node.position, destination);
+        return node.cost + manhattanDistance(node.position, destination) + minBends(node.position, destination);
+    }
+
+    private int minBends(ScaledPoint position, ScaledPoint destination) {
+        if (position.getX(Scale.Backend) != destination.getX(Scale.Backend)) return bendCost;
+        if (position.getY(Scale.Backend) != destination.getY(Scale.Backend)) return bendCost;
+        return 0;
     }
 
     private static int manhattanDistance(ScaledPoint from, ScaledPoint to) {
