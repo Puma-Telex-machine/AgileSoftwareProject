@@ -24,27 +24,22 @@ public class Arrow extends AnchorPane {
     private ArrowType type;
     private List<ScaledPoint> bends;
 
-    public Arrow(ScaledPoint start, ScaledPoint end, List<ScaledPoint> bends) {//),double offsetX,double offsetY){
+    public Arrow(ScaledPoint start, ScaledPoint end, List<ScaledPoint> bends) {
+        this(start,new Point(end.getX(Scale.Frontend),end.getY(Scale.Frontend)),bends);
+    }
+
+    public Arrow(ScaledPoint start, Point end, List<ScaledPoint> bends) {//),double offsetX,double offsetY){
 
         this.startX = start.getX(Scale.Frontend);
         this.startY = start.getY(Scale.Frontend);
-        this.endX = end.getX(Scale.Frontend);
-        this.endY = end.getY(Scale.Frontend);
+        this.endX = end.getX();
+        this.endY = end.getY();
         this.bends = bends;
         endline = new Line();
 
         if (bends.size() >= 1) {
-            //start line
-            Line l1 = new Line();
-            lines.add(l1);
-            l1.setStartX(startX);
-            l1.setStartY(startY);
-            l1.setEndX(bends.get(0).getX(Scale.Frontend));
-            l1.setEndY(bends.get(0).getY(Scale.Frontend));
-            l1.setStroke((new Color(0.72, 0.72, 0.72, 1)));
-
             //all bends
-            for (int i = 1; i < bends.size(); i++) {
+            for (int i = 1; i < bends.size()-1; i++) {
                 Line l = new Line();
                 lines.add(l);
                 l.setStartX(bends.get(i - 1).getX(Scale.Frontend));
@@ -55,10 +50,10 @@ public class Arrow extends AnchorPane {
             }
             //end line
             lines.add(endline);
-            endline.setStartX(bends.get(bends.size() - 1).getX(Scale.Frontend));
-            endline.setStartY(bends.get(bends.size() - 1).getY(Scale.Frontend));
-            endline.setEndX(endX);
-            endline.setEndY(endY);
+            endline.setStartX(bends.get(bends.size() - 2).getX(Scale.Frontend));
+            endline.setStartY(bends.get(bends.size() - 2).getY(Scale.Frontend));
+            endline.setEndX(bends.get(bends.size() - 1).getX(Scale.Frontend));
+            endline.setEndY(bends.get(bends.size() - 1).getY(Scale.Frontend));
             endline.setStroke((new Color(0.72, 0.72, 0.72, 1)));
         }
         else {
@@ -74,7 +69,7 @@ public class Arrow extends AnchorPane {
         this.getChildren().add(head);
 
         //if start=end glitches occur for head
-        if (!(start.getX(Scale.Frontend) == end.getX(Scale.Frontend) && start.getY(Scale.Frontend) == end.getY(Scale.Frontend))) {
+        if (!(start.getX(Scale.Frontend) == end.getX() && start.getY(Scale.Frontend) == end.getY())) {
             setType(ArrowType.ASSOCIATION);
         }
     }
