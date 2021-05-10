@@ -86,8 +86,9 @@ public class MethodEditorController extends AnchorPane {
         String[] argRet = new String[arguments.size()];
         for (int i = 0; i < argRet.length; i++)
         {
-            methodData.addArgument(arguments.get(i).argumentTypeField.getText());
+            argRet[i] = arguments.get(i).argumentTypeField.getText();
         }
+        methodData.setParameters(argRet);
 
         Visibility visibility = Visibility.valueOf(accessComboBox.getValue().toString());
         methodData.setVisibility(visibility);
@@ -133,7 +134,7 @@ public class MethodEditorController extends AnchorPane {
 
         argumentVBox.getChildren().clear();
 
-        String[] param = methodData.getArguments().toArray(new String[methodData.getArguments().size()]);
+        String[] param = methodData.getParameters();
         //Sets the arguments for this method
         for (int i = 0; i < param.length; i++)
         {

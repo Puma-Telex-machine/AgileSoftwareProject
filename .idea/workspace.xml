@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/boxes/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/BoxGrid2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/BoxGrid2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/Diagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/Diagram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/IDiagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/IDiagram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/MethodEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/MethodEditorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/VariableEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/VariableEditorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/facades/BoxFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/facades/BoxFacade.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,44 +38,25 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/view/Resources" />
     <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.15625" />
+    <property name="project.structure.proportion" value="0.15527344" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="model.facades" />
-      <recent name="model" />
-      <recent name="model.grid" />
-      <recent name="model.grid.astar" />
-      <recent name="model.teststuff" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/view/Resources" />
-      <recent name="$PROJECT_DIR$/src/view" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/frontend/view/css" />
+      <recent name="$PROJECT_DIR$/src/frontend/view" />
       <recent name="$PROJECT_DIR$/src/view/Resources" />
       <recent name="$PROJECT_DIR$/src/resources" />
       <recent name="$PROJECT_DIR$/src/view" />
-      <recent name="$PROJECT_DIR$/src/viewmodel" />
-    </key>
-    <key name="ExtractSuperBase.RECENT_KEYS">
-      <recent name="model.teststuff" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
-    <key name="MoveInnerDialog.RECENTS_KEY">
-      <recent name="model.grid" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="model.point" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/view/Resources" />
+      <recent name="$PROJECT_DIR$/src/view" />
     </key>
   </component>
   <component name="RunManager">
@@ -123,5 +102,16 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/frontend/CanvasController.java</url>
+          <line>219</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
