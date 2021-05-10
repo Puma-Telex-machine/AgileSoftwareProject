@@ -386,8 +386,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      */
     public void update()
     {
-        updatePositionTEST();
-        updateWidthAndHeightTEST();
 
         variables.getChildren().setAll(new ArrayList<AnchorPane>(0));
         methods.getChildren().setAll(new ArrayList<AnchorPane>(0));
