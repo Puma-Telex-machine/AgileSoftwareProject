@@ -6,7 +6,7 @@
 <!BOX>
 <BOX>
   name=Box
-  xposition=25
-  yposition=2
+  xposition=33
+  yposition=9
   visibility=PUBLIC
 <!BOX>

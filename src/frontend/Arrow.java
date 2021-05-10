@@ -26,13 +26,13 @@ public class Arrow extends AnchorPane{
     private List<ScaledPoint> bends;
 
     public Arrow(ScaledPoint start, ScaledPoint end, List<ScaledPoint> bends) {
-        this(start,new Point(end.getX(Scale.Frontend),end.getY(Scale.Frontend)),bends);
+        this(new Point(start.getX(Scale.Frontend),start.getY(Scale.Frontend)),new Point(end.getX(Scale.Frontend),end.getY(Scale.Frontend)),bends);
     }
 
-    public Arrow(ScaledPoint start, Point end, List<ScaledPoint> bends) {//),double offsetX,double offsetY){
+    public Arrow(Point start, Point end, List<ScaledPoint> bends) {//),double offsetX,double offsetY){
 
-        this.startX = start.getX(Scale.Frontend);
-        this.startY = start.getY(Scale.Frontend);
+        this.startX = start.getX();
+        this.startY = start.getY();
         this.endX = end.getX();
         this.endY = end.getY();
         this.bends = bends;
@@ -70,11 +70,12 @@ public class Arrow extends AnchorPane{
         this.getChildren().add(head);
 
         //if start=end glitches occur for head
-        if (!(start.getX(Scale.Frontend) == end.getX() && start.getY(Scale.Frontend) == end.getY())) {
+        if (!(start.getX() == end.getX() && start.getY() == end.getY())) {
             setType(ArrowType.ASSOCIATION);
 
         }
     }
+
 
     /**
      * get the points for the different type of arrowheads
