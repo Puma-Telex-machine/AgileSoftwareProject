@@ -2,11 +2,8 @@ package model;
 
 import model.boxes.Box;
 import model.boxes.BoxType;
-import model.facades.FileHandlerFacade;
-import model.facades.ModelFacade;
+import model.facades.*;
 
-import model.facades.BoxFacade;
-import model.facades.Observer;
 import model.grid.Diagram;
 import model.point.ScaledPoint;
 import model.relations.ArrowType;
@@ -45,6 +42,12 @@ public class Model implements ModelFacade, FileHandlerFacade {
 	public void addRelation(BoxFacade from, BoxFacade to, ArrowType arrowType) {
         Relation relation = new Relation(from, to, arrowType);
         diagram.update(relation);
+        observers.forEach(observer -> observer.addRelation(relation));
+    }
+
+    public void changeRelation(RelationFacade relation, ArrowType newType){
+        relation.changeRelation(newType);
+        diagram.update((Relation) relation);
         observers.forEach(observer -> observer.addRelation(relation));
     }
 

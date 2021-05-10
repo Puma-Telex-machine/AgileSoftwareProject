@@ -6,7 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.fxml.FXMLLoader;
-import model.facades.MethodData;
+import model.MethodData;
 import model.boxes.Visibility;
 import model.facades.BoxFacade;
 import model.facades.MethodFacade;
@@ -43,7 +43,7 @@ public class MethodEditorController extends AnchorPane {
 
     private BoxFacade box;
 
-    private MethodFacade method;
+    private MethodFacade methodData;
 
     private MethodArgumentEditorController currentEditArgument;
 
@@ -80,28 +80,28 @@ public class MethodEditorController extends AnchorPane {
     @FXML
     public void ConfirmMethod()
     {
-        method.setName(nameField.getText());
+        methodData.setName(nameField.getText());
 
-        method.removeAllArguments();
         //Gets the arguments for the method data
-        for (int i = 0; i < arguments.size(); i++)
+        String[] argRet = new String[arguments.size()];
+        for (int i = 0; i < argRet.length; i++)
         {
-            method.addArgument(arguments.get(i).argumentTypeField.getText());
+            methodData.addArgument(arguments.get(i).argumentTypeField.getText());
         }
 
-
         Visibility visibility = Visibility.valueOf(accessComboBox.getValue().toString());
-        method.setVisibility(visibility);
+        methodData.setVisibility(visibility);
 
-        method.setType(returnTypeField.getText());
-        argumentVBox.getChildren().setAll();
+        methodData.setType(returnTypeField.getText());
+
+        argumentVBox.getChildren().clear();
         this.setVisible(false);
     }
 
     @FXML
     public void DeleteMethod()
     {
-        box.deleteMethod(method);
+        box.deleteMethod(methodData);
         this.setVisible(false);
     }
 
@@ -110,10 +110,10 @@ public class MethodEditorController extends AnchorPane {
         EditMethod(box.addMethod(), box);
     }
 
-    public void EditMethod(MethodFacade methodData, BoxFacade box)
+    public void EditMethod(MethodFacade methodData,  BoxFacade box)
     {
         this.box = box;
-        method = methodData;
+        this.methodData = methodData;
 
         //Resets the arguments array
         arguments = new ArrayList<MethodArgumentEditorController>(0);
@@ -133,11 +133,12 @@ public class MethodEditorController extends AnchorPane {
 
         argumentVBox.getChildren().clear();
 
+        String[] param = methodData.getArguments().toArray(new String[methodData.getArguments().size()]);
         //Sets the arguments for this method
-        for (int i = 0; i < methodData.getArguments().size(); i++)
+        for (int i = 0; i < param.length; i++)
         {
             MethodArgumentEditorController argument = new MethodArgumentEditorController();
-            argument.argumentTypeField.setText(methodData.getArguments().get(i));
+            argument.argumentTypeField.setText(param[i]);
             argument.argumentTypeField.setOnAction((Action) -> ChangeArgument(argument));
             argumentVBox.getChildren().add(argument);
             argument.paramLable.setText("Param " + arguments.size());

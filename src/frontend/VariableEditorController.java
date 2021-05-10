@@ -5,13 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-//import model.facades.VariableData;
-import model.facades.AttributeFacade;
-import model.facades.VariableData;
+//import model.VariableData;
+import model.VariableData;
 import model.boxes.Visibility;
+import model.facades.AttributeFacade;
 import model.facades.BoxFacade;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class VariableEditorController extends AnchorPane {
 
@@ -44,7 +45,7 @@ public class VariableEditorController extends AnchorPane {
     @FXML
     private void deleteVariable() //This method is called when the player wants to delete the variable
     {
-        box.deleteAttribute(variable); //todo implement Attributefacade to fix
+        box.deleteAttribute(variable);
         this.setVisible(false);
     }
 
@@ -53,8 +54,7 @@ public class VariableEditorController extends AnchorPane {
     {
         variable.setName(nameField.getText());
 
-        // this used to be Visibility.valueof, but getValue returns a Visibility (cast to Object) right now
-        Visibility visibility = (Visibility) accessComboBox.getValue();
+        Visibility visibility = Visibility.valueOf((String)accessComboBox.getValue());
         variable.setVisibility(visibility);
 
         variable.setType(typeField.getText());
@@ -69,9 +69,8 @@ public class VariableEditorController extends AnchorPane {
 
     public void EditVariable(AttributeFacade variableData, BoxFacade box)
     {
-        variable = variableData;
         this.box = box;
-
+        variable = variableData;
         nameField.setText(variableData.getName());
         typeField.setText(variableData.getType());
 
@@ -79,8 +78,7 @@ public class VariableEditorController extends AnchorPane {
         accessComboBox.getItems().setAll(Visibility.values());
 
         //Sets the current visibility
-        accessComboBox.getSelectionModel().select(variableData.getVisibility());
-        //there used to be a .name() here, so the auto-select was a String but all other options were Visibility-objects
+        accessComboBox.getSelectionModel().select(variableData.getVisibility().name());
     }
 
 }

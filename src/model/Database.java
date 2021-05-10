@@ -250,7 +250,7 @@ public class Database {
         for(String param : method.getArguments()){
             writeLine(tab + "  <PARAMETER>", writer);
             Attribute newParam = new Attribute();
-            newParam.setName(param);
+            writeLine(tab + "  " + nameMatch + lineSplit + param, writer);
             saveAttribute(newParam, writer, tab + "  ");
             writeLine(tab + "  <!PARAMETER>", writer);
         }
