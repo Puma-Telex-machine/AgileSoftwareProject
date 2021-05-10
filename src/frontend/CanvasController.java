@@ -31,13 +31,14 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     MethodEditorController methodEditor;
 
     @FXML
-    private AnchorPane arrowMenu,menuPane,contextMenu;
+    private AnchorPane arrowMenu, menuPane, contextMenu;
     @FXML
     private ComboBox<ArrowType> arrowTypeComboBox;
 
     Model model = Model.getModel();
 
     List<BoxController> boxes = new ArrayList<>();
+
     public CanvasController() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Canvas.fxml")));
 
@@ -50,7 +51,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
             throw new RuntimeException(exception);
         }
 
-        arrowTypeComboBox.getItems().addAll(ArrowType.IMPLEMENTATION,ArrowType.INHERITANCE,ArrowType.ASSOCIATION,ArrowType.AGGREGATION,ArrowType.COMPOSITION,ArrowType.DEPENDANCY);
+        arrowTypeComboBox.getItems().addAll(ArrowType.IMPLEMENTATION, ArrowType.INHERITANCE, ArrowType.ASSOCIATION, ArrowType.AGGREGATION, ArrowType.COMPOSITION, ArrowType.DEPENDANCY);
         arrowMenu.setVisible(false);
 
         variableEditor = new VariableEditorController();
@@ -68,15 +69,15 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     }
 
     @Override
-    public void addBox(BoxFacade b){
-        BoxController box = new BoxController(b,variableEditor,methodEditor,this);
+    public void addBox(BoxFacade b) {
+        BoxController box = new BoxController(b, variableEditor, methodEditor, this);
         this.getChildren().add(box);
         boxes.add(box);
         box.toggleCircleVisibility(!toggleOn);
     }
 
-    public Point getMiddle(){
-        return new Point(500,400);
+    public Point getMiddle() {
+        return new Point(500, 400);
     }
 
     //region arrowmaking
@@ -93,59 +94,60 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     @Override
     public void arrowEvent(Point p, BoxController box) {
         //attach arrow
-        if(makingArrow) {
+        if (makingArrow) {
             this.getChildren().removeAll(dragArrow);
             //box == arrowBox => aborting arrowcreation
             if (box != arrowBox) {
-                model.addRelation(arrowBox.getBox(),box.getBox(), ArrowType.ASSOCIATION);
+
+                ScaledPoint offsetFrom = new ScaledPoint(Scale.Frontend, (int) (p.x - box.getLayoutX()), (int) (p.y - box.getLayoutY()));
+                ScaledPoint offsetTo = new ScaledPoint(Scale.Frontend, (int) (arrowStart.x - arrowBox.getLayoutX()), (arrowStart.y - arrowBox.getLayoutY()));
+
+                model.addRelation(arrowBox.getBox(), offsetFrom, box.getBox(), offsetTo, ArrowType.ASSOCIATION);
             }
         }
         //start making arrow
-        else{
-            arrowBox=box;
-            arrowStart= new Point(p.x, p.y);
-            dragArrow = new Arrow(arrowStart,new Point(p.x, p.y),new ArrayList<ScaledPoint>());
+        else {
+            arrowBox = box;
+            arrowStart = new Point(p.x, p.y);
+            dragArrow = new Arrow(arrowStart, new Point(p.x, p.y), new ArrayList<>());
             this.getChildren().add(dragArrow);
         }
         toggleAnchorPoints();
-        makingArrow=!makingArrow;
+        makingArrow = !makingArrow;
     }
 
     @Override
     public void addRelation(RelationFacade relation) {
         List<ScaledPoint> bends = relation.getPath();
-        ScaledPoint last = bends.get(bends.size()-1);
-        //temporary
-        //bends.add(new Point(p.x-50,arrowStart.y));
-        //bends.add(new Point(p.x-50,p.y));
+        ScaledPoint last = bends.get(bends.size() - 1);
 
-        Arrow newArrow = new Arrow(arrowStart,new Point(last.getX(Scale.Frontend), last.getY(Scale.Frontend)),bends);
+        Arrow newArrow = new Arrow(arrowStart, new Point(last.getX(Scale.Frontend), last.getY(Scale.Frontend)), bends);
         newArrow.setType(relation.getArrowType());
 
         this.getChildren().addAll(newArrow);
         newArrow.toBack();
-        arrowMap.put(newArrow,relation);
+        arrowMap.put(newArrow, relation);
         arrows.add(newArrow);
     }
 
     /**
      * toggles all anchorpoints on all classes
      */
-    private void toggleAnchorPoints(){
-        for(BoxController box:boxes){
+    private void toggleAnchorPoints() {
+        for (BoxController box : boxes) {
             box.toggleCircleVisibility(toggleOn);
         }
-        toggleOn=!toggleOn;
+        toggleOn = !toggleOn;
     }
 
     /**
      * updates the arrow when creating a arrow
      */
     @FXML
-    private void dragArrow(MouseEvent e){
-        if(makingArrow){
+    private void dragArrow(MouseEvent e) {
+        if (makingArrow) {
             this.getChildren().remove(dragArrow);
-            dragArrow=new Arrow(arrowStart, new Point((int) e.getX(),(int) e.getY()),new ArrayList<>());
+            dragArrow = new Arrow(arrowStart, new Point((int) e.getX(), (int) e.getY()), new ArrayList<>());
             this.getChildren().add(dragArrow);
             dragArrow.toBack();
         }
@@ -156,27 +158,28 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
 
     //region Menus
     private Arrow clickedArrow = null;
+
     @FXML
-    private void handleArrowMenu(MouseEvent e){
-        if(makingArrow){
-            makingArrow=false;
+    private void handleArrowMenu(MouseEvent e) {
+        if (makingArrow) {
+            makingArrow = false;
             this.getChildren().remove(dragArrow);
             e.consume();
             return;
         }
         Arrow closest = null;
         double min = 10000;
-        for (Arrow a:arrows){
+        for (Arrow a : arrows) {
             double distance = a.getDistaceFromClick(e);
-            if(distance<min){
+            if (distance < min) {
                 min = distance;
                 closest = a;
             }
         }
-        if(min<=15){
+        if (min <= 15) {
             clickedArrow = closest;
             arrowTypeComboBox.getSelectionModel().select(closest.getType());
-            openArrowMenu(e.getX(),e.getY());
+            openArrowMenu(e.getX(), e.getY());
         }
         e.consume();
     }
@@ -191,9 +194,9 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     }
 
     @FXML
-    private void handleContextMenu(ContextMenuEvent e){
-        if(makingArrow){
-            makingArrow=false;
+    private void handleContextMenu(ContextMenuEvent e) {
+        if (makingArrow) {
+            makingArrow = false;
             this.getChildren().remove(dragArrow);
             e.consume();
             return;
@@ -205,48 +208,51 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         menuPane.toFront();
         e.consume();
     }
+
     @FXML
-    private void closeMenu(Event e){
+    private void handleContextAddBox(MouseEvent e) {
+        model.addBox(new ScaledPoint(Scale.Frontend, (int) contextMenu.getLayoutX() - 80, (int) contextMenu.getLayoutY() - 35), BoxType.BOX);
+        closeMenu(e);
+        e.consume();
+    }
+
+    @FXML
+    private void deleteArrow(Event e) {
+        this.getChildren().remove(clickedArrow);
+        arrows.remove(clickedArrow);
+        closeMenu(e);
+        e.consume();
+    }
+
+    @FXML
+    private void changeArrow(Event e) {
+        ArrowType type = arrowTypeComboBox.getValue();
+        clickedArrow.setType(type);
+        arrowMap.get(clickedArrow).changeRelation(type);
+        closeMenu(e);
+        e.consume();
+
+    }
+
+    @FXML
+    private void closeMenu(Event e) {
         menuPane.setVisible(false);
         arrowMenu.setVisible(false);
         contextMenu.setVisible(false);
         menuPane.toBack();
         e.consume();
     }
-    @FXML
-    private void handleContextAddBox(MouseEvent e) {
-        model.addBox(new ScaledPoint(Scale.Frontend, (int) contextMenu.getLayoutX()-80,(int) contextMenu.getLayoutY()-35), BoxType.BOX);
-        closeMenu(e);
-        e.consume();
-    }
 
     @FXML
-    private void deleteArrow(Event e){
-        this.getChildren().remove(clickedArrow);
-        arrows.remove(clickedArrow);
-        closeMenu(e);
-        e.consume();
-    }
-    @FXML
-    private void changeArrow(Event e){
-        ArrowType type = arrowTypeComboBox.getValue();
-        clickedArrow.setType(type);
-        model.changeRelation(arrowMap.get(clickedArrow),type);
-        closeMenu(e);
-        e.consume();
-    }
-    @FXML
-    private void eventTrap(Event e){
+    private void eventTrap(Event e) {
         e.consume();
     }
 
     //endregion
 
-    public  void clearBoxes()
-    {
+    public void clearBoxes() {
         this.getChildren().removeAll();
-        for (int i = 0; i < boxes.size(); i++)
-        {
+        for (int i = 0; i < boxes.size(); i++) {
             boxes.get(i).setVisible(false); //todo: Properly remove items here
         }
         boxes = new ArrayList<>();

@@ -39,15 +39,9 @@ public class Model implements ModelFacade, FileHandlerFacade {
         observers.forEach(observer -> observer.addBox(new Box(diagram, position, boxType)));
     }
 	
-	public void addRelation(BoxFacade from, BoxFacade to, ArrowType arrowType) {
+	public void addRelation(BoxFacade from,ScaledPoint offsetFrom, BoxFacade to,ScaledPoint offsetTo, ArrowType arrowType) {
         Relation relation = new Relation(from, to, arrowType);
         diagram.add(relation);
-        observers.forEach(observer -> observer.addRelation(relation));
-    }
-
-    public void changeRelation(RelationFacade relation, ArrowType newType){
-        relation.changeRelation(newType);
-        diagram.update((Relation) relation);
         observers.forEach(observer -> observer.addRelation(relation));
     }
 
