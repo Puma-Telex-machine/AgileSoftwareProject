@@ -6,6 +6,7 @@
 <!BOX>
 <BOX>
   name=Box
+<<<<<<< Updated upstream
   xposition=30
   yposition=15
   visibility=PUBLIC
@@ -20,5 +21,9 @@
   name=Box
   xposition=15
   yposition=15
+=======
+  xposition=19
+  yposition=9
+>>>>>>> Stashed changes
   visibility=PUBLIC
 <!BOX>
