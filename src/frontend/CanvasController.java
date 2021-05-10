@@ -145,7 +145,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     private void dragArrow(MouseEvent e){
         if(makingArrow){
             this.getChildren().remove(dragArrow);
-            dragArrow=new Arrow(arrowStart, new Point((int)e.getX(),(int)e.getY()),new ArrayList<>());
+            dragArrow=new Arrow(arrowStart, new Point((int) e.getX(),(int) e.getY()),new ArrayList<>());
             this.getChildren().add(dragArrow);
             dragArrow.toBack();
         }
