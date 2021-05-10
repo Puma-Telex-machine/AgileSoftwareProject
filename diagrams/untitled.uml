@@ -1,24 +1,12 @@
 <BOX>
-  name=Classasd
-  xposition=18
-  yposition=8
-  visibility=PUBLIC
-<!BOX>
-<BOX>
   name=Box
-  xposition=30
+  xposition=14
   yposition=15
   visibility=PUBLIC
 <!BOX>
 <BOX>
   name=Box
-  xposition=21
-  yposition=4
-  visibility=PUBLIC
-<!BOX>
-<BOX>
-  name=Box
-  xposition=15
+  xposition=28
   yposition=15
   visibility=PUBLIC
 <!BOX>

@@ -13,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.shape.Box;
 import javafx.scene.shape.Ellipse;
 import model.MethodData;
-//import model.VariableData;
 import model.VariableData;
 import model.boxes.BoxType;
 import model.boxes.Method;
@@ -161,11 +160,13 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         if (this.getLayoutX() + event.getX() - offsetX > 0) {
             posX=this.getLayoutX()+ event.getX() - offsetX;
         }
-
         //move Y
         if (this.getLayoutY() + event.getY() - offsetY > 0) {
             posY = this.getLayoutY()+ event.getY() - offsetY;
         }
+        this.setLayoutX(posX);
+        this.setLayoutY(posY);
+        box.setPosition(new ScaledPoint(Scale.Frontend,posX,posY));
 
         //todo this needs testing and refining
         this.setLayoutX(posX);
@@ -335,8 +336,8 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
     }
 
     @Override
-    public void notifyBoxDrag(Point offset) {
-        arrowObserver.boxDrag(box,offset);
+    public void notifyBoxDrag() {
+        arrowObserver.boxDrag(box);
     }
     //endregion
     //region name
