@@ -47,7 +47,7 @@
                   </HBox>
                   <HBox minHeight="30.0" prefHeight="30.0" prefWidth="200.0">
                      <children>
-                        <AnchorPane minWidth="-Infinity" prefHeight="0.0" prefWidth="108.0" styleClass="highlight-red">
+                        <AnchorPane minWidth="-Infinity" onMouseClicked="#deleteVariable" prefHeight="0.0" prefWidth="108.0" styleClass="highlight-red">
                            <children>
                               <Label maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="182.0" styleClass="text-Large" text="Delete" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
@@ -55,7 +55,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </AnchorPane>
-                        <AnchorPane prefHeight="0.0" prefWidth="163.0" styleClass="highlight-green">
+                        <AnchorPane onMouseClicked="#confirmVariable" prefHeight="0.0" prefWidth="163.0" styleClass="highlight-green">
                            <children>
                               <Label alignment="CENTER" prefHeight="30.0" prefWidth="163.0" style="-fx-text-fill: #000000;" text="Confirm" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>

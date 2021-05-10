@@ -6,6 +6,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
+import model.point.Scale;
+import model.point.ScaledPoint;
 import model.relations.ArrowType;
 
 import java.awt.*;
@@ -21,44 +23,39 @@ public class Arrow extends AnchorPane{
     private double startX,startY,endX,endY;
     private Line endline;
     private ArrowType type;
-    private List<Point> bends;
+    private List<ScaledPoint> bends;
 
-    public Arrow(Point start,Point end,List<Point> bends){//),double offsetX,double offsetY){
+    public Arrow(ScaledPoint start, ScaledPoint end, List<ScaledPoint> bends) {
+        this(new Point(start.getX(Scale.Frontend),start.getY(Scale.Frontend)),new Point(end.getX(Scale.Frontend),end.getY(Scale.Frontend)),bends);
+    }
 
-        this.startX=start.getX();
-        this.startY=start.getY();
-        this.endX=end.getX();
-        this.endY=end.getY();
-        this.bends=bends;
+    public Arrow(Point start, Point end, List<ScaledPoint> bends) {//),double offsetX,double offsetY){
+
+        this.startX = start.getX();
+        this.startY = start.getY();
+        this.endX = end.getX();
+        this.endY = end.getY();
+        this.bends = bends;
         endline = new Line();
 
-        if(bends.size()>=1){
-            //start line
-            Line l1 = new Line();
-            lines.add(l1);
-            l1.setStartX(startX);
-            l1.setStartY(startY);
-            l1.setEndX(bends.get(0).getX());
-            l1.setEndY(bends.get(0).getY());
-            l1.setStroke(( new Color(0.72,0.72,0.72,1)));
-
+        if (bends.size() >= 1) {
             //all bends
-            for(int i=1;i<bends.size();i++){
+            for (int i = 1; i < bends.size()-1; i++) {
                 Line l = new Line();
                 lines.add(l);
-                l.setStartX(bends.get(i-1).getX());
-                l.setStartY(bends.get(i-1).getY());
-                l.setEndX(bends.get(i).getX());
-                l.setEndY(bends.get(i).getY());
+                l.setStartX(bends.get(i-1).getX(Scale.Frontend));
+                l.setStartY(bends.get(i-1).getY(Scale.Frontend));
+                l.setEndX(bends.get(i).getX(Scale.Frontend));
+                l.setEndY(bends.get(i).getY(Scale.Frontend));
                 l.setStroke(( new Color(0.72,0.72,0.72,1)));
             }
             //end line
             lines.add(endline);
-            endline.setStartX(bends.get(bends.size()-1).getX());
-            endline.setStartY(bends.get(bends.size()-1).getY());
-            endline.setEndX(endX);
-            endline.setEndY(endY);
-            endline.setStroke(( new Color(0.72,0.72,0.72,1)));
+            endline.setStartX(bends.get(bends.size() - 2).getX(Scale.Frontend));
+            endline.setStartY(bends.get(bends.size() - 2).getY(Scale.Frontend));
+            endline.setEndX(bends.get(bends.size() - 1).getX(Scale.Frontend));
+            endline.setEndY(bends.get(bends.size() - 1).getY(Scale.Frontend));
+            endline.setStroke((new Color(0.72, 0.72, 0.72, 1)));
         }
         else {
             lines.add(endline);
@@ -73,11 +70,12 @@ public class Arrow extends AnchorPane{
         this.getChildren().add(head);
 
         //if start=end glitches occur for head
-        if(!(start.x==end.x&&start.y==end.y)) {
+        if (!(start.getX() == end.getX() && start.getY() == end.getY())) {
             setType(ArrowType.ASSOCIATION);
 
         }
     }
+
 
     /**
      * get the points for the different type of arrowheads
@@ -221,7 +219,7 @@ public class Arrow extends AnchorPane{
         endline.setEndY(endY);
     }
 
-    public List<Point> getBends(){
+    public List<ScaledPoint> getBends(){
         return bends;
     }
 

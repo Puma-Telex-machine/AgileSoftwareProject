@@ -9,13 +9,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<<<<<<< HEAD
 <fx:root fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+=======
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@css/DarkMode.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.BaseController">
+>>>>>>> Production
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane minHeight="50.0" prefHeight="50.0" style="-fx-background-color: #2A314A;" styleClass="text-Large">
                <children>
-                  <Text fill="#b8b8b8" strokeType="OUTSIDE" strokeWidth="0.0" text="UML 2000" wrappingWidth="150.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                  <Text fill="#b8b8b8" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-Huge" text="UML 2000" wrappingWidth="150.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>

@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
+import model.boxes.BoxType;
+import model.point.Scale;
+import model.point.ScaledPoint;
 
 import java.io.IOException;
 
@@ -30,7 +33,7 @@ public class ShapeController extends AnchorPane {
 
     @FXML
     private void addBox(){
-        model.addBox(canvas.getMiddle());
+        model.addBox(new ScaledPoint(Scale.Frontend, canvas.getMiddle().x, canvas.getMiddle().y), BoxType.BOX);
     }
 
     @FXML

@@ -1,65 +1,100 @@
 package model.facades;
 
-import frontend.Observers.UiObservable;
+import frontend.BoxController;
 import frontend.Observers.UiObserver;
-import model.MethodData;
-import model.VariableData;
-import model.boxes.BoxType;
-//import model.VariableData;
+import model.boxes.*;
+import model.point.ScaledPoint;
+import model.facades.VariableData;
+import model.facades.MethodData;
 
-import java.awt.*;
+import java.util.List;
+import java.util.Set;
 
-public interface BoxFacade extends UiObservable {
+public interface BoxFacade {
 
+    /**
+     * Set the name of the box.
+     * @param name the name of the box.
+     */
+    void setName(String name);
+
+    /**
+     * Get the name of the box.
+     * @return the name of the box.
+     */
+    String getName();
+
+
+    /**
+     * Get the box type (Class, Interface, Enum).
+     * @return the name of the box.
+     */
+    BoxType getType();
+
+
+    /**
+     * Delete this box from the diagram.
+     */
     void deleteBox();
 
-    /**
-     * Should edit the method if the method already exists.
-     * If the method doesn't exist the method should be added instead.
-     * @param methodData The data for the new method. Should replace the old data.
-     */
-    void editMethod(MethodData methodData);
 
-    /**
-     * Should edit the variable if the variable exists.
-     * If the variable doesn't exist the variable should be added instead.
-     * @param variableData The data for the new variable. Should replace the old data.
-     */
-    void editVariable(VariableData variableData);
-
+    MethodFacade addMethod();
     /**
      * If a method with this name exists then delete the method.
      * If the method doesn't exist then do nothing.
-     * @param methodName The name of the method that should be deleted
-     * @return
+     * @param method The method that should be deleted
      */
-    void deleteMethod(String methodName);
+    void deleteMethod(MethodFacade method);
 
     /**
-     * If a variable with this name exists then delete that variable.
+     * Returns all methods of this class.
+     */
+    List<MethodFacade> getMethods();
+
+
+    /**
+     * Creates and returns a new attribute.
+     */
+    AttributeFacade addAttribute();
+
+    /**
+     * If this attribute exists then delete it.
      * If the variable doesn't exist then do nothing.
-     * @param variableName The name of the variable that should be deleted.
-     * @return
+     * @param attribute The attribute that should be deleted.
      */
-    void deleteVariable(String variableName);
-
-    Point getPosition();
-
-    void setPosition(Point point);
-
-    void setName(String name);
-
-    BoxType getType();
+    void deleteAttribute(AttributeFacade attribute);
 
     /**
-     * Returns the data for all of the methods of this class
-     * @return
+     * Returns the all attributes of this class
      */
-    VariableData[] getVariables();
+    List<AttributeFacade> getAttributes();
+
+
+    void setVisibility(Visibility visibility);
+
+    Visibility getVisibility();
+
+
+    void addModifier(Modifier modifier);
+
+    void removeModifier(Modifier modifier);
+
+    Set<Modifier> getModifiers();
+
 
     /**
-     * Returns the data for all of the variables of this class
-      * @return
+     * Set the position of the box.
+     * @param point the position to move the box to.
      */
-    MethodData[] getMethods();
+    void setPosition(ScaledPoint point);
+
+    /**
+     * Get the position of the box.
+     * @return the position as a ScaledPoint
+     */
+    ScaledPoint getPosition();
+
+    ScaledPoint getWidthAndHeight();
+
+    void subscribe(UiObserver observer);
 }

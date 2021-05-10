@@ -10,14 +10,21 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.Box;
 import javafx.scene.shape.Ellipse;
 import model.MethodData;
 //import model.VariableData;
 import model.VariableData;
 import model.boxes.BoxType;
+import model.boxes.Method;
 import model.boxes.Visibility;
+import model.facades.AttributeFacade;
 import model.facades.BoxFacade;
+import model.facades.MethodFacade;
+import model.point.Scale;
+import model.point.ScaledPoint;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLOutput;
@@ -31,19 +38,19 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
     @FXML
     private TextField nameField;
     @FXML
-    private Label name,identifier;
+    private Label name, identifier;
     @FXML
-    private VBox methods, variables,vBox;
+    private VBox methods, variables, vBox;
 
     //for dragging box when editing name
     @FXML
-    AnchorPane blockpane1,blockpane2;
+    AnchorPane blockpane1, blockpane2;
 
     VariableEditorController variableEditor;
     MethodEditorController methodEditor;
 
-    private Map<Label,String> methodMap = new HashMap<Label,String>();
-    private Map<Label,String> variableMap = new HashMap<Label,String>();
+    private Map<Label, String> methodMap = new HashMap<Label, String>();
+    private Map<Label, String> variableMap = new HashMap<Label, String>();
 
     private BoxFacade box;
 
@@ -51,7 +58,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
 
     List<AnchorPointController> anchorPoints = new ArrayList<>();
 
-    public BoxController(BoxFacade box,VariableEditorController VEC,MethodEditorController MEC,ArrowObserver arrowObserver){
+    public BoxController(BoxFacade box, VariableEditorController VEC, MethodEditorController MEC, ArrowObserver arrowObserver) {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Box.fxml")));
 
@@ -66,7 +73,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         }
 
         //set boxType
-        switch(box.getType()){
+        switch (box.getType()) {
             case CLASS:
                 //remove typeidentifier and move components to work accordingly
                 blockpane1.setLayoutY(0);
@@ -77,7 +84,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
             case INTERFACE:
                 identifier.setText("<<Interface>>");
                 break;
-            case ABSTRACTCLASS:
+            case ABSTRACT_CLASS:
                 identifier.setText("<Abstract>");
                 break;
             case ENUM:
@@ -85,18 +92,18 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
                 break;
         }
 
-        this.arrowObserver=arrowObserver;
+        this.arrowObserver = arrowObserver;
         this.box = box;
         hideCircles();
 
-        this.setLayoutX(box.getPosition().x);
-        this.setLayoutY(box.getPosition().y);
+        this.setLayoutX(box.getPosition().getX(Scale.Frontend));
+        this.setLayoutY(box.getPosition().getY(Scale.Frontend));
 
         initAnchors();
         box.subscribe(this);
     }
 
-    private void initAnchors(){
+    private void initAnchors() {
         //todo add dynamicly
         AnchorPointController p1 = new AnchorPointController();
         AnchorPointController p2 = new AnchorPointController();
@@ -134,23 +141,24 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
 
     /**
      * method for moving a box through dragging
+     *
      * @param event event of the mouseDrag
      */
     @FXML
-    private void handleDrag(MouseEvent event){
+    private void handleDrag(MouseEvent event) {
         variableEditor.setVisible(false);
         methodEditor.setVisible(false);
-        if(!moving){
+        if (!moving) {
             offsetX = event.getX();
             offsetY = event.getY();
-            moving=true;
+            moving = true;
         }
         //todo fix max borders
 
         double moveX=0;
         double moveY=0;
         //move X
-        if(this.getLayoutX()+ event.getX() - offsetX<0){
+        if (this.getLayoutX() + event.getX() - offsetX < 0) {
             this.setLayoutX(0);
             moveX=-1;
         }
@@ -160,7 +168,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         }
 
         //move Y
-        if(this.getLayoutY()+ event.getY() - offsetY<0){
+        if (this.getLayoutY() + event.getY() - offsetY < 0) {
             this.setLayoutY(0);
             moveY=-1;
         }
@@ -176,15 +184,16 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
 
     /**
      * method for letting go of box, updates backend
+     *
      * @param event mouseRelease
      */
     @FXML
-    private void handleLetGo(MouseEvent event){
-        moving=false;
-        box.setPosition(new Point((int)this.getLayoutX(),(int)this.getLayoutY()));
+    private void handleLetGo(MouseEvent event) {
+        moving = false;
+        box.setPosition(new ScaledPoint(Scale.Frontend, (int) this.getLayoutX(), (int) this.getLayoutY()));
         //for snap to grid
-        this.setLayoutX(box.getPosition().x);
-        this.setLayoutY(box.getPosition().y);
+        this.setLayoutX(box.getPosition().getX(Scale.Frontend));
+        this.setLayoutY(box.getPosition().getY(Scale.Frontend));
         event.consume();
     }
     //endregion
@@ -194,13 +203,14 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      * Adding a new method onto box
      */
     @FXML
-    private void addMethod(MouseEvent e){
+    private void addMethod(MouseEvent e) {
         variableEditor.setVisible(false);
         methodEditor.setVisible(true);
         methodEditor.toFront();
-        methodEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
-        methodEditor.setLayoutY(this.getLayoutY()+this.getHeight()/2-methodEditor.getHeight()/2);
+        methodEditor.setLayoutX(this.getLayoutX() - variableEditor.getWidth());
+        methodEditor.setLayoutY(this.getLayoutY() + this.getHeight() / 2 - methodEditor.getHeight() / 2);
         methodEditor.EditMethod(box);
+
 
         /*
         String method = "+ getNumber() : int";
@@ -212,16 +222,17 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         methods.getChildren().add(tmp);*/
         e.consume();
     }
+
     /**
      * Adding a new variable onto box
      */
     @FXML
-    private void addVariable(MouseEvent e){
+    private void addVariable(MouseEvent e) {
         methodEditor.setVisible(false);
         variableEditor.setVisible(true);
         variableEditor.toFront();
-        variableEditor.setLayoutX(this.getLayoutX()-variableEditor.getWidth());
-        variableEditor.setLayoutY(this.getLayoutY()+this.getHeight()/2-variableEditor.getHeight()/2);
+        variableEditor.setLayoutX(this.getLayoutX() - variableEditor.getWidth());
+        variableEditor.setLayoutY(this.getLayoutY() + this.getHeight() / 2 - variableEditor.getHeight() / 2);
         variableEditor.EditVariable(box);
         //variableEditor.EditVariable(box);
 
@@ -236,30 +247,39 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         variables.getChildren().add(tmp);*/
         e.consume();
     }
+
     /**
      * Editing a variable on box
      */
     @FXML
-    private void editVariable(){
-        //todo
-        //box.getVariableData()
+    private void editVariable(AttributeFacade variable, AnchorPane pos) {
+        methodEditor.setVisible(false);
+        variableEditor.setVisible(true);
+        variableEditor.toFront();
+        variableEditor.setLayoutX(this.getLayoutX() - variableEditor.getWidth());
+        variableEditor.setLayoutY(this.getLayoutY() + variables.getLayoutY() + 25 + pos.getLayoutY() - variableEditor.getHeight() / 2);
+        variableEditor.EditVariable(variable, box);
     }
 
     /**
      * Editing a method on box
      */
     @FXML
-    private void editMethod(){
-        //todo
-        //box.getVariableData()
+    private void editMethod(MethodFacade method, AnchorPane pos) {
+        variableEditor.setVisible(false);
+        methodEditor.setVisible(true);
+        methodEditor.toFront();
+        methodEditor.EditMethod(method, box);
+        methodEditor.setLayoutX(this.getLayoutX() - variableEditor.getWidth());
+        methodEditor.setLayoutY(this.getLayoutY() + methods.getLayoutY() + 25 + pos.getLayoutY() - methodEditor.getHeight() / 2);
     }
 
-    private void updateMethods(List<MethodData> methods){
+    private void updateMethods(List<MethodData> methods) {
         //todo
         //add lamda function  ish currentEditArgument.argumentTypeField.setOnAction((Action) -> editVariable(variableData)
     }
 
-    private void updateVariables(List<VariableData> varibles){
+    private void updateVariables(List<VariableData> varibles) {
         //todo
         //add lamda function  ish currentEditArgument.argumentTypeField.setOnAction((Action) -> editVariable(variableData)
     }
@@ -267,47 +287,51 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
     //endregion
     //region arrows
     @FXML
-    private void hideCircles(){
-        if(circleToggle) return;
-        for (AnchorPointController e:anchorPoints) {
+    private void hideCircles() {
+        if (circleToggle) return;
+        for (AnchorPointController e : anchorPoints) {
             e.setVisible(false);
         }
     }
+
     @FXML
-    private void showCircles(){
-        if(circleToggle) return;
-        for (AnchorPointController e:anchorPoints) {
+    private void showCircles() {
+        this.toFront();
+        if (circleToggle) return;
+        for (AnchorPointController e : anchorPoints) {
             e.setVisible(true);
             e.toFront();
         }
     }
+
     private boolean circleToggle = false;
 
     /**
      * for toggeling circles when adding arrows
+     *
      * @param toggle toggle to set
      */
-    public void toggleCircleVisibility(boolean toggle){
-        if(toggle){
-            circleToggle=false;
+    public void toggleCircleVisibility(boolean toggle) {
+        if (toggle) {
+            circleToggle = false;
             hideCircles();
-        }
-        else{
+        } else {
             showCircles();
-            circleToggle=true;
+            circleToggle = true;
         }
     }
 
     /**
      * notifies the arrowObserver when anchorpoints pressed
+     *
      * @param e onCLick
      */
     @Override
     public void notifyArrowEvent(MouseEvent e) {
-        for (AnchorPointController a:anchorPoints) {
-            if(a.getPressed()){
+        for (AnchorPointController a : anchorPoints) {
+            if (a.getPressed()) {
                 a.setNotPressed();
-                arrowObserver.arrowEvent(new Point ((int)(a.getMid().x+this.getLayoutX()),(int)(a.getMid().y+this.getLayoutY())),this);
+                arrowObserver.arrowEvent(new Point((int) (a.getMid().x + this.getLayoutX()), (int) (a.getMid().y + this.getLayoutY())), this);
             }
         }
         showCircles();
@@ -321,12 +345,13 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
     //endregion
     //region name
 
-    private boolean changeable=true;
+    private boolean changeable = true;
+
     /**
      * updates the name and moves the editField to back
      */
     @FXML
-    private void updateName(){
+    private void updateName() {
         box.setName(nameField.getText());
         nameField.toBack();
         blockpane1.toBack();
@@ -339,9 +364,9 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      * name pressed, bring editField to front
      */
     @FXML
-    private void changeName(){
-        if(!changeable){
-            changeable=true;
+    private void changeName() {
+        if (!changeable) {
+            changeable = true;
             return;
         }
         nameField.setText(name.getText());
@@ -357,15 +382,17 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      * locks namechange when dragging on name
      */
     @FXML
-    private void unableToChangeName(){
-        changeable=false;
+    private void unableToChangeName() {
+        changeable = false;
     }
+
     //endregion
     //region get/setters
-    public String getName(){
+    public String getName() {
         return name.getText();
     }
-    public BoxFacade getBox(){
+
+    public BoxFacade getBox() {
         return box;
     }
     //endregion
@@ -373,61 +400,73 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
     /**
      * Updates all of the graphics of this box
      */
-    public void update()
-    {
+    public void update() {
+
         variables.getChildren().setAll(new ArrayList<AnchorPane>(0));
         methods.getChildren().setAll(new ArrayList<AnchorPane>(0));
 
-        VariableData[] variableData = box.getVariables();
-        MethodData[] methodData = box.getMethods();
+        List<AttributeFacade> variableData = box.getAttributes();
+        List<MethodFacade> methodData = box.getMethods();
 
-        for (int i = 0; i < variableData.length; i++)
-        {
+        for (int i = 0; i < variableData.size(); i++) {
             String variable = "";
-            variable += attributeVisString(variableData[i].visibility);
+            variable += attributeVisString(variableData.get(i).getVisibility());
             variable += " ";
-            variable += variableData[i].name;
+            variable += variableData.get(i).getName();
             variable += ": ";
-            variable += variableData[i].variableType;
+            variable += variableData.get(i).getType();
 
-            variables.getChildren().add(new BoxAttributeTextController(variable));
+            BoxAttributeTextController attribute = new BoxAttributeTextController(variable);
+            variables.getChildren().add(attribute);
+            AttributeFacade var = variableData.get(i);
+            attribute.setOnMousePressed((Action) -> editVariable(var, attribute));
+
         }
 
-        for(int i = 0; i < methodData.length; i++)
-        {
+        for (int i = 0; i < methodData.size(); i++) {
             String method = "";
-            method += attributeVisString(methodData[i].visibility);
+            method += attributeVisString(methodData.get(i).getVisibility());
             method += " ";
-            method += methodData[i].methodName;
+            method += methodData.get(i).getName();
             method += " (";
-            for (int j = 0; j < methodData[i].arguments.length; j++)
-            {
-                method += methodData[i].arguments[j];
+            List<String> param = methodData.get(i).getArguments();
+            for (int j = 0; j < param.size(); j++) {
+                method += param.get(j);
 
-                if(j+1 != methodData[i].arguments.length)
+                if (j + 1 != param.size())
                     method += ", ";
             }
             method += ") : ";
-            method += methodData[i].methodReturnType;
+            method += methodData.get(i).getType();
 
-            methods.getChildren().add(new BoxAttributeTextController(method));
+            BoxAttributeTextController attribute = new BoxAttributeTextController(method);
+            methods.getChildren().add(attribute);
+            MethodFacade met = methodData.get(i);
+            attribute.setOnMousePressed((Action) -> editMethod(met, attribute));
         }
     }
 
     /**
      * Returns the right sign for the visibility
+     *
      * @param visibility
      * @return
      */
-    private String attributeVisString (Visibility visibility)
-    {
+    private String attributeVisString(Visibility visibility) {
         String ret = "";
-        switch (visibility)
-        {
-            case PUBLIC: ret = "+"; break;
-            case PRIVATE: ret = "-"; break;
-            case PROTECTED: ret = "#"; break;
-            case PACKAGE_PRIVATE: ret = "~"; break;
+        switch (visibility) {
+            case PUBLIC:
+                ret = "+";
+                break;
+            case PRIVATE:
+                ret = "-";
+                break;
+            case PROTECTED:
+                ret = "#";
+                break;
+            case PACKAGE_PRIVATE:
+                ret = "~";
+                break;
         }
 
         return ret;

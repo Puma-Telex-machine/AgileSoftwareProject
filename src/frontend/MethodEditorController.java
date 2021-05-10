@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import model.MethodData;
 import model.boxes.Visibility;
 import model.facades.BoxFacade;
+import model.facades.MethodFacade;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,11 +39,11 @@ public class MethodEditorController extends AnchorPane {
     private TextField returnTypeField;
 
     @FXML
-    private VBox argumentVBox;
+    public VBox argumentVBox;
 
     private BoxFacade box;
 
-    private MethodData methodData;
+    private MethodFacade methodData;
 
     private MethodArgumentEditorController currentEditArgument;
 
@@ -79,39 +80,37 @@ public class MethodEditorController extends AnchorPane {
     @FXML
     public void ConfirmMethod()
     {
-        methodData.methodName = nameField.getText();
+        methodData.setName(nameField.getText());
 
         //Gets the arguments for the method data
         String[] argRet = new String[arguments.size()];
         for (int i = 0; i < argRet.length; i++)
         {
-            argRet[i] = arguments.get(i).argumentTypeField.getText();
+            methodData.addArgument(arguments.get(i).argumentTypeField.getText());
         }
-        methodData.arguments = argRet;
 
         Visibility visibility = Visibility.valueOf(accessComboBox.getValue().toString());
-        methodData.visibility = visibility;
+        methodData.setVisibility(visibility);
 
-        methodData.methodReturnType = returnTypeField.getText();
+        methodData.setType(returnTypeField.getText());
 
-        box.editMethod(methodData);
-
+        argumentVBox.getChildren().clear();
         this.setVisible(false);
     }
 
     @FXML
     public void DeleteMethod()
     {
-        //box.DeleteMethod(methodData.methodName);
+        box.deleteMethod(methodData);
         this.setVisible(false);
     }
 
     public void EditMethod(BoxFacade box)
     {
-        EditMethod(new MethodData(), box);
+        EditMethod(box.addMethod(), box);
     }
 
-    public void EditMethod(MethodData methodData,  BoxFacade box)
+    public void EditMethod(MethodFacade methodData,  BoxFacade box)
     {
         this.box = box;
         this.methodData = methodData;
@@ -121,25 +120,29 @@ public class MethodEditorController extends AnchorPane {
         argumentVBox.getChildren().setAll();
 
         //Set name
-        nameField.setText(methodData.methodName);
+        nameField.setText(methodData.getName());
 
         //Sets the options for the accessibility combo box
         accessComboBox.getItems().setAll(Visibility.values());
 
         //Sets the current visibility
-        accessComboBox.getSelectionModel().select(methodData.visibility.name());
+        accessComboBox.getSelectionModel().select(methodData.getVisibility().name());
 
         //Sets the method type field
-        returnTypeField.setText(methodData.methodReturnType);
+        returnTypeField.setText(methodData.getType());
 
+        argumentVBox.getChildren().clear();
+
+        String[] param = methodData.getArguments().toArray(new String[methodData.getArguments().size()]);
         //Sets the arguments for this method
-        for (int i = 0; i < methodData.arguments.length; i++)
+        for (int i = 0; i < param.length; i++)
         {
             MethodArgumentEditorController argument = new MethodArgumentEditorController();
-            argument.argumentTypeField.setText(methodData.arguments[i]);
+            argument.argumentTypeField.setText(param[i]);
             argument.argumentTypeField.setOnAction((Action) -> ChangeArgument(argument));
             argumentVBox.getChildren().add(argument);
             argument.paramLable.setText("Param " + arguments.size());
+            argument.argumentTypeField.getStyleClass().add("highlight");
             this.setLayoutY(this.getLayoutY() - argument.getHeight()/2);
         }
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 boxcount=2
 <BOX>
   name=Box 0
@@ -14,5 +15,17 @@ boxcount=2
   xposition=788
   yposition=299
 >>>>>>> Stashed changes
+=======
+<BOX>
+  name=Box
+  xposition=16
+  yposition=13
+  visibility=PUBLIC
+<!BOX>
+<BOX>
+  name=Box
+  xposition=30
+  yposition=6
+>>>>>>> Production
   visibility=PUBLIC
 <!BOX>
