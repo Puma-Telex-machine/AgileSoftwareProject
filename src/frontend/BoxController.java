@@ -164,13 +164,10 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         if (this.getLayoutY() + event.getY() - offsetY > 0) {
             posY = this.getLayoutY()+ event.getY() - offsetY;
         }
-        this.setLayoutX(posX);
-        this.setLayoutY(posY);
-        box.setPosition(new ScaledPoint(Scale.Frontend,posX,posY));
 
         //todo this needs testing and refining
         this.setLayoutX(posX);
-        this.setLayoutX(posY);
+        this.setLayoutY(posY);
         box.setPosition(new ScaledPoint(Scale.Frontend,posX,posY));
 
 

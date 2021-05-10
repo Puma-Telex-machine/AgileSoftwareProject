@@ -1,12 +1,6 @@
 <BOX>
   name=Box
-  xposition=14
-  yposition=15
-  visibility=PUBLIC
-<!BOX>
-<BOX>
-  name=Box
-  xposition=28
-  yposition=15
+  xposition=21
+  yposition=11
   visibility=PUBLIC
 <!BOX>
