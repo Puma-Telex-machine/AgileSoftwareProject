@@ -20,6 +20,8 @@ public class Diagram implements IDiagram {
     @Override
     public void add(Box box) {
         boxGrid.add(box);
+        relationGrid.refreshAllPaths();
+        saveThis();
     }
 
     @Override
@@ -39,15 +41,14 @@ public class Diagram implements IDiagram {
     @Override
     public void add(Relation relation) {
         relationGrid.add(relation);
-        //relationGrid.refreshAllPaths();
+        relationGrid.refreshAllPaths();
         saveThis();
     }
 
     @Override
     public void update(Relation relation) {
-        //relationGrid.add(relation);
-        relationGrid.refreshAllPaths();     // Detta gör om arbetet i add, det beror på vilken funktionalitet vi vill ha.
-        saveThis();                         // Hur "känns det" när alla relationer uppdateras är väl det som är viktigast.
+        relationGrid.refreshAllPaths();
+        saveThis();
     }
 
     @Override

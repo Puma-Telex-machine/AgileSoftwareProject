@@ -20,7 +20,6 @@ public class RelationGrid {
 
     public void add(Relation relation) {
         relations.add(relation);
-        findPath(relation);
     }
 
     public void refreshAllPaths() {

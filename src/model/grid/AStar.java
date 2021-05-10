@@ -16,8 +16,8 @@ public class AStar {
     int bendCost = 10;
     int crossCost = 100;
 
-    PriorityQueue<PathNode> discovered = new PriorityQueue<>(Comparator.comparingInt(this::getCostEstimate));
-    TreeMap<ScaledPoint, PathNode> visited = new TreeMap<>();
+    PriorityQueue<PathNode> discovered;
+    TreeMap<ScaledPoint, PathNode> visited;
 
     AStar(IDiagram grid) {
         this.grid = grid;
@@ -26,6 +26,10 @@ public class AStar {
     ScaledPoint destination;
 
     public PathNode findPath(Relation relation) throws Exception {
+
+        visited = new TreeMap<>();
+        discovered = new PriorityQueue<>(Comparator.comparingInt(this::getCostEstimate));
+
         destination = relation.getToPosition();
 
         PathNode startNode = new PathNode(relation);
