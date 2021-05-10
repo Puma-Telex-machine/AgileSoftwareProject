@@ -1,14 +1,8 @@
 package frontend;
 
 import javafx.fxml.FXML;
-import javafx.scene.input.ContextMenuEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.facades.ModelFacade;
-import model.point.Scale;
-import model.point.ScaledPoint;
-
-import java.awt.*;
 
 
 public class BaseController{
@@ -16,9 +10,8 @@ public class BaseController{
     @FXML
     AnchorPane UML;
 
-
     @FXML
-    AnchorPane leftMenue;
+    AnchorPane leftMenu;
     @FXML
     AnchorPane contextMenu;
 
@@ -46,10 +39,10 @@ public class BaseController{
     }
 
     private void init(){
-        leftMenue.getChildren().add(files);
-        leftMenue.getChildren().add(shapes);
-        leftMenue.getChildren().add(overview);
-        leftMenue.getChildren().add(exercises);
+        leftMenu.getChildren().add(files);
+        leftMenu.getChildren().add(shapes);
+        leftMenu.getChildren().add(overview);
+        leftMenu.getChildren().add(exercises);
         LockPane(files);
         LockPane(shapes);
         LockPane(overview);
@@ -57,7 +50,7 @@ public class BaseController{
         closeMenueTabbs();
         UML.getChildren().add(canvas);
         LockPane(canvas);
-        AnchorPane.setRightAnchor(canvas,0d);
+
     }
 
     private void LockPane(AnchorPane pane)
@@ -65,6 +58,7 @@ public class BaseController{
         AnchorPane.setTopAnchor(pane, 0d);
         AnchorPane.setLeftAnchor(pane, 0d);
         AnchorPane.setBottomAnchor(pane, 0d);
+        AnchorPane.setRightAnchor(pane,0d);
     }
 
     private void closeMenueTabbs()
@@ -73,30 +67,9 @@ public class BaseController{
         shapes.setVisible(false);
         overview.setVisible(false);
         exercises.setVisible(false);
-        files.toBack();
-        shapes.toBack();
-        overview.toBack();
-        exercises.toBack();
+        leftMenu.toBack();
     }
 
-    @FXML
-    private void handleContextMenu(ContextMenuEvent e){
-        contextMenu.setLayoutX(e.getX());
-        contextMenu.setLayoutY(e.getY());
-        contextMenu.setVisible(true);
-        e.consume();
-    }
-    @FXML
-    private void exitContext(){
-        contextMenu.setVisible(false);
-    }
-    @FXML
-    private void handleContextAddBox(MouseEvent e) {
-        ScaledPoint newBoxPosition = new ScaledPoint(Scale.Frontend, contextMenu.getLayoutX()-80, contextMenu.getLayoutY()-35);
-        model.addBox(newBoxPosition);
-        exitContext();
-        e.consume();
-    }
 
     //open Menus
     @FXML
@@ -114,14 +87,14 @@ public class BaseController{
 
     private void openMenuItem(AnchorPane menu)
     {
-        if(!leftMenue.getChildren().contains(menu)) init();
+        if(!leftMenu.getChildren().contains(menu)) init();
         boolean vis = menu.isVisible();
         closeMenueTabbs();
         if(vis){
-            menu.toBack();
+            leftMenu.toBack();
         }
         else{
-            menu.toFront();
+            leftMenu.toFront();
             menu.setVisible(true);
         }
     }

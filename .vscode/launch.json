@@ -1,16 +1,9 @@
 {
     // Use IntelliSense to learn about possible attributes.
-    // Hover to frontend.view descriptions of existing attributes.
+    // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        {
-            "type": "java",
-            "name": "Launch Main",
-            "request": "launch",
-            "mainClass": "Main",
-            "projectName": "AgileSoftwareProject_bffa3dd0"
-        },
         {
             "type": "java",
             "name": "Launch Current File",
@@ -23,7 +16,7 @@
             "request": "launch",
             "vmArgs": "--module-path C:/Users/lukas/Documents/Java/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml",
             "mainClass": "Main",
-            "projectName": "AgileSoftwareProject_e11e3d60"
+            "projectName": "AgileSoftwareProject_bc24b12d"
         }
     ]
 }

@@ -4,8 +4,8 @@ package model.point;
 import java.awt.*;
 
 public class ScaledPoint implements Comparable<ScaledPoint> {
-    private int x;
-    private int y;
+    int x;
+    int y;
 
     public ScaledPoint(Scale scale, ScaledPoint point) {
         setX(scale, point.getX(scale));
@@ -27,6 +27,11 @@ public class ScaledPoint implements Comparable<ScaledPoint> {
         setY(scale, (int) y);
     }
 
+    ScaledPoint(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     private void setX(Scale scale, int x) {
         this.x = x / scale.xScale;
     }
@@ -46,7 +51,7 @@ public class ScaledPoint implements Comparable<ScaledPoint> {
     public ScaledPoint move(ScaledPoint direction) {
         int movedX = x + direction.x;
         int movedY = y + direction.y;
-        return new ScaledPoint(Scale.Internal, movedX, movedY);
+        return new ScaledPoint(movedX, movedY);
     }
 
     public ScaledPoint move(Scale scale, int dx, int dy) {

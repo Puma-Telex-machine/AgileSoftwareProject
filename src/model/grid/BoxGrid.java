@@ -4,20 +4,15 @@ import model.boxes.Box;
 import model.point.Scale;
 import model.point.ScaledPoint;
 
-
-import javax.swing.*;
-import java.awt.*;
 import java.util.*;
-import java.util.List;
 
-public class BoxGrid implements IBoxGrid, BoxGridView {
+public class BoxGrid { //TODO: try collision detection instead
     TreeMap<ScaledPoint, Box> boxMap = new TreeMap<>();
 
     public List<Box> getBoxes() {
         return null;
     }
 
-    @Override
     public boolean isOccupied(ScaledPoint scaledPoint) {
         return boxMap.containsKey(scaledPoint);
     }
@@ -32,7 +27,6 @@ public class BoxGrid implements IBoxGrid, BoxGridView {
         }
     }
 
-    @Override
     public void move(Box box, ScaledPoint point) {
         // Remove the old area of the box
         remove(box);
@@ -44,7 +38,6 @@ public class BoxGrid implements IBoxGrid, BoxGridView {
         add(box);
     }
 
-    @Override
     public void remove(Box box) {
         ArrayList<ScaledPoint> area = getArea(box);
 
@@ -54,22 +47,18 @@ public class BoxGrid implements IBoxGrid, BoxGridView {
         }
     }
 
-    public ArrayList<Box> getAllBoxes(){
+    public ArrayList<Box> getAllBoxes() {
         Set<Map.Entry<ScaledPoint, Box>> set = boxMap.entrySet();
         ArrayList<Box> boxes = new ArrayList<>();
         for (Map.Entry<ScaledPoint, Box> entry: set) {
-            boxes.add(entry.getValue());
+            if(!boxes.contains(entry.getValue()))
+                boxes.add(entry.getValue());
         }
         return boxes;
     }
 
-    public int getBoxCounter(){
+    public int getBoxCounter() {
         return boxMap.size();
-    }
-
-    @Override
-    public void update(Box box) {
-
     }
 
     private void pushOthersDown(ScaledPoint point) {
@@ -77,7 +66,7 @@ public class BoxGrid implements IBoxGrid, BoxGridView {
         Box occupant = boxMap.get(point);
         if (occupant != null) {
             ScaledPoint oldPosition = new ScaledPoint(Scale.Backend, occupant.getPosition());
-            ScaledPoint newPosition = oldPosition.move(new ScaledPoint(Scale.Backend, 0, -1));
+            ScaledPoint newPosition = oldPosition.move(new ScaledPoint(Scale.Backend, 0, 1));
             move(occupant, newPosition);
         }
     }
@@ -85,12 +74,14 @@ public class BoxGrid implements IBoxGrid, BoxGridView {
     private ArrayList<ScaledPoint> getArea(Box box) {
         ArrayList<ScaledPoint> area = new ArrayList<>();
         ScaledPoint point = box.getPosition();
+        ScaledPoint endPoint = box.getWidthAndHeight();
         int x = point.getX(Scale.Backend);
         int y = point.getY(Scale.Backend);
-        int xEnd = x + box.getHeight();  // NOTE: Method getWidth does not exist!
-        int yEnd = y + box.getHeight();
+        int xEnd = x + endPoint.getX(Scale.Backend);
+        int yEnd = y + endPoint.getX(Scale.Backend);
 
         for (; x < xEnd; x++) {
+            y = point.getY(Scale.Backend);
             for (; y < yEnd; y++) {
                 area.add(new ScaledPoint(Scale.Backend, x, y));
             }

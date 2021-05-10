@@ -1,11 +1,12 @@
 package model.facades;
 
 import model.point.ScaledPoint;
-import model.relations.Relation;
+import model.relations.ArrowType;
 
 import java.util.ArrayList;
 
 public interface RelationFacade {
-    Relation getRelation();
-    ArrayList<ScaledPoint> getPathPoints();
+    ArrayList<ScaledPoint> getPath();
+    ArrowType getArrowType();
+    void changeRelation(ArrowType type);
 }

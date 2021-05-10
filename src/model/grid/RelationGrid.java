@@ -1,15 +1,59 @@
 package model.grid;
 
-import model.point.Scale;
+import model.boxes.Box;
 import model.point.ScaledPoint;
 import model.relations.Relation;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.TreeMap;
 
 public class RelationGrid {
 
-    TreeMap<ScaledPoint, ArrayList<PathNode>> relationMap = new TreeMap<>();
+    AStar aStar;
+    TreeMap<ScaledPoint, HashSet<PathNode>> relationMap;
+    HashSet<Relation> relations;
+
+    public RelationGrid(IDiagram diagram) {
+        this.aStar = new AStar(diagram);
+        this.relationMap = new TreeMap<>();
+        this.relations = new HashSet<>();
+    }
+
+    public void add(Relation relation) {
+        relations.add(relation);
+        findPath(relation);
+    }
+
+    public void refreshAllPaths() {
+        for (Relation r : relations) {
+            findPath(r);
+        }
+    }
+
+    private void findPath(Relation relation) {
+        PathNode current = null;
+        try {
+            current = aStar.findPath(relation);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<ScaledPoint> pathPoints = new ArrayList<>();
+        while (current != null) {
+            HashSet<PathNode> relations = relationMap.get(current.position);
+            relations.add(current);
+
+            if (current.previous != null) {
+                if (current.direction != current.previous.direction) {
+                    pathPoints.add(current.position);
+                }
+            }
+            current = current.previous;
+        }
+        relation.setPath(pathPoints);
+    }
 
     boolean canMergeLines(Relation relation, ScaledPoint position) {
         if (!relationMap.containsKey(position)) return true;
@@ -22,24 +66,11 @@ public class RelationGrid {
         return false;
     }
 
-    public ArrayList<ScaledPoint> add(PathNode pathStart) {
-        ArrayList<ScaledPoint> pathPoints = new ArrayList<>();
-        PathNode current = pathStart;
-        while (current != null) {
-            ArrayList<PathNode> relations = relationMap.get(current.position);
-            relations.add(current);
-
-            if (current.previous != null) {
-                if (current.direction != current.previous.direction) {
-                    pathPoints.add(current.position);
-                }
-            }
-            current = current.previous;
-        }
-        return pathPoints;
+    public List<Relation> getRelations() {
+        return new ArrayList<>(relations);
     }
 
-    private double bearing(ScaledPoint from, ScaledPoint to) {
-        return Math.atan2(from.getY(Scale.Internal) - to.getY(Scale.Internal), to.getX(Scale.Internal) - from.getX(Scale.Internal));
+    public void remove(Relation relation) {
+        relations.remove(relation);
     }
 }
