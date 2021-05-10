@@ -419,7 +419,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
             List<String> param = methodData.get(i).getArguments();
             for (int j = 0; j < param.size(); j++)
             {
-                method += param.get(i);
+                method += param.get(j);
 
                 if(j+1 != param.size())
                     method += ", ";
