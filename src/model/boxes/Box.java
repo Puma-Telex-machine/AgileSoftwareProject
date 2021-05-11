@@ -17,7 +17,7 @@ import java.util.*;
  */
 public class Box implements BoxFacade, UiObserver {
     //different fontsize on name and other
-    private static final double SYMBOLS_PER_WIDTH_UNIT_NAME = 0.3;
+    private static final double SYMBOLS_PER_WIDTH_UNIT_NAME = 0.23;
     private static final double SYMBOLS_PER_WIDTH_UNIT_OTHER = 0.2;
     private static final int START_HEIGHT = 3;
     private static final int START_WIDTH = 3;
@@ -163,6 +163,10 @@ public class Box implements BoxFacade, UiObserver {
     }
 
     private int getWidth() {
+
+        //Todo width depends on characters maybe use textutil in boxController?
+        // or should boxcontroller set width of the texts?
+        
         ArrayList<String> names = new ArrayList<>();
 
         for (MethodFacade method : methods) {
@@ -181,8 +185,8 @@ public class Box implements BoxFacade, UiObserver {
 
             maxLength = Collections.max(longest);
         }
-        if(maxLength<name.length()){
-            return Math.max((int)(name.length() * SYMBOLS_PER_WIDTH_UNIT_NAME )+1, START_WIDTH);
+        if(maxLength*SYMBOLS_PER_WIDTH_UNIT_OTHER<name.length()*SYMBOLS_PER_WIDTH_UNIT_NAME){
+            return Math.max((int)(name.length() * SYMBOLS_PER_WIDTH_UNIT_NAME )+2, START_WIDTH);
         }
         return Math.max((int)(maxLength * SYMBOLS_PER_WIDTH_UNIT_OTHER)+1, START_WIDTH);
     }
