@@ -444,7 +444,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      */
     public void update() {
 
-        System.out.println("update");
         variables.getChildren().clear();
         methods.getChildren().clear();
 
@@ -467,14 +466,12 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         }
 
         //set box size
-        this.setWidth(box.getWidthAndHeight().getX(Scale.Frontend));
-        this.setHeight(box.getWidthAndHeight().getY(Scale.Frontend));
+        this.setWidth(box.getWidthAndHeight().getX(Scale.Frontend)-1);
+        this.setHeight(box.getWidthAndHeight().getY(Scale.Frontend)-1);
         this.setLayoutY(box.getPosition().getY(Scale.Frontend));
         this.setLayoutX(box.getPosition().getX(Scale.Frontend));
         line.setEndX(this.getWidth());
         line1.setEndX(this.getWidth());
-
-
 
         updateAnchorPoints();
     }
