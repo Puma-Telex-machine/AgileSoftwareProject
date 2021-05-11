@@ -169,7 +169,7 @@ public class Box implements BoxFacade, UiObserver {
 
         int maxLength = Collections.max(longest);
 
-        return 5; //maxLength * SYMBOLS_PER_WIDTH_UNIT;
+        return maxLength * SYMBOLS_PER_WIDTH_UNIT;
     }
 
 
