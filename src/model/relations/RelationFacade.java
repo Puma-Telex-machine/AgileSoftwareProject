@@ -1,5 +1,6 @@
-package model.facades;
+package model.relations;
 
+import model.facades.RelationObserver;
 import model.point.ScaledPoint;
 import model.relations.ArrowType;
 

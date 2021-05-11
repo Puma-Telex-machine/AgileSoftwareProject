@@ -12,12 +12,12 @@ import model.Model;
 import model.boxes.BoxType;
 import model.facades.Observer;
 import model.facades.BoxFacade;
-import model.facades.RelationFacade;
+import model.relations.RelationFacade;
 import model.facades.RelationObserver;
 import model.point.Scale;
 import model.point.ScaledPoint;
 import model.relations.ArrowType;
-import model.relations.Relation;
+
 import java.awt.*;
 import java.io.IOException;
 import java.util.*;

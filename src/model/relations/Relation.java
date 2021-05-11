@@ -3,7 +3,6 @@ package model.relations;
 import model.boxes.Box;
 import model.boxes.BoxType;
 import model.facades.BoxFacade;
-import model.facades.RelationFacade;
 import model.facades.RelationObserver;
 import model.point.ScaledPoint;
 
