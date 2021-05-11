@@ -1,16 +1,15 @@
-package model.facades;
+package model.boxes;
 
-import frontend.BoxController;
-import frontend.Observers.UiObserver;
+import global.Observable;
 import model.boxes.*;
-import model.point.ScaledPoint;
-import model.facades.VariableData;
-import model.facades.MethodData;
+import global.point.ScaledPoint;
+import model.facades.AttributeFacade;
+import model.facades.MethodFacade;
 
 import java.util.List;
 import java.util.Set;
 
-public interface BoxFacade {
+public interface BoxFacade extends Observable<BoxObserver> {
 
     /**
      * Set the name of the box.
@@ -95,6 +94,4 @@ public interface BoxFacade {
     ScaledPoint getPosition();
 
     ScaledPoint getWidthAndHeight();
-
-    void subscribe(UiObserver observer);
 }

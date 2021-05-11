@@ -1,14 +1,13 @@
 package model.relations;
 
-import model.facades.RelationObserver;
-import model.point.ScaledPoint;
-import model.relations.ArrowType;
+import global.Observable;
+import global.point.ScaledPoint;
 
 import java.util.ArrayList;
 
-public interface RelationFacade {
+public interface RelationFacade extends Observable<RelationObserver> {
     ArrayList<ScaledPoint> getPath();
     ArrowType getArrowType();
-    void changeRelation(ArrowType type);
-    void subscribe(RelationObserver observer);
+    void remove();
+    void changeRelationType(ArrowType type);
 }

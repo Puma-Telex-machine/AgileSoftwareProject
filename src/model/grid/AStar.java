@@ -1,7 +1,8 @@
 package model.grid;
 
-import model.point.Scale;
-import model.point.ScaledPoint;
+import global.point.Scale;
+import global.point.ScaledPoint;
+import model.diagram.IDiagram;
 import model.relations.Relation;
 
 import java.util.Comparator;

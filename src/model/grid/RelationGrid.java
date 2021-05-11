@@ -1,7 +1,7 @@
 package model.grid;
 
-import model.boxes.Box;
-import model.point.ScaledPoint;
+import global.point.ScaledPoint;
+import model.diagram.IDiagram;
 import model.relations.Relation;
 
 import java.util.*;
@@ -50,8 +50,7 @@ public class RelationGrid {
                     pathPoints.add(current.position);
                 }
             }
-
-             */
+            */
             current = current.previous;
         }
 
@@ -60,7 +59,7 @@ public class RelationGrid {
         relation.setPath(pathPoints); //TODO: Något är fel, pathpoints innehåller två av samma punkt (sista)
     }
 
-    boolean canMergeLines(Relation relation, ScaledPoint position) {
+    public boolean canMergeLines(Relation relation, ScaledPoint position) {
         if (!relationMap.containsKey(position)) return true;
 
         for (PathNode n : relationMap.get(position)) {

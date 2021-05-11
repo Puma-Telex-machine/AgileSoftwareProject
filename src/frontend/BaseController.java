@@ -3,7 +3,7 @@ package frontend;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import model.facades.ModelFacade;
+import model.ModelFacade;
 
 import java.io.IOException;
 
@@ -45,7 +45,7 @@ public class BaseController extends AnchorPane{
 
         canvas = new CanvasController();
         model = ModelFacade.getModel();
-        files = new FilesController(model.getFileHandler(), canvas);
+        files = new FilesController(ModelFacade.getFileHandler(), canvas);
         shapes = new ShapeController(canvas);
         overview = new OverviewController();
         exercises = new ExercisesController();

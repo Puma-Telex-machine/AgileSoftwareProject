@@ -9,13 +9,15 @@ import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
+import model.ModelFacade;
 import model.boxes.BoxType;
-import model.facades.Observer;
-import model.facades.BoxFacade;
+import model.diagram.DiagramFacade;
+import model.diagram.DiagramObserver;
+import model.boxes.BoxFacade;
 import model.relations.RelationFacade;
-import model.facades.RelationObserver;
-import model.point.Scale;
-import model.point.ScaledPoint;
+import model.relations.RelationObserver;
+import global.point.Scale;
+import global.point.ScaledPoint;
 import model.relations.ArrowType;
 
 import java.awt.*;
@@ -23,7 +25,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
-public class CanvasController extends AnchorPane implements Observer, ArrowObserver, RelationObserver {
+public class CanvasController extends AnchorPane implements DiagramObserver, ArrowObserver, RelationObserver {
 
     VariableEditorController variableEditor;
     MethodEditorController methodEditor;
@@ -33,7 +35,8 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     @FXML
     private ComboBox<ArrowType> arrowTypeComboBox;
 
-    Model model = Model.getModel();
+    ModelFacade model = Model.getModel();
+    DiagramFacade diagram = model.getDiagram();
 
     List<BoxController> boxes = new ArrayList<>();
 
@@ -63,7 +66,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         arrowMenu.setVisible(false);
         contextMenu.setVisible(false);
 
-        model.addObserver(this);
+        diagram.subscribe(this);
     }
 
     @Override
@@ -101,7 +104,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
                 ScaledPoint offsetTo = new ScaledPoint(Scale.Frontend, (int) (p.x - box.getLayoutX()), (int) (p.y - box.getLayoutY()));
                 ScaledPoint offsetFrom = new ScaledPoint(Scale.Frontend, (int) (arrowStart.x - arrowBox.getLayoutX()), (arrowStart.y - arrowBox.getLayoutY()));
 
-                model.addRelation(arrowBox.getBox(), offsetFrom, box.getBox(), offsetTo, ArrowType.ASSOCIATION);
+                diagram.createRelation(arrowBox.getBox(), offsetFrom, box.getBox(), offsetTo, ArrowType.ASSOCIATION);
             }
         }
         //start making arrow
@@ -122,7 +125,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     }
 
     @Override
-    public void updateRelation(RelationFacade relation){
+    public void update(RelationFacade relation){ //TODO: Borde inte detta hanteras av en RelationController eller ngt?
         removeRelation(relation);
         addArrow(relation);
     }
@@ -233,7 +236,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
 
     @FXML
     private void handleContextAddBox(MouseEvent e) {
-        model.addBox(new ScaledPoint(Scale.Frontend, (int) contextMenu.getLayoutX() - 80, (int) contextMenu.getLayoutY() - 35), BoxType.BOX);
+        diagram.createBox(new ScaledPoint(Scale.Frontend, (int) contextMenu.getLayoutX() - 80, (int) contextMenu.getLayoutY() - 35), BoxType.BOX);
         closeMenu(e);
         e.consume();
     }
@@ -250,7 +253,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     private void changeArrow(Event e) {
         ArrowType type = arrowTypeComboBox.getValue();
         clickedArrow.setType(type);
-        arrowMap.get(clickedArrow).changeRelation(type);
+        arrowMap.get(clickedArrow).changeRelationType(type);
         closeMenu(e);
         e.consume();
 

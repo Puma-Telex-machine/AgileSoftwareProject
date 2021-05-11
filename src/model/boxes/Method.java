@@ -1,7 +1,8 @@
 package model.boxes;
 
-import frontend.Observers.UiObservable;
-import frontend.Observers.UiObserver;
+import global.Observable;
+import global.Observers;
+import global.Observer;
 import model.facades.MethodFacade;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.Set;
  * Originally created by Emil Holmsten,
  * Updated by Filip Hanberg.
  */
-public class Method implements MethodFacade, UiObservable {
+public class Method implements MethodFacade, Observable<Observer> {
 
     private String name = "method";
     private final List<String> parameters = new ArrayList<>();
@@ -22,10 +23,19 @@ public class Method implements MethodFacade, UiObservable {
     private Visibility visibility = Visibility.PUBLIC;
     private String returnType = "void";
 
+    //region OBSERVABLE
+    Observers observers = new Observers();
+
+    @Override
+    public void subscribe(Observer observer) {
+        observers.add(observer);
+    }
+    //endregion
+
     @Override
     public void setName(String name) {
         this.name = name;
-        observer.update();
+        observers.update();
     }
 
     @Override
@@ -36,7 +46,7 @@ public class Method implements MethodFacade, UiObservable {
     @Override
     public void setType(String type) {
         returnType = type;
-        observer.update();
+        observers.update();
     }
 
     @Override
@@ -47,7 +57,7 @@ public class Method implements MethodFacade, UiObservable {
     @Override
     public void removeAllArguments() {
         parameters.clear();
-        observer.update();
+        observers.update();
     }
 
     /**
@@ -57,7 +67,7 @@ public class Method implements MethodFacade, UiObservable {
     @Override
     public void addArgument(String argument) {
         parameters.add(argument);
-        observer.update();
+        observers.update();
     }
 
     /**
@@ -67,7 +77,7 @@ public class Method implements MethodFacade, UiObservable {
     @Override
     public void removeArgument(String argument) {
         parameters.remove(argument);
-        observer.update();
+        observers.update();
     }
 
     @Override
@@ -82,7 +92,7 @@ public class Method implements MethodFacade, UiObservable {
     @Override
     public void addModifier(Modifier modifier) {
         modifiers.add(modifier);
-        observer.update();
+        observers.update();
     }
 
     /**
@@ -92,7 +102,7 @@ public class Method implements MethodFacade, UiObservable {
     @Override
     public void removeModifier(Modifier modifier) {
         modifiers.remove(modifier);
-        observer.update();
+        observers.update();
     }
 
     @Override
@@ -103,18 +113,12 @@ public class Method implements MethodFacade, UiObservable {
     @Override
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
-        observer.update();
+        observers.update();
     }
 
     @Override
     public Visibility getVisibility() {
         return visibility;
-    }
-
-    UiObserver observer;
-    @Override
-    public void subscribe(UiObserver observer) {
-       this.observer = observer;
     }
 
     @Override

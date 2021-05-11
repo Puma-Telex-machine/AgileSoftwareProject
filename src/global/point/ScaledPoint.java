@@ -1,4 +1,4 @@
-package model.point;
+package global.point;
 
 
 import java.awt.*;

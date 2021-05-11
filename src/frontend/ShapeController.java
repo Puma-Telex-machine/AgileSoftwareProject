@@ -4,15 +4,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
+import model.ModelFacade;
 import model.boxes.BoxType;
-import model.point.Scale;
-import model.point.ScaledPoint;
+import global.point.Scale;
+import global.point.ScaledPoint;
+import model.diagram.DiagramFacade;
 
 import java.io.IOException;
 
 public class ShapeController extends AnchorPane {
 
-    Model model = Model.getModel();
+    DiagramFacade diagram = Model.getModel().getDiagram();
     CanvasController canvas;
 
     public ShapeController(CanvasController canvas) {
@@ -33,7 +35,7 @@ public class ShapeController extends AnchorPane {
 
     @FXML
     private void addBox(){
-        model.addBox(new ScaledPoint(Scale.Frontend, canvas.getMiddle().x, canvas.getMiddle().y), BoxType.BOX);
+        diagram.createBox(new ScaledPoint(Scale.Frontend, canvas.getMiddle().x, canvas.getMiddle().y), BoxType.BOX);
     }
 
     @FXML

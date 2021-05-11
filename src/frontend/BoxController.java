@@ -2,7 +2,6 @@ package frontend;
 
 import frontend.Observers.ArrowObservable;
 import frontend.Observers.ArrowObserver;
-import frontend.Observers.UiObserver;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -18,13 +17,12 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
 import model.MethodData;
 import model.VariableData;
-import model.boxes.Visibility;
 import model.facades.AttributeFacade;
-import model.facades.BoxFacade;
+import model.boxes.BoxFacade;
+import model.boxes.BoxObserver;
 import model.facades.MethodFacade;
-import model.point.Scale;
-import model.point.ScaledPoint;
-import com.sun.javafx.scene.control.skin.Utils;
+import global.point.Scale;
+import global.point.ScaledPoint;
 
 import java.awt.*;
 import java.io.IOException;
@@ -34,7 +32,7 @@ import java.util.List;
 /**
  * controller for the boxes in frontend
  */
-public class BoxController extends AnchorPane implements ArrowObservable, UiObserver {
+public class BoxController extends AnchorPane implements ArrowObservable, BoxObserver {
     @FXML
     private TextField nameField;
     @FXML
@@ -444,7 +442,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      */
     public void update() {
 
-        System.out.println("update");
+        System.out.println("Updating box in Frontend" + this);
         variables.getChildren().clear();
         methods.getChildren().clear();
 

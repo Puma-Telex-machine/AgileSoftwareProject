@@ -1,8 +1,8 @@
 package model.grid;
 
 import model.boxes.Box;
-import model.point.Scale;
-import model.point.ScaledPoint;
+import global.point.Scale;
+import global.point.ScaledPoint;
 
 import java.util.*;
 

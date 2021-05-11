@@ -3,9 +3,9 @@ package model;
 import model.boxes.*;
 import model.facades.AttributeFacade;
 import model.facades.MethodFacade;
-import model.grid.Diagram;
-import model.point.Scale;
-import model.point.ScaledPoint;
+import model.diagram.Diagram;
+import global.point.Scale;
+import global.point.ScaledPoint;
 
 import java.io.*;
 import java.util.*;
@@ -51,7 +51,7 @@ public class Database {
                     boxes.add(loadBox(scanner, BoxType.ENUM, result));
             }
             for (Box box: boxes) {
-                result.update(box);
+                result.updateBox(box);
             }
             System.out.println("Successfully loaded " + filename + ".uml");
             result.unlockSaving();

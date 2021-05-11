@@ -1,50 +1,29 @@
 package model;
 
 import model.boxes.Box;
-import model.boxes.BoxType;
-import model.facades.*;
-
-import model.grid.Diagram;
-import model.point.ScaledPoint;
-import model.relations.ArrowType;
-import model.relations.Relation;
-
-import java.util.ArrayList;
-import java.util.List;
+import model.diagram.Diagram;
+import model.diagram.DiagramFacade;
+import model.facades.FileHandlerFacade;
 
 public class Model implements ModelFacade, FileHandlerFacade {
 
     private static Model singleton;
+    Diagram diagram = new Diagram();
+
     public static Model getModel() {
         if (singleton == null) singleton = new Model();
         return singleton;
     }
 
-    ArrayList<Observer> observers = new ArrayList<>();
-    Diagram diagram = new Diagram();
-
     @Override
-    public FileHandlerFacade getFileHandler() {
-        return getModel();
+    public DiagramFacade getDiagram() {
+        return diagram;
     }
 
-    public void addObserver(Observer observer) {
-        observers.add(observer);
-    }
 
-    public void removeObserver(Observer observer) {
-        observers.remove(observer);
-    }
 
-	public void addBox(ScaledPoint position, BoxType boxType) {
-        observers.forEach(observer -> observer.addBox(new Box(diagram, position, boxType)));
-    }
-	
-	public void addRelation(BoxFacade from, ScaledPoint offsetFrom, BoxFacade to, ScaledPoint offsetTo, ArrowType arrowType) {
-        Relation relation = new Relation(from, to, arrowType);
-        diagram.add(relation);
-        observers.forEach(observer -> observer.addRelation(relation));
-    }
+
+
 
     @Override
     public String[] getAllFileNames() {
@@ -55,14 +34,14 @@ public class Model implements ModelFacade, FileHandlerFacade {
     public void loadFile(String fileName) {
         diagram = Database.loadDiagram("diagrams/", fileName);
         for (Box box : diagram.getAllBoxes()) {
-            observers.forEach(observer -> observer.addBox(box));
+            diagram.observers.forEach(diagramObserver -> diagramObserver.addBox(box));
         }
     }
 
     public void loadTemplate(String fileName){
         Diagram template = Database.loadDiagram("templates/", fileName);
         for(Box box : template.getAllBoxes()){
-            observers.forEach(observer -> observer.addBox(box));
+            diagram.observers.forEach(diagramObserver -> diagramObserver.addBox(box));
         }
     }
 
@@ -71,13 +50,5 @@ public class Model implements ModelFacade, FileHandlerFacade {
         diagram.setName(Database.newFile());
         if(diagram.getName() != null)
             loadFile(diagram.getName());
-    }
-
-    /**
-     * get all relations this box interacts with
-     */
-    public List<Relation> getRelations(BoxFacade box){
-        //todo (kanske)
-        return diagram.getAllRelations();
     }
 }

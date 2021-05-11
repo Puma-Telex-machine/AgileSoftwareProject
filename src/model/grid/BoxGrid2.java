@@ -1,12 +1,10 @@
 package model.grid;
 
 import model.boxes.Box;
-import model.point.Scale;
-import model.point.ScaledPoint;
+import global.point.Scale;
+import global.point.ScaledPoint;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class BoxGrid2 {
 

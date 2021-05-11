@@ -1,12 +1,12 @@
 package model.boxes;
 
 import frontend.Observers.UiObserver;
+import global.Observer;
 import model.facades.AttributeFacade;
-import model.facades.BoxFacade;
 import model.facades.MethodFacade;
-import model.grid.IDiagram;
-import model.point.Scale;
-import model.point.ScaledPoint;
+import model.diagram.IDiagram;
+import global.point.Scale;
+import global.point.ScaledPoint;
 
 import java.util.*;
 
@@ -15,7 +15,7 @@ import java.util.*;
  * Originally created by Emil Holmsten,
  * Expanded by Filip Hanberg.
  */
-public class Box implements BoxFacade, UiObserver {
+public class Box implements BoxFacade, Observer {
     //different fontsize on name and other
     private static final double SYMBOLS_PER_WIDTH_UNIT_NAME = 0.3;
     private static final double SYMBOLS_PER_WIDTH_UNIT_OTHER = 0.2;
@@ -43,9 +43,25 @@ public class Box implements BoxFacade, UiObserver {
         this.position = position;
         this.type = type;
         this.diagram = diagram;
-        diagram.add(this);
         update();
     }
+
+    //region OBSERVABLE
+    private final ArrayList<BoxObserver> observers = new ArrayList<>();
+
+    @Override
+    public void subscribe(BoxObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void update() {
+        diagram.updateBox(this);
+        for (BoxObserver o : observers) {
+            o.update();
+        }
+    }
+    //endregion
 
     @Override
     public void setName(String name) {
@@ -66,7 +82,7 @@ public class Box implements BoxFacade, UiObserver {
     @Override
     public void deleteBox() {
         name = "THIS SHOULD NOT BE VISIBLE: BOX IS DELETED";
-        diagram.remove(this);
+        diagram.removeBox(this);
     }
 
     @Override
@@ -185,21 +201,5 @@ public class Box implements BoxFacade, UiObserver {
             return Math.max((int)(name.length() * SYMBOLS_PER_WIDTH_UNIT_NAME )+1, START_WIDTH);
         }
         return Math.max((int)(maxLength * SYMBOLS_PER_WIDTH_UNIT_OTHER)+1, START_WIDTH);
-    }
-
-
-    ArrayList<UiObserver> observers = new ArrayList<>();
-
-    @Override
-    public void subscribe(UiObserver observer) {
-        observers.add(observer);
-    }
-
-    @Override
-    public void update() {
-        diagram.update(this);
-        for (UiObserver o : observers) {
-            o.update();
-        }
     }
 }

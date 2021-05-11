@@ -1,6 +1,6 @@
 package model.grid;
 
-import model.point.ScaledPoint;
+import global.point.ScaledPoint;
 import model.relations.Relation;
 
 class PathNode {
