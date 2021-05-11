@@ -143,6 +143,7 @@ public class Box implements BoxFacade, UiObserver {
     }
 
     @Override
+    //todo returns wrong height
     public ScaledPoint getWidthAndHeight() {
         return new ScaledPoint(Scale.Backend, getWidth(), getHeight());
     }
