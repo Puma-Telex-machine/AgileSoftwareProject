@@ -4,6 +4,7 @@ import model.boxes.Box;
 import model.boxes.BoxType;
 import model.facades.BoxFacade;
 import model.facades.RelationFacade;
+import model.facades.RelationObserver;
 import model.point.ScaledPoint;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class Relation implements RelationFacade {
     BoxFacade from;
     ArrowType arrowType;
     ArrayList<ScaledPoint> path;
+    RelationObserver observer=null;
 
     public Relation(BoxFacade from, BoxFacade to, ArrowType arrowType) {
         this.from = from;
@@ -48,10 +50,20 @@ public class Relation implements RelationFacade {
     @Override
     public void changeRelation(ArrowType type) {
         this.arrowType = type;
+        updateObserver();
+    }
+
+    @Override
+    public void subscribe(RelationObserver observer) {
+        this.observer=observer;
+    }
+    private void updateObserver(){
+        if(observer!=null) observer.updateRelation(this);
     }
 
     public void setPath(ArrayList<ScaledPoint> pathPoints) {
         this.path = pathPoints;
+        updateObserver();
     }
 
     public static List<ArrowType> getPossibleRelations(Box from, Box to) {
