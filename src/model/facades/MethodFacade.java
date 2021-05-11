@@ -37,4 +37,6 @@ public interface MethodFacade {
 
     void setVisibility(Visibility visibility);
     Visibility getVisibility();
+
+    String getString();
 }

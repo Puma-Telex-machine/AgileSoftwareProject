@@ -28,4 +28,5 @@ public interface AttributeFacade {
     void addModifier(Modifier modifier); // Please explain what this is / Emil E
     void removeModifier(Modifier modifier);
     Set<Modifier> getModifiers();
+    String getString();
 }

@@ -73,6 +73,17 @@ public class Attribute implements AttributeFacade, UiObservable {
     }
 
     @Override
+    public String getString() {
+        String variable = "";
+        variable += Visibility.getString(visibility);
+        variable += " ";
+        variable += name;
+        variable += ": ";
+        variable += type;
+        return variable;
+    }
+
+    @Override
     public Visibility getVisibility() {
         return visibility;
     }

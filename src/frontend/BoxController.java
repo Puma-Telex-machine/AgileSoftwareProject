@@ -78,9 +78,11 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         switch (box.getType()) {
             case CLASS:
                 //remove typeidentifier and move components to work accordingly
-                blockpane1.setLayoutY(0);
+                //todo check that this works
+                blockpane1.setLayoutY(7);
                 blockpane2.setLayoutY(26);
-                nameField.setLayoutY(1);
+                nameField.setLayoutY(7);
+                vBox.setLayoutY(7);
                 vBox.getChildren().remove(identifier);
                 break;
             case INTERFACE:
@@ -455,14 +457,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         List<MethodFacade> methodData = box.getMethods();
 
         for (int i = 0; i < variableData.size(); i++) {
-            String variable = "";
-            variable += attributeVisString(variableData.get(i).getVisibility());
-            variable += " ";
-            variable += variableData.get(i).getName();
-            variable += ": ";
-            variable += variableData.get(i).getType();
-
-            BoxAttributeTextController attribute = new BoxAttributeTextController(variable);
+            BoxAttributeTextController attribute = new BoxAttributeTextController( variableData.get(i).getString());
             variables.getChildren().add(attribute);
             AttributeFacade var = variableData.get(i);
             attribute.setOnMousePressed((Action) -> editVariable(var, attribute));
@@ -470,22 +465,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         }
 
         for (int i = 0; i < methodData.size(); i++) {
-            String method = "";
-            method += attributeVisString(methodData.get(i).getVisibility());
-            method += " ";
-            method += methodData.get(i).getName();
-            method += " (";
-            List<String> param = methodData.get(i).getArguments();
-            for (int j = 0; j < param.size(); j++) {
-                method += param.get(j);
-
-                if (j + 1 != param.size())
-                    method += ", ";
-            }
-            method += ") : ";
-            method += methodData.get(i).getType();
-
-            BoxAttributeTextController attribute = new BoxAttributeTextController(method);
+            BoxAttributeTextController attribute = new BoxAttributeTextController(methodData.get(i).getString());
             methods.getChildren().add(attribute);
             MethodFacade met = methodData.get(i);
             attribute.setOnMousePressed((Action) -> editMethod(met, attribute));
@@ -502,31 +482,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         updateAnchorPoints();
     }
 
-    /**
-     * Returns the right sign for the visibility
-     *
-     * @param visibility
-     * @return
-     */
-    private String attributeVisString(Visibility visibility) {
-        String ret = "";
-        switch (visibility) {
-            case PUBLIC:
-                ret = "+";
-                break;
-            case PRIVATE:
-                ret = "-";
-                break;
-            case PROTECTED:
-                ret = "#";
-                break;
-            case PACKAGE_PRIVATE:
-                ret = "~";
-                break;
-        }
-
-        return ret;
-    }
 }
 
 

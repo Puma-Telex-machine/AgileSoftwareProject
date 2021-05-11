@@ -16,7 +16,9 @@ import java.util.*;
  * Expanded by Filip Hanberg.
  */
 public class Box implements BoxFacade, UiObserver {
-    private static final double SYMBOLS_PER_WIDTH_UNIT = 0.3;
+    //different fontsize on name and other
+    private static final double SYMBOLS_PER_WIDTH_UNIT_NAME = 0.3;
+    private static final double SYMBOLS_PER_WIDTH_UNIT_OTHER = 0.2;
     private static final int START_HEIGHT = 3;
     private static final int START_WIDTH = 3;
     private static final double ROWS_PER_HEIGHT_UNIT = 0.4999;
@@ -153,34 +155,36 @@ public class Box implements BoxFacade, UiObserver {
 
     private int getHeight() {
 
-
+        if((getMethods().size() + getAttributes().size()==0)) return START_HEIGHT;
         //+1 to round up.
         int height = (int) ((getMethods().size() + getAttributes().size()) * ROWS_PER_HEIGHT_UNIT) + START_HEIGHT +1;
-        //class does not have type identifier
-        if(type==BoxType.CLASS) height--;
+
         return height;
     }
 
     private int getWidth() {
         ArrayList<String> names = new ArrayList<>();
 
-        //todo this does not get the true length of a method or variable
-        names.add(name);
         for (MethodFacade method : methods) {
-            names.add(method.getName());
+            names.add(method.getString());
         }
         for (AttributeFacade attribute : attributes) {
-            names.add(attribute.getName());
+            names.add(attribute.getString());
         }
 
-        ArrayList<Integer> longest = new ArrayList<>();
-        for (String n : names) {
-            longest.add(n.length());
+        int maxLength = 0;
+        if(!names.isEmpty()){
+            ArrayList<Integer> longest = new ArrayList<>();
+            for (String n : names) {
+                longest.add(n.length());
+            }
+
+            maxLength = Collections.max(longest);
         }
-
-        int maxLength = Collections.max(longest);
-
-        return Math.max((int)(maxLength * SYMBOLS_PER_WIDTH_UNIT )+1, START_WIDTH);
+        if(maxLength<name.length()){
+            return Math.max((int)(name.length() * SYMBOLS_PER_WIDTH_UNIT_NAME )+1, START_WIDTH);
+        }
+        return Math.max((int)(maxLength * SYMBOLS_PER_WIDTH_UNIT_OTHER)+1, START_WIDTH);
     }
 
 

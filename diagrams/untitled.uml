@@ -1,28 +1,8 @@
 <BOX>
-  name=Class
-  xposition=18
+  name=Classasdaasdasdasdasdasdasdasdasd
+  xposition=10
   yposition=5
   visibility=PUBLIC
-  <METHOD>
-    name=method
-    visibility=PUBLIC
-  <!METHOD>
-  <METHOD>
-    name=method
-    visibility=PUBLIC
-  <!METHOD>
-  <METHOD>
-    name=method
-    visibility=PUBLIC
-  <!METHOD>
-  <METHOD>
-    name=method
-    visibility=PUBLIC
-  <!METHOD>
-  <METHOD>
-    name=method
-    visibility=PUBLIC
-  <!METHOD>
   <METHOD>
     name=method
     visibility=PUBLIC
