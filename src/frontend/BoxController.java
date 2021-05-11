@@ -98,14 +98,20 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         this.box = box;
         hideCircles();
 
+        //init box with name and set this boxcontroller to the size and position of the box
+        box.setName(name.getText());
         this.setLayoutX(box.getPosition().getX(Scale.Frontend));
         this.setLayoutY(box.getPosition().getY(Scale.Frontend));
+        this.setWidth(box.getWidthAndHeight().getX(Scale.Frontend));
+        this.setHeight(box.getWidthAndHeight().getY(Scale.Frontend));
 
         //dont ask rezises namefield to fit whole name
         nameField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                nameField.setPrefWidth(TextUtils.computeTextWidth(nameField.getFont(), nameField.getText(), 0.0D) + 20);
+                double width = TextUtils.computeTextWidth(nameField.getFont(), nameField.getText(), 0.0D) + 20;
+                nameField.setPrefWidth(width);
+                updateLines(width);
             }
         });
 
@@ -115,6 +121,14 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         box.subscribe(this);
     }
 
+    private void updateLines(double width){
+        width=Math.max(width+3,90);
+        width=Math.max(width,(int)this.getWidth()-3);
+        line.setStartX(0);
+        line1.setStartX(0);
+        line.setEndX(width);
+        line1.setEndX(width);
+    }
     private Point lastSize = null;
     private void updateAnchorPoints() {
 
@@ -147,7 +161,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
             AnchorPane.setBottomAnchor(point, -5.0);
             anchorPoints.add(point);
         }
-        /*//left anchors
+        //left anchors
         for(int i = Scale.Frontend.yScale;i<box.getWidthAndHeight().getY(Scale.Frontend);i+=Scale.Frontend.yScale){
             AnchorPointController point = new AnchorPointController();
             this.getChildren().add(point);
@@ -164,7 +178,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
             point.setLayoutY(i-5);
             AnchorPane.setRightAnchor(point, -7.5);
             anchorPoints.add(point);
-        }*/
+        }
 
         hideCircles();
     }

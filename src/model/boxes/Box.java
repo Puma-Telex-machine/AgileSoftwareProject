@@ -16,7 +16,10 @@ import java.util.*;
  * Expanded by Filip Hanberg.
  */
 public class Box implements BoxFacade, UiObserver {
-    private static final int SYMBOLS_PER_WIDTH_UNIT = 10;
+    private static final double SYMBOLS_PER_WIDTH_UNIT = 0.3;
+    private static final int START_HEIGHT = 3;
+    private static final int START_WIDTH = 3;
+    private static final double ROWS_PER_HEIGHT_UNIT = 0.4999;
 
     private String name;
     private final BoxType type;
@@ -26,7 +29,7 @@ public class Box implements BoxFacade, UiObserver {
     private Visibility visibility = Visibility.PUBLIC;
     private ScaledPoint position;
     private final IDiagram diagram;
-    private final int MAGICNUMBERTEST = 2;
+
 
     public Box(IDiagram diagram, ScaledPoint position, BoxType type) {
         this.name = switch (type) {
@@ -149,12 +152,19 @@ public class Box implements BoxFacade, UiObserver {
     }
 
     private int getHeight() {
-        return getMethods().size() + getAttributes().size() + MAGICNUMBERTEST;
+
+
+        //+1 to round up.
+        int height = (int) ((getMethods().size() + getAttributes().size()) * ROWS_PER_HEIGHT_UNIT) + START_HEIGHT +1;
+        //class does not have type identifier
+        if(type==BoxType.CLASS) height--;
+        return height;
     }
 
     private int getWidth() {
         ArrayList<String> names = new ArrayList<>();
 
+        //todo this does not get the true length of a method or variable
         names.add(name);
         for (MethodFacade method : methods) {
             names.add(method.getName());
@@ -170,7 +180,7 @@ public class Box implements BoxFacade, UiObserver {
 
         int maxLength = Collections.max(longest);
 
-        return maxLength * SYMBOLS_PER_WIDTH_UNIT;
+        return Math.max((int)(maxLength * SYMBOLS_PER_WIDTH_UNIT )+1, START_WIDTH);
     }
 
 

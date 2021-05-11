@@ -6,8 +6,8 @@
       <change beforePath="$PROJECT_DIR$/diagrams/untitled.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/untitled.uml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BoxController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/view/Box.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Box.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/BoxAttributeText.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/BoxAttributeText.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/boxes/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/point/ScaledPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/point/ScaledPoint.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +140,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/frontend/BoxController.java</url>
-          <line>123</line>
+          <line>136</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
