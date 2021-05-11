@@ -73,4 +73,7 @@ public class ScaledPoint implements Comparable<ScaledPoint> {
         }
         return false;
     }
+    public Point getPoint(Scale scale){
+        return new Point(getX(scale),getY(scale));
+    }
 }

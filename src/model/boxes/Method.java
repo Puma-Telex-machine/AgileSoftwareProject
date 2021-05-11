@@ -116,4 +116,24 @@ public class Method implements MethodFacade, UiObservable {
     public void subscribe(UiObserver observer) {
        this.observer = observer;
     }
+
+    @Override
+    public String getString(){
+        String method = "";
+        method += Visibility.getString(visibility);
+        method += " ";
+        method += name;
+        method += " (";
+        List<String> param = parameters;
+        for (int j = 0; j < param.size(); j++) {
+            method += param.get(j);
+
+            if (j + 1 != param.size())
+                method += ", ";
+        }
+        method += ") : ";
+        method += returnType;
+
+        return method;
+    }
 }

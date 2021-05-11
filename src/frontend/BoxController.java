@@ -3,6 +3,8 @@ package frontend;
 import frontend.Observers.ArrowObservable;
 import frontend.Observers.ArrowObserver;
 import frontend.Observers.UiObserver;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -10,24 +12,22 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
-import javafx.scene.shape.Box;
-import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextBoundsType;
 import model.MethodData;
-//import model.VariableData;
 import model.VariableData;
-import model.boxes.BoxType;
-import model.boxes.Method;
 import model.boxes.Visibility;
 import model.facades.AttributeFacade;
 import model.facades.BoxFacade;
 import model.facades.MethodFacade;
 import model.point.Scale;
 import model.point.ScaledPoint;
+import com.sun.javafx.scene.control.skin.Utils;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.*;
 import java.util.List;
 
@@ -41,6 +41,8 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
     private Label name, identifier;
     @FXML
     private VBox methods, variables, vBox;
+    @FXML
+    private Line line,line1;
 
     //for dragging box when editing name
     @FXML
@@ -76,9 +78,11 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         switch (box.getType()) {
             case CLASS:
                 //remove typeidentifier and move components to work accordingly
-                blockpane1.setLayoutY(0);
+                //todo check that this works
+                blockpane1.setLayoutY(7);
                 blockpane2.setLayoutY(26);
-                nameField.setLayoutY(1);
+                nameField.setLayoutY(7);
+                vBox.setLayoutY(7);
                 vBox.getChildren().remove(identifier);
                 break;
             case INTERFACE:
@@ -96,41 +100,88 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         this.box = box;
         hideCircles();
 
+        //init box with name and set this boxcontroller to the size and position of the box
+        box.setName(name.getText());
         this.setLayoutX(box.getPosition().getX(Scale.Frontend));
         this.setLayoutY(box.getPosition().getY(Scale.Frontend));
+        this.setWidth(box.getWidthAndHeight().getX(Scale.Frontend));
+        this.setHeight(box.getWidthAndHeight().getY(Scale.Frontend));
 
-        initAnchors();
+        //dont ask rezises namefield to fit whole name
+        nameField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                double width = TextUtils.computeTextWidth(nameField.getFont(), nameField.getText(), 0.0D) + 20;
+                nameField.setPrefWidth(width);
+                updateLines(width);
+            }
+        });
+
+
+        update();
+
         box.subscribe(this);
     }
 
-    private void initAnchors() {
-        //todo add dynamicly
-        AnchorPointController p1 = new AnchorPointController();
-        AnchorPointController p2 = new AnchorPointController();
-        AnchorPointController p3 = new AnchorPointController();
-        AnchorPointController p4 = new AnchorPointController();
-        this.getChildren().add(p1);
-        this.getChildren().add(p2);
-        this.getChildren().add(p3);
-        this.getChildren().add(p4);
+    private void updateLines(double width){
+        width=Math.max(width+3,90);
+        width=Math.max(width,(int)this.getWidth()-3);
+        line.setStartX(0);
+        line1.setStartX(0);
+        line.setEndX(width);
+        line1.setEndX(width);
+    }
+    private Point lastSize = null;
+    private void updateAnchorPoints() {
 
-        p2.rotateProperty().setValue(180);
-        p3.rotateProperty().setValue(270);
-        p4.rotateProperty().setValue(90);
+        //no update if size not changed
+        Point size = box.getWidthAndHeight().getPoint(Scale.Frontend);
+        if(lastSize!=null&&lastSize.equals(size)) return;
 
+        lastSize = box.getWidthAndHeight().getPoint(Scale.Frontend);
 
-        p1.setLayoutX(75-7.5);
-        AnchorPane.setTopAnchor(p1, -5.0);
-        p2.setLayoutX(75-7.5);
-        AnchorPane.setBottomAnchor(p2, -5.0);
-        p3.setLayoutY(77/2-5);
-        AnchorPane.setLeftAnchor(p3, -7.5);
-        p4.setLayoutY(77/2-5);
-        AnchorPane.setRightAnchor(p4, -7.5);
-        anchorPoints.add(p1);
-        anchorPoints.add(p2);
-        anchorPoints.add(p3);
-        anchorPoints.add(p4);
+        for (AnchorPane anchor:anchorPoints) {
+            this.getChildren().remove(anchor);
+        }
+        anchorPoints.clear();
+
+        //top anchors
+        for(int i = Scale.Frontend.xScale;i<box.getWidthAndHeight().getX(Scale.Frontend);i+=Scale.Frontend.xScale){
+            AnchorPointController point = new AnchorPointController();
+            this.getChildren().add(point);
+            point.setLayoutX(i-7.5);
+            AnchorPane.setTopAnchor(point, -5.0);
+            anchorPoints.add(point);
+        }
+
+        //bottom anchors
+        for(int i = Scale.Frontend.xScale;i<box.getWidthAndHeight().getX(Scale.Frontend);i+=Scale.Frontend.xScale){
+            AnchorPointController point = new AnchorPointController();
+            this.getChildren().add(point);
+            point.rotateProperty().setValue(180);
+            point.setLayoutX(i-7.5);
+            AnchorPane.setBottomAnchor(point, -5.0);
+            anchorPoints.add(point);
+        }
+        //left anchors
+        for(int i = Scale.Frontend.yScale;i<box.getWidthAndHeight().getY(Scale.Frontend);i+=Scale.Frontend.yScale){
+            AnchorPointController point = new AnchorPointController();
+            this.getChildren().add(point);
+            point.rotateProperty().setValue(270);
+            point.setLayoutY(i-5);
+            AnchorPane.setLeftAnchor(point, -7.5);
+            anchorPoints.add(point);
+        }
+        //right anchors
+        for(int i = Scale.Frontend.yScale;i<box.getWidthAndHeight().getY(Scale.Frontend);i+=Scale.Frontend.yScale){
+            AnchorPointController point = new AnchorPointController();
+            this.getChildren().add(point);
+            point.rotateProperty().setValue(90);
+            point.setLayoutY(i-5);
+            AnchorPane.setRightAnchor(point, -7.5);
+            anchorPoints.add(point);
+        }
+
         hideCircles();
     }
 
@@ -158,22 +209,19 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         double posX=0;
         double posY=0;
         //move X
-        if (this.getLayoutX() + event.getX() - offsetX < 0) {
-            posX=0;
-        }
-        else{
+        if (this.getLayoutX() + event.getX() - offsetX > 0) {
             posX=this.getLayoutX()+ event.getX() - offsetX;
         }
         //move Y
-        if (this.getLayoutY() + event.getY() - offsetY < 0) {
-            posY=0;
+        if (this.getLayoutY() + event.getY() - offsetY > 0) {
+            posY = this.getLayoutY()+ event.getY() - offsetY;
         }
-        else{
-            posY=this.getLayoutY()+ event.getY() - offsetY;
-        }
+
+        //todo this needs testing and refining
         this.setLayoutX(posX);
         this.setLayoutY(posY);
         box.setPosition(new ScaledPoint(Scale.Frontend,posX,posY));
+
 
         notifyBoxDrag();
 
@@ -356,6 +404,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         blockpane2.toBack();
         name.setText(nameField.getText());
         this.requestFocus();
+        update();
     }
 
     /**
@@ -400,21 +449,15 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      */
     public void update() {
 
-        variables.getChildren().setAll(new ArrayList<AnchorPane>(0));
-        methods.getChildren().setAll(new ArrayList<AnchorPane>(0));
+        System.out.println("update");
+        variables.getChildren().clear();
+        methods.getChildren().clear();
 
         List<AttributeFacade> variableData = box.getAttributes();
         List<MethodFacade> methodData = box.getMethods();
 
         for (int i = 0; i < variableData.size(); i++) {
-            String variable = "";
-            variable += attributeVisString(variableData.get(i).getVisibility());
-            variable += " ";
-            variable += variableData.get(i).getName();
-            variable += ": ";
-            variable += variableData.get(i).getType();
-
-            BoxAttributeTextController attribute = new BoxAttributeTextController(variable);
+            BoxAttributeTextController attribute = new BoxAttributeTextController( variableData.get(i).getString());
             variables.getChildren().add(attribute);
             AttributeFacade var = variableData.get(i);
             attribute.setOnMousePressed((Action) -> editVariable(var, attribute));
@@ -422,51 +465,58 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         }
 
         for (int i = 0; i < methodData.size(); i++) {
-            String method = "";
-            method += attributeVisString(methodData.get(i).getVisibility());
-            method += " ";
-            method += methodData.get(i).getName();
-            method += " (";
-            List<String> param = methodData.get(i).getArguments();
-            for (int j = 0; j < param.size(); j++) {
-                method += param.get(j);
-
-                if (j + 1 != param.size())
-                    method += ", ";
-            }
-            method += ") : ";
-            method += methodData.get(i).getType();
-
-            BoxAttributeTextController attribute = new BoxAttributeTextController(method);
+            BoxAttributeTextController attribute = new BoxAttributeTextController(methodData.get(i).getString());
             methods.getChildren().add(attribute);
             MethodFacade met = methodData.get(i);
             attribute.setOnMousePressed((Action) -> editMethod(met, attribute));
         }
+
+        //set box size
+        this.setWidth(box.getWidthAndHeight().getX(Scale.Frontend));
+        this.setHeight(box.getWidthAndHeight().getY(Scale.Frontend));
+        line.setEndX(this.getWidth());
+        line1.setEndX(this.getWidth());
+
+
+
+        updateAnchorPoints();
     }
 
-    /**
-     * Returns the right sign for the visibility
-     *
-     * @param visibility
-     * @return
-     */
-    private String attributeVisString(Visibility visibility) {
-        String ret = "";
-        switch (visibility) {
-            case PUBLIC:
-                ret = "+";
-                break;
-            case PRIVATE:
-                ret = "-";
-                break;
-            case PROTECTED:
-                ret = "#";
-                break;
-            case PACKAGE_PRIVATE:
-                ret = "~";
-                break;
-        }
+}
 
-        return ret;
+
+//dont mind this
+class TextUtils {
+
+    static final Text helper;
+    static final double DEFAULT_WRAPPING_WIDTH;
+    static final double DEFAULT_LINE_SPACING;
+    static final String DEFAULT_TEXT;
+    static final TextBoundsType DEFAULT_BOUNDS_TYPE;
+    static {
+        helper = new Text();
+        DEFAULT_WRAPPING_WIDTH = helper.getWrappingWidth();
+        DEFAULT_LINE_SPACING = helper.getLineSpacing();
+        DEFAULT_TEXT = helper.getText();
+        DEFAULT_BOUNDS_TYPE = helper.getBoundsType();
+    }
+
+    public static double computeTextWidth(Font font, String text, double help0) {
+        // Toolkit.getToolkit().getFontLoader().computeStringWidth(field.getText(),
+        // field.getFont());
+
+        helper.setText(text);
+        helper.setFont(font);
+
+        helper.setWrappingWidth(0.0D);
+        helper.setLineSpacing(0.0D);
+        double d = Math.min(helper.prefWidth(-1.0D), help0);
+        helper.setWrappingWidth((int) Math.ceil(d));
+        d = Math.ceil(helper.getLayoutBounds().getWidth());
+
+        helper.setWrappingWidth(DEFAULT_WRAPPING_WIDTH);
+        helper.setLineSpacing(DEFAULT_LINE_SPACING);
+        helper.setText(DEFAULT_TEXT);
+        return d;
     }
 }

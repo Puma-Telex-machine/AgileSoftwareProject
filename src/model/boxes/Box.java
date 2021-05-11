@@ -16,7 +16,12 @@ import java.util.*;
  * Expanded by Filip Hanberg.
  */
 public class Box implements BoxFacade, UiObserver {
-    private static final int SYMBOLS_PER_WIDTH_UNIT = 10;
+    //different fontsize on name and other
+    private static final double SYMBOLS_PER_WIDTH_UNIT_NAME = 0.3;
+    private static final double SYMBOLS_PER_WIDTH_UNIT_OTHER = 0.2;
+    private static final int START_HEIGHT = 3;
+    private static final int START_WIDTH = 3;
+    private static final double ROWS_PER_HEIGHT_UNIT = 0.4999;
 
     private String name;
     private final BoxType type;
@@ -26,7 +31,7 @@ public class Box implements BoxFacade, UiObserver {
     private Visibility visibility = Visibility.PUBLIC;
     private ScaledPoint position;
     private final IDiagram diagram;
-    private final int MAGICNUMBERTEST = 2;
+
 
     public Box(IDiagram diagram, ScaledPoint position, BoxType type) {
         this.name = switch (type) {
@@ -143,33 +148,43 @@ public class Box implements BoxFacade, UiObserver {
     }
 
     @Override
+    //todo returns wrong height
     public ScaledPoint getWidthAndHeight() {
         return new ScaledPoint(Scale.Backend, getWidth(), getHeight());
     }
 
     private int getHeight() {
-        return getMethods().size() + getAttributes().size() + MAGICNUMBERTEST;
+
+        if((getMethods().size() + getAttributes().size()==0)) return START_HEIGHT;
+        //+1 to round up.
+        int height = (int) ((getMethods().size() + getAttributes().size()) * ROWS_PER_HEIGHT_UNIT) + START_HEIGHT +1;
+
+        return height;
     }
 
     private int getWidth() {
         ArrayList<String> names = new ArrayList<>();
 
-        names.add(name);
         for (MethodFacade method : methods) {
-            names.add(method.getName());
+            names.add(method.getString());
         }
         for (AttributeFacade attribute : attributes) {
-            names.add(attribute.getName());
+            names.add(attribute.getString());
         }
 
-        ArrayList<Integer> longest = new ArrayList<>();
-        for (String n : names) {
-            longest.add(n.length());
+        int maxLength = 0;
+        if(!names.isEmpty()){
+            ArrayList<Integer> longest = new ArrayList<>();
+            for (String n : names) {
+                longest.add(n.length());
+            }
+
+            maxLength = Collections.max(longest);
         }
-
-        int maxLength = Collections.max(longest);
-
-        return 5; //maxLength * SYMBOLS_PER_WIDTH_UNIT;
+        if(maxLength<name.length()){
+            return Math.max((int)(name.length() * SYMBOLS_PER_WIDTH_UNIT_NAME )+1, START_WIDTH);
+        }
+        return Math.max((int)(maxLength * SYMBOLS_PER_WIDTH_UNIT_OTHER)+1, START_WIDTH);
     }
 
 
