@@ -40,7 +40,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
         observers.forEach(observer -> observer.addBox(new Box(diagram, position, boxType)));
     }
 	
-	public void addRelation(BoxFacade from,ScaledPoint offsetFrom, BoxFacade to,ScaledPoint offsetTo, ArrowType arrowType) {
+	public void addRelation(BoxFacade from, ScaledPoint offsetFrom, BoxFacade to, ScaledPoint offsetTo, ArrowType arrowType) {
         Relation relation = new Relation(from, to, arrowType);
         diagram.add(relation);
         observers.forEach(observer -> observer.addRelation(relation));
@@ -57,7 +57,6 @@ public class Model implements ModelFacade, FileHandlerFacade {
         for (Box box : diagram.getAllBoxes()) {
             observers.forEach(observer -> observer.addBox(box));
         }
-        //TODO: Sätt i databasen: System.out.println("loaded " + name);
     }
 
     public void loadTemplate(String fileName){
@@ -65,13 +64,12 @@ public class Model implements ModelFacade, FileHandlerFacade {
         for(Box box : template.getAllBoxes()){
             observers.forEach(observer -> observer.addBox(box));
         }
-        //TODO: Sätt i databasen: System.out.println("loaded template " + fileName);
     }
 
     @Override
     public void newFile() {
         diagram.setName(Database.newFile());
-        if(diagram.getName() != null) //TODO: Samma som förra
+        if(diagram.getName() != null)
             loadFile(diagram.getName());
     }
 
@@ -79,8 +77,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
      * get all relations this box interacts with
      */
     public List<Relation> getRelations(BoxFacade box){
-        //todo
-        return new ArrayList<>();
+        //todo (kanske)
+        return diagram.getAllRelations();
     }
-
 }
