@@ -217,9 +217,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
             posY = this.getLayoutY()+ event.getY() - offsetY;
         }
 
-
-
-
         int x = new ScaledPoint(Scale.Frontend,posX,posY).getX(Scale.Frontend);
         int y = new ScaledPoint(Scale.Frontend,posX,posY).getY(Scale.Frontend);
 
@@ -472,6 +469,8 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         //set box size
         this.setWidth(box.getWidthAndHeight().getX(Scale.Frontend));
         this.setHeight(box.getWidthAndHeight().getY(Scale.Frontend));
+        this.setLayoutY(box.getPosition().getY(Scale.Frontend));
+        this.setLayoutX(box.getPosition().getX(Scale.Frontend));
         line.setEndX(this.getWidth());
         line1.setEndX(this.getWidth());
 
