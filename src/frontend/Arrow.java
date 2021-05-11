@@ -39,7 +39,7 @@ public class Arrow extends AnchorPane{
         endline = new Line();
 
         if (bends.size() >= 1) {
-            //all bends
+            //todo lines intersect at bendpoints (when line is straight this looks bad)
             for (int i = 1; i < bends.size()-1; i++) {
                 Line l = new Line();
                 lines.add(l);

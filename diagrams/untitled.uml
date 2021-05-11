@@ -1,50 +1,12 @@
 <BOX>
-  name=Classasdaasdasdasdasdasdasdasdasd
-  xposition=10
+  name=Class
+  xposition=18
+  yposition=7
+  visibility=PUBLIC
+<!BOX>
+<BOX>
+  name=Class
+  xposition=27
   yposition=5
   visibility=PUBLIC
-  <METHOD>
-    name=method
-    visibility=PUBLIC
-  <!METHOD>
-  <METHOD>
-    name=method
-    visibility=PUBLIC
-  <!METHOD>
-  <METHOD>
-    name=method
-    visibility=PUBLIC
-  <!METHOD>
-  <METHOD>
-    name=method
-    visibility=PUBLIC
-  <!METHOD>
-  <METHOD>
-    name=method
-    visibility=PUBLIC
-  <!METHOD>
-  <METHOD>
-    name=method
-    visibility=PUBLIC
-  <!METHOD>
-  <METHOD>
-    name=method
-    visibility=PUBLIC
-  <!METHOD>
-  <ATTRIBUTE>
-    name=foo
-    visibility=PRIVATE
-  <!ATTRIBUTE>
-  <ATTRIBUTE>
-    name=foo
-    visibility=PRIVATE
-  <!ATTRIBUTE>
-  <ATTRIBUTE>
-    name=foo
-    visibility=PRIVATE
-  <!ATTRIBUTE>
-  <ATTRIBUTE>
-    name=foo
-    visibility=PRIVATE
-  <!ATTRIBUTE>
 <!BOX>
