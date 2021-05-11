@@ -8,5 +8,4 @@ import java.awt.*;
 
 public interface ArrowObservable {
     void notifyArrowEvent(MouseEvent e);
-    void notifyBoxDrag();
 }

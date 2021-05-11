@@ -9,4 +9,5 @@ public interface RelationFacade {
     ArrayList<ScaledPoint> getPath();
     ArrowType getArrowType();
     void changeRelation(ArrowType type);
+    void subscribe(RelationObserver observer);
 }

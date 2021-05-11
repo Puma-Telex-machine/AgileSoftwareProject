@@ -13,6 +13,7 @@ import model.boxes.BoxType;
 import model.facades.Observer;
 import model.facades.BoxFacade;
 import model.facades.RelationFacade;
+import model.facades.RelationObserver;
 import model.point.Scale;
 import model.point.ScaledPoint;
 import model.relations.ArrowType;
@@ -22,7 +23,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
-public class CanvasController extends AnchorPane implements Observer, ArrowObserver {
+public class CanvasController extends AnchorPane implements Observer, ArrowObserver, RelationObserver {
 
     VariableEditorController variableEditor;
     MethodEditorController methodEditor;
@@ -116,6 +117,17 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
 
     @Override
     public void addRelation(RelationFacade relation) {
+       relation.subscribe(this);
+       addArrow(relation);
+    }
+
+    @Override
+    public void updateRelation(RelationFacade relation){
+        removeRelation(relation);
+        addArrow(relation);
+    }
+
+    private void addArrow(RelationFacade relation){
         List<ScaledPoint> bends = relation.getPath();
         ScaledPoint last = bends.get(bends.size() - 1);
         ScaledPoint first = bends.get(0);
@@ -131,24 +143,13 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         relationMap.put(relation,newArrow);
         arrows.add(newArrow);
     }
+
     private void removeRelation(RelationFacade r){
         Arrow arrow = relationMap.get(r);
         this.getChildren().remove(arrow);
         arrows.remove(arrow);
         relationMap.remove(arrow);
         arrowMap.remove(r);
-    }
-
-    @Override
-    public void boxDrag(BoxFacade box) {
-        List<Relation> relations = model.getRelations(box);
-        //for all relations going out or into box
-        for (Relation r:relations) {
-            //remove old arrow
-            removeRelation(r);
-            //add new arrow
-            addRelation(r);
-        }
     }
 
     /**

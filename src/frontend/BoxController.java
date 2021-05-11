@@ -217,12 +217,12 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
             posY = this.getLayoutY()+ event.getY() - offsetY;
         }
 
-        //todo this needs testing and refining
-        this.setLayoutX(posX);
-        this.setLayoutY(posY);
+        int x = new ScaledPoint(Scale.Frontend,posX,posY).getX(Scale.Frontend);
+        int y = new ScaledPoint(Scale.Frontend,posX,posY).getY(Scale.Frontend);
 
 
-        notifyBoxDrag();
+        this.setLayoutX(x);
+        this.setLayoutY(y);
 
         event.consume();
     }
@@ -383,10 +383,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         e.consume();
     }
 
-    @Override
-    public void notifyBoxDrag() {
-        arrowObserver.boxDrag(box);
-    }
     //endregion
     //region name
 

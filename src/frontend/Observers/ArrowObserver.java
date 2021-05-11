@@ -6,5 +6,4 @@ import java.awt.*;
 
 public interface ArrowObserver {
     void arrowEvent(Point p, BoxController box);
-    void boxDrag(BoxFacade box);
 }
