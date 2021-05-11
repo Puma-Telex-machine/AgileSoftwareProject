@@ -150,6 +150,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         arrows.remove(arrow);
         relationMap.remove(arrow);
         arrowMap.remove(r);
+        model.removeRelation(r);
     }
 
     /**
