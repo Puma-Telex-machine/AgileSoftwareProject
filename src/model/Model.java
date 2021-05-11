@@ -45,6 +45,9 @@ public class Model implements ModelFacade, FileHandlerFacade {
         diagram.add(relation);
         observers.forEach(observer -> observer.addRelation(relation));
     }
+    public void removeRelation(RelationFacade relation){
+        //todo
+    }
 
     @Override
     public String[] getAllFileNames() {
