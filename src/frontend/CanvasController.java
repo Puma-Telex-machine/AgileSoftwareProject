@@ -17,7 +17,6 @@ import model.facades.RelationObserver;
 import model.point.Scale;
 import model.point.ScaledPoint;
 import model.relations.ArrowType;
-import model.relations.Relation;
 import java.awt.*;
 import java.io.IOException;
 import java.util.*;

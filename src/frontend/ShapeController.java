@@ -37,6 +37,16 @@ public class ShapeController extends AnchorPane {
     }
 
     @FXML
+    private void addTemplate(){
+        //model.addTemplate(canvas.getMiddle());
+    }
+
+    @FXML
+    private void saveTemplate(){
+        //hämta template från en lista av sparade templates
+    }
+
+    @FXML
     private void minimize(){
         this.toBack();
         this.setVisible(false);
