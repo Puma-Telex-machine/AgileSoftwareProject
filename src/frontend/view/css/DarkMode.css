@@ -65,6 +65,12 @@
     -fx-border-color: "#000000";
     -fx-border-width: 1;
 }
+
+.border-selected {
+    -fx-border-color: "#AAAAAA";
+    -fx-border-width: 2;
+}
+
 .fill-light{
     -fx-fill: "DBDBDB";
     -fx-border-color: "#000000";

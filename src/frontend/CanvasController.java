@@ -285,6 +285,9 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
 
     //endregion
 
+    /**
+     * Deletes all the boxes on the current canvas
+     */
     public void clearBoxes() {
         List<BoxController> tmp = boxes;
         for (int i = 0; i < tmp.size(); i++) {
@@ -327,6 +330,19 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     }
 
     /**
+     * Clears the selection list
+     */
+    private void clearSelection()
+    {
+        for (int i = 0; i < selection.size(); i++)
+        {
+            selection.get(i).getStyleClass().remove("border-selected");
+            selection.get(i).getStyleClass().add("border");
+        }
+        selection.clear();
+    }
+
+    /**
      * Deletes the box
      * @param box
      */
@@ -343,7 +359,10 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
      */
     public void pressedBox(BoxController box)
     {
-        if(!multiSelect) selection.clear();
+        if(!multiSelect)
+            clearSelection();
         selection.add(box);
+        box.getStyleClass().remove("border");
+        box.getStyleClass().add("border-selected");
     }
 }
