@@ -22,13 +22,13 @@ public class Attribute implements AttributeFacade, UiObservable {
     @Override
     public void setName(String name) {
         this.name = name;
-        observer.update();
+        update();
     }
 
     @Override
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
-        observer.update();
+        update();
     }
 
     /**
@@ -38,7 +38,7 @@ public class Attribute implements AttributeFacade, UiObservable {
     @Override
     public void addModifier(Modifier modifier) {
         modifiers.add(modifier);
-        observer.update();
+        update();
     }
 
     /**
@@ -48,7 +48,7 @@ public class Attribute implements AttributeFacade, UiObservable {
     @Override
     public void removeModifier(Modifier modifier) {
         modifiers.remove(modifier);
-        observer.update();
+        update();
     }
 
     @Override
@@ -59,7 +59,7 @@ public class Attribute implements AttributeFacade, UiObservable {
     @Override
     public void setType(String type) {
         this.type = type;
-        observer.update();
+        update();
     }
 
     @Override
@@ -89,8 +89,22 @@ public class Attribute implements AttributeFacade, UiObservable {
     }
 
     UiObserver observer;
+    private Boolean ignoreObserver = false; //used by database
     @Override
     public void subscribe(UiObserver observer) {
         this.observer = observer;
+    }
+
+    public void ignoreObserver(){
+        ignoreObserver = true;
+    }
+
+    public void stopIgnore(){
+        ignoreObserver = false;
+    }
+
+    private void update(){
+        if(!ignoreObserver)
+            observer.update();
     }
 }

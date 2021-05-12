@@ -60,13 +60,18 @@ public class Model implements ModelFacade, FileHandlerFacade {
         for (Box box : diagram.getAllBoxes()) {
             observers.forEach(observer -> observer.addBox(box));
         }
-        //TODO: Sätt i databasen: System.out.println("loaded " + name);
+        for (Relation relation : diagram.getAllRelations()){
+            observers.forEach(observer -> observer.addRelation(relation));
+        }
     }
 
     public void loadTemplate(String fileName){
         Diagram template = Database.loadDiagram("templates/", fileName);
         for(Box box : template.getAllBoxes()){
             observers.forEach(observer -> observer.addBox(box));
+        }
+        for (Relation relation: template.getAllRelations()) {
+            observers.forEach(observer -> observer.addRelation(relation));
         }
         //TODO: Sätt i databasen: System.out.println("loaded template " + fileName);
     }
