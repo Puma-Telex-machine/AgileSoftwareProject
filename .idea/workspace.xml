@@ -6,6 +6,8 @@
       <change beforePath="$PROJECT_DIR$/diagrams/untitled.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/untitled.uml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/CanvasController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/facades/RelationFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/facades/RelationFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/relations/Relation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/Relation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +107,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="" />
+      <changelist id="41a11e1e-bf49-4b51-8834-c840eb7c8781" name="Default Changelist" comment="" />
       <created>1618909634565</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />

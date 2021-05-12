@@ -44,6 +44,8 @@ public class Relation implements RelationFacade {
     public BoxFacade getTo() {
         return to;
     }
+
+
     public BoxFacade getFrom() {
         return from;
     }

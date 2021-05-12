@@ -180,29 +180,36 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     //endregion
 
     //region Menus
-    private Arrow clickedArrow = null;
+    private List<Arrow> clickedArrow = new ArrayList<>();
 
     @FXML
     private void handleArrowMenu(MouseEvent e) {
-        if (makingArrow) {
-            makingArrow = false;
-            this.getChildren().remove(dragArrow);
-            e.consume();
-            return;
-        }
-        Arrow closest = null;
+        List<Arrow> closest = new ArrayList<>();
         double min = 10000;
         for (Arrow a : arrows) {
             double distance = a.getDistaceFromClick(e);
+            if(distance == min){
+                closest.add(a);
+            }
             if (distance < min) {
                 min = distance;
-                closest = a;
+                closest.clear();
+                closest.add(a);
             }
         }
         if (min <= 15) {
-            clickedArrow = closest;
-            arrowTypeComboBox.getSelectionModel().select(closest.getType());
-            openArrowMenu(e.getX(), e.getY());
+            //trying to merge dragarrow into existing arrow
+            if (makingArrow) {
+                ScaledPoint offset = new ScaledPoint (Scale.Frontend,(int) (arrowStart.getX()-arrowBox.getLayoutX()),(int) (arrowStart.getY()-arrowBox.getLayoutY()));
+                model.addRelation(arrowBox.getBox(),offset,arrowMap.get(closest.get(0)));
+                makingArrow = false;
+                this.getChildren().remove(dragArrow);
+            }
+            else{
+                clickedArrow = closest;
+                arrowTypeComboBox.getSelectionModel().select(closest.get(0).getType());
+                openArrowMenu(e.getX(), e.getY());
+            }
         }
         e.consume();
     }
@@ -241,8 +248,10 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
 
     @FXML
     private void deleteArrow(Event e) {
-        this.getChildren().remove(clickedArrow);
-        arrows.remove(clickedArrow);
+        for (Arrow a:clickedArrow) {
+            this.getChildren().remove(a);
+            arrows.remove(a);
+        }
         closeMenu(e);
         e.consume();
     }
@@ -250,8 +259,11 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     @FXML
     private void changeArrow(Event e) {
         ArrowType type = arrowTypeComboBox.getValue();
-        clickedArrow.setType(type);
-        arrowMap.get(clickedArrow).changeRelation(type);
+        for (Arrow a:clickedArrow) {
+            a.setType(type);
+            arrowMap.get(a).changeRelation(type);
+        }
+
         closeMenu(e);
         e.consume();
 

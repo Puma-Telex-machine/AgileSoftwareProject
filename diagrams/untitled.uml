@@ -1,45 +1,30 @@
 <BOX>
-  name=adasd
-  xposition=27
-  yposition=5
+  name=Class
+  xposition=16
+  yposition=13
   visibility=PUBLIC
-  <METHOD>
-    name=method
-    visibility=PUBLIC
-    <PARAMETER>
-    name=asdasdasdasdasdasdajlnsdjasbkdbhkasd
-      name=foo
-      visibility=PRIVATE
-    <!PARAMETER>
-  <!METHOD>
-  <METHOD>
-    name=method
-    visibility=PUBLIC
-  <!METHOD>
-  <METHOD>
-    name=method
-    visibility=PUBLIC
-  <!METHOD>
-  <ATTRIBUTE>
-    name=foo
-    visibility=PRIVATE
-  <!ATTRIBUTE>
-  <ATTRIBUTE>
-    name=foo
-    visibility=PRIVATE
-  <!ATTRIBUTE>
-  <ATTRIBUTE>
-    name=foo
-    visibility=PRIVATE
-  <!ATTRIBUTE>
-  <ATTRIBUTE>
-    name=foo
-    visibility=PRIVATE
-  <!ATTRIBUTE>
 <!BOX>
 <BOX>
-  name=
-  xposition=15
-  yposition=10
+  name=Class
+  xposition=32
+  yposition=13
+  visibility=PUBLIC
+<!BOX>
+<BOX>
+  name=Class
+  xposition=6
+  yposition=11
+  visibility=PUBLIC
+<!BOX>
+<BOX>
+  name=Class
+  xposition=7
+  yposition=5
+  visibility=PUBLIC
+<!BOX>
+<BOX>
+  name=Class
+  xposition=35
+  yposition=4
   visibility=PUBLIC
 <!BOX>
