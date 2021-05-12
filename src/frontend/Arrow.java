@@ -12,6 +12,7 @@ import model.relations.ArrowType;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,11 +26,11 @@ public class Arrow extends AnchorPane{
     private ArrowType type;
     private List<ScaledPoint> bends;
 
-    public Arrow(ScaledPoint start, ScaledPoint end, List<ScaledPoint> bends) {
-        this(new Point(start.getX(Scale.Frontend),start.getY(Scale.Frontend)),new Point(end.getX(Scale.Frontend),end.getY(Scale.Frontend)),bends);
+    public Arrow(List<ScaledPoint> bends) {
+        this(bends.get(0).getPoint(Scale.Frontend),bends.get(bends.size()-1).getPoint(Scale.Frontend),bends);
     }
 
-    public Arrow(Point start, Point end, List<ScaledPoint> bends) {//),double offsetX,double offsetY){
+    public Arrow(Point start,Point end,List<ScaledPoint> bends) {
 
         this.startX = start.getX();
         this.startY = start.getY();
@@ -70,9 +71,8 @@ public class Arrow extends AnchorPane{
         this.getChildren().add(head);
 
         //if start=end glitches occur for head
-        if (!(start.getX() == end.getX() && start.getY() == end.getY())) {
+        if (!(startX == endX && startY == endY)) {
             setType(ArrowType.ASSOCIATION);
-
         }
     }
 

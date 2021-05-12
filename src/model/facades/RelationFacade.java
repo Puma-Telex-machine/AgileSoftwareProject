@@ -10,4 +10,6 @@ public interface RelationFacade {
     ArrowType getArrowType();
     void changeRelation(ArrowType type);
     void subscribe(RelationObserver observer);
+    BoxFacade getFrom();
+    BoxFacade getTo();
 }
