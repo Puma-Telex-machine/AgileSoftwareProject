@@ -41,7 +41,17 @@ public class Model implements ModelFacade, FileHandlerFacade {
     }
 	
 	public void addRelation(BoxFacade from,ScaledPoint offsetFrom, BoxFacade to,ScaledPoint offsetTo, ArrowType arrowType) {
+        //todo fix offset
         Relation relation = new Relation(from, to, arrowType);
+        diagram.add(relation);
+        observers.forEach(observer -> observer.addRelation(relation));
+    }
+    public void addRelation(BoxFacade from,ScaledPoint offsetFrom, RelationFacade followRelation) {
+        //todo fix offset (steal offset from followrelation or something)
+
+        //todo might need to save the data that this relation follows followRelation as viceversa
+        // since i should not be able to change type of one and they stay merged
+        Relation relation = new Relation(from, followRelation.getTo(), followRelation.getArrowType());
         diagram.add(relation);
         observers.forEach(observer -> observer.addRelation(relation));
     }
