@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="41a11e1e-bf49-4b51-8834-c840eb7c8781" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diagrams/untitled.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/untitled.uml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BoxController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/new.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/new.uml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/test.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/test.uml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/CanvasController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
