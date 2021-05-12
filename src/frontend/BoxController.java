@@ -480,6 +480,15 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
     {
         pressedListeners.add(listener);
     }
+
+    /**
+     * Deletes the box
+     */
+    public void deleteBox()
+    {
+        box.deleteBox();
+        //this.setVisible(false); //todo: Properly remove items here
+    }
 }
 
 

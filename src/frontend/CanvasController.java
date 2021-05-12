@@ -286,7 +286,6 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     //endregion
 
     public void clearBoxes() {
-        this.getChildren().removeAll();
         for (int i = 0; i < boxes.size(); i++) {
             deleteBox(boxes.get((i)));
         }
@@ -321,6 +320,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         {
             deleteBox(selection.get(i));
         }
+        selection.clear();
     }
 
     /**
@@ -329,7 +329,8 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
      */
     private void deleteBox(BoxController box)
     {
-        box.setVisible(false); //todo: Properly remove items here
+        this.getChildren().remove(box);
+        box.deleteBox();
     }
 
     /**
