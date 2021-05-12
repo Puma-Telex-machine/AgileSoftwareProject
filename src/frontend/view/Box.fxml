@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<fx:root maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#notifyArrowEvent" onMouseDragged="#handleDrag" onMouseEntered="#showCircles" onMouseExited="#hideCircles" onMouseMoved="#showCircles" onMouseReleased="#handleLetGo" prefWidth="150.0" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="nameField" layoutY="15.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#updateName" prefHeight="28.0" prefWidth="144.0" style="-fx-background-radius: 0; -fx-background-color: rgb(0,0,0,0);" styleClass="text-medium" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" />
+      <VBox prefHeight="75.0" prefWidth="150.0">
+         <children>
+            <Label fx:id="identifier" graphicTextGap="0.0" prefHeight="15.0" prefWidth="148.0" styleClass="text-small" text="&lt;&lt;Interface&gt;&gt;" />
+            <VBox fx:id="vBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="148.0" styleClass="box_clickable">
+               <children>
+                  <Label fx:id="name" alignment="BOTTOM_LEFT" layoutX="1.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" onDragDetected="#unableToChangeName" onMouseClicked="#changeName" onMouseReleased="#handleLetGo" prefHeight="32.0" prefWidth="147.0" text="Class">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="text-medium" />
+                        <String fx:value="box_clickable" />
+                     </styleClass>
+                  </Label>
+                  <Line fx:id="line" endX="148.0" />
+                  <VBox fx:id="methods" prefWidth="150.0" />
+                  <Label alignment="TOP_CENTER" onMouseClicked="#addMethod" prefWidth="150.0" text="+">
+                     <VBox.margin>
+                        <Insets left="60.0" right="60.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="text-small" />
+                        <String fx:value="box_clickable" />
+                     </styleClass>
+                  </Label>
+                  <Line fx:id="line1" endX="148.0" />
+                  <VBox fx:id="variables" prefWidth="149.0" />
+                  <Label alignment="TOP_CENTER" onMouseClicked="#addVariable" prefHeight="15.0" prefWidth="28.0" text="+">
+                     <VBox.margin>
+                        <Insets left="60.0" right="60.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="text-small" />
+                        <String fx:value="box_clickable" />
+                     </styleClass>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="1.0" />
+               </VBox.margin>
+            </VBox>
+         </children>
+      </VBox>
+      <AnchorPane fx:id="blockpane1" layoutY="15.0" onDragDetected="#handleDrag" prefHeight="10.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <AnchorPane fx:id="blockpane2" layoutY="36.0" onDragDetected="#handleDrag" prefHeight="9.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+   </children>
+   <styleClass>
+      <String fx:value="box" />
+      <String fx:value="border" />
+   </styleClass>
+</fx:root>
