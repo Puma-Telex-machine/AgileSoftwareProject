@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="">
+    <list default="true" id="41a11e1e-bf49-4b51-8834-c840eb7c8781" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/boxes/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/BoxGrid2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/BoxGrid2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/Diagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/Diagram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/IDiagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/IDiagram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/untitled.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/untitled.uml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Model.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BoxController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/CanvasController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +17,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -33,6 +32,11 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$PATH_TO_FX$/javafx.base.jar!/javafx/event/Event.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PATH_TO_FX$/javafx.graphics.jar!/javafx/scene/Scene.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PATH_TO_FX$/javafx.fxml.jar!/javafx/fxml/FXMLLoader.class" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectId" id="1rWF7l8QkerBb0EMeKy43SosIen" />
   <component name="ProjectViewState">
@@ -48,6 +52,7 @@
     <property name="project.structure.proportion" value="0.15625" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -123,5 +128,21 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/frontend/Arrow.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/frontend/BoxController.java</url>
+          <line>132</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
