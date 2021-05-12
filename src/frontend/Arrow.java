@@ -26,16 +26,16 @@ public class Arrow extends AnchorPane{
     private ArrowType type;
     private List<ScaledPoint> bends;
 
-    public Arrow(Point start,Point end) {
-        this(Arrays.asList(new ScaledPoint(Scale.Frontend,start.x,start.y),new ScaledPoint(Scale.Frontend,end.x,end.y)));
+    public Arrow(List<ScaledPoint> bends) {
+        this(bends.get(0).getPoint(Scale.Frontend),bends.get(bends.size()-1).getPoint(Scale.Frontend),bends);
     }
 
-    public Arrow(List<ScaledPoint> bends) {//),double offsetX,double offsetY){
+    public Arrow(Point start,Point end,List<ScaledPoint> bends) {
 
-        this.startX = bends.get(0).getX(Scale.Frontend);
-        this.startY = bends.get(0).getY(Scale.Frontend);
-        this.endX = bends.get(bends.size()-1).getX(Scale.Frontend);
-        this.endY = bends.get(bends.size()-1).getY(Scale.Frontend);
+        this.startX = start.getX();
+        this.startY = start.getY();
+        this.endX = end.getX();
+        this.endY = end.getY();
         this.bends = bends;
         endline = new Line();
 

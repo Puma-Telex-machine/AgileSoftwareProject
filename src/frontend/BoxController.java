@@ -215,8 +215,8 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         int y = new ScaledPoint(Scale.Frontend,posX,posY).getY(Scale.Frontend);
 
 
-        this.setLayoutX(x);
-        this.setLayoutY(y);
+        this.setLayoutX(x+1);
+        this.setLayoutY(y+1);
 
         event.consume();
     }
@@ -230,9 +230,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
     private void handleLetGo(MouseEvent event) {
         moving = false;
         box.setPosition(new ScaledPoint(Scale.Frontend, (int) this.getLayoutX(), (int) this.getLayoutY()));
-        //for snap to grid
-        this.setLayoutX(box.getPosition().getX(Scale.Frontend));
-        this.setLayoutY(box.getPosition().getY(Scale.Frontend));
         event.consume();
     }
     //endregion
