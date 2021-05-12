@@ -177,6 +177,12 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         e.consume();
     }
 
+    private void removeDragArrow(){
+        makingArrow = false;
+        toggleAnchorPoints();
+        this.getChildren().remove(dragArrow);
+    }
+
     //endregion
 
     //region Menus
@@ -202,8 +208,6 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
             if (makingArrow) {
                 ScaledPoint offset = new ScaledPoint (Scale.Frontend,(int) (arrowStart.getX()-arrowBox.getLayoutX()),(int) (arrowStart.getY()-arrowBox.getLayoutY()));
                 model.addRelation(arrowBox.getBox(),offset,arrowMap.get(closest.get(0)));
-                makingArrow = false;
-                this.getChildren().remove(dragArrow);
             }
             else{
                 clickedArrow = closest;
@@ -211,9 +215,11 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
                 openArrowMenu(e.getX(), e.getY());
             }
         }
+        if(makingArrow){
+            removeDragArrow();
+        }
         e.consume();
     }
-
 
     private void openArrowMenu(double x, double y) {
         menuPane.setVisible(true);
@@ -226,10 +232,9 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     @FXML
     private void handleContextMenu(ContextMenuEvent e) {
         if (makingArrow) {
-            makingArrow = false;
-            this.getChildren().remove(dragArrow);
-            e.consume();
-            return;
+           removeDragArrow();
+           e.consume();
+           return;
         }
         contextMenu.setLayoutX(e.getX());
         contextMenu.setLayoutY(e.getY());

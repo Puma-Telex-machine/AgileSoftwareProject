@@ -100,14 +100,11 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         this.box = box;
         hideCircles();
 
-        //init box with name and set this boxcontroller to the size and position of the box
+        //init box with name
         box.setName(name.getText());
-        this.setLayoutX(box.getPosition().getX(Scale.Frontend));
-        this.setLayoutY(box.getPosition().getY(Scale.Frontend));
-        this.setWidth(box.getWidthAndHeight().getX(Scale.Frontend));
-        this.setHeight(box.getWidthAndHeight().getY(Scale.Frontend));
+        update();
 
-        //dont ask rezises namefield to fit whole name
+        //rezises namefield to fit whole name
         nameField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -116,9 +113,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
                 updateLines(width);
             }
         });
-
-
-        update();
 
         box.subscribe(this);
     }
@@ -465,11 +459,11 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
             attribute.setOnMousePressed((Action) -> editMethod(met, attribute));
         }
 
-        //set box size
-        this.setWidth(box.getWidthAndHeight().getX(Scale.Frontend)-1);
-        this.setHeight(box.getWidthAndHeight().getY(Scale.Frontend)-1);
-        this.setLayoutY(box.getPosition().getY(Scale.Frontend));
-        this.setLayoutX(box.getPosition().getX(Scale.Frontend));
+        //set box size -2 +1 to make sure no overlap (border of 1px outside both sides and 1 extra since ending on 30 and starting on 30)
+        this.setWidth(box.getWidthAndHeight().getX(Scale.Frontend)-2);
+        this.setHeight(box.getWidthAndHeight().getY(Scale.Frontend)-2);
+        this.setLayoutY(box.getPosition().getY(Scale.Frontend)+1);
+        this.setLayoutX(box.getPosition().getX(Scale.Frontend)+1);
         line.setEndX(this.getWidth());
         line1.setEndX(this.getWidth());
 
