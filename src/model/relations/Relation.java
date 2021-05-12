@@ -12,14 +12,18 @@ import java.util.List;
 public class Relation implements RelationFacade {
     private final IDiagram diagram;
     private final BoxFacade to;
+    private ScaledPoint offsetTo;
     private final BoxFacade from;
+    private ScaledPoint offsetFrom;
     private ArrowType arrowType;
     private ArrayList<ScaledPoint> path;
 
-    public Relation(IDiagram diagram, BoxFacade from, BoxFacade to, ArrowType arrowType) {
+    public Relation(IDiagram diagram, BoxFacade from, ScaledPoint offsetFrom, BoxFacade to, ScaledPoint offsetTo, ArrowType arrowType) {
         this.diagram = diagram;
         this.from = from;
+        this.offsetFrom = offsetFrom;
         this.to = to;
+        this.offsetTo = offsetTo;
         this.arrowType = arrowType;
     }
 
@@ -39,11 +43,11 @@ public class Relation implements RelationFacade {
     //endregion
 
     public ScaledPoint getToPosition() {
-        return to.getPosition();
+        return to.getPosition().move(offsetTo);
     }
 
     public ScaledPoint getFromPosition() {
-        return from.getPosition();
+        return from.getPosition().move(offsetFrom);
     }
 
     @Override

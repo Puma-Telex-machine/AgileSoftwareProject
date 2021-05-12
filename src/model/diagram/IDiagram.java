@@ -10,5 +10,5 @@ public interface IDiagram {
     void updateRelation(Relation relation);
     void removeRelation(Relation relation);
     boolean isOccupied(ScaledPoint position);
-    boolean canMergeLines(Relation relation, ScaledPoint position);
+    int moveCost(Relation relation, ScaledPoint position);
 }

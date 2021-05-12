@@ -24,7 +24,9 @@ public class BoxGrid2 {
 
     public boolean isOccupied(ScaledPoint scaledPoint) {
         for (Box b : boxes) {
-            if (contains(b, scaledPoint)) return true;
+            if (contains(b, scaledPoint)) {
+                return true;
+            }
         }
         return false;
     }
@@ -43,6 +45,10 @@ public class BoxGrid2 {
     boolean contains(Box box, ScaledPoint point) {
         ScaledPoint topLeft = box.getPosition();
         ScaledPoint bottomRight = topLeft.move(box.getWidthAndHeight());
+
+        topLeft = topLeft.move(Scale.Backend, -1, -1);
+        bottomRight = bottomRight.move(Scale.Backend, 1, 1);
+
         if (topLeft.getX(Scale.Backend) < point.getX(Scale.Backend) && point.getX(Scale.Backend) < bottomRight.getX(Scale.Backend)) {
             if (topLeft.getY(Scale.Backend) < point.getY(Scale.Backend) && point.getY(Scale.Backend) < bottomRight.getY(Scale.Backend)) {
                 return true;

@@ -15,6 +15,7 @@ import java.util.List;
 
 public class Diagram implements IDiagram, DiagramFacade {
 
+    //TODO: fixa random crash när två boxar flyttas över varandra
     //TODO: gör att mycket mindre är public över lag
     BoxGrid2 boxGrid = new BoxGrid2();
     RelationGrid relationGrid = new RelationGrid(this);
@@ -50,7 +51,7 @@ public class Diagram implements IDiagram, DiagramFacade {
 
     @Override
     public void createRelation(BoxFacade from, ScaledPoint offsetFrom, BoxFacade to, ScaledPoint offsetTo, ArrowType arrowType) {
-        Relation relation = new Relation(this, from, to, arrowType);
+        Relation relation = new Relation(this, from, offsetFrom, to, offsetTo, arrowType);
         relationGrid.add(relation);
         relationGrid.refreshAllPaths();
         observers.forEach(diagramObserver -> diagramObserver.addRelation(relation));
@@ -82,8 +83,8 @@ public class Diagram implements IDiagram, DiagramFacade {
     }
 
     @Override
-    public boolean canMergeLines(Relation relation, ScaledPoint position) {
-        return relationGrid.canMergeLines(relation, position);
+    public int moveCost(Relation relation, ScaledPoint position) {
+        return relationGrid.moveCost(relation, position);
     }
 
     public void setName(String newName){

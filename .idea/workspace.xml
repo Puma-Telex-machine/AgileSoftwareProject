@@ -2,42 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41a11e1e-bf49-4b51-8834-c840eb7c8781" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/global/Observable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/global/Observer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/global/Observers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/boxes/BoxObserver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/diagram/DiagramFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/Arrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Arrow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BoxController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/CanvasController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/MethodEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/MethodEditorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/Observers/ArrowObservable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Observers/ArrowObservable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/Observers/ArrowObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Observers/ArrowObserver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/ShapeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/ShapeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/VariableEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/VariableEditorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/boxes/Attribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Attribute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/boxes/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/boxes/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Method.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/facades/BoxFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/BoxFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/facades/ModelFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ModelFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/facades/Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/DiagramObserver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/facades/RelationObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/RelationObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/untitled.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/untitled.uml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/diagram/Diagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/Diagram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/diagram/IDiagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/IDiagram.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/grid/AStar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/AStar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/BoxGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/BoxGrid.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/grid/BoxGrid2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/BoxGrid2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/Diagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/Diagram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/IDiagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/IDiagram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/PathNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/PathNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/grid/RelationGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/RelationGrid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/point/Scale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/global/point/Scale.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/point/ScaledArea.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/point/ScaledPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/global/point/ScaledPoint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/relations/Relation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/Relation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/relations/RelationFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/RelationFacade.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +109,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="" />
+      <changelist id="41a11e1e-bf49-4b51-8834-c840eb7c8781" name="Default Changelist" comment="" />
       <created>1618909634565</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -170,5 +142,14 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="current" />
+        <watch expression="current.previous" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/AgileSoftwareProject$Main.ic" NAME="Main Coverage Results" MODIFIED="1620818577980" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

@@ -1,5 +1,6 @@
 package model.grid;
 
+import global.point.Scale;
 import global.point.ScaledPoint;
 import model.diagram.IDiagram;
 import model.relations.Relation;
@@ -23,12 +24,19 @@ public class RelationGrid {
     }
 
     public void refreshAllPaths() {
+        System.out.println();
+        System.out.println("Refreshing all paths!!!");
+
+        relationMap = new TreeMap<>();
         for (Relation r : relations) {
             findPath(r);
         }
     }
 
     private void findPath(Relation relation) {
+        //todo: prevent this from being called way to many times
+        //todo: remove random printouts before production
+        System.out.println("Finding path from: " + relation.getFromPosition().getX(Scale.Backend) + "," + relation.getFromPosition().getY(Scale.Backend) + " to " + relation.getToPosition().getX(Scale.Backend) + "," + relation.getToPosition().getY(Scale.Backend));
         PathNode current = null;
         try {
             current = aStar.findPath(relation);
@@ -38,36 +46,39 @@ public class RelationGrid {
 
         ArrayList<ScaledPoint> pathPoints = new ArrayList<>();
 
+        assert current != null;
+        pathPoints.add(current.position);
+
         while (current != null) {
-            HashSet<PathNode> relations = relationMap.get(current.position);
-            if (relations == null) relations = new HashSet<>();
+            HashSet<PathNode> relations = relationMap.computeIfAbsent(current.position, k -> new HashSet<>());
             relations.add(current);
 
-            pathPoints.add(current.position);
-            /*
-            if (current.previous != null) {
-                if (current.direction != current.previous.direction) {
-                    pathPoints.add(current.position);
-                }
+            if (current.previous != null && current.direction != current.previous.direction) {
+                pathPoints.add(current.previous.position);
             }
-            */
+
             current = current.previous;
         }
 
         Collections.reverse(pathPoints);
 
-        relation.setPath(pathPoints); //TODO: Något är fel, pathpoints innehåller två av samma punkt (sista)
+        relation.setPath(pathPoints);
     }
 
-    public boolean canMergeLines(Relation relation, ScaledPoint position) {
-        if (!relationMap.containsKey(position)) return true;
+    int crossCost = 100;
+    int stepCost = 0;
+
+    public int moveCost(Relation relation, ScaledPoint position) {
+        if (!relationMap.containsKey(position)) {
+            return stepCost;
+        }
 
         for (PathNode n : relationMap.get(position)) {
             if (n.relation.getTo() == relation.getTo() && n.relation.getArrowType() == relation.getArrowType()) {
-                return true;
+                return stepCost;
             }
         }
-        return false;
+        return crossCost;
     }
 
     public List<Relation> getRelations() {

@@ -15,7 +15,6 @@ public class AStar {
 
     int stepCost = 1;
     int bendCost = 10;
-    int crossCost = 100;
 
     PriorityQueue<PathNode> discovered;
     TreeMap<ScaledPoint, PathNode> visited;
@@ -59,7 +58,7 @@ public class AStar {
         position = position.move(Scale.Backend, direction.getX(), direction.getY());
 
         if (visited.containsKey(position)) {
-            return;
+            return; //testa att implementera utbyte om kostnaden är lägra (ej prio)
         }
 
         if (grid.isOccupied(position)) {
@@ -81,7 +80,7 @@ public class AStar {
         if (direction != previous.direction) cost += bendCost;
 
         // If the node is occupied and the lines shouldn't merge
-        if (!grid.canMergeLines(previous.relation, position)) cost += crossCost;
+        cost += grid.moveCost(previous.relation, position);
 
         // Add the node to unvisited
         node.cost = cost;
