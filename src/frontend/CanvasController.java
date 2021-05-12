@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
-public class CanvasController extends AnchorPane implements Observer, ArrowObserver, RelationObserver {
+public class CanvasController extends AnchorPane implements Observer, ArrowObserver, RelationObserver, BoxPressedListener {
 
     VariableEditorController variableEditor;
     MethodEditorController methodEditor;
@@ -72,6 +72,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         this.getChildren().add(box);
         boxes.add(box);
         box.toggleCircleVisibility(!toggleOn);
+        box.boxPressedSubscribe(this);
     }
 
     public Point getMiddle() {
@@ -88,7 +89,6 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     private List<Arrow> arrows = new ArrayList<>();
     private Dictionary<Arrow, RelationFacade> arrowMap = new Hashtable<>();
     private Dictionary<RelationFacade, Arrow> relationMap = new Hashtable<>();
-
 
     @Override
     public void arrowEvent(Point p, BoxController box) {
@@ -288,8 +288,57 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     public void clearBoxes() {
         this.getChildren().removeAll();
         for (int i = 0; i < boxes.size(); i++) {
-            boxes.get(i).setVisible(false); //todo: Properly remove items here
+            deleteBox(boxes.get((i)));
         }
         boxes = new ArrayList<>();
+    }
+
+    private boolean multiSelect = false;
+    private List<BoxController> selection = new ArrayList<>();
+
+    /**
+     * Start adding boxes to the selection list when pressing on them
+     */
+    public void startAddSelect()
+    {
+        multiSelect = true;
+    }
+
+    /**
+     * Stops adding boxes to the selection list when pressing on them
+     */
+    public void endAddSelect()
+    {
+        multiSelect = false;
+    }
+
+    /**
+     * Deletes the currently selected boxes
+     */
+    public void deleteSelectedBoxes()
+    {
+        for(int i = 0; i < selection.size(); i++)
+        {
+            deleteBox(selection.get(i));
+        }
+    }
+
+    /**
+     * Deletes the box
+     * @param box
+     */
+    private void deleteBox(BoxController box)
+    {
+        box.setVisible(false); //todo: Properly remove items here
+    }
+
+    /**
+     * Is called when a box is pressed
+     * @param box the box that was pressed
+     */
+    public void pressedBox(BoxController box)
+    {
+        if(!multiSelect) selection.clear();
+        selection.add(box);
     }
 }

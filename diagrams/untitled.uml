@@ -1,18 +1,52 @@
 <BOX>
   name=Class
-  xposition=10
+  xposition=27
   yposition=13
   visibility=PUBLIC
+  <METHOD>
+    name=method
+    visibility=PUBLIC
+  <!METHOD>
 <!BOX>
 <BOX>
   name=Class
-  xposition=31
-  yposition=7
+  xposition=18
+  yposition=9
   visibility=PUBLIC
 <!BOX>
 <BOX>
   name=Class
-  xposition=23
-  yposition=14
+  xposition=14
+  yposition=8
+  visibility=PUBLIC
+<!BOX>
+<BOX>
+  name=Class
+  xposition=22
+  yposition=9
+  visibility=PUBLIC
+<!BOX>
+<BOX>
+  name=Class
+  xposition=29
+  yposition=9
+  visibility=PUBLIC
+<!BOX>
+<BOX>
+  name=Class
+  xposition=13
+  yposition=4
+  visibility=PUBLIC
+<!BOX>
+<BOX>
+  name=Class
+  xposition=21
+  yposition=5
+  visibility=PUBLIC
+<!BOX>
+<BOX>
+  name=Class
+  xposition=29
+  yposition=5
   visibility=PUBLIC
 <!BOX>

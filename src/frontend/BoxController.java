@@ -57,7 +57,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
     private BoxFacade box;
 
     private ArrowObserver arrowObserver;
-
+    private List<BoxPressedListener> pressedListeners = new ArrayList<>();
     List<AnchorPointController> anchorPoints = new ArrayList<>();
 
     public BoxController(BoxFacade box, VariableEditorController VEC, MethodEditorController MEC, ArrowObserver arrowObserver) {
@@ -371,6 +371,11 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
             }
         }
         showCircles();
+
+        for (int i = 0; i < pressedListeners.size(); i++)
+        {
+            pressedListeners.get(i).pressedBox(this);
+        }
         e.consume();
     }
 
@@ -467,6 +472,14 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         updateAnchorPoints();
     }
 
+    /**
+     * Adds the listener as a listener for the pressed event on this box
+     * @param listener
+     */
+    public void boxPressedSubscribe(BoxPressedListener listener)
+    {
+        pressedListeners.add(listener);
+    }
 }
 
 

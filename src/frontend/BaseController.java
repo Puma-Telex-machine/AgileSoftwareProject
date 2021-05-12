@@ -1,7 +1,10 @@
 package frontend;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import model.facades.ModelFacade;
 
@@ -97,6 +100,10 @@ public class BaseController extends AnchorPane{
     @FXML
     private void openExercises() { openMenuItem(exercises);}
 
+    /**
+     * Opens a left side menu
+     * @param menu The anchor pane base for the menu
+     */
     private void openMenuItem(AnchorPane menu)
     {
         boolean vis = menu.isVisible();
@@ -110,4 +117,30 @@ public class BaseController extends AnchorPane{
         }
     }
 
+    /**
+     * Is called when the user presses a key
+     * @param e The key-pressed event
+     */
+    public void onKeyPressed(KeyEvent e)
+    {
+        switch (e.getCode())
+        {
+            case SHIFT: canvas.startAddSelect(); break;
+            case DELETE: canvas.deleteSelectedBoxes(); break;
+        }
+        e.consume();
+    }
+
+    /**
+     * Is called when the user releases a key
+     * @param e The key-release event
+     */
+    public void onKeyReleased(KeyEvent e)
+    {
+        switch (e.getCode())
+        {
+            case SHIFT: canvas.endAddSelect(); break;
+        }
+        e.consume();
+    }
 }
