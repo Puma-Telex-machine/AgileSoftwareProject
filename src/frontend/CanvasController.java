@@ -64,6 +64,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         contextMenu.setVisible(false);
 
         model.addObserver(this);
+        clearSelection();
     }
 
     @Override
@@ -73,6 +74,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         boxes.add(box);
         box.toggleCircleVisibility(!toggleOn);
         box.boxPressedSubscribe(this);
+        clearSelection();
     }
 
     public Point getMiddle() {
@@ -295,6 +297,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         }
         tmp.clear();
         boxes.clear();
+        selection.clear();
         this.getChildren().clear();
     }
 
