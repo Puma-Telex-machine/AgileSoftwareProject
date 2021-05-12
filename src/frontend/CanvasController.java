@@ -108,7 +108,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         else {
             arrowBox = box;
             arrowStart = new Point(p.x, p.y);
-            dragArrow = new Arrow(arrowStart, new Point(p.x, p.y), new ArrayList<>());
+            dragArrow = new Arrow(arrowStart, new Point(p.x, p.y));
             this.getChildren().add(dragArrow);
         }
         toggleAnchorPoints();
@@ -129,13 +129,8 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
 
     private void addArrow(RelationFacade relation){
         List<ScaledPoint> bends = relation.getPath();
-        ScaledPoint last = bends.get(bends.size() - 1);
-        ScaledPoint first = bends.get(0);
 
-        Point end = new Point(last.getX(Scale.Frontend), last.getY(Scale.Frontend));
-        Point start = new Point(first.getX(Scale.Frontend), first.getY(Scale.Frontend));
-
-        Arrow newArrow = new Arrow(start, end, bends);
+        Arrow newArrow = new Arrow(bends);
         newArrow.setType(relation.getArrowType());
         this.getChildren().addAll(newArrow);
         newArrow.toBack();
@@ -170,7 +165,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     private void dragArrow(MouseEvent e) {
         if (makingArrow) {
             this.getChildren().remove(dragArrow);
-            dragArrow = new Arrow(arrowStart, new Point((int) e.getX(), (int) e.getY()), new ArrayList<>());
+            dragArrow = new Arrow(arrowStart, new Point((int) e.getX(), (int) e.getY()));
             this.getChildren().add(dragArrow);
             dragArrow.toBack();
         }

@@ -12,6 +12,7 @@ import model.relations.ArrowType;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,16 +26,16 @@ public class Arrow extends AnchorPane{
     private ArrowType type;
     private List<ScaledPoint> bends;
 
-    public Arrow(ScaledPoint start, ScaledPoint end, List<ScaledPoint> bends) {
-        this(new Point(start.getX(Scale.Frontend),start.getY(Scale.Frontend)),new Point(end.getX(Scale.Frontend),end.getY(Scale.Frontend)),bends);
+    public Arrow(Point start,Point end) {
+        this(Arrays.asList(new ScaledPoint(Scale.Frontend,start.x,start.y),new ScaledPoint(Scale.Frontend,end.x,end.y)));
     }
 
-    public Arrow(Point start, Point end, List<ScaledPoint> bends) {//),double offsetX,double offsetY){
+    public Arrow(List<ScaledPoint> bends) {//),double offsetX,double offsetY){
 
-        this.startX = start.getX();
-        this.startY = start.getY();
-        this.endX = end.getX();
-        this.endY = end.getY();
+        this.startX = bends.get(0).getX(Scale.Frontend);
+        this.startY = bends.get(0).getY(Scale.Frontend);
+        this.endX = bends.get(bends.size()-1).getX(Scale.Frontend);
+        this.endY = bends.get(bends.size()-1).getY(Scale.Frontend);
         this.bends = bends;
         endline = new Line();
 
@@ -70,9 +71,8 @@ public class Arrow extends AnchorPane{
         this.getChildren().add(head);
 
         //if start=end glitches occur for head
-        if (!(start.getX() == end.getX() && start.getY() == end.getY())) {
+        if (!(startX == endX && startY == endY)) {
             setType(ArrowType.ASSOCIATION);
-
         }
     }
 
