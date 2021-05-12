@@ -46,6 +46,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
         diagram.add(relation);
         observers.forEach(observer -> observer.addRelation(relation));
     }
+    //for merging an arrow into another arrow
     public void addRelation(BoxFacade from,ScaledPoint offsetFrom, RelationFacade followRelation) {
         //todo fix offset (steal offset from followrelation or something)
 
