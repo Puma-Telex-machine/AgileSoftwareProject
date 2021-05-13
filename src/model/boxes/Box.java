@@ -1,11 +1,12 @@
 package model.boxes;
 
 import global.Observer;
-import model.facades.AttributeFacade;
-import model.facades.MethodFacade;
-import model.diagram.DiagramMediator;
+import global.Observers;
 import global.point.Scale;
 import global.point.ScaledPoint;
+import model.diagram.DiagramMediator;
+import model.facades.AttributeFacade;
+import model.facades.MethodFacade;
 
 import java.util.*;
 
@@ -19,7 +20,7 @@ public class Box implements BoxFacade, Observer {
     private static final double SYMBOLS_PER_WIDTH_UNIT_NAME = 0.3;
     private static final double SYMBOLS_PER_WIDTH_UNIT_OTHER = 0.2;
     private static final int START_HEIGHT = 3;
-    private static final int START_WIDTH = 3;
+    private static final int START_WIDTH = 5;
     private static final double ROWS_PER_HEIGHT_UNIT = 0.4999;
 
     private String name;
@@ -46,19 +47,17 @@ public class Box implements BoxFacade, Observer {
     }
 
     //region OBSERVABLE
-    private final ArrayList<BoxObserver> observers = new ArrayList<>();
+    private final Observers observers = new Observers();
 
     @Override
-    public void subscribe(BoxObserver observer) {
+    public void subscribe(Observer observer) {
         observers.add(observer);
     }
 
     @Override
     public void update() {
         diagram.updateBox(this);
-        for (BoxObserver o : observers) {
-            o.update();
-        }
+        observers.update();
     }
     //endregion
 
@@ -196,9 +195,18 @@ public class Box implements BoxFacade, Observer {
 
             maxLength = Collections.max(longest);
         }
-        if(maxLength<name.length()){
-            return Math.max((int)(name.length() * SYMBOLS_PER_WIDTH_UNIT_NAME )+1, START_WIDTH);
+
+        int boxLength = 0;
+        if (maxLength < name.length()) {
+            boxLength = Math.max((int) (name.length() * SYMBOLS_PER_WIDTH_UNIT_NAME) + 1, START_WIDTH);
+        } else {
+            boxLength = Math.max((int) (maxLength * SYMBOLS_PER_WIDTH_UNIT_OTHER) + 1, START_WIDTH);
         }
-        return Math.max((int)(maxLength * SYMBOLS_PER_WIDTH_UNIT_OTHER)+1, START_WIDTH);
+
+        if (Math.floorMod(boxLength, 2) == 0) {
+            boxLength++;
+        }
+
+        return boxLength;
     }
 }

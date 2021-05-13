@@ -2,6 +2,7 @@ package frontend;
 
 import frontend.Observers.ArrowObservable;
 import frontend.Observers.ArrowObserver;
+import global.Observer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -19,7 +20,6 @@ import model.MethodData;
 import model.VariableData;
 import model.facades.AttributeFacade;
 import model.boxes.BoxFacade;
-import model.boxes.BoxObserver;
 import model.facades.MethodFacade;
 import global.point.Scale;
 import global.point.ScaledPoint;
@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * controller for the boxes in frontend
  */
-public class BoxController extends AnchorPane implements ArrowObservable, BoxObserver {
+public class BoxController extends AnchorPane implements ArrowObservable, Observer {
     @FXML
     private TextField nameField;
     @FXML

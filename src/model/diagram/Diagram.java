@@ -16,7 +16,7 @@ public class Diagram implements DiagramFacade, DiagramMediator, PathfindingMap {
     //TODO: fixa crash när två boxar flyttas över varandra
     //TODO: mycket mindre borde vara public över lag
     BoxGrid2 boxGrid = new BoxGrid2();
-    RelationGrid relationGrid = new RelationGrid(this, new AStar(this));
+    RelationGrid relationGrid = new RelationGrid(new AStar(this));
     String name = "untitled";
     Boolean saveLocked = false;
 
@@ -93,7 +93,7 @@ public class Diagram implements DiagramFacade, DiagramMediator, PathfindingMap {
 
     @Override
     public int moveCost(Relation relation, ScaledPoint position) {
-        return relationGrid.moveCost(relation, position);
+        return relationGrid.crossCost(relation, position);
     }
 
     public void setName(String newName){

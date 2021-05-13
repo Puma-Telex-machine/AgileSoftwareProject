@@ -1,7 +1,7 @@
 package model.boxes;
 
 import global.Observable;
-import model.boxes.*;
+import global.Observer;
 import global.point.ScaledPoint;
 import model.facades.AttributeFacade;
 import model.facades.MethodFacade;
@@ -9,7 +9,7 @@ import model.facades.MethodFacade;
 import java.util.List;
 import java.util.Set;
 
-public interface BoxFacade extends Observable<BoxObserver> {
+public interface BoxFacade extends Observable<Observer> {
 
     /**
      * Set the name of the box.

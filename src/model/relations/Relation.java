@@ -42,11 +42,11 @@ public class Relation implements RelationFacade {
     }
     //endregion
 
-    public ScaledPoint getToPosition() {
+    public ScaledPoint getStartPosition() {
         return to.getPosition().move(offsetTo);
     }
 
-    public ScaledPoint getFromPosition() {
+    public ScaledPoint getEndPosition() {
         return from.getPosition().move(offsetFrom);
     }
 

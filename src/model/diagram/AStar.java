@@ -29,10 +29,10 @@ public class AStar {
         visited = new TreeMap<>();
         discovered = new PriorityQueue<>(Comparator.comparingInt(this::getCostEstimate));
 
-        destination = relation.getToPosition();
+        destination = relation.getStartPosition();
 
         PathNode startNode = new PathNode(relation);
-        startNode.position = relation.getFromPosition();
+        startNode.position = relation.getEndPosition();
         startNode.cost = 0;
         discovered.add(startNode);
 
@@ -57,7 +57,7 @@ public class AStar {
         position = position.move(Scale.Backend, direction.getX(), direction.getY());
 
         if (visited.containsKey(position)) {
-            return; //testa att implementera utbyte om kostnaden är lägra (ej prio)
+            return; //testa att implementera utbyte om kostnaden är lägre (ej prio)
         }
 
         if (grid.isOccupied(position)) {

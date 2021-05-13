@@ -35,8 +35,7 @@ public class BoxGrid2 {
         for (Box b : boxes) {
             if (b != box) {
                 if (isOverlapping(box, b)) {
-                    ScaledPoint justBelowBox = new ScaledPoint(Scale.Backend, b.getPosition().getX(Scale.Backend), box.getPosition().getY(Scale.Backend) + box.getWidthAndHeight().getY(Scale.Backend) + 1);
-                    b.setPosition(justBelowBox);
+                    
                 }
             }
         }

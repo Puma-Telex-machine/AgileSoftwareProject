@@ -9,13 +9,22 @@ import java.util.*;
 public class RelationGrid {
 
     AStar aStar;
-    TreeMap<ScaledPoint, HashSet<PathNode>> relationMap;
-    HashSet<Relation> relations;
+    TreeMap<ScaledPoint, HashSet<PathNode>> relationMap = new TreeMap<>();;
+    //SortedSet<Relation> relations = new TreeSet<>((r1, r2) -> (int) (calculateAngle(r1) - calculateAngle(r2)));;
+    HashSet<Relation> relations = new HashSet<>();
+    int crossCost = 30;
+    int stepCost = 0;
 
-    public RelationGrid(DiagramMediator diagram, AStar aStar) {
+    public RelationGrid(AStar aStar) {
         this.aStar = aStar;
-        this.relationMap = new TreeMap<>();
-        this.relations = new HashSet<>();
+    }
+
+    private double calculateAngle(Relation r) {
+        ScaledPoint P1 = r.getFrom().getPosition();
+        ScaledPoint P2 = r.getStartPosition();
+        ScaledPoint P3 = r.getEndPosition();
+        return Math.atan2(P3.getY(Scale.Backend) - P1.getY(Scale.Backend), P3.getX(Scale.Backend) - P1.getX(Scale.Backend)) -
+                Math.atan2(P2.getY(Scale.Backend) - P1.getY(Scale.Backend), P2.getX(Scale.Backend) - P1.getX(Scale.Backend));
     }
 
     public void add(Relation relation) {
@@ -28,24 +37,30 @@ public class RelationGrid {
 
         relationMap = new TreeMap<>();
         for (Relation r : relations) {
-            findPath(r);
+            calculatePath(r);
         }
     }
 
-    private void findPath(Relation relation) {
-        //todo: prevent this from being called way to many times
-        //todo: remove random printouts before production
-        System.out.println("Finding path from: " + relation.getFromPosition().getX(Scale.Backend) + "," + relation.getFromPosition().getY(Scale.Backend) + " to " + relation.getToPosition().getX(Scale.Backend) + "," + relation.getToPosition().getY(Scale.Backend));
+    private void calculatePath(Relation relation) {
+        PathNode path = findPath(relation);
+        relation.setPath(extractPathBends(path));
+    }
+
+    private PathNode findPath(Relation relation) {
+        System.out.println("Finding path from: " + relation.getEndPosition().getX(Scale.Backend) + "," + relation.getEndPosition().getY(Scale.Backend) + " to " + relation.getStartPosition().getX(Scale.Backend) + "," + relation.getStartPosition().getY(Scale.Backend));
         PathNode current = null;
         try {
             current = aStar.findPath(relation);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return current;
+    }
+
+    private ArrayList<ScaledPoint> extractPathBends(PathNode destination) {
+        PathNode current = destination;
 
         ArrayList<ScaledPoint> pathPoints = new ArrayList<>();
-
-        assert current != null;
         pathPoints.add(current.position);
 
         while (current != null) {
@@ -61,19 +76,16 @@ public class RelationGrid {
 
         Collections.reverse(pathPoints);
 
-        relation.setPath(pathPoints);
+        return pathPoints;
     }
 
-    int crossCost = 100;
-    int stepCost = 0;
-
-    public int moveCost(Relation relation, ScaledPoint position) {
+    public int crossCost(Relation relation, ScaledPoint position) {
         if (!relationMap.containsKey(position)) {
             return stepCost;
         }
 
         for (PathNode n : relationMap.get(position)) {
-            if (n.relation.getTo() == relation.getTo() && n.relation.getArrowType() == relation.getArrowType()) {
+            if ((n.relation.getTo() == relation.getTo() || n.relation.getFrom() == relation.getFrom()) && n.relation.getArrowType() == relation.getArrowType()) {
                 return stepCost;
             }
         }
