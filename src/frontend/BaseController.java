@@ -1,5 +1,7 @@
 package frontend;
 
+//import frontend.view.SaveAsController;
+import frontend.view.SaveAsController;
 import javafx.fxml.FXML;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
@@ -9,7 +11,6 @@ import model.Model;
 import model.facades.BoxFacade;
 
 import java.awt.*;
-
 
 public class BaseController{
 
@@ -30,11 +31,12 @@ public class BaseController{
 
     ShapeController shapes;
 
-
+    //SaveAsController saveAs;
 
     public BaseController() {
         recent = new RecentController();
         canvas = new CanvasController();
+        //saveAs = new SaveAsController();
         shapes = new ShapeController(canvas);
         model = Model.getModel();
         model.addObserver(canvas);
@@ -43,8 +45,10 @@ public class BaseController{
     private void init(){
         UML.getChildren().add(recent);
         UML.getChildren().add(shapes);
+        //UML.getChildren().add(saveAs);
         recent.setVisible(false);
         shapes.setVisible(false);
+        //saveAs.setVisible(false);
         UML.getChildren().add(canvas);
     }
     @FXML
@@ -64,6 +68,14 @@ public class BaseController{
         exitContext();
         e.consume();
     }
+
+    //open save dialog
+   /* @FXML
+    private void openSaveAs(){
+        if(!UML.getChildren().contains(saveAs)) init();
+        saveAs.setVisible(!saveAs.isVisible());
+        canvas.toBack();
+    }*/
 
     //open Menus
     @FXML

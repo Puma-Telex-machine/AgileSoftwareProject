@@ -94,3 +94,19 @@
 .iconLighter:pressed{
     -fx-effect: dropshadow(one-pass-box, rgba(59, 59, 59, 0.3), 10, 1, 0.0, 0.0);
 }
+
+.buttons {
+    -fx-fill: "#FFFFFF";
+    -fx-background-color: "#929292";
+    -fx-border-color: "#000000";
+    -fx-border-width: 1;
+    -fx-text-fill: "DBDBDB";
+}
+
+.buttons:hover {
+    -fx-background-color: "#9f9f9f";
+}
+
+.buttons:pressed {
+    -fx-background-color: "#868686";
+}

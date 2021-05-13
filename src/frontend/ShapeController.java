@@ -2,12 +2,18 @@ package frontend;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
+import model.boxes.Diagram;
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 public class ShapeController extends AnchorPane {
+
+    @FXML
+    private Button save_button;
 
     Model model = Model.getModel();
     CanvasController canvas;
