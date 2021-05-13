@@ -3,14 +3,14 @@ package model.relations;
 import model.boxes.Box;
 import model.boxes.BoxType;
 import model.boxes.BoxFacade;
-import model.diagram.IDiagram;
+import model.diagram.DiagramMediator;
 import global.point.ScaledPoint;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Relation implements RelationFacade {
-    private final IDiagram diagram;
+    private final DiagramMediator diagram;
     private final BoxFacade to;
     private ScaledPoint offsetTo;
     private final BoxFacade from;
@@ -18,7 +18,7 @@ public class Relation implements RelationFacade {
     private ArrowType arrowType;
     private ArrayList<ScaledPoint> path;
 
-    public Relation(IDiagram diagram, BoxFacade from, ScaledPoint offsetFrom, BoxFacade to, ScaledPoint offsetTo, ArrowType arrowType) {
+    public Relation(DiagramMediator diagram, BoxFacade from, ScaledPoint offsetFrom, BoxFacade to, ScaledPoint offsetTo, ArrowType arrowType) {
         this.diagram = diagram;
         this.from = from;
         this.offsetFrom = offsetFrom;

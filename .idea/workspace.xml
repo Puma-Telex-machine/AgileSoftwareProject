@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41a11e1e-bf49-4b51-8834-c840eb7c8781" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/model/diagram/PathfindingMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diagrams/untitled.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/untitled.uml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/boxes/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Box.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/diagram/Diagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/Diagram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/diagram/IDiagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/IDiagram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/AStar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/AStar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/BoxGrid2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/BoxGrid2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/grid/RelationGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/grid/RelationGrid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/diagram/IDiagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/DiagramMediator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/grid/AStar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/AStar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/grid/BoxGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/BoxGrid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/grid/BoxGrid2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/BoxGrid2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/grid/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/Direction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/grid/PathNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/PathNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/grid/RelationGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/RelationGrid.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/relations/Relation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/Relation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +24,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -59,10 +63,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="model.grid" />
       <recent name="model.facades" />
       <recent name="model.relations" />
       <recent name="model" />
-      <recent name="model.grid" />
       <recent name="model.grid.astar" />
     </key>
     <key name="CopyFile.RECENT_KEYS">

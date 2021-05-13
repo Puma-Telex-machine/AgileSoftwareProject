@@ -1,4 +1,4 @@
-package model.grid;
+package model.diagram;
 
 public enum Direction {
     UP(0, -1),

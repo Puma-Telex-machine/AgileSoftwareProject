@@ -1,4 +1,4 @@
-package model.grid;
+package model.diagram;
 
 import global.point.ScaledPoint;
 import model.relations.Relation;

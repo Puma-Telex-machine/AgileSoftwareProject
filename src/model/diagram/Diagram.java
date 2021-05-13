@@ -5,20 +5,18 @@ import model.boxes.Box;
 import global.point.ScaledPoint;
 import model.boxes.BoxType;
 import model.boxes.BoxFacade;
-import model.grid.BoxGrid2;
-import model.grid.RelationGrid;
 import model.relations.ArrowType;
 import model.relations.Relation;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Diagram implements IDiagram, DiagramFacade {
+public class Diagram implements DiagramFacade, DiagramMediator, PathfindingMap {
 
     //TODO: fixa crash när två boxar flyttas över varandra
     //TODO: mycket mindre borde vara public över lag
     BoxGrid2 boxGrid = new BoxGrid2();
-    RelationGrid relationGrid = new RelationGrid(this);
+    RelationGrid relationGrid = new RelationGrid(this, new AStar(this));
     String name = "untitled";
     Boolean saveLocked = false;
 

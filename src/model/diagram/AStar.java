@@ -1,8 +1,7 @@
-package model.grid;
+package model.diagram;
 
 import global.point.Scale;
 import global.point.ScaledPoint;
-import model.diagram.IDiagram;
 import model.relations.Relation;
 
 import java.util.Comparator;
@@ -11,7 +10,7 @@ import java.util.TreeMap;
 
 public class AStar {
 
-    IDiagram grid;
+    PathfindingMap grid;
 
     int stepCost = 1;
     int bendCost = 10;
@@ -19,7 +18,7 @@ public class AStar {
     PriorityQueue<PathNode> discovered;
     TreeMap<ScaledPoint, PathNode> visited;
 
-    AStar(IDiagram grid) {
+    AStar(PathfindingMap grid) {
         this.grid = grid;
     }
 

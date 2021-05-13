@@ -1,10 +1,9 @@
 package model.boxes;
 
-import frontend.Observers.UiObserver;
 import global.Observer;
 import model.facades.AttributeFacade;
 import model.facades.MethodFacade;
-import model.diagram.IDiagram;
+import model.diagram.DiagramMediator;
 import global.point.Scale;
 import global.point.ScaledPoint;
 
@@ -30,10 +29,10 @@ public class Box implements BoxFacade, Observer {
     private final Set<Modifier> modifiers = new HashSet<>();
     private Visibility visibility = Visibility.PUBLIC;
     private ScaledPoint position;
-    private final IDiagram diagram;
+    private final DiagramMediator diagram;
 
 
-    public Box(IDiagram diagram, ScaledPoint position, BoxType type) {
+    public Box(DiagramMediator diagram, ScaledPoint position, BoxType type) {
         this.name = switch (type) {
             case CLASS -> "Class";
             case ABSTRACT_CLASS -> "Abstract Class";

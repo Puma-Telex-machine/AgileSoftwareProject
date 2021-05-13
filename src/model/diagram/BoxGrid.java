@@ -1,4 +1,4 @@
-package model.grid;
+package model.diagram;
 
 import model.boxes.Box;
 import global.point.Scale;

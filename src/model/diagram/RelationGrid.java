@@ -1,8 +1,7 @@
-package model.grid;
+package model.diagram;
 
 import global.point.Scale;
 import global.point.ScaledPoint;
-import model.diagram.IDiagram;
 import model.relations.Relation;
 
 import java.util.*;
@@ -13,8 +12,8 @@ public class RelationGrid {
     TreeMap<ScaledPoint, HashSet<PathNode>> relationMap;
     HashSet<Relation> relations;
 
-    public RelationGrid(IDiagram diagram) {
-        this.aStar = new AStar(diagram);
+    public RelationGrid(DiagramMediator diagram, AStar aStar) {
+        this.aStar = aStar;
         this.relationMap = new TreeMap<>();
         this.relations = new HashSet<>();
     }
