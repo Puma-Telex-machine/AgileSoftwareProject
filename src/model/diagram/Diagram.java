@@ -15,24 +15,35 @@ import java.util.List;
 
 public class Diagram implements IDiagram, DiagramFacade {
 
-    //TODO: fixa random crash när två boxar flyttas över varandra
-    //TODO: gör att mycket mindre är public över lag
+    //TODO: fixa crash när två boxar flyttas över varandra
+    //TODO: mycket mindre borde vara public över lag
     BoxGrid2 boxGrid = new BoxGrid2();
     RelationGrid relationGrid = new RelationGrid(this);
     String name = "untitled";
     Boolean saveLocked = false;
+
+    //region OBSERVABLE
     public ArrayList<DiagramObserver> observers = new ArrayList<>(); //TODO: ta bort public
+
+    private void updateObservers(Box box) {
+        observers.forEach(diagramObserver -> diagramObserver.addBox(box));
+    }
+
+    private void updateObservers(Relation relation) {
+        observers.forEach(diagramObserver -> diagramObserver.addRelation(relation));
+    }
 
     @Override
     public void subscribe(DiagramObserver diagramObserver) {
         observers.add(diagramObserver);
     }
+    //endregion
 
     @Override
     public void createBox(ScaledPoint position, BoxType boxType) {
         Box box = new Box(this, position, boxType);
         boxGrid.add(box);
-        observers.forEach(diagramObserver -> diagramObserver.addBox(box));
+        updateObservers(box);
         saveThis();
     }
 
@@ -54,7 +65,7 @@ public class Diagram implements IDiagram, DiagramFacade {
         Relation relation = new Relation(this, from, offsetFrom, to, offsetTo, arrowType);
         relationGrid.add(relation);
         relationGrid.refreshAllPaths();
-        observers.forEach(diagramObserver -> diagramObserver.addRelation(relation));
+        updateObservers(relation);
         saveThis();
     }
 
