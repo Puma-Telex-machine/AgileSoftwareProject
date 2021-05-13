@@ -101,7 +101,9 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         hideCircles();
 
         //init box with name
-        box.setName(name.getText());
+        name.setText(box.getName());
+        nameField.setText(box.getName());
+        //box.setName(name.getText());
         update();
 
         //rezises namefield to fit whole name
@@ -440,6 +442,8 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
 
         List<AttributeFacade> variableData = box.getAttributes();
         List<MethodFacade> methodData = box.getMethods();
+        name.setText(box.getName());
+        nameField.setText(box.getName());
 
         for (int i = 0; i < variableData.size(); i++) {
             BoxAttributeTextController attribute = new BoxAttributeTextController( variableData.get(i).getString());
