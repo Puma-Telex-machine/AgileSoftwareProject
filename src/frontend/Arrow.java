@@ -42,21 +42,10 @@ public class Arrow extends AnchorPane{
         if (bends.size() >= 1) {
             //todo lines intersect at bendpoints (when line is straight this looks bad)
             for (int i = 1; i < bends.size()-1; i++) {
-                Line l = new Line();
-                lines.add(l);
-                l.setStartX(bends.get(i-1).getX(Scale.Frontend));
-                l.setStartY(bends.get(i-1).getY(Scale.Frontend));
-                l.setEndX(bends.get(i).getX(Scale.Frontend));
-                l.setEndY(bends.get(i).getY(Scale.Frontend));
-                l.setStroke(( new Color(0.72,0.72,0.72,1)));
+                addLine(new Line(),bends.get(i-1).getX(Scale.Frontend),bends.get(i-1).getY(Scale.Frontend),bends.get(i).getX(Scale.Frontend),bends.get(i).getY(Scale.Frontend));
             }
             //end line
-            lines.add(endline);
-            endline.setStartX(bends.get(bends.size() - 2).getX(Scale.Frontend));
-            endline.setStartY(bends.get(bends.size() - 2).getY(Scale.Frontend));
-            endline.setEndX(bends.get(bends.size() - 1).getX(Scale.Frontend));
-            endline.setEndY(bends.get(bends.size() - 1).getY(Scale.Frontend));
-            endline.setStroke((new Color(0.72, 0.72, 0.72, 1)));
+            addLine(endline,bends.get(bends.size() - 2).getX(Scale.Frontend),bends.get(bends.size() - 2).getY(Scale.Frontend),bends.get(bends.size() - 1).getX(Scale.Frontend),bends.get(bends.size() - 1).getY(Scale.Frontend));
         }
         else {
             lines.add(endline);
@@ -74,6 +63,29 @@ public class Arrow extends AnchorPane{
         if (!(startX == endX && startY == endY)) {
             setType(ArrowType.ASSOCIATION);
         }
+    }
+
+    private boolean addLine(Line line,int startX,int startY, int endX, int endY){
+        lines.add(line);
+        line.setStartX(startX);
+        line.setStartY(startY);
+        line.setEndX(endX);
+        line.setEndY(endY);
+        line.setStroke((new Color(0.72, 0.72, 0.72, 1)));
+
+        //remove overlap
+        boolean xAxis = line.getStartY()==line.getEndY();
+        if(xAxis){
+            System.out.println("xAxis");
+            if(line.getStartX()>line.getEndX()) line.setEndX(line.getEndX()+1);
+            if(line.getEndX()>line.getStartX()) line.setEndX(line.getEndX()-1);
+        }
+        else{
+            System.out.println("yAxis");
+            if(line.getStartY()>line.getEndY()) line.setEndY(line.getEndY()+1);
+            if(line.getEndY()>line.getStartY()) line.setEndY(line.getEndY()-1);
+        }
+        return xAxis;
     }
 
 
