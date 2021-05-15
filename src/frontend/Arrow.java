@@ -53,7 +53,8 @@ public class Arrow extends AnchorPane{
             endline.setStartY(startY);
             endline.setEndX(endX);
             endline.setEndY(endY);
-            endline.setStroke(( new Color(0.72,0.72,0.72,1)));
+            endline.getStyleClass().add("line");
+            //endline.setStroke(( new Color(0.72,0.72,0.72,1)));
         }
 
         this.getChildren().addAll(lines);
@@ -65,27 +66,25 @@ public class Arrow extends AnchorPane{
         }
     }
 
-    private boolean addLine(Line line,int startX,int startY, int endX, int endY){
+    private void addLine(Line line,int startX,int startY, int endX, int endY){
         lines.add(line);
         line.setStartX(startX);
         line.setStartY(startY);
         line.setEndX(endX);
         line.setEndY(endY);
-        line.setStroke((new Color(0.72, 0.72, 0.72, 1)));
+        line.getStyleClass().add("line");
 
-        //remove overlap
-        boolean xAxis = line.getStartY()==line.getEndY();
-        if(xAxis){
-            System.out.println("xAxis");
+        //remove overlap by removing last pixel
+        //line paralell with Xaxis
+        if(line.getStartY()==line.getEndY()){
             if(line.getStartX()>line.getEndX()) line.setEndX(line.getEndX()+1);
-            if(line.getEndX()>line.getStartX()) line.setEndX(line.getEndX()-1);
+            else line.setEndX(line.getEndX()-1);
         }
+        //else will be paralell with Yaxis
         else{
-            System.out.println("yAxis");
             if(line.getStartY()>line.getEndY()) line.setEndY(line.getEndY()+1);
-            if(line.getEndY()>line.getStartY()) line.setEndY(line.getEndY()-1);
+           else line.setEndY(line.getEndY()-1);
         }
-        return xAxis;
     }
 
 
@@ -208,8 +207,7 @@ public class Arrow extends AnchorPane{
         if(fill) polygon.setFill(new Color(0.72,0.72,0.72,1));
         else {
             polygon.setFill(new Color(0,0,0,0));
-            polygon.setStroke(new Color(0.72,0.72,0.72,1));
-            polygon.setStrokeWidth(1);
+            polygon.getStyleClass().add("line");
         }
         head.getChildren().add(polygon);
         polygon.toFront();
@@ -221,10 +219,10 @@ public class Arrow extends AnchorPane{
         Point[] points = getArrowHeadPoints(lineAngle,endX,endY);
 
         Line l1 = new Line(endX,endY,points[0].x,points[0].y);
-        l1.setStroke(( new Color(0.72,0.72,0.72,1)));
+        l1.getStyleClass().add("line");
         head.getChildren().add(l1);
         Line l2 = new Line(endX,endY,points[1].x,points[1].y);
-        l2.setStroke(( new Color(0.72,0.72,0.72,1)));
+        l2.getStyleClass().add("line");
         head.getChildren().add(l2);
 
         endline.setEndX(endX);
