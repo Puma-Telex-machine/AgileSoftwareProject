@@ -1,0 +1,6 @@
+<BOX>
+  name=Box
+  xposition=15
+  yposition=8
+  visibility=PUBLIC
+<!BOX>

@@ -32,8 +32,20 @@ public class ShapeController extends AnchorPane {
     }
 
     @FXML
-    private void addBox(){
-        model.addBox(new ScaledPoint(Scale.Frontend, canvas.getMiddle().x, canvas.getMiddle().y), BoxType.BOX);
+    private void addClass(){
+        model.addBox(new ScaledPoint(Scale.Frontend, canvas.getMiddle().x, canvas.getMiddle().y), BoxType.CLASS);
+    }
+    @FXML
+    private void addInterface(){
+        model.addBox(new ScaledPoint(Scale.Frontend, canvas.getMiddle().x, canvas.getMiddle().y), BoxType.INTERFACE);
+    }
+    @FXML
+    private void addAbstract(){
+        model.addBox(new ScaledPoint(Scale.Frontend, canvas.getMiddle().x, canvas.getMiddle().y), BoxType.ABSTRACT_CLASS);
+    }
+    @FXML
+    private void addEnum(){
+        model.addBox(new ScaledPoint(Scale.Frontend, canvas.getMiddle().x, canvas.getMiddle().y), BoxType.ENUM);
     }
 
     @FXML

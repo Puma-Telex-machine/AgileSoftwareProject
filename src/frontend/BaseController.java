@@ -14,7 +14,7 @@ public class BaseController extends AnchorPane{
     AnchorPane UML;
 
     @FXML
-    AnchorPane leftMenu;
+    AnchorPane leftMenu,minimize;
     @FXML
     AnchorPane contextMenu;
 
@@ -59,7 +59,7 @@ public class BaseController extends AnchorPane{
         LockPane(shapes);
         LockPane(overview);
         LockPane(exercises);
-        closeMenueTabbs();
+        minimizeMenu();
         UML.getChildren().add(canvas);
         LockPane(canvas);
 
@@ -73,12 +73,14 @@ public class BaseController extends AnchorPane{
         AnchorPane.setRightAnchor(pane,0d);
     }
 
-    private void closeMenueTabbs()
+    @FXML
+    private void minimizeMenu()
     {
         files.setVisible(false);
         shapes.setVisible(false);
         overview.setVisible(false);
         exercises.setVisible(false);
+        leftMenu.setVisible(false);
         leftMenu.toBack();
     }
 
@@ -100,14 +102,17 @@ public class BaseController extends AnchorPane{
     private void openMenuItem(AnchorPane menu)
     {
         boolean vis = menu.isVisible();
-        closeMenueTabbs();
+        minimizeMenu();
         if(vis){
             leftMenu.toBack();
         }
         else{
             leftMenu.toFront();
+            leftMenu.setVisible(true);
+            minimize.toFront();
             menu.setVisible(true);
         }
     }
+
 
 }

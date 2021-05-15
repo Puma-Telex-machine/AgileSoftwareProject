@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 
 <fx:root onContextMenuRequested="#handleContextMenu" onMouseClicked="#handleArrowMenu" onMouseMoved="#dragArrow" prefHeight="1000.0" prefWidth="3000.0" styleClass="background" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -38,10 +37,10 @@
                <children>
                   <VBox alignment="TOP_CENTER" layoutX="205.0" layoutY="336.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label alignment="CENTER" onMouseClicked="#handleContextAddBox" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add Class" textAlignment="CENTER" />
-                        <Label alignment="CENTER" onMouseClicked="#handleContextAddBox" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add interface" textAlignment="CENTER" />
-                        <Label alignment="CENTER" onMouseClicked="#handleContextAddBox" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add Abstract Class" textAlignment="CENTER" />
-                        <Line endX="149.0" />
+                        <Label alignment="CENTER" onMouseClicked="#addClass" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add Class" textAlignment="CENTER" />
+                        <Label alignment="CENTER" onMouseClicked="#addInterface" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add interface" textAlignment="CENTER" />
+                        <Label alignment="CENTER" onMouseClicked="#addAbstract" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add Abstract Class" textAlignment="CENTER" />
+                        <Label alignment="CENTER" onMouseClicked="#addEnum" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add Enum" textAlignment="CENTER" />
                      </children>
                      <styleClass>
                         <String fx:value="highlight_clickable" />

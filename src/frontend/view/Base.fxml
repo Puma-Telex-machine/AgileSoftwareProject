@@ -6,12 +6,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.effect.DropShadow?>
-<?import java.lang.String?>
-<fx:root fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -24,52 +23,73 @@
                   </Text>
                </children>
             </AnchorPane>
-            <HBox>
+            <HBox prefWidth="1442.0">
                <children>
-                  <AnchorPane id="left_anchorpane" fx:id="left_anchorpane1" prefHeight="900.0" prefWidth="110.0" style="-fx-background-color: #2A314A;" styleClass="text-Large" stylesheets="@DarkMode.css">
-                     <effect>
-                        <DropShadow />
-                     </effect>
+                  <AnchorPane id="left_anchorpane" fx:id="left_anchorpane1" prefHeight="900.0" prefWidth="110.0" style="-fx-background-color: #2A314A;" styleClass="text-Large">
                      <children>
-                        <VBox prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                        <VBox alignment="TOP_CENTER" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                            <children>
-                              <ImageView fitHeight="49.0" fitWidth="62.0" layoutX="8.0" layoutY="98.0" onMouseClicked="#openRecent" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter" AnchorPane.leftAnchor="5.0">
+                              <ImageView fitWidth="50.0" layoutX="8.0" layoutY="98.0" onMouseClicked="#openRecent" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter" AnchorPane.leftAnchor="5.0">
                                  <image>
                                     <Image url="@Resources/folder@4x.png" />
                                  </image>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </VBox.margin>
                               </ImageView>
-                              <ImageView fitHeight="69.0" fitWidth="55.0" layoutX="8.0" layoutY="467.0" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter" AnchorPane.leftAnchor="8.0">
+                              <ImageView fitWidth="50.0" layoutX="8.0" layoutY="467.0" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter" AnchorPane.leftAnchor="8.0">
                                  <image>
                                     <Image url="@Resources/text@4x.png" />
                                  </image>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
                               </ImageView>
-                              <ImageView fitHeight="59.0" fitWidth="62.0" layoutX="5.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter" AnchorPane.leftAnchor="5.0">
+                              <ImageView fitHeight="59.0" fitWidth="50.0" layoutX="5.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter" AnchorPane.leftAnchor="5.0">
                                  <image>
                                     <Image url="@Resources/comment@4x.png" />
                                  </image>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
                               </ImageView>
-                              <ImageView fitHeight="44.0" fitWidth="62.0" layoutX="7.0" layoutY="184.0" onMouseClicked="#openShapes" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter" AnchorPane.leftAnchor="5.0">
+                              <ImageView fitHeight="44.0" fitWidth="50.0" layoutX="7.0" layoutY="184.0" onMouseClicked="#openShapes" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter" AnchorPane.leftAnchor="5.0">
                                  <image>
                                     <Image url="@Resources/box@4x.png" />
                                  </image>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
                               </ImageView>
                               <ImageView fitHeight="69.0" fitWidth="68.0" layoutX="6.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter" AnchorPane.leftAnchor="6.0">
                                  <image>
                                     <Image url="@Resources/exercise@4x.png" />
                                  </image>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
                               </ImageView>
-                              <Text fill="#b8b8b8" layoutX="20.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-Large" text="UML" textAlignment="CENTER" wrappingWidth="59.28372636269103" AnchorPane.leftAnchor="5.0" />
+                              <Text fill="#b8b8b8" layoutX="20.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-Large" text="UML" textAlignment="CENTER" wrappingWidth="59.28372636269103" AnchorPane.leftAnchor="5.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin></Text>
                            </children>
-                           <styleClass>
-                              <String fx:value="highlight" />
-                              <String fx:value="border" />
-                           </styleClass>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
                         </VBox>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="UML" prefHeight="10000.0" prefWidth="10000.0" styleClass="background">
                      <children>
-                        <AnchorPane fx:id="leftMenu" prefHeight="850.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <AnchorPane fx:id="leftMenu" prefHeight="850.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane fx:id="minimize" layoutX="200.0" layoutY="6.0" onMouseClicked="#minimizeMenu" prefHeight="30.0" prefWidth="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="10.0" stroke="BLACK" strokeType="INSIDE" styleClass="fill-light" width="30.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                 </children>
+                              </AnchorPane>
+                           </children></AnchorPane>
                      </children>
                   </AnchorPane>
                </children>

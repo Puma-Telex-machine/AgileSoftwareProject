@@ -18,7 +18,7 @@
          <opaqueInsets>
             <Insets left="35.0" right="35.0" />
          </opaqueInsets></TextField>
-      <VBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox fx:id="bigVBox" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="identifier" alignment="CENTER" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="text-small" text="&lt;&lt;Interface&gt;&gt;">
                <VBox.margin>
