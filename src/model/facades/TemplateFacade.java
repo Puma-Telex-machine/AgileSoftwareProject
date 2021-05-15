@@ -6,7 +6,7 @@ public interface TemplateFacade {
     /**
      * Should find the right template to add to the canvas.
      */
-    public void addTemplate();
+    public void addTemplate(String name);
 
     /**
      * Should save the diagram as a template

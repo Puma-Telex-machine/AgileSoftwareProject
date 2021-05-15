@@ -9,6 +9,7 @@ import model.point.ScaledPoint;
 import model.relations.ArrowType;
 import model.relations.Relation;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,8 @@ public class Model implements ModelFacade, FileHandlerFacade {
 
     ArrayList<Observer> observers = new ArrayList<>();
     Diagram diagram = new Diagram();
+    private int undoLayer = 0; //the suffix added to the next temporary file (?)
+    private int redoLayer = -1; // the suffix of the file to be loaded on redo (?)
 
     @Override
     public FileHandlerFacade getFileHandler() {
@@ -60,11 +63,19 @@ public class Model implements ModelFacade, FileHandlerFacade {
         //todo
     }
 
+    /**
+     * returns the name of all .uml files in the "diagrams" folder.
+     * @return
+     */
     @Override
     public String[] getAllFileNames() {
         return Database.getAllFileNames("diagrams/");
     }
 
+    /**
+     * Loads in a diagram file, then replaces the current diagram with this one
+     * @param fileName The name of the file we want to load
+     */
     @Override
     public void loadFile(String fileName) {
         diagram = Database.loadDiagram("diagrams/", fileName);
@@ -76,6 +87,10 @@ public class Model implements ModelFacade, FileHandlerFacade {
         }
     }
 
+    /**
+     * Loads in a template file with the given name, then adds all boxes & relations to the current diagram
+     * @param fileName The name of the file we want to load
+     */
     public void loadTemplate(String fileName){
         Diagram template = Database.loadDiagram("templates/", fileName);
         for(Box box : template.getAllBoxes()){
@@ -87,11 +102,24 @@ public class Model implements ModelFacade, FileHandlerFacade {
         //TODO: Sätt i databasen: System.out.println("loaded template " + fileName);
     }
 
+    /**
+     * Creates an empty file with the name "new" + the first unused number, then loads the empty file
+     */
     @Override
     public void newFile() {
         diagram.setName(Database.newFile());
         if(diagram.getName() != null) //TODO: Samma som förra
             loadFile(diagram.getName());
+    }
+
+    private void saveUndoLayer(){
+        /*if(!Database.directoryCheck("temp/")){
+            File folder = new File("temp/");
+            folder.mkdir();
+            Database.saveDiagram(diagram, "temp/", Integer.toString(undoLayer));
+            new File("temp/" + diagram.getName() + ".uml").deleteOnExit(); //auto-deletes temp-files when program closes (normally)
+            undoLayer++;
+        }*/
     }
 
     /**

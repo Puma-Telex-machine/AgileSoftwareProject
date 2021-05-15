@@ -86,7 +86,7 @@ public class Diagram implements IDiagram {
 
     private void saveThis(){
         if(!saveLocked) {
-            Database.saveDiagram(this);
+            Database.saveDiagram(this, "diagrams/", "");
             System.out.println("Saved diagram as " + name + ".uml");
         }
     }
