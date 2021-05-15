@@ -25,7 +25,7 @@ public class Method implements MethodFacade, UiObservable {
     @Override
     public void setName(String name) {
         this.name = name;
-        observer.update();
+        update();
     }
 
     @Override
@@ -36,7 +36,7 @@ public class Method implements MethodFacade, UiObservable {
     @Override
     public void setType(String type) {
         returnType = type;
-        observer.update();
+        update();
     }
 
     @Override
@@ -47,7 +47,7 @@ public class Method implements MethodFacade, UiObservable {
     @Override
     public void removeAllArguments() {
         parameters.clear();
-        observer.update();
+        update();
     }
 
     /**
@@ -57,7 +57,7 @@ public class Method implements MethodFacade, UiObservable {
     @Override
     public void addArgument(String argument) {
         parameters.add(argument);
-        observer.update();
+        update();
     }
 
     /**
@@ -67,7 +67,7 @@ public class Method implements MethodFacade, UiObservable {
     @Override
     public void removeArgument(String argument) {
         parameters.remove(argument);
-        observer.update();
+        update();
     }
 
     @Override
@@ -82,7 +82,7 @@ public class Method implements MethodFacade, UiObservable {
     @Override
     public void addModifier(Modifier modifier) {
         modifiers.add(modifier);
-        observer.update();
+        update();
     }
 
     /**
@@ -92,7 +92,7 @@ public class Method implements MethodFacade, UiObservable {
     @Override
     public void removeModifier(Modifier modifier) {
         modifiers.remove(modifier);
-        observer.update();
+        update();
     }
 
     @Override
@@ -103,7 +103,7 @@ public class Method implements MethodFacade, UiObservable {
     @Override
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
-        observer.update();
+        update();
     }
 
     @Override
@@ -112,9 +112,23 @@ public class Method implements MethodFacade, UiObservable {
     }
 
     UiObserver observer;
+    private Boolean ignoreObserver = false; //used by database
     @Override
     public void subscribe(UiObserver observer) {
        this.observer = observer;
+    }
+
+    public void ignoreObserver(){
+        ignoreObserver = true;
+    }
+
+    public void stopIgnore(){
+        ignoreObserver = false;
+    }
+
+    private void update(){
+        if(!ignoreObserver)
+            observer.update();
     }
 
     @Override
