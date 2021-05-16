@@ -18,6 +18,7 @@ public class BoxGrid2 {
 
     public void add(Box box) {
         boxes.add(box);
+        update(box); //why weren't we doing this before?
     }
 
     public void remove(Box box) {

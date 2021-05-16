@@ -1,6 +1,54 @@
-<BOX>
+<CLASS>
   name=Class
+  xposition=20
+  yposition=4
+  visibility=PUBLIC
+<!CLASS>
+<ABSTRACT_CLASS>
+  name=Abstract Class
+  xposition=22
+  yposition=9
+  visibility=PUBLIC
+<!ABSTRACT_CLASS>
+<ABSTRACT_CLASS>
+  name=Abstract Class
+  xposition=24
+  yposition=17
+  visibility=PUBLIC
+<!ABSTRACT_CLASS>
+<ENUM>
+  name=yggguooguoguog
+  xposition=12
+  yposition=33
+  visibility=PUBLIC
+<!ENUM>
+<ENUM>
+  name=Enum
+  xposition=17
+  yposition=29
+  visibility=PUBLIC
+<!ENUM>
+<CLASS>
+  name=Class
+  xposition=16
+  yposition=25
+  visibility=PUBLIC
+<!CLASS>
+<ABSTRACT_CLASS>
+  name=Abstract Class
+  xposition=16
+  yposition=21
+  visibility=PUBLIC
+<!ABSTRACT_CLASS>
+<ENUM>
+  name=Enum
+  xposition=16
+  yposition=17
+  visibility=PUBLIC
+<!ENUM>
+<INTERFACE>
+  name=Interface
   xposition=16
   yposition=13
   visibility=PUBLIC
-<!BOX>
+<!INTERFACE>

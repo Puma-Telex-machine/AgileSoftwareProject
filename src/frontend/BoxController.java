@@ -40,7 +40,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
     @FXML
     private Label name, identifier;
     @FXML
-    private VBox methods, variables, vBox;
+    private VBox methods, variables, vBox,bigVBox;
     @FXML
     private Line line,line1;
 
@@ -76,24 +76,19 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
 
         //set boxType
         switch (box.getType()) {
-            case CLASS:
+            case CLASS -> {
                 //remove typeidentifier and move components to work accordingly
                 //todo check that this works
+                System.out.println("hello");
                 blockpane1.setLayoutY(7);
                 blockpane2.setLayoutY(26);
                 nameField.setLayoutY(7);
                 vBox.setLayoutY(7);
-                vBox.getChildren().remove(identifier);
-                break;
-            case INTERFACE:
-                identifier.setText("<<Interface>>");
-                break;
-            case ABSTRACT_CLASS:
-                identifier.setText("<Abstract>");
-                break;
-            case ENUM:
-                identifier.setText("Enum");
-                break;
+                bigVBox.getChildren().remove(identifier);
+            }
+            case INTERFACE -> identifier.setText("<<Interface>>");
+            case ABSTRACT_CLASS -> identifier.setText("<Abstract>");
+            case ENUM -> identifier.setText("Enum");
         }
 
         this.arrowObserver = arrowObserver;
@@ -101,7 +96,9 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         hideCircles();
 
         //init box with name
-        box.setName(name.getText());
+        name.setText(box.getName());
+        nameField.setText(box.getName());
+        //box.setName(name.getText());
         update();
 
         //rezises namefield to fit whole name
@@ -445,6 +442,8 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
 
         List<AttributeFacade> variableData = box.getAttributes();
         List<MethodFacade> methodData = box.getMethods();
+        name.setText(box.getName());
+        nameField.setText(box.getName());
 
         for (int i = 0; i < variableData.size(); i++) {
             BoxAttributeTextController attribute = new BoxAttributeTextController( variableData.get(i).getString());

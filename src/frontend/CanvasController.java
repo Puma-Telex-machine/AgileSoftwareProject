@@ -17,7 +17,6 @@ import model.facades.RelationObserver;
 import model.point.Scale;
 import model.point.ScaledPoint;
 import model.relations.ArrowType;
-import model.relations.Relation;
 import java.awt.*;
 import java.io.IOException;
 import java.util.*;
@@ -242,10 +241,26 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     }
 
     @FXML
-    private void handleContextAddBox(MouseEvent e) {
-        model.addBox(new ScaledPoint(Scale.Frontend, (int) contextMenu.getLayoutX() - 80, (int) contextMenu.getLayoutY() - 35), BoxType.BOX);
+    private void handleContextAddBox(MouseEvent e,BoxType type) {
+        model.addBox(new ScaledPoint(Scale.Frontend, (int) contextMenu.getLayoutX() - 80, (int) contextMenu.getLayoutY() - 35), type);
         closeMenu(e);
         e.consume();
+    }
+    @FXML
+    private void addClass(MouseEvent e){
+        handleContextAddBox(e,BoxType.CLASS);
+    }
+    @FXML
+    private void addInterface(MouseEvent e){
+        handleContextAddBox(e,BoxType.INTERFACE);
+    }
+    @FXML
+    private void addAbstract(MouseEvent e){
+        handleContextAddBox(e,BoxType.ABSTRACT_CLASS);
+    }
+    @FXML
+    private void addEnum(MouseEvent e){
+        handleContextAddBox(e,BoxType.ENUM);
     }
 
     @FXML

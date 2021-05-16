@@ -10,14 +10,13 @@ import model.facades.ModelFacade;
 
 import java.io.IOException;
 
-
-public class BaseController extends AnchorPane{
+public class BaseController extends AnchorPane {
 
     @FXML
     AnchorPane UML;
 
     @FXML
-    AnchorPane leftMenu;
+    AnchorPane leftMenu, minimize;
     @FXML
     AnchorPane contextMenu;
 
@@ -32,8 +31,6 @@ public class BaseController extends AnchorPane{
     OverviewController overview;
 
     ExercisesController exercises;
-
-
 
     public BaseController() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Base.fxml")));
@@ -53,7 +50,6 @@ public class BaseController extends AnchorPane{
         overview = new OverviewController();
         exercises = new ExercisesController();
 
-
         leftMenu.getChildren().add(files);
         leftMenu.getChildren().add(shapes);
         leftMenu.getChildren().add(overview);
@@ -62,84 +58,95 @@ public class BaseController extends AnchorPane{
         LockPane(shapes);
         LockPane(overview);
         LockPane(exercises);
-        closeMenueTabbs();
+        minimizeMenu();
         UML.getChildren().add(canvas);
         LockPane(canvas);
 
     }
 
-    private void LockPane(AnchorPane pane)
-    {
+    private void LockPane(AnchorPane pane) {
         AnchorPane.setTopAnchor(pane, 0d);
         AnchorPane.setLeftAnchor(pane, 0d);
         AnchorPane.setBottomAnchor(pane, 0d);
-        AnchorPane.setRightAnchor(pane,0d);
+        AnchorPane.setRightAnchor(pane, 0d);
     }
 
-    private void closeMenueTabbs()
-    {
+    @FXML
+    private void minimizeMenu() {
         files.setVisible(false);
         shapes.setVisible(false);
         overview.setVisible(false);
         exercises.setVisible(false);
+        leftMenu.setVisible(false);
         leftMenu.toBack();
     }
 
-
-    //open Menus
+    // open Menus
     @FXML
-    private void openRecent(){
+    private void openRecent() {
         openMenuItem(files);
     }
-    @FXML
-    private void openShapes(){ openMenuItem(shapes); }
 
     @FXML
-    private void  openOverview() { openMenuItem(overview); }
+    private void openShapes() {
+        openMenuItem(shapes);
+    }
 
     @FXML
-    private void openExercises() { openMenuItem(exercises);}
+    private void openOverview() {
+        openMenuItem(overview);
+    }
+
+    @FXML
+    private void openExercises() {
+        openMenuItem(exercises);
+    }
 
     /**
      * Opens a left side menu
+     * 
      * @param menu The anchor pane base for the menu
      */
-    private void openMenuItem(AnchorPane menu)
-    {
+    private void openMenuItem(AnchorPane menu) {
         boolean vis = menu.isVisible();
-        closeMenueTabbs();
-        if(vis){
+        minimizeMenu();
+        if (vis) {
             leftMenu.toBack();
-        }
-        else{
+        } else {
             leftMenu.toFront();
+            leftMenu.setVisible(true);
+            minimize.toFront();
             menu.setVisible(true);
         }
     }
 
     /**
      * Is called when the user presses a key
+     * 
      * @param e The key-pressed event
      */
-    public void onKeyPressed(KeyEvent e)
-    {
-        switch (e.getCode())
-        {
-            case SHIFT: canvas.startAddSelect(); break;
-            case DELETE: canvas.deleteSelectedBoxes(); break;
+    public void onKeyPressed(KeyEvent e) {
+        switch (e.getCode()) {
+            case SHIFT:
+                canvas.startAddSelect();
+                break;
+            case DELETE:
+                canvas.deleteSelectedBoxes();
+                break;
         }
         e.consume();
     }
 
     /**
      * Is called when the user releases a key
+     * 
      * @param e The key-release event
      */
-    public void onKeyReleased(KeyEvent e)
-    {
-        switch (e.getCode())
-        {
-            case SHIFT: canvas.endAddSelect(); break;
+    public void onKeyReleased(KeyEvent e) {
+        switch (e.getCode()) {
+            case SHIFT:
+                canvas.endAddSelect();
+                break;
         }
         e.consume();
     }
