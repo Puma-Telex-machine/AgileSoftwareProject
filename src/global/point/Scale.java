@@ -1,4 +1,4 @@
-package model.point;
+package global.point;
 
 public enum Scale {
     Backend(1, 1),

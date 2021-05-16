@@ -3,11 +3,9 @@ package model;
 import model.boxes.*;
 import model.facades.AttributeFacade;
 import model.facades.MethodFacade;
-import model.grid.Diagram;
-import model.point.Scale;
-import model.point.ScaledPoint;
-import model.relations.ArrowType;
-import model.relations.Relation;
+import model.diagram.Diagram;
+import global.point.Scale;
+import global.point.ScaledPoint;
 
 import java.io.*;
 import java.util.*;
@@ -58,7 +56,7 @@ public class Database {
                     relations.add(loadRelation(scanner, boxes));
             }
             for (Box box: boxes) {
-                result.update(box);
+                result.updateBox(box);
             }
             for (Relation relation: relations){
                 result.add(relation);

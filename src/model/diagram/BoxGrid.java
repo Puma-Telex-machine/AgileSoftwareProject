@@ -1,8 +1,8 @@
-package model.grid;
+package model.diagram;
 
 import model.boxes.Box;
-import model.point.Scale;
-import model.point.ScaledPoint;
+import global.point.Scale;
+import global.point.ScaledPoint;
 
 import java.util.*;
 
@@ -32,7 +32,7 @@ public class BoxGrid { //TODO: try collision detection instead
         remove(box);
 
         // Update the position of the box
-        box.setPosition(point);
+        box.trySetPosition(point);
 
         // Re-add the box to the grid
         add(box);
@@ -65,7 +65,7 @@ public class BoxGrid { //TODO: try collision detection instead
         //This is inefficient and could be run less times by calculating how far it needs to be moved instead
         Box occupant = boxMap.get(point);
         if (occupant != null) {
-            ScaledPoint oldPosition = new ScaledPoint(Scale.Backend, occupant.getPosition());
+            ScaledPoint oldPosition = new ScaledPoint(occupant.getPosition());
             ScaledPoint newPosition = oldPosition.move(new ScaledPoint(Scale.Backend, 0, 1));
             move(occupant, newPosition);
         }

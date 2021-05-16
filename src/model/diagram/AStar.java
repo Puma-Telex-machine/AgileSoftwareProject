@@ -1,7 +1,7 @@
-package model.grid;
+package model.diagram;
 
-import model.point.Scale;
-import model.point.ScaledPoint;
+import global.point.Scale;
+import global.point.ScaledPoint;
 import model.relations.Relation;
 
 import java.util.Comparator;
@@ -10,16 +10,15 @@ import java.util.TreeMap;
 
 public class AStar {
 
-    IDiagram grid;
+    PathfindingMap grid;
 
     int stepCost = 1;
     int bendCost = 10;
-    int crossCost = 100;
 
     PriorityQueue<PathNode> discovered;
     TreeMap<ScaledPoint, PathNode> visited;
 
-    AStar(IDiagram grid) {
+    AStar(PathfindingMap grid) {
         this.grid = grid;
     }
 
@@ -30,10 +29,10 @@ public class AStar {
         visited = new TreeMap<>();
         discovered = new PriorityQueue<>(Comparator.comparingInt(this::getCostEstimate));
 
-        destination = relation.getToPosition();
+        destination = relation.getStartPosition();
 
         PathNode startNode = new PathNode(relation);
-        startNode.position = relation.getFromPosition();
+        startNode.position = relation.getEndPosition();
         startNode.cost = 0;
         discovered.add(startNode);
 
@@ -58,7 +57,7 @@ public class AStar {
         position = position.move(Scale.Backend, direction.getX(), direction.getY());
 
         if (visited.containsKey(position)) {
-            return;
+            return; //testa att implementera utbyte om kostnaden är lägre (ej prio)
         }
 
         if (grid.isOccupied(position)) {
@@ -80,7 +79,7 @@ public class AStar {
         if (direction != previous.direction) cost += bendCost;
 
         // If the node is occupied and the lines shouldn't merge
-        if (!grid.canMergeLines(previous.relation, position)) cost += crossCost;
+        cost += grid.moveCost(previous.relation, position);
 
         // Add the node to unvisited
         node.cost = cost;

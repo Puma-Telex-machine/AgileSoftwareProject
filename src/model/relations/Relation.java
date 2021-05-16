@@ -2,33 +2,52 @@ package model.relations;
 
 import model.boxes.Box;
 import model.boxes.BoxType;
-import model.facades.BoxFacade;
-import model.facades.RelationFacade;
-import model.facades.RelationObserver;
-import model.point.ScaledPoint;
+import model.boxes.BoxFacade;
+import model.diagram.DiagramMediator;
+import global.point.ScaledPoint;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Relation implements RelationFacade {
-    BoxFacade to;
-    BoxFacade from;
-    ArrowType arrowType;
-    ArrayList<ScaledPoint> path;
-    RelationObserver observer=null;
+    private final DiagramMediator diagram;
+    private final BoxFacade to;
+    private ScaledPoint offsetTo;
+    private final BoxFacade from;
+    private ScaledPoint offsetFrom;
+    private ArrowType arrowType;
+    private ArrayList<ScaledPoint> path;
 
-    public Relation(BoxFacade from, BoxFacade to, ArrowType arrowType) {
+    public Relation(DiagramMediator diagram, BoxFacade from, ScaledPoint offsetFrom, BoxFacade to, ScaledPoint offsetTo, ArrowType arrowType) {
+        this.diagram = diagram;
         this.from = from;
+        this.offsetFrom = offsetFrom;
         this.to = to;
+        this.offsetTo = offsetTo;
         this.arrowType = arrowType;
     }
 
-    public ScaledPoint getToPosition() {
-        return to.getPosition();
+    //region OBSERVABLE
+    private final ArrayList<RelationObserver> observers = new ArrayList<>();
+
+    @Override
+    public void subscribe(RelationObserver observer) {
+        observers.add(observer);
     }
 
-    public ScaledPoint getFromPosition() {
-        return from.getPosition();
+    private void updateObserver(){
+        for (RelationObserver o : observers) {
+            o.update(this);
+        }
+    }
+    //endregion
+
+    public ScaledPoint getStartPosition() {
+        return to.getPosition().move(offsetTo);
+    }
+
+    public ScaledPoint getEndPosition() {
+        return from.getPosition().move(offsetFrom);
     }
 
     @Override
@@ -41,26 +60,23 @@ public class Relation implements RelationFacade {
         return arrowType;
     }
 
+    @Override
+    public void remove() {
+        diagram.removeRelation(this);
+    }
+
     public BoxFacade getTo() {
         return to;
     }
 
-
     public BoxFacade getFrom() {
         return from;
     }
-    @Override
-    public void changeRelation(ArrowType type) {
-        this.arrowType = type;
-        updateObserver();
-    }
 
     @Override
-    public void subscribe(RelationObserver observer) {
-        this.observer=observer;
-    }
-    private void updateObserver(){
-        if(observer!=null) observer.updateRelation(this);
+    public void changeRelationType(ArrowType type) {
+        this.arrowType = type;
+        updateObserver();
     }
 
     public void setPath(ArrayList<ScaledPoint> pathPoints) {
@@ -87,8 +103,6 @@ public class Relation implements RelationFacade {
                 return null;
         }
     }
-    
-    
 
     private static List<ArrowType> classRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
@@ -108,7 +122,7 @@ public class Relation implements RelationFacade {
                 types.add(ArrowType.INHERITANCE);
                 return types;
             default:
-                return null;      
+                return null;
         }
     }
 
@@ -122,9 +136,9 @@ public class Relation implements RelationFacade {
             case INTERFACE:
                 types.add(ArrowType.INHERITANCE);
         // TODO: kolla vidare på det här     types.add(ArrowType.EXTENDS);
-                return types;  
+                return types;
             default:
-                return null;    
+                return null;
         }
     }
 
@@ -143,9 +157,9 @@ public class Relation implements RelationFacade {
                 return types;
             case CLASS:
                 types.add(ArrowType.IMPLEMENTATION);
-                return types;   
+                return types;
             default:
-                return null;       
+                return null;
         }
     }
 
@@ -163,11 +177,5 @@ public class Relation implements RelationFacade {
                 return null;
         }
     }
-        // Metoden boxRelations behövs förmodligen inte.
-    private static List<ArrowType> boxRelations(BoxType to){
-        List<ArrowType> types = new ArrayList<>();
-        types.add(ArrowType.DEFAULT);
-        return types;
-        }
 }
    

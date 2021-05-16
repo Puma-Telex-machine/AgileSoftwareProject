@@ -3,11 +3,10 @@ package frontend;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
-import model.point.Scale;
-import model.point.ScaledPoint;
+import global.point.Scale;
+import global.point.ScaledPoint;
 import model.relations.ArrowType;
 
 import java.awt.*;
@@ -93,7 +92,7 @@ public class Arrow extends AnchorPane{
      * @param lineAngle the angle of the last line
      * @param endX end coordinate x
      * @param endY end coordinate y
-     * @return   [arrow point1, arrow point2, point on line for rhoumbus, point on line inbetween arrowpoints]
+     * @return   [arrow point1, arrow point2, global.point on line for rhoumbus, global.point on line inbetween arrowpoints]
      */
     private Point[] getArrowHeadPoints(double lineAngle, double endX, double endY) {
 
@@ -245,7 +244,7 @@ public class Arrow extends AnchorPane{
     public double getDistaceFromClick(MouseEvent event) {
 
         //todo make viable for all lines not just vertical and horizontal with formula
-        // Distance = (| a*x1 + b*y1 + c |) / (sqrt( a*a + b*b)) line ax+bx+c=0  point (x1,y1)
+        // Distance = (| a*x1 + b*y1 + c |) / (sqrt( a*a + b*b)) line ax+bx+c=0  global.point (x1,y1)
 
         double x1 = event.getX();
         double y1 = event.getY();
@@ -289,7 +288,7 @@ public class Arrow extends AnchorPane{
                 }
                 //other line (does not work for horizontal or )
                 else {
-                    //line ax+bx+c=0  point (x1,y1)
+                    //line ax+bx+c=0  global.point (x1,y1)
                     // Distance = (| a*x1 + b*y1 + c |) / (sqrt( a*a + b*b))
                     double slope = (l.getEndY() - l.getStartY()) / (l.getEndX() - l.getStartX());
                     double a = slope;

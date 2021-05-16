@@ -6,13 +6,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 //import model.VariableData;
-import model.VariableData;
 import model.boxes.Visibility;
 import model.facades.AttributeFacade;
-import model.facades.BoxFacade;
+import model.boxes.BoxFacade;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class VariableEditorController extends AnchorPane {
 
