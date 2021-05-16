@@ -149,7 +149,7 @@ public class Model implements ModelFacade, FileHandlerFacade, DiagramObserver {
     }
 
     public void loadUndoLayer(){
-        if(Database.directoryCheck("temp/") && undoLayer >= 0){
+        if(Database.directoryCheck("temp/") && canUndo()){
             Database.saveDiagram(diagram, "temp/", Integer.toString(undoLayer + 1));
             new File("temp/" + diagram.getName() + (undoLayer + 1) + ".uml").deleteOnExit();
             diagram = Database.loadDiagram("temp/", diagram.getName(), Integer.toString(undoLayer));
@@ -166,7 +166,7 @@ public class Model implements ModelFacade, FileHandlerFacade, DiagramObserver {
     }
 
     public void loadRedoLayer(){
-        if(Database.directoryCheck("temp/") && redoLayer <= maxUndo){
+        if(Database.directoryCheck("temp/") && canRedo()){
             diagram = Database.loadDiagram("temp/", diagram.getName(), Integer.toString(redoLayer));
             diagram.setObserver(this);
             for(Box box : diagram.getAllBoxes()){
