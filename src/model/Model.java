@@ -13,7 +13,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Model implements ModelFacade, FileHandlerFacade {
+public class Model implements ModelFacade, FileHandlerFacade, DiagramObserver {
 
     private static Model singleton;
     public static Model getModel() {
@@ -21,8 +21,13 @@ public class Model implements ModelFacade, FileHandlerFacade {
         return singleton;
     }
 
+    private Model(){
+        diagram = new Diagram();
+        diagram.setObserver(this);
+    }
+
     ArrayList<Observer> observers = new ArrayList<>();
-    Diagram diagram = new Diagram();
+    Diagram diagram;
 
     @Override
     public FileHandlerFacade getFileHandler() {
@@ -78,7 +83,8 @@ public class Model implements ModelFacade, FileHandlerFacade {
      */
     @Override
     public void loadFile(String fileName) {
-        diagram = Database.loadDiagram("diagrams/", fileName);
+        diagram = Database.loadDiagram("diagrams/", fileName, "");
+        diagram.setObserver(this);
         for (Box box : diagram.getAllBoxes()) {
             observers.forEach(observer -> observer.addBox(box));
         }
@@ -96,7 +102,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
      */
     public void loadTemplate(String fileName){
         saveUndoLayer();
-        Diagram template = Database.loadDiagram("templates/", fileName);
+        Diagram template = Database.loadDiagram("templates/", fileName, "");
         for(Box box : template.getAllBoxes()){
             observers.forEach(observer -> observer.addBox(box));
         }
@@ -121,6 +127,11 @@ public class Model implements ModelFacade, FileHandlerFacade {
     private int redoLayer = 0; // the suffix of the file to be loaded on redo
     private int maxUndo = -1; //the highest existing relevant layer of undo
 
+    @Override
+    public void updateUndo() {
+        saveUndoLayer();
+    }
+
     private void saveUndoLayer(){
         if(!Database.directoryCheck("temp/")){
             File folder = new File("temp/");
@@ -140,7 +151,9 @@ public class Model implements ModelFacade, FileHandlerFacade {
     public void loadUndoLayer(){
         if(Database.directoryCheck("temp/") && undoLayer >= 0){
             Database.saveDiagram(diagram, "temp/", Integer.toString(undoLayer + 1));
-            diagram = Database.loadDiagram("temp/", diagram.getName() + undoLayer);
+            new File("temp/" + diagram.getName() + (undoLayer + 1) + ".uml").deleteOnExit();
+            diagram = Database.loadDiagram("temp/", diagram.getName(), Integer.toString(undoLayer));
+            diagram.setObserver(this);
             for(Box box : diagram.getAllBoxes()){
                 observers.forEach(observer -> observer.addBox(box));
             }
@@ -154,7 +167,8 @@ public class Model implements ModelFacade, FileHandlerFacade {
 
     public void loadRedoLayer(){
         if(Database.directoryCheck("temp/") && redoLayer <= maxUndo){
-            diagram = Database.loadDiagram("temp/", diagram.getName() + redoLayer);
+            diagram = Database.loadDiagram("temp/", diagram.getName(), Integer.toString(redoLayer));
+            diagram.setObserver(this);
             for(Box box : diagram.getAllBoxes()){
                 observers.forEach(observer -> observer.addBox(box));
             }
@@ -166,6 +180,13 @@ public class Model implements ModelFacade, FileHandlerFacade {
         }
     }
 
+    public Boolean canUndo(){
+        return undoLayer >= 0;
+    }
+
+    public Boolean canRedo(){
+        return redoLayer <= maxUndo;
+    }
     /**
      * get all relations this box interacts with
      */

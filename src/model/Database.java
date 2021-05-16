@@ -33,11 +33,11 @@ public class Database {
      * @param filename The name of the file to be loaded, currently not including ".uml"
      * @return A Diagram object.
      */
-    static public Diagram loadDiagram(String folder, String filename){
+    static public Diagram loadDiagram(String folder, String filename, String fileEnder){
         try {
             ArrayList<Box> boxes = new ArrayList<>();
             ArrayList<Relation> relations = new ArrayList<>();
-            File toRead = new File(folder + filename + ".uml");
+            File toRead = new File(folder + filename + fileEnder + ".uml");
             Scanner scanner = new Scanner(toRead);
             Diagram result = new Diagram();
             result.setName(filename);

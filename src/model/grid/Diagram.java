@@ -1,7 +1,9 @@
 package model.grid;
 
 import model.Database;
+import model.Model;
 import model.boxes.Box;
+import model.facades.DiagramObserver;
 import model.point.ScaledPoint;
 import model.relations.Relation;
 
@@ -16,9 +18,11 @@ public class Diagram implements IDiagram {
     RelationGrid relationGrid = new RelationGrid(this);
     String name = "untitled";
     Boolean saveLocked = false;
+    DiagramObserver observer;
 
     @Override
     public void add(Box box) {
+        updateObserver();
         boxGrid.add(box);
         relationGrid.refreshAllPaths();
         saveThis();
@@ -26,6 +30,7 @@ public class Diagram implements IDiagram {
 
     @Override
     public void update(Box box) {
+        updateObserver();
         boxGrid.update(box);
         relationGrid.refreshAllPaths();
         saveThis();
@@ -33,6 +38,7 @@ public class Diagram implements IDiagram {
 
     @Override
     public void remove(Box box) {
+        updateObserver();
         boxGrid.remove(box);
         relationGrid.refreshAllPaths();
         saveThis();
@@ -40,6 +46,7 @@ public class Diagram implements IDiagram {
 
     @Override
     public void add(Relation relation) {
+        updateObserver();
         relationGrid.add(relation);
         relationGrid.refreshAllPaths();
         saveThis();
@@ -47,12 +54,14 @@ public class Diagram implements IDiagram {
 
     @Override
     public void update(Relation relation) {
+        updateObserver();
         relationGrid.refreshAllPaths();
         saveThis();
     }
 
     @Override
     public void remove(Relation relation) {
+        updateObserver();
         relationGrid.remove(relation);
         relationGrid.refreshAllPaths();
         saveThis();
@@ -76,6 +85,10 @@ public class Diagram implements IDiagram {
         return relationGrid.canMergeLines(relation, position);
     }
 
+    public void setObserver(DiagramObserver observer) {
+        this.observer = observer;
+    }
+
     public void setName(String newName){
         name = newName;
     }
@@ -88,6 +101,12 @@ public class Diagram implements IDiagram {
         if(!saveLocked) {
             Database.saveDiagram(this, "diagrams/", "");
             System.out.println("Saved diagram as " + name + ".uml");
+        }
+    }
+
+    private void updateObserver(){
+        if(!saveLocked){
+            observer.updateUndo();
         }
     }
 
