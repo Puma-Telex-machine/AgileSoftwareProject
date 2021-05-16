@@ -38,6 +38,7 @@ public class Box implements BoxFacade, UiObserver {
             case CLASS -> "Class";
             case ABSTRACT_CLASS -> "Abstract Class";
             case INTERFACE -> "Interface";
+            case ENUM -> "Enum";
             default -> "Box";
         };
         this.position = position;

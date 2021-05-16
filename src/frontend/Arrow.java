@@ -42,21 +42,10 @@ public class Arrow extends AnchorPane{
         if (bends.size() >= 1) {
             //todo lines intersect at bendpoints (when line is straight this looks bad)
             for (int i = 1; i < bends.size()-1; i++) {
-                Line l = new Line();
-                lines.add(l);
-                l.setStartX(bends.get(i-1).getX(Scale.Frontend));
-                l.setStartY(bends.get(i-1).getY(Scale.Frontend));
-                l.setEndX(bends.get(i).getX(Scale.Frontend));
-                l.setEndY(bends.get(i).getY(Scale.Frontend));
-                l.setStroke(( new Color(0.72,0.72,0.72,1)));
+                addLine(new Line(),bends.get(i-1).getX(Scale.Frontend),bends.get(i-1).getY(Scale.Frontend),bends.get(i).getX(Scale.Frontend),bends.get(i).getY(Scale.Frontend));
             }
             //end line
-            lines.add(endline);
-            endline.setStartX(bends.get(bends.size() - 2).getX(Scale.Frontend));
-            endline.setStartY(bends.get(bends.size() - 2).getY(Scale.Frontend));
-            endline.setEndX(bends.get(bends.size() - 1).getX(Scale.Frontend));
-            endline.setEndY(bends.get(bends.size() - 1).getY(Scale.Frontend));
-            endline.setStroke((new Color(0.72, 0.72, 0.72, 1)));
+            addLine(endline,bends.get(bends.size() - 2).getX(Scale.Frontend),bends.get(bends.size() - 2).getY(Scale.Frontend),bends.get(bends.size() - 1).getX(Scale.Frontend),bends.get(bends.size() - 1).getY(Scale.Frontend));
         }
         else {
             lines.add(endline);
@@ -64,7 +53,8 @@ public class Arrow extends AnchorPane{
             endline.setStartY(startY);
             endline.setEndX(endX);
             endline.setEndY(endY);
-            endline.setStroke(( new Color(0.72,0.72,0.72,1)));
+            endline.getStyleClass().add("line");
+            //endline.setStroke(( new Color(0.72,0.72,0.72,1)));
         }
 
         this.getChildren().addAll(lines);
@@ -73,6 +63,27 @@ public class Arrow extends AnchorPane{
         //if start=end glitches occur for head
         if (!(startX == endX && startY == endY)) {
             setType(ArrowType.ASSOCIATION);
+        }
+    }
+
+    private void addLine(Line line,int startX,int startY, int endX, int endY){
+        lines.add(line);
+        line.setStartX(startX);
+        line.setStartY(startY);
+        line.setEndX(endX);
+        line.setEndY(endY);
+        line.getStyleClass().add("line");
+
+        //remove overlap by removing last pixel
+        //line paralell with Xaxis
+        if(line.getStartY()==line.getEndY()){
+            if(line.getStartX()>line.getEndX()) line.setEndX(line.getEndX()+1);
+            else line.setEndX(line.getEndX()-1);
+        }
+        //else will be paralell with Yaxis
+        else{
+            if(line.getStartY()>line.getEndY()) line.setEndY(line.getEndY()+1);
+           else line.setEndY(line.getEndY()-1);
         }
     }
 
@@ -196,8 +207,7 @@ public class Arrow extends AnchorPane{
         if(fill) polygon.setFill(new Color(0.72,0.72,0.72,1));
         else {
             polygon.setFill(new Color(0,0,0,0));
-            polygon.setStroke(new Color(0.72,0.72,0.72,1));
-            polygon.setStrokeWidth(1);
+            polygon.getStyleClass().add("line");
         }
         head.getChildren().add(polygon);
         polygon.toFront();
@@ -209,10 +219,10 @@ public class Arrow extends AnchorPane{
         Point[] points = getArrowHeadPoints(lineAngle,endX,endY);
 
         Line l1 = new Line(endX,endY,points[0].x,points[0].y);
-        l1.setStroke(( new Color(0.72,0.72,0.72,1)));
+        l1.getStyleClass().add("line");
         head.getChildren().add(l1);
         Line l2 = new Line(endX,endY,points[1].x,points[1].y);
-        l2.setStroke(( new Color(0.72,0.72,0.72,1)));
+        l2.getStyleClass().add("line");
         head.getChildren().add(l2);
 
         endline.setEndX(endX);

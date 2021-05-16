@@ -178,3 +178,8 @@
 .text-field{
     -fx-font-family: "Roboto";
 }
+
+.line{
+    -fx-stroke-width: 1px;
+    -fx-stroke: "DBDBDB";
+}
