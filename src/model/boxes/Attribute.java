@@ -1,5 +1,7 @@
 package model.boxes;
 
+import frontend.Observers.UiObservable;
+import frontend.Observers.UiObserver;
 import global.Observable;
 import global.Observers;
 import global.Observer;
@@ -12,7 +14,7 @@ import java.util.Set;
  *  Originally created by Emil Holmsten,
  *  Updated by Filip Hanberg.
  */
-public class Attribute implements AttributeFacade, Observable<Observer> {
+public class Attribute implements AttributeFacade, Observable<Observer>, UiObservable {
 
     private String name = "foo";
     private final Set<Modifier> modifiers = new HashSet<>();

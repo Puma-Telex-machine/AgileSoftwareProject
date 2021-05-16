@@ -6,6 +6,8 @@ import model.facades.MethodFacade;
 import model.diagram.Diagram;
 import global.point.Scale;
 import global.point.ScaledPoint;
+import model.relations.ArrowType;
+import model.relations.Relation;
 
 import java.io.*;
 import java.util.*;
@@ -59,7 +61,7 @@ public class Database {
                 result.updateBox(box);
             }
             for (Relation relation: relations){
-                result.add(relation);
+                result.addRelation(relation);
             }
             System.out.println("Successfully loaded " + filename + ".uml");
             result.unlockSaving();
@@ -237,8 +239,9 @@ public class Database {
                     arrowType = ArrowType.valueOf(next[1]);
                     break;
                 case "<!RELATION>":
-                    Relation relation = new Relation(boxes.get(indexFrom), boxes.get(indexTo), arrowType);
-                    return relation;
+                    //todo fix
+                    //Relation relation = new Relation(boxes.get(indexFrom), boxes.get(indexTo), arrowType);
+                    //return relation;
             }
         }
         return null;

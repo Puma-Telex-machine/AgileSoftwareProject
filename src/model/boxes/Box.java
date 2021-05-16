@@ -203,12 +203,6 @@ public class Box implements BoxFacade, Observer {
 
             maxLength = Collections.max(longest);
         }
-        if(maxLength*SYMBOLS_PER_WIDTH_UNIT_OTHER<name.length()*SYMBOLS_PER_WIDTH_UNIT_NAME){
-            return Math.max((int)(name.length() * SYMBOLS_PER_WIDTH_UNIT_NAME )+2, START_WIDTH);
-        }
-        return Math.max((int)(maxLength * SYMBOLS_PER_WIDTH_UNIT_OTHER)+1, START_WIDTH);
-    }
-
         int boxLength = 0;
         if (maxLength < name.length()) {
             boxLength = Math.max((int) (name.length() * SYMBOLS_PER_WIDTH_UNIT_NAME) + 1, START_WIDTH);

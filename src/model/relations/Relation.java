@@ -177,5 +177,14 @@ public class Relation implements RelationFacade {
                 return null;
         }
     }
+    @Override
+    public global.point.ScaledPoint getOffsetTo() {
+        return offsetTo;
+    }
+
+    @Override
+    public ScaledPoint getOffsetFrom() {
+        return offsetFrom;
+    }
 }
    

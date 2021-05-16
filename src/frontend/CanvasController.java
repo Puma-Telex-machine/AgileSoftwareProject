@@ -147,7 +147,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
         arrows.remove(arrow);
         relationMap.remove(arrow);
         arrowMap.remove(r);
-        model.removeRelation(r);
+        r.remove();
     }
 
     /**
@@ -204,7 +204,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
             //trying to merge dragarrow into existing arrow
             if (makingArrow) {
                 ScaledPoint offset = new ScaledPoint (Scale.Frontend,(int) (arrowStart.getX()-arrowBox.getLayoutX()),(int) (arrowStart.getY()-arrowBox.getLayoutY()));
-                model.addRelation(arrowBox.getBox(),offset,arrowMap.get(closest.get(0)));
+                diagram.createFollowRelation(arrowBox.getBox(),offset,arrowMap.get(closest.get(0)));
             }
             else{
                 clickedArrow = closest;
@@ -243,7 +243,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
 
     @FXML
     private void handleContextAddBox(MouseEvent e,BoxType type) {
-        model.addBox(new ScaledPoint(Scale.Frontend, (int) contextMenu.getLayoutX() - 80, (int) contextMenu.getLayoutY() - 35), type);
+        diagram.createBox(new ScaledPoint(Scale.Frontend, (int) contextMenu.getLayoutX() - 80, (int) contextMenu.getLayoutY() - 35), type);
         closeMenu(e);
         e.consume();
     }
@@ -279,7 +279,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
         ArrowType type = arrowTypeComboBox.getValue();
         for (Arrow a:clickedArrow) {
             a.setType(type);
-            arrowMap.get(a).changeRelation(type);
+            arrowMap.get(a).changeRelationType(type);
         }
 
         closeMenu(e);

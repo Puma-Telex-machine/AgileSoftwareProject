@@ -7,6 +7,7 @@ import model.boxes.BoxType;
 import model.boxes.BoxFacade;
 import model.relations.ArrowType;
 import model.relations.Relation;
+import model.relations.RelationFacade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +62,16 @@ public class Diagram implements DiagramFacade, DiagramMediator, PathfindingMap {
 
     @Override
     public void createRelation(BoxFacade from, ScaledPoint offsetFrom, BoxFacade to, ScaledPoint offsetTo, ArrowType arrowType) {
-        Relation relation = new Relation(this, from, offsetFrom, to, offsetTo, arrowType);
+        addRelation(new Relation(this, from, offsetFrom, to, offsetTo, arrowType));
+
+    }
+
+    @Override
+    public void createFollowRelation(BoxFacade from, ScaledPoint offsetFrom, RelationFacade follow) {
+        addRelation(new Relation(this,from,offsetFrom,follow.getTo(),follow.getOffsetTo(),follow.getArrowType()));
+    }
+
+    public void addRelation(Relation relation) {
         relationGrid.add(relation);
         relationGrid.refreshAllPaths();
         updateObservers(relation);

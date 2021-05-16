@@ -1,6 +1,6 @@
 package model.facades;
 
-import model.grid.Diagram;
+import model.diagram.Diagram;
 
 public interface TemplateFacade {
     /**

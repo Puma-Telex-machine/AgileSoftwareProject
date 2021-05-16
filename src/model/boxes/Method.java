@@ -1,5 +1,6 @@
 package model.boxes;
 
+import frontend.Observers.UiObserver;
 import global.Observable;
 import global.Observers;
 import global.Observer;
@@ -139,5 +140,21 @@ public class Method implements MethodFacade, Observable<Observer> {
         method += returnType;
 
         return method;
+    }
+
+    UiObserver observer;
+    private Boolean ignoreObserver = false; //used by database
+
+    public void ignoreObserver(){
+        ignoreObserver = true;
+    }
+
+    public void stopIgnore(){
+        ignoreObserver = false;
+    }
+
+    private void update(){
+        if(!ignoreObserver)
+            observer.update();
     }
 }

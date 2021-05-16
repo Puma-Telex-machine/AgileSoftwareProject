@@ -3,20 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="41a11e1e-bf49-4b51-8834-c840eb7c8781" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diagrams/new0.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/new0.uml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diagrams/new1.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/new1.uml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diagrams/untitled.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/untitled.uml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/model/Model.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BoxController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/CanvasController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/ShapeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/ShapeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Base.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/Box.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Box.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/Canvas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Canvas.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/css/DarkMode.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/css/DarkMode.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/shapes.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/shapes.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ModelFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ModelFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/boxes/Attribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Attribute.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/boxes/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Box.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/boxes/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Method.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/diagram/Diagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/Diagram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/diagram/DiagramFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/DiagramFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/facades/TemplateFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/facades/TemplateFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/relations/Relation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/Relation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/relations/RelationFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/RelationFacade.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,16 +142,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/frontend/Arrow.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/frontend/BoxController.java</url>
-          <line>129</line>
+          <line>127</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/AgileSoftwareProject$Main.ic" NAME="Main Coverage Results" MODIFIED="1620818577980" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
