@@ -43,7 +43,6 @@ public class Box implements BoxFacade, Observer {
         this.position = position;
         this.type = type;
         this.diagram = diagram;
-        update();
     }
 
     //region OBSERVABLE
@@ -150,8 +149,12 @@ public class Box implements BoxFacade, Observer {
         return modifiers;
     }
 
-    @Override
     public void setPosition(ScaledPoint point) {
+        position = point;
+    }
+
+    @Override
+    public void trySetPosition(ScaledPoint point) {
         position = point;
         update();
     }

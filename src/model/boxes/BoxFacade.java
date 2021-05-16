@@ -85,7 +85,7 @@ public interface BoxFacade extends Observable<Observer> {
      * Set the position of the box.
      * @param point the position to move the box to.
      */
-    void setPosition(ScaledPoint point);
+    void trySetPosition(ScaledPoint point);
 
     /**
      * Get the position of the box.

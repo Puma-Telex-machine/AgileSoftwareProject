@@ -233,7 +233,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
     @FXML
     private void handleLetGo(MouseEvent event) {
         moving = false;
-        box.setPosition(new ScaledPoint(Scale.Frontend, (int) this.getLayoutX(), (int) this.getLayoutY()));
+        box.trySetPosition(new ScaledPoint(Scale.Frontend, (int) this.getLayoutX(), (int) this.getLayoutY()));
         //for snap to grid
         this.setLayoutX(box.getPosition().getX(Scale.Frontend));
         this.setLayoutY(box.getPosition().getY(Scale.Frontend));

@@ -41,6 +41,7 @@ public class Diagram implements DiagramFacade, DiagramMediator, PathfindingMap {
     public void createBox(ScaledPoint position, BoxType boxType) {
         Box box = new Box(this, position, boxType);
         boxGrid.add(box);
+        updateBox(box);
         updateObservers(box);
         saveThis();
     }

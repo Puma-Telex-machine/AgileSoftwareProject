@@ -10,8 +10,8 @@ public class RelationGrid {
 
     AStar aStar;
     TreeMap<ScaledPoint, HashSet<PathNode>> relationMap = new TreeMap<>();;
-    //SortedSet<Relation> relations = new TreeSet<>((r1, r2) -> (int) (calculateAngle(r1) - calculateAngle(r2)));;
-    HashSet<Relation> relations = new HashSet<>();
+    PriorityQueue<Relation> relations = new PriorityQueue<>((r1, r2) -> (int) (calculateAngle(r2) - calculateAngle(r1))); //Not sure if this did any differance
+    //HashSet<Relation> relations = new HashSet<>();
     int crossCost = 30;
     int stepCost = 0;
 
@@ -28,12 +28,14 @@ public class RelationGrid {
     }
 
     public void add(Relation relation) {
-        relations.add(relation);
+        boolean test = relations.add(relation);
+        System.out.println(test);
     }
 
     public void refreshAllPaths() {
         System.out.println();
         System.out.println("Refreshing all paths!!!");
+        //todo: runs twice on creation of box
 
         relationMap = new TreeMap<>();
         for (Relation r : relations) {
@@ -42,7 +44,7 @@ public class RelationGrid {
     }
 
     private void calculatePath(Relation relation) {
-        PathNode path = findPath(relation);
+        PathNode path = findPath(relation); //todo: runs too often (on  click of point as well at least)
         relation.setPath(extractPathBends(path));
     }
 
