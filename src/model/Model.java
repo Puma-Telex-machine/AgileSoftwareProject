@@ -23,8 +23,6 @@ public class Model implements ModelFacade, FileHandlerFacade {
 
     ArrayList<Observer> observers = new ArrayList<>();
     Diagram diagram = new Diagram();
-    private int undoLayer = 0; //the suffix added to the next temporary file (?)
-    private int redoLayer = -1; // the suffix of the file to be loaded on redo (?)
 
     @Override
     public FileHandlerFacade getFileHandler() {
@@ -40,11 +38,13 @@ public class Model implements ModelFacade, FileHandlerFacade {
     }
 
 	public void addBox(ScaledPoint position, BoxType boxType) {
+        saveUndoLayer();
         observers.forEach(observer -> observer.addBox(new Box(diagram, position, boxType)));
     }
 	
 	public void addRelation(BoxFacade from,ScaledPoint offsetFrom, BoxFacade to,ScaledPoint offsetTo, ArrowType arrowType) {
         //todo fix offset
+        saveUndoLayer();
         Relation relation = new Relation(from, to, arrowType);
         diagram.add(relation);
         observers.forEach(observer -> observer.addRelation(relation));
@@ -85,6 +85,9 @@ public class Model implements ModelFacade, FileHandlerFacade {
         for (Relation relation : diagram.getAllRelations()){
             observers.forEach(observer -> observer.addRelation(relation));
         }
+        undoLayer = -1;
+        redoLayer = 0;
+        maxUndo = -1;
     }
 
     /**
@@ -92,6 +95,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
      * @param fileName The name of the file we want to load
      */
     public void loadTemplate(String fileName){
+        saveUndoLayer();
         Diagram template = Database.loadDiagram("templates/", fileName);
         for(Box box : template.getAllBoxes()){
             observers.forEach(observer -> observer.addBox(box));
@@ -108,18 +112,58 @@ public class Model implements ModelFacade, FileHandlerFacade {
     @Override
     public void newFile() {
         diagram.setName(Database.newFile());
-        if(diagram.getName() != null) //TODO: Samma som förra
+        if(diagram.getName() != null) { //TODO: Samma som förra
             loadFile(diagram.getName());
+        }
     }
 
+    private int undoLayer = -1; //the suffix of the file to be loaded on undo
+    private int redoLayer = 0; // the suffix of the file to be loaded on redo
+    private int maxUndo = -1; //the highest existing relevant layer of undo
+
     private void saveUndoLayer(){
-        /*if(!Database.directoryCheck("temp/")){
+        if(!Database.directoryCheck("temp/")){
             File folder = new File("temp/");
             folder.mkdir();
-            Database.saveDiagram(diagram, "temp/", Integer.toString(undoLayer));
-            new File("temp/" + diagram.getName() + ".uml").deleteOnExit(); //auto-deletes temp-files when program closes (normally)
+        }
+        if(maxUndo > redoLayer) {
+            maxUndo = redoLayer;
+        } else{
+            maxUndo++;
+        }
+        undoLayer = maxUndo - 1;
+        redoLayer = maxUndo + 1;
+        Database.saveDiagram(diagram, "temp/", Integer.toString(maxUndo));
+        new File("temp/" + diagram.getName() + maxUndo + ".uml").deleteOnExit(); //should auto-delete temp-files when program closes
+    }
+
+    public void loadUndoLayer(){
+        if(Database.directoryCheck("temp/") && undoLayer >= 0){
+            Database.saveDiagram(diagram, "temp/", Integer.toString(undoLayer + 1));
+            diagram = Database.loadDiagram("temp/", diagram.getName() + undoLayer);
+            for(Box box : diagram.getAllBoxes()){
+                observers.forEach(observer -> observer.addBox(box));
+            }
+            for (Relation relation: diagram.getAllRelations()) {
+                observers.forEach(observer -> observer.addRelation(relation));
+            }
+            undoLayer--;
+            redoLayer--;
+        }
+    }
+
+    public void loadRedoLayer(){
+        if(Database.directoryCheck("temp/") && redoLayer <= maxUndo){
+            diagram = Database.loadDiagram("temp/", diagram.getName() + redoLayer);
+            for(Box box : diagram.getAllBoxes()){
+                observers.forEach(observer -> observer.addBox(box));
+            }
+            for (Relation relation: diagram.getAllRelations()) {
+                observers.forEach(observer -> observer.addRelation(relation));
+            }
             undoLayer++;
-        }*/
+            redoLayer++;
+        }
     }
 
     /**
