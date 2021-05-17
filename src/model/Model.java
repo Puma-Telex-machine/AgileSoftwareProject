@@ -17,11 +17,14 @@ public class Model implements ModelFacade, FileHandlerFacade, DiagramObserver {
 
     private static Model singleton;
     public static Model getModel() {
-        if (singleton == null) singleton = new Model();
+        if (singleton == null) {
+            singleton = new Model();
+            singleton.init();
+        }
         return singleton;
     }
 
-    private Model(){
+    private void init(){
         diagram = new Diagram();
         diagram.setObserver(this);
     }
