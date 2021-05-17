@@ -1,23 +1,12 @@
 <CLASS>
   name=Class
-  xposition=14
-  yposition=6
+  xposition=24
+  yposition=4
   visibility=PUBLIC
 <!CLASS>
-<CLASS>
-  name=Class
-  xposition=28
-  yposition=7
+<INTERFACE>
+  name=Interface
+  xposition=18
+  yposition=13
   visibility=PUBLIC
-<!CLASS>
-<CLASS>
-  name=Class
-  xposition=20
-  yposition=15
-  visibility=PUBLIC
-<!CLASS>
-<RELATION>
-  from=2
-  to=1
-  type=DEPENDANCY
-<!RELATION>
+<!INTERFACE>

@@ -47,11 +47,18 @@ public class Diagram implements DiagramFacade, DiagramMediator, PathfindingMap {
         saveThis();
     }
 
+    @Override
     public void updateBox(Box box) {
         boxGrid.update(box);
         relationGrid.refreshAllPaths();
         saveThis();
     }
+    @Override
+    public void updateOnlyBox(Box box) {
+        relationGrid.refreshAllPaths();
+        saveThis();
+    }
+
 
     @Override
     public void removeBox(Box box) {

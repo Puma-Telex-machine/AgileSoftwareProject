@@ -88,6 +88,12 @@ public interface BoxFacade extends Observable<Observer> {
     void trySetPosition(ScaledPoint point);
 
     /**
+     * changes the position but does not update diagram.
+     * @param point
+     */
+    void setTempPosition(ScaledPoint point);
+
+    /**
      * Get the position of the box.
      * @return the position as a ScaledPoint
      */

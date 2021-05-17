@@ -76,8 +76,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
         switch (box.getType()) {
             case CLASS -> {
                 //remove typeidentifier and move components to work accordingly
-                //todo check that this works
-                System.out.println("hello");
                 blockpane1.setLayoutY(7);
                 blockpane2.setLayoutY(26);
                 nameField.setLayoutY(7);
@@ -96,17 +94,14 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
         //init box with name
         name.setText(box.getName());
         nameField.setText(box.getName());
-        //box.setName(name.getText());
+        box.setName(name.getText());
         update();
 
         //rezises namefield to fit whole name
-        nameField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                double width = TextUtils.computeTextWidth(nameField.getFont(), nameField.getText(), 0.0D) + 20;
-                nameField.setPrefWidth(width);
-                updateLines(width);
-            }
+        nameField.textProperty().addListener((observable, oldValue, newValue) -> {
+            double width = TextUtils.computeTextWidth(nameField.getFont(), nameField.getText(), 0.0D) + 20;
+            nameField.setPrefWidth(width);
+            updateLines(width);
         });
 
         box.subscribe(this);
@@ -206,12 +201,11 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
             posY = this.getLayoutY()+ event.getY() - offsetY;
         }
 
-        int x = new ScaledPoint(Scale.Frontend,posX,posY).getX(Scale.Frontend);
-        int y = new ScaledPoint(Scale.Frontend,posX,posY).getY(Scale.Frontend);
 
+        box.setTempPosition(new ScaledPoint(Scale.Frontend,posX,posY));
 
-        this.setLayoutX(x+1);
-        this.setLayoutY(y+1);
+        this.setLayoutX(box.getPosition().getX(Scale.Frontend)+1);
+        this.setLayoutY(box.getPosition().getY(Scale.Frontend)+1);
 
         event.consume();
     }
@@ -225,9 +219,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
     private void handleLetGo(MouseEvent event) {
         moving = false;
         box.trySetPosition(new ScaledPoint(Scale.Frontend, (int) this.getLayoutX(), (int) this.getLayoutY()));
-        //for snap to grid
-        this.setLayoutX(box.getPosition().getX(Scale.Frontend));
-        this.setLayoutY(box.getPosition().getY(Scale.Frontend));
         event.consume();
     }
     //endregion
@@ -460,8 +451,8 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
         //set box size -2 +1 to make sure no overlap (border of 1px outside both sides and 1 extra since ending on 30 and starting on 30)
         this.setWidth(box.getWidthAndHeight().getX(Scale.Frontend)-2);
         this.setHeight(box.getWidthAndHeight().getY(Scale.Frontend)-2);
-        this.setLayoutY(box.getPosition().getY(Scale.Frontend)+1);
         this.setLayoutX(box.getPosition().getX(Scale.Frontend)+1);
+        this.setLayoutY(box.getPosition().getY(Scale.Frontend)+1);
         line.setEndX(this.getWidth());
         line1.setEndX(this.getWidth());
 

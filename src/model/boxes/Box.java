@@ -59,6 +59,11 @@ public class Box implements BoxFacade, Observer {
         diagram.updateBox(this);
         observers.update();
     }
+
+    private void updateOnlyThis(){
+        diagram.updateOnlyBox(this);
+        observers.update();
+    }
     //endregion
 
     @Override
@@ -150,7 +155,7 @@ public class Box implements BoxFacade, Observer {
         return modifiers;
     }
 
-    public void setPosition(ScaledPoint point) {
+    public void setTempPosition(ScaledPoint point) {
         position = point;
     }
 
@@ -166,7 +171,6 @@ public class Box implements BoxFacade, Observer {
     }
 
     @Override
-    //todo returns wrong height
     public ScaledPoint getWidthAndHeight() {
         return new ScaledPoint(Scale.Backend, getWidth(), getHeight());
     }
@@ -203,17 +207,10 @@ public class Box implements BoxFacade, Observer {
 
             maxLength = Collections.max(longest);
         }
-        int boxLength = 0;
         if (maxLength < name.length()) {
-            boxLength = Math.max((int) (name.length() * SYMBOLS_PER_WIDTH_UNIT_NAME) + 1, START_WIDTH);
+            return Math.max((int) (name.length() * SYMBOLS_PER_WIDTH_UNIT_NAME) + 1, START_WIDTH);
         } else {
-            boxLength = Math.max((int) (maxLength * SYMBOLS_PER_WIDTH_UNIT_OTHER) + 1, START_WIDTH);
+            return Math.max((int) (maxLength * SYMBOLS_PER_WIDTH_UNIT_OTHER) + 1, START_WIDTH);
         }
-
-        if (Math.floorMod(boxLength, 2) == 0) {
-            boxLength++;
-        }
-
-        return boxLength;
     }
 }

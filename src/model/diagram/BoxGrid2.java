@@ -44,19 +44,19 @@ public class BoxGrid2 {
             ScaledPoint bottomRightTestBoxDown = new ScaledPoint(bottomRightTestBoxLeft);
             while (true) {
                 if (testBoxPositionIsValid(box, topLeftTestBoxLeft, bottomRightTestBoxLeft)) {
-                    box.setPosition(topLeftTestBoxLeft);
+                    box.setTempPosition(topLeftTestBoxLeft);
                     return;
                 }
                 if (testBoxPositionIsValid(box, topLeftTestBoxRight, bottomRightTestBoxRight)) {
-                    box.setPosition(topLeftTestBoxRight);
+                    box.setTempPosition(topLeftTestBoxRight);
                     return;
                 }
                 if (testBoxPositionIsValid(box, topLeftTestBoxUp, bottomRightTestBoxUp)) {
-                    box.setPosition(topLeftTestBoxUp);
+                    box.setTempPosition(topLeftTestBoxUp);
                     return;
                 }
                 if (testBoxPositionIsValid(box, topLeftTestBoxDown, bottomRightTestBoxDown)) {
-                    box.setPosition(topLeftTestBoxDown);
+                    box.setTempPosition(topLeftTestBoxDown);
                     return;
                 }
                 topLeftTestBoxLeft = topLeftTestBoxLeft.move(Direction.LEFT.getDirection());
