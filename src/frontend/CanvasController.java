@@ -122,7 +122,21 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         boxes.add(box);
         box.toggleCircleVisibility(!toggleOn);
         box.boxPressedSubscribe(this);
+        box.setOnMouseDragged(e -> { draggingBox( e , box);});
         clearSelection();
+    }
+
+    private void draggingBox(MouseEvent e, BoxController box)
+    {
+        box.dragBox(e.getX(), e.getY());
+        for (int i = 0; i < selection.size(); i++)
+        {
+            if(box != selection.get(i))
+            {
+                selection.get(i).dragBox(e.getX(), e.getY());
+            }
+        }
+        e.consume();
     }
 
     public Point getMiddle() {
