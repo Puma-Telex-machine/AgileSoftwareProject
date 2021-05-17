@@ -74,7 +74,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
         contextMenu.setVisible(false);
 
         diagram.subscribe(this);
-        model.addObserver(this);
+        //model.addObserver(this);
         clearSelection();
 
         selectionRectangle = new Rectangle();
@@ -214,7 +214,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
         arrows.remove(arrow);
         relationMap.remove(arrow);
         arrowMap.remove(r);
-        model.removeRelation(r);
+        r.remove();
     }
 
     /**
@@ -254,7 +254,28 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
 
     @FXML
     private void handleArrowMenu(MouseEvent e) {
-        List<Arrow> closest = new ArrayList<>();
+        if (makingArrow) {
+            makingArrow = false;
+            this.getChildren().remove(dragArrow);
+            e.consume();
+            return;
+        }
+        Arrow closest = null;
+        double min = 10000;
+        for (Arrow a : arrows) {
+            double distance = a.getDistaceFromClick(e);
+            if (distance < min) {
+                min = distance;
+                closest = a;
+            }
+        }
+        if (min <= 15) {
+            clickedArrow.add(closest);
+            arrowTypeComboBox.getSelectionModel().select(closest.getType());
+            openArrowMenu(e.getX(), e.getY());
+        }
+        e.consume();
+        /*List<Arrow> closest = new ArrayList<>();
         double min = 10000;
         for (Arrow a : arrows) {
             double distance = a.getDistaceFromClick(e);
@@ -271,7 +292,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
             //trying to merge dragarrow into existing arrow
             if (makingArrow) {
                 ScaledPoint offset = new ScaledPoint (Scale.Frontend,(int) (arrowStart.getX()-arrowBox.getLayoutX()),(int) (arrowStart.getY()-arrowBox.getLayoutY()));
-                model.addRelation(arrowBox.getBox(),offset,arrowMap.get(closest.get(0)));
+                diagram.createRelation(arrowBox.getBox(),offset,arrowMap.get(closest.get(0)), offset, ArrowType.ASSOCIATION);
             }
             else{
                 clickedArrow = closest;
@@ -281,7 +302,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
         }
         if(makingArrow){
             removeDragArrow();
-        }
+        }*/
         e.consume();
     }
 
@@ -346,7 +367,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
         ArrowType type = arrowTypeComboBox.getValue();
         for (Arrow a:clickedArrow) {
             a.setType(type);
-            arrowMap.get(a).changeRelation(type);
+            arrowMap.get(a).changeRelationType(type);
         }
         closeMenu(e);
         e.consume();

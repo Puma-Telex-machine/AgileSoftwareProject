@@ -61,7 +61,7 @@ public class Database {
                 result.updateBox(box);
             }
             for (Relation relation: relations){
-                result.add(relation);
+                //result.(relation); todo rebuild this
             }
             System.out.println("Successfully loaded " + filename + ".uml");
             result.unlockSaving();
@@ -164,7 +164,7 @@ public class Database {
                     break;
                 case "<!METHOD>":
                     Method method = new Method();
-                    method.ignoreObserver();
+                    //method.ignoreObserver(); todo
                     method.setVisibility(visibility);
                     method.setType(type);
                     method.setName(name);
@@ -174,7 +174,7 @@ public class Database {
                     for (Modifier modifier: modifiers) {
                         method.addModifier(modifier);
                     }
-                    method.stopIgnore();
+                    //method.stopIgnore(); todo
                     return method;
                 default:
                     if(next[0].startsWith(modifierMatch))
@@ -207,14 +207,14 @@ public class Database {
                         modifiers.add(Modifier.valueOf(next[0]));
                     }else if(next[0].startsWith("<!")) {
                         Attribute attribute = new Attribute();
-                        attribute.ignoreObserver();
+                        //attribute.ignoreObserver(); todo
                         attribute.setVisibility(visibility);
                         attribute.setType(type);
                         attribute.setName(name);
                         for (Modifier modifier: modifiers) {
                             attribute.addModifier(modifier);
                         }
-                        attribute.stopIgnore();
+                        //attribute.stopIgnore(); todo
                         return attribute;
                     }
             }
@@ -239,8 +239,8 @@ public class Database {
                     arrowType = ArrowType.valueOf(next[1]);
                     break;
                 case "<!RELATION>":
-                    Relation relation = new Relation(boxes.get(indexFrom), boxes.get(indexTo), arrowType);
-                    return relation;
+                    //Relation relation = new Relation(boxes.get(indexFrom), boxes.get(indexTo), arrowType);
+                    return null; //todo
             }
         }
         return null;

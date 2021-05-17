@@ -107,7 +107,7 @@ public class Diagram implements DiagramFacade, DiagramMediator, PathfindingMap {
 
     private void saveThis(){
         if(!saveLocked) {
-            Database.saveDiagram(this);
+            Database.saveDiagram(this, "diagrams/", "");
             System.out.println("Saved diagram as " + name + ".uml");
         }
     }

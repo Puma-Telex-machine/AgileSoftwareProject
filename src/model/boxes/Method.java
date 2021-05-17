@@ -121,7 +121,7 @@ public class Method implements MethodFacade, Observable<Observer> {
         return visibility;
     }
 
-    UiObserver observer;
+    /*UiObserver observer;
     private Boolean ignoreObserver = false; //used by database
     @Override
     public void subscribe(UiObserver observer) {
@@ -139,7 +139,7 @@ public class Method implements MethodFacade, Observable<Observer> {
     private void update(){
         if(!ignoreObserver)
             observer.update();
-    }
+    }*/
 
     @Override
     public String getString(){
