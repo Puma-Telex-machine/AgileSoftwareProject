@@ -9,10 +9,11 @@ import model.point.ScaledPoint;
 import model.relations.ArrowType;
 import model.relations.Relation;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Model implements ModelFacade, FileHandlerFacade {
+public class Model implements ModelFacade, FileHandlerFacade, DiagramObserver {
 
     private static Model singleton;
     public static Model getModel() {
@@ -20,8 +21,13 @@ public class Model implements ModelFacade, FileHandlerFacade {
         return singleton;
     }
 
+    private Model(){
+        diagram = new Diagram();
+        diagram.setObserver(this);
+    }
+
     ArrayList<Observer> observers = new ArrayList<>();
-    Diagram diagram = new Diagram();
+    Diagram diagram;
 
     @Override
     public FileHandlerFacade getFileHandler() {
@@ -37,11 +43,13 @@ public class Model implements ModelFacade, FileHandlerFacade {
     }
 
 	public void addBox(ScaledPoint position, BoxType boxType) {
+        saveUndoLayer();
         observers.forEach(observer -> observer.addBox(new Box(diagram, position, boxType)));
     }
 	
 	public void addRelation(BoxFacade from,ScaledPoint offsetFrom, BoxFacade to,ScaledPoint offsetTo, ArrowType arrowType) {
         //todo fix offset
+        saveUndoLayer();
         Relation relation = new Relation(from, to, arrowType);
         diagram.add(relation);
         observers.forEach(observer -> observer.addRelation(relation));
@@ -60,24 +68,41 @@ public class Model implements ModelFacade, FileHandlerFacade {
         //todo
     }
 
+    /**
+     * returns the name of all .uml files in the "diagrams" folder.
+     * @return
+     */
     @Override
     public String[] getAllFileNames() {
         return Database.getAllFileNames("diagrams/");
     }
 
+    /**
+     * Loads in a diagram file, then replaces the current diagram with this one
+     * @param fileName The name of the file we want to load
+     */
     @Override
     public void loadFile(String fileName) {
-        diagram = Database.loadDiagram("diagrams/", fileName);
+        diagram = Database.loadDiagram("diagrams/", fileName, "");
+        diagram.setObserver(this);
         for (Box box : diagram.getAllBoxes()) {
             observers.forEach(observer -> observer.addBox(box));
         }
         for (Relation relation : diagram.getAllRelations()){
             observers.forEach(observer -> observer.addRelation(relation));
         }
+        undoLayer = -1;
+        redoLayer = 0;
+        maxUndo = -1;
     }
 
+    /**
+     * Loads in a template file with the given name, then adds all boxes & relations to the current diagram
+     * @param fileName The name of the file we want to load
+     */
     public void loadTemplate(String fileName){
-        Diagram template = Database.loadDiagram("templates/", fileName);
+        saveUndoLayer();
+        Diagram template = Database.loadDiagram("templates/", fileName, "");
         for(Box box : template.getAllBoxes()){
             observers.forEach(observer -> observer.addBox(box));
         }
@@ -87,13 +112,81 @@ public class Model implements ModelFacade, FileHandlerFacade {
         //TODO: Sätt i databasen: System.out.println("loaded template " + fileName);
     }
 
+    /**
+     * Creates an empty file with the name "new" + the first unused number, then loads the empty file
+     */
     @Override
     public void newFile() {
         diagram.setName(Database.newFile());
-        if(diagram.getName() != null) //TODO: Samma som förra
+        if(diagram.getName() != null) { //TODO: Samma som förra
             loadFile(diagram.getName());
+        }
     }
 
+    private int undoLayer = -1; //the suffix of the file to be loaded on undo
+    private int redoLayer = 0; // the suffix of the file to be loaded on redo
+    private int maxUndo = -1; //the highest existing relevant layer of undo
+
+    @Override
+    public void updateUndo() {
+        saveUndoLayer();
+    }
+
+    private void saveUndoLayer(){
+        if(!Database.directoryCheck("temp/")){
+            File folder = new File("temp/");
+            folder.mkdir();
+        }
+        if(maxUndo > redoLayer) {
+            maxUndo = redoLayer;
+        } else{
+            maxUndo++;
+        }
+        undoLayer = maxUndo - 1;
+        redoLayer = maxUndo + 1;
+        Database.saveDiagram(diagram, "temp/", Integer.toString(maxUndo));
+        new File("temp/" + diagram.getName() + maxUndo + ".uml").deleteOnExit(); //should auto-delete temp-files when program closes
+    }
+
+    public void loadUndoLayer(){
+        if(Database.directoryCheck("temp/") && canUndo()){
+            Database.saveDiagram(diagram, "temp/", Integer.toString(undoLayer + 1));
+            new File("temp/" + diagram.getName() + (undoLayer + 1) + ".uml").deleteOnExit();
+            diagram = Database.loadDiagram("temp/", diagram.getName(), Integer.toString(undoLayer));
+            diagram.setObserver(this);
+            for(Box box : diagram.getAllBoxes()){
+                observers.forEach(observer -> observer.addBox(box));
+            }
+            for (Relation relation: diagram.getAllRelations()) {
+                observers.forEach(observer -> observer.addRelation(relation));
+            }
+            undoLayer--;
+            redoLayer--;
+        }
+    }
+
+    public void loadRedoLayer(){
+        if(Database.directoryCheck("temp/") && canRedo()){
+            diagram = Database.loadDiagram("temp/", diagram.getName(), Integer.toString(redoLayer));
+            diagram.setObserver(this);
+            for(Box box : diagram.getAllBoxes()){
+                observers.forEach(observer -> observer.addBox(box));
+            }
+            for (Relation relation: diagram.getAllRelations()) {
+                observers.forEach(observer -> observer.addRelation(relation));
+            }
+            undoLayer++;
+            redoLayer++;
+        }
+    }
+
+    public Boolean canUndo(){
+        return undoLayer >= 0;
+    }
+
+    public Boolean canRedo(){
+        return redoLayer <= maxUndo;
+    }
     /**
      * get all relations this box interacts with
      */

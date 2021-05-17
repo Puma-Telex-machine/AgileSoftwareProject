@@ -16,9 +16,6 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
-import model.MethodData;
-import model.VariableData;
-import model.boxes.Visibility;
 import model.facades.AttributeFacade;
 import model.facades.BoxFacade;
 import model.facades.MethodFacade;
@@ -305,16 +302,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         methodEditor.EditMethod(method, box);
         methodEditor.setLayoutX(this.getLayoutX() - variableEditor.getWidth());
         methodEditor.setLayoutY(this.getLayoutY() + methods.getLayoutY() + 25 + pos.getLayoutY() - methodEditor.getHeight() / 2);
-    }
-
-    private void updateMethods(List<MethodData> methods) {
-        //todo
-        //add lamda function  ish currentEditArgument.argumentTypeField.setOnAction((Action) -> editVariable(variableData)
-    }
-
-    private void updateVariables(List<VariableData> varibles) {
-        //todo
-        //add lamda function  ish currentEditArgument.argumentTypeField.setOnAction((Action) -> editVariable(variableData)
     }
 
     //endregion
