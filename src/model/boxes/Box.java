@@ -48,28 +48,51 @@ public class Box implements BoxFacade, UiObserver {
         update();
     }
 
+    
+    /** 
+     * sets the boxes name
+     * @param name
+     */
     @Override
     public void setName(String name) {
         this.name = name;
         update();
     }
 
+    
+    /** 
+     * get the boxes name
+     * @return String
+     */
     @Override
     public String getName() {
         return name;
     }
 
+    
+    /** 
+     * get the boxes type
+     * @return BoxType
+     */
     @Override
     public BoxType getType() {
         return type;
     }
 
+    /**
+     * deletes boxes
+     */
     @Override
     public void deleteBox() {
         name = "THIS SHOULD NOT BE VISIBLE: BOX IS DELETED";
         diagram.remove(this);
     }
 
+    
+    /** 
+     * adds a method in a list an returns it
+     * @return MethodFacade
+     */
     @Override
     public MethodFacade addMethod() {
         Method method = new Method();
@@ -78,17 +101,32 @@ public class Box implements BoxFacade, UiObserver {
         return method;
     }
 
+    
+    /** 
+     * deletes a metod from a list
+     * @param method
+     */
     @Override
     public void deleteMethod(MethodFacade method) {
         methods.remove(method);
         update();
     }
 
+    
+    /** 
+     * returns a list of methods
+     * @return List<MethodFacade>
+     */
     @Override
     public List<MethodFacade> getMethods() {
         return new ArrayList<>(methods);
     }
 
+    
+    /** 
+     * adds an attribute in a list an returns it
+     * @return AttributeFacade
+     */
     @Override
     public AttributeFacade addAttribute() {
         Attribute attribute = new Attribute();
@@ -97,63 +135,113 @@ public class Box implements BoxFacade, UiObserver {
         return attribute;
     }
 
+    
+    /** 
+     * deletes an attribute from a list
+     * @param attribute
+     */
     @Override
     public void deleteAttribute(AttributeFacade attribute) {
         attributes.remove(attribute);
         update();
     }
 
+    
+    /** 
+     * returns a list of attributes
+     * @return List<AttributeFacade>
+     */
     @Override
     public List<AttributeFacade> getAttributes() {
         return new ArrayList<>(attributes);
     }
 
+    
+    /** 
+     * set the visibility of the box
+     * @param visibility
+     */
     @Override
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
-        update(); //Behövs denna?
+        update(); //TODO: Behövs denna?
     }
 
+    
+    /** 
+     * get the visibility of the box
+     * @return Visibility
+     */
     @Override
     public Visibility getVisibility() {
         return visibility;
     }
 
+    
+    /** 
+     * adds a modifier to a list of modifiers
+     * @param modifier
+     */
     @Override
     public void addModifier(Modifier modifier) {
         modifiers.add(modifier);
-        update(); //Behövs denna?
+        update(); //TODO: Behövs denna?
     }
 
+    
+    /** 
+     * remove a modifier from a list of modifiers
+     * @param modifier
+     */
     @Override
     public void removeModifier(Modifier modifier) {
-        // TODO: deleteModifier? (consistency)
         modifiers.remove(modifier);
         update();
     }
 
+    
+    /** 
+     * returns a set of modifiers
+     * @return Set<Modifier>
+     */
     @Override
     public Set<Modifier> getModifiers() {
         return modifiers;
     }
 
+    
+    /** 
+     * sets the boxes positions
+     * @param point
+     */
     @Override
     public void setPosition(ScaledPoint point) {
         position = point;
         update();
     }
 
+    
+    /** 
+     * gets the positions of the box
+     * @return ScaledPoint
+     */
     @Override
     public ScaledPoint getPosition() {
         return position;
     }
 
+  
     @Override
-    //todo returns wrong height
+    //TODO: returns wrong height
     public ScaledPoint getWidthAndHeight() {
         return new ScaledPoint(Scale.Backend, getWidth(), getHeight());
     }
 
+    
+    /** 
+     * calculates the height of a box based on its metods and attributes
+     * @return int
+     */
     private int getHeight() {
 
         if((getMethods().size() + getAttributes().size()==0)) return START_HEIGHT;
@@ -163,6 +251,11 @@ public class Box implements BoxFacade, UiObserver {
         return height;
     }
 
+    
+    /** 
+     * calculates the width ofa box based on the longest character name in it
+     * @return int
+     */
     private int getWidth() {
 
         //Todo width depends on characters maybe use textutil in boxController?
@@ -195,6 +288,11 @@ public class Box implements BoxFacade, UiObserver {
 
     ArrayList<UiObserver> observers = new ArrayList<>();
 
+    
+    /** 
+     * TODO: shouldn't ot be setsubscriber or something
+     * @param observer
+     */
     @Override
     public void subscribe(UiObserver observer) {
         observers.add(observer);

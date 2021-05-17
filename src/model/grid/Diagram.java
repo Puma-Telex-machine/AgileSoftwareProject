@@ -17,6 +17,11 @@ public class Diagram implements IDiagram {
     String name = "untitled";
     Boolean saveLocked = false;
 
+    
+    /** 
+     * Adds a box to the boxGrid
+     * @param box
+     */
     @Override
     public void add(Box box) {
         boxGrid.add(box);
@@ -24,6 +29,11 @@ public class Diagram implements IDiagram {
         saveThis();
     }
 
+    
+    /** 
+     * Updates a box on the boxGrid
+     * @param box
+     */
     @Override
     public void update(Box box) {
         boxGrid.update(box);
@@ -31,6 +41,11 @@ public class Diagram implements IDiagram {
         saveThis();
     }
 
+    
+    /** 
+     * Remove a box from the boxGrid
+     * @param box
+     */
     @Override
     public void remove(Box box) {
         boxGrid.remove(box);
@@ -38,6 +53,11 @@ public class Diagram implements IDiagram {
         saveThis();
     }
 
+    
+    /** 
+     * Add a realtion to the relationGrid
+     * @param relation
+     */
     @Override
     public void add(Relation relation) {
         relationGrid.add(relation);
@@ -45,12 +65,22 @@ public class Diagram implements IDiagram {
         saveThis();
     }
 
+    
+    /** 
+     * Updates a relation on the relationGrid
+     * @param relation
+     */
     @Override
     public void update(Relation relation) {
         relationGrid.refreshAllPaths();
         saveThis();
     }
 
+    
+    /** 
+     * Removes a relation from the relationGrid
+     * @param relation
+     */
     @Override
     public void remove(Relation relation) {
         relationGrid.remove(relation);
@@ -58,28 +88,61 @@ public class Diagram implements IDiagram {
         saveThis();
     }
 
+    
+    /** 
+     * Get a list of all the boxes in the boxGrid
+     * @return List<Box>
+     */
     public List<Box> getAllBoxes() {
         return boxGrid.getBoxes();
     }
 
+    
+    /** 
+     * Get a list of all the relations in the relationGrid
+     * @return List<Relation>
+     */
     public List<Relation> getAllRelations() {
         return relationGrid.getRelations();
     }
 
+    
+    /** 
+     * Checks if a position in the boxGrid is occupied
+     * @param position
+     * @return boolean
+     */
     @Override
     public boolean isOccupied(ScaledPoint position) {
         return boxGrid.isOccupied(position);
     }
 
+    
+    /** 
+     * Checks if two lines can merge, based on their postion and relation
+     * @param relation
+     * @param position
+     * @return boolean
+     */
     @Override
     public boolean canMergeLines(Relation relation, ScaledPoint position) {
         return relationGrid.canMergeLines(relation, position);
     }
 
+    
+    /** 
+     * set the name for the diagram
+     * @param newName
+     */
     public void setName(String newName){
         name = newName;
     }
 
+    
+    /** 
+     * get the name of the diagram
+     * @return String
+     */
     public String getName(){
         return name;
     }

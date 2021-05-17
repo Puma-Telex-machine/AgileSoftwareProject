@@ -18,6 +18,11 @@ public class RelationGrid {
         this.relations = new HashSet<>();
     }
 
+    
+    /** 
+     * adds a realtion to a hashset of realtions
+     * @param relation
+     */
     public void add(Relation relation) {
         relations.add(relation);
     }
@@ -28,6 +33,11 @@ public class RelationGrid {
         }
     }
 
+    
+    /** 
+     * find the path for relation with aStar
+     * @param relation
+     */
     private void findPath(Relation relation) {
         PathNode current = null;
         try {
@@ -60,6 +70,13 @@ public class RelationGrid {
         relation.setPath(pathPoints); //TODO: Något är fel, pathpoints innehåller två av samma punkt (sista)
     }
 
+    
+    /** 
+     * Checks if two lines arrowtypes are the same and can merge, given that they are going to the same position
+     * @param relation
+     * @param position
+     * @return boolean
+     */
     boolean canMergeLines(Relation relation, ScaledPoint position) {
         if (!relationMap.containsKey(position)) return true;
 
@@ -71,10 +88,20 @@ public class RelationGrid {
         return false;
     }
 
+    
+    /** 
+     * Gets the list of relations
+     * @return List<Relation>
+     */
     public List<Relation> getRelations() {
         return new ArrayList<>(relations);
     }
 
+    
+    /** 
+     * Remove a relation from the hashset
+     * @param relation
+     */
     public void remove(Relation relation) {
         relations.remove(relation);
     }
