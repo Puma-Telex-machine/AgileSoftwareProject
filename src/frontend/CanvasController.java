@@ -338,6 +338,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     /**
      * Deletes the currently selected boxes
      */
+    @FXML
     public void deleteSelectedBoxes()
     {
         for(int i = 0; i < selection.size(); i++)
