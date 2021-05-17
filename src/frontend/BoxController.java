@@ -211,6 +211,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
 
         this.setLayoutX(X+1);
         this.setLayoutY(Y+1);
+        box.setPosition(new ScaledPoint(Scale.Frontend, (int) this.getLayoutX(), (int) this.getLayoutY()));
     }
 
     /**
@@ -218,11 +219,10 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      *
      * @param event mouseRelease
      */
-    @FXML
-    private void handleLetGo(MouseEvent event) {
+
+    public void handleLetGo(MouseEvent event) {
         moving = false;
         box.setPosition(new ScaledPoint(Scale.Frontend, (int) this.getLayoutX(), (int) this.getLayoutY()));
-        event.consume();
     }
     //endregion
     //region methods

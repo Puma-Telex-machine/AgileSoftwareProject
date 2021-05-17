@@ -123,6 +123,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         box.toggleCircleVisibility(!toggleOn);
         box.boxPressedSubscribe(this);
         box.setOnMouseDragged(e -> { draggingBox( e , box);});
+        box.setOnMouseReleased(e -> { letGoBox(e, box);});
         clearSelection();
     }
 
@@ -136,6 +137,20 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
                 selection.get(i).dragBox(e.getX(), e.getY());
             }
         }
+        e.consume();
+    }
+
+    private void letGoBox (MouseEvent e, BoxController box)
+    {
+        box.handleLetGo(e);
+        for (int i = 0; i < selection.size(); i++)
+        {
+            if(box != selection.get(i))
+            {
+                selection.get(i).handleLetGo(e);
+            }
+        }
+
         e.consume();
     }
 

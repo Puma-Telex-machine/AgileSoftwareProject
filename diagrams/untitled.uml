@@ -1,42 +1,24 @@
 <CLASS>
   name=Class
-  xposition=19
+  xposition=16
   yposition=14
   visibility=PUBLIC
 <!CLASS>
 <CLASS>
   name=Class
-  xposition=20
-  yposition=4
+  xposition=18
+  yposition=10
   visibility=PUBLIC
 <!CLASS>
 <CLASS>
   name=Class
-  xposition=4
-  yposition=3
+  xposition=21
+  yposition=14
   visibility=PUBLIC
 <!CLASS>
 <CLASS>
   name=Class
-  xposition=25
-  yposition=4
-  visibility=PUBLIC
-<!CLASS>
-<CLASS>
-  name=Class
-  xposition=11
-  yposition=8
-  visibility=PUBLIC
-<!CLASS>
-<CLASS>
-  name=Class
-  xposition=16
-  yposition=7
-  visibility=PUBLIC
-<!CLASS>
-<CLASS>
-  name=Class
-  xposition=15
-  yposition=16
+  xposition=29
+  yposition=0
   visibility=PUBLIC
 <!CLASS>
