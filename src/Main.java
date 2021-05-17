@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 //import viewmodel.frontend.BaseController;
 
+import java.awt.event.KeyEvent;
 import java.util.Objects;
 
 /*
@@ -26,6 +27,10 @@ public class Main extends Application {
         stage.setTitle("UML 2000");
         stage.setScene(scene);
         stage.show();
+
+        //Sends keypresses to base
+        scene.setOnKeyPressed(e -> base.onKeyPressed(e));
+        scene.setOnKeyReleased(e -> base.onKeyReleased(e));
     }
 
     /**

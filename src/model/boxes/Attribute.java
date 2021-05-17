@@ -96,4 +96,24 @@ public class Attribute implements AttributeFacade, Observable<Observer> {
     public Visibility getVisibility() {
         return visibility;
     }
+
+    UiObserver observer;
+    private Boolean ignoreObserver = false; //used by database
+    @Override
+    public void subscribe(UiObserver observer) {
+        this.observer = observer;
+    }
+
+    public void ignoreObserver(){
+        ignoreObserver = true;
+    }
+
+    public void stopIgnore(){
+        ignoreObserver = false;
+    }
+
+    private void update(){
+        if(!ignoreObserver)
+            observer.update();
+    }
 }

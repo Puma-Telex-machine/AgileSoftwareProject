@@ -7,6 +7,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -16,8 +17,6 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
-import model.MethodData;
-import model.VariableData;
 import model.facades.AttributeFacade;
 import model.boxes.BoxFacade;
 import model.facades.MethodFacade;
@@ -38,7 +37,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
     @FXML
     private Label name, identifier;
     @FXML
-    private VBox methods, variables, vBox;
+    private VBox methods, variables, vBox,bigVBox;
     @FXML
     private Line line,line1;
 
@@ -55,7 +54,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
     private BoxFacade box;
 
     private ArrowObserver arrowObserver;
-
+    private List<BoxPressedListener> pressedListeners = new ArrayList<>();
     List<AnchorPointController> anchorPoints = new ArrayList<>();
 
     public BoxController(BoxFacade box, VariableEditorController VEC, MethodEditorController MEC, ArrowObserver arrowObserver) {
@@ -74,38 +73,33 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
 
         //set boxType
         switch (box.getType()) {
-            case CLASS:
+            case CLASS -> {
                 //remove typeidentifier and move components to work accordingly
                 //todo check that this works
-                blockpane1.setLayoutY(7);
+                blockpane1.setLayoutY(8);
                 blockpane2.setLayoutY(26);
-                nameField.setLayoutY(7);
-                vBox.setLayoutY(7);
-                vBox.getChildren().remove(identifier);
-                break;
-            case INTERFACE:
-                identifier.setText("<<Interface>>");
-                break;
-            case ABSTRACT_CLASS:
-                identifier.setText("<Abstract>");
-                break;
-            case ENUM:
-                identifier.setText("Enum");
-                break;
+                nameField.setLayoutY(8);
+                name.setPadding(new Insets(8,0,8,0));
+                bigVBox.getChildren().remove(identifier);
+            }
+            case INTERFACE -> identifier.setText("<<Interface>>");
+
+            case ABSTRACT_CLASS -> identifier.setText("<Abstract>");
+
+            case ENUM -> identifier.setText("Enum");
         }
 
         this.arrowObserver = arrowObserver;
         this.box = box;
         hideCircles();
 
-        //init box with name and set this boxcontroller to the size and position of the box
-        box.setName(name.getText());
-        this.setLayoutX(box.getPosition().getX(Scale.Frontend));
-        this.setLayoutY(box.getPosition().getY(Scale.Frontend));
-        this.setWidth(box.getWidthAndHeight().getX(Scale.Frontend));
-        this.setHeight(box.getWidthAndHeight().getY(Scale.Frontend));
+        //init box with name
+        name.setText(box.getName());
+        nameField.setText(box.getName());
+        //box.setName(name.getText());
+        update();
 
-        //dont ask rezises namefield to fit whole name
+        //rezises namefield to fit whole name
         nameField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -114,9 +108,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
                 updateLines(width);
             }
         });
-
-
-        update();
 
         box.subscribe(this);
     }
@@ -190,16 +181,14 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
 
     /**
      * method for moving a box through dragging
-     *
-     * @param event event of the mouseDrag
      */
-    @FXML
-    private void handleDrag(MouseEvent event) {
+    public void dragBox(double x, double y)
+    {
         variableEditor.setVisible(false);
         methodEditor.setVisible(false);
         if (!moving) {
-            offsetX = event.getX();
-            offsetY = event.getY();
+            offsetX = x;
+            offsetY = y;
             moving = true;
         }
         //todo fix max borders
@@ -207,22 +196,20 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
         double posX=0;
         double posY=0;
         //move X
-        if (this.getLayoutX() + event.getX() - offsetX > 0) {
-            posX=this.getLayoutX()+ event.getX() - offsetX;
+        if (this.getLayoutX() + x - offsetX > 0) {
+            posX=this.getLayoutX()+ x - offsetX;
         }
         //move Y
-        if (this.getLayoutY() + event.getY() - offsetY > 0) {
-            posY = this.getLayoutY()+ event.getY() - offsetY;
+        if (this.getLayoutY() + y - offsetY > 0) {
+            posY = this.getLayoutY()+ y - offsetY;
         }
 
-        int x = new ScaledPoint(Scale.Frontend,posX,posY).getX(Scale.Frontend);
-        int y = new ScaledPoint(Scale.Frontend,posX,posY).getY(Scale.Frontend);
+        int X = new ScaledPoint(Scale.Frontend,posX,posY).getX(Scale.Frontend);
+        int Y = new ScaledPoint(Scale.Frontend,posX,posY).getY(Scale.Frontend);
 
 
-        this.setLayoutX(x);
-        this.setLayoutY(y);
-
-        event.consume();
+        this.setLayoutX(X+1);
+        this.setLayoutY(Y+1);
     }
 
     /**
@@ -317,16 +304,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
         methodEditor.setLayoutY(this.getLayoutY() + methods.getLayoutY() + 25 + pos.getLayoutY() - methodEditor.getHeight() / 2);
     }
 
-    private void updateMethods(List<MethodData> methods) {
-        //todo
-        //add lamda function  ish currentEditArgument.argumentTypeField.setOnAction((Action) -> editVariable(variableData)
-    }
-
-    private void updateVariables(List<VariableData> varibles) {
-        //todo
-        //add lamda function  ish currentEditArgument.argumentTypeField.setOnAction((Action) -> editVariable(variableData)
-    }
-
     //endregion
     //region arrows
     @FXML
@@ -378,6 +355,11 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
             }
         }
         showCircles();
+
+        for (int i = 0; i < pressedListeners.size(); i++)
+        {
+            pressedListeners.get(i).pressedBox(this);
+        }
         e.consume();
     }
 
@@ -448,6 +430,8 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
 
         List<AttributeFacade> variableData = box.getAttributes();
         List<MethodFacade> methodData = box.getMethods();
+        name.setText(box.getName());
+        nameField.setText(box.getName());
 
         for (int i = 0; i < variableData.size(); i++) {
             BoxAttributeTextController attribute = new BoxAttributeTextController( variableData.get(i).getString());
@@ -464,19 +448,34 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
             attribute.setOnMousePressed((Action) -> editMethod(met, attribute));
         }
 
-        //set box size
-        this.setWidth(box.getWidthAndHeight().getX(Scale.Frontend));
-        this.setHeight(box.getWidthAndHeight().getY(Scale.Frontend));
-        this.setLayoutY(box.getPosition().getY(Scale.Frontend));
-        this.setLayoutX(box.getPosition().getX(Scale.Frontend));
+        //set box size -2 +1 to make sure no overlap (border of 1px outside both sides and 1 extra since ending on 30 and starting on 30)
+        this.setWidth(box.getWidthAndHeight().getX(Scale.Frontend)-2);
+        this.setHeight(box.getWidthAndHeight().getY(Scale.Frontend)-2);
+        this.setLayoutY(box.getPosition().getY(Scale.Frontend)+1);
+        this.setLayoutX(box.getPosition().getX(Scale.Frontend)+1);
         line.setEndX(this.getWidth());
         line1.setEndX(this.getWidth());
-
-
 
         updateAnchorPoints();
     }
 
+    /**
+     * Adds the listener as a listener for the pressed event on this box
+     * @param listener
+     */
+    public void boxPressedSubscribe(BoxPressedListener listener)
+    {
+        pressedListeners.add(listener);
+    }
+
+    /**
+     * Deletes the box
+     */
+    public void deleteBox()
+    {
+        box.deleteBox();
+        //this.setVisible(false); //todo: Properly remove items here
+    }
 }
 
 

@@ -1,24 +1,42 @@
-<BOX>
+<CLASS>
   name=Class
-  xposition=26
-  yposition=13
+  xposition=19
+  yposition=14
   visibility=PUBLIC
-<!BOX>
-<BOX>
+<!CLASS>
+<CLASS>
   name=Class
-  xposition=18
-  yposition=15
+  xposition=20
+  yposition=4
   visibility=PUBLIC
-<!BOX>
-<BOX>
+<!CLASS>
+<CLASS>
   name=Class
-  xposition=18
-  yposition=6
+  xposition=4
+  yposition=3
   visibility=PUBLIC
-<!BOX>
-<BOX>
+<!CLASS>
+<CLASS>
   name=Class
-  xposition=26
-  yposition=5
+  xposition=25
+  yposition=4
   visibility=PUBLIC
-<!BOX>
+<!CLASS>
+<CLASS>
+  name=Class
+  xposition=11
+  yposition=8
+  visibility=PUBLIC
+<!CLASS>
+<CLASS>
+  name=Class
+  xposition=16
+  yposition=7
+  visibility=PUBLIC
+<!CLASS>
+<CLASS>
+  name=Class
+  xposition=15
+  yposition=16
+  visibility=PUBLIC
+<!CLASS>

@@ -13,7 +13,7 @@
          <graphic>
             <ImageView fitHeight="31.0" fitWidth="27.0" layoutX="15.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../Downloads/white-24dp%20(9)/2x/outline_minimize_white_24dp.png" />
+                  <Image url="@Resources/minimize@4x.png" />
                </image>
             </ImageView>
          </graphic>

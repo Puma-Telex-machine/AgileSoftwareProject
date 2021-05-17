@@ -17,7 +17,7 @@ import java.util.*;
  */
 public class Box implements BoxFacade, Observer {
     //different fontsize on name and other
-    private static final double SYMBOLS_PER_WIDTH_UNIT_NAME = 0.3;
+    private static final double SYMBOLS_PER_WIDTH_UNIT_NAME = 0.23;
     private static final double SYMBOLS_PER_WIDTH_UNIT_OTHER = 0.2;
     private static final int START_HEIGHT = 3;
     private static final int START_WIDTH = 5;
@@ -38,6 +38,7 @@ public class Box implements BoxFacade, Observer {
             case CLASS -> "Class";
             case ABSTRACT_CLASS -> "Abstract Class";
             case INTERFACE -> "Interface";
+            case ENUM -> "Enum";
             default -> "Box";
         };
         this.position = position;
@@ -180,6 +181,10 @@ public class Box implements BoxFacade, Observer {
     }
 
     private int getWidth() {
+
+        //Todo width depends on characters maybe use textutil in boxController?
+        // or should boxcontroller set width of the texts?
+        
         ArrayList<String> names = new ArrayList<>();
 
         for (MethodFacade method : methods) {

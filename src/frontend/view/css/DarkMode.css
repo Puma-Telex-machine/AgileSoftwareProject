@@ -65,6 +65,12 @@
     -fx-border-color: "#000000";
     -fx-border-width: 1;
 }
+
+.border-selected {
+    -fx-border-color: "#AAAAAA";
+    -fx-border-width: 2;
+}
+
 .fill-light{
     -fx-fill: "DBDBDB";
     -fx-border-color: "#000000";
@@ -77,6 +83,7 @@
 }
 
 .highlight-green{
+    -fx-fill: "#54ED1F";
     -fx-background-color: "#54ED1F";
     -fx-border-color: "#000000";
     -fx-border-width: 1;
@@ -85,7 +92,7 @@
     -fx-font-size: 20px;
     -fx-font-family: "Roboto";
 
-   /*-fx-text-fill: "#111111";*/
+   /*-fx-text-fill: "#000000";*/
 }
 .highlight-green :hover{
     -fx-background-color: "#73E84A";
@@ -96,6 +103,7 @@
 
 
 .highlight-red {
+    -fx-fill: "#BA0C0C";
     -fx-background-color: "#BA0C0C";
     -fx-border-color: "#000000";
     -fx-border-width: 1;
@@ -158,8 +166,26 @@
 
 .leftSideMenu-textLarge {
     -fx-font-size: 24px;
+        -fx-text-fill: "#B8B8B8"
+}
+
+.lighter:hover{
+    -fx-text-fill: "#DBDBDB";
+}
+
+.iconLighter:hover{
+    -fx-effect: dropshadow(one-pass-box, rgba(219, 219, 219, 0.3), 4, 1, 0.0, 0.0);
+}
+
+.iconLighter:pressed{
+    -fx-effect: dropshadow(one-pass-box, rgba(59, 59, 59, 0.3), 10, 1, 0.0, 0.0);
 }
 
 .text-field{
     -fx-font-family: "Roboto";
+}
+
+.line{
+    -fx-stroke-width: 1px;
+    -fx-stroke: "DBDBDB";
 }

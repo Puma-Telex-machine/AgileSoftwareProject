@@ -17,7 +17,7 @@
       </AnchorPane>
       <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
          <image>
-            <Image url="@Resources/outline_minimize_white_24dp.png" />
+            <Image url="@Resources/minimize@4x.png" />
          </image>
       </ImageView>
    </children>
