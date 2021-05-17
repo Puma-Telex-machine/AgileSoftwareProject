@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#notifyArrowEvent" onMouseDragged="#handleDrag" onMouseEntered="#showCircles" onMouseExited="#hideCircles" onMouseMoved="#showCircles" onMouseReleased="#handleLetGo" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#notifyArrowEvent" onMouseEntered="#showCircles" onMouseExited="#hideCircles" onMouseMoved="#showCircles" onMouseReleased="#handleLetGo" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextField fx:id="nameField" alignment="CENTER" layoutY="17.0" minHeight="-Infinity" minWidth="0.0" onAction="#updateName" prefHeight="20.0" prefWidth="0.0" style="-fx-background-radius: 0;" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0">
          <styleClass>
@@ -64,8 +64,8 @@
             </VBox>
          </children>
       </VBox>
-      <AnchorPane fx:id="blockpane1" layoutY="16.0" onDragDetected="#handleDrag" prefHeight="5.0" prefWidth="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <AnchorPane fx:id="blockpane2" layoutY="34.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onDragDetected="#handleDrag" prefHeight="4.0" prefWidth="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <AnchorPane fx:id="blockpane1" layoutY="16.0" prefHeight="10.0" prefWidth="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <AnchorPane fx:id="blockpane2" layoutY="37.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="9.0" prefWidth="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
    <styleClass>
       <String fx:value="box" />

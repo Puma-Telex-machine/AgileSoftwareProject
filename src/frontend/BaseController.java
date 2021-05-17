@@ -1,20 +1,22 @@
 package frontend;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import model.facades.ModelFacade;
 
 import java.io.IOException;
 
-
-public class BaseController extends AnchorPane{
+public class BaseController extends AnchorPane {
 
     @FXML
     AnchorPane UML;
 
     @FXML
-    AnchorPane leftMenu,minimize;
+    AnchorPane leftMenu, minimize;
     @FXML
     AnchorPane contextMenu;
 
@@ -29,8 +31,6 @@ public class BaseController extends AnchorPane{
     OverviewController overview;
 
     ExercisesController exercises;
-
-
 
     public BaseController() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Base.fxml")));
@@ -50,7 +50,6 @@ public class BaseController extends AnchorPane{
         overview = new OverviewController();
         exercises = new ExercisesController();
 
-
         leftMenu.getChildren().add(files);
         leftMenu.getChildren().add(shapes);
         leftMenu.getChildren().add(overview);
@@ -65,17 +64,15 @@ public class BaseController extends AnchorPane{
 
     }
 
-    private void LockPane(AnchorPane pane)
-    {
+    private void LockPane(AnchorPane pane) {
         AnchorPane.setTopAnchor(pane, 0d);
         AnchorPane.setLeftAnchor(pane, 0d);
         AnchorPane.setBottomAnchor(pane, 0d);
-        AnchorPane.setRightAnchor(pane,0d);
+        AnchorPane.setRightAnchor(pane, 0d);
     }
 
     @FXML
-    private void minimizeMenu()
-    {
+    private void minimizeMenu() {
         files.setVisible(false);
         shapes.setVisible(false);
         overview.setVisible(false);
@@ -84,29 +81,38 @@ public class BaseController extends AnchorPane{
         leftMenu.toBack();
     }
 
-
-    //open Menus
+    // open Menus
     @FXML
-    private void openRecent(){
+    private void openRecent() {
         openMenuItem(files);
     }
-    @FXML
-    private void openShapes(){ openMenuItem(shapes); }
 
     @FXML
-    private void  openOverview() { openMenuItem(overview); }
+    private void openShapes() {
+        openMenuItem(shapes);
+    }
 
     @FXML
-    private void openExercises() { openMenuItem(exercises);}
+    private void openOverview() {
+        openMenuItem(overview);
+    }
 
-    private void openMenuItem(AnchorPane menu)
-    {
+    @FXML
+    private void openExercises() {
+        openMenuItem(exercises);
+    }
+
+    /**
+     * Opens a left side menu
+     * 
+     * @param menu The anchor pane base for the menu
+     */
+    private void openMenuItem(AnchorPane menu) {
         boolean vis = menu.isVisible();
         minimizeMenu();
-        if(vis){
+        if (vis) {
             leftMenu.toBack();
-        }
-        else{
+        } else {
             leftMenu.toFront();
             leftMenu.setVisible(true);
             minimize.toFront();
@@ -114,6 +120,22 @@ public class BaseController extends AnchorPane{
         }
     }
 
+    /**
+     * Is called when the user presses a key
+     * 
+     * @param e The key-pressed event
+     */
+    public void onKeyPressed(KeyEvent e) {
+        switch (e.getCode()) {
+            case SHIFT:
+                canvas.startAddSelect();
+                break;
+            case DELETE:
+                canvas.deleteSelectedBoxes();
+                break;
+        }
+        e.consume();
+    }
     @FXML
     private void undo(){
         if(model.canUndo()) {
@@ -130,4 +152,17 @@ public class BaseController extends AnchorPane{
         }
     }
 
+    /**
+     * Is called when the user releases a key
+     * 
+     * @param e The key-release event
+     */
+    public void onKeyReleased(KeyEvent e) {
+        switch (e.getCode()) {
+            case SHIFT:
+                canvas.endAddSelect();
+                break;
+        }
+        e.consume();
+    }
 }

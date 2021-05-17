@@ -55,7 +55,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
     private BoxFacade box;
 
     private ArrowObserver arrowObserver;
-
+    private List<BoxPressedListener> pressedListeners = new ArrayList<>();
     List<AnchorPointController> anchorPoints = new ArrayList<>();
 
     public BoxController(BoxFacade box, VariableEditorController VEC, MethodEditorController MEC, ArrowObserver arrowObserver) {
@@ -182,16 +182,14 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
 
     /**
      * method for moving a box through dragging
-     *
-     * @param event event of the mouseDrag
      */
-    @FXML
-    private void handleDrag(MouseEvent event) {
+    public void dragBox(double x, double y)
+    {
         variableEditor.setVisible(false);
         methodEditor.setVisible(false);
         if (!moving) {
-            offsetX = event.getX();
-            offsetY = event.getY();
+            offsetX = x;
+            offsetY = y;
             moving = true;
         }
         //todo fix max borders
@@ -199,22 +197,20 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         double posX=0;
         double posY=0;
         //move X
-        if (this.getLayoutX() + event.getX() - offsetX > 0) {
-            posX=this.getLayoutX()+ event.getX() - offsetX;
+        if (this.getLayoutX() + x - offsetX > 0) {
+            posX=this.getLayoutX()+ x - offsetX;
         }
         //move Y
-        if (this.getLayoutY() + event.getY() - offsetY > 0) {
-            posY = this.getLayoutY()+ event.getY() - offsetY;
+        if (this.getLayoutY() + y - offsetY > 0) {
+            posY = this.getLayoutY()+ y - offsetY;
         }
 
-        int x = new ScaledPoint(Scale.Frontend,posX,posY).getX(Scale.Frontend);
-        int y = new ScaledPoint(Scale.Frontend,posX,posY).getY(Scale.Frontend);
+        int X = new ScaledPoint(Scale.Frontend,posX,posY).getX(Scale.Frontend);
+        int Y = new ScaledPoint(Scale.Frontend,posX,posY).getY(Scale.Frontend);
 
 
-        this.setLayoutX(x+1);
-        this.setLayoutY(y+1);
-
-        event.consume();
+        this.setLayoutX(X+1);
+        this.setLayoutY(Y+1);
     }
 
     /**
@@ -357,6 +353,11 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
             }
         }
         showCircles();
+
+        for (int i = 0; i < pressedListeners.size(); i++)
+        {
+            pressedListeners.get(i).pressedBox(this);
+        }
         e.consume();
     }
 
@@ -455,6 +456,23 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         updateAnchorPoints();
     }
 
+    /**
+     * Adds the listener as a listener for the pressed event on this box
+     * @param listener
+     */
+    public void boxPressedSubscribe(BoxPressedListener listener)
+    {
+        pressedListeners.add(listener);
+    }
+
+    /**
+     * Deletes the box
+     */
+    public void deleteBox()
+    {
+        box.deleteBox();
+        //this.setVisible(false); //todo: Properly remove items here
+    }
 }
 
 

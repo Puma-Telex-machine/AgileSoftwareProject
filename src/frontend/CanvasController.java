@@ -8,6 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import model.Model;
 import model.boxes.BoxType;
 import model.facades.Observer;
@@ -21,8 +22,9 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
+import javafx.scene.shape.Rectangle;
 
-public class CanvasController extends AnchorPane implements Observer, ArrowObserver, RelationObserver {
+public class CanvasController extends AnchorPane implements Observer, ArrowObserver, RelationObserver, BoxPressedListener {
 
     VariableEditorController variableEditor;
     MethodEditorController methodEditor;
@@ -35,6 +37,11 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     Model model = Model.getModel();
 
     List<BoxController> boxes = new ArrayList<>();
+
+    private double mouseDownX;
+    private double mouseDownY;
+
+    private Rectangle selectionRectangle;
 
     public CanvasController() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Canvas.fxml")));
@@ -63,6 +70,49 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         contextMenu.setVisible(false);
 
         model.addObserver(this);
+        clearSelection();
+
+        selectionRectangle = new Rectangle();
+        selectionRectangle.setStroke(Color.WHITE);
+        selectionRectangle.setFill(Color.TRANSPARENT);
+        selectionRectangle.getStrokeDashArray().addAll(5.0,5.0);
+        this.getChildren().add(selectionRectangle);
+
+        this.setOnMousePressed(e -> {
+            selectionRectangle.setVisible(true);
+            mouseDownX = e.getX();
+            mouseDownY = e.getY();
+            selectionRectangle.setX(mouseDownX);
+            selectionRectangle.setY(mouseDownY);
+            selectionRectangle.setWidth(0);
+            selectionRectangle.setHeight(0);
+        });
+
+        this.setOnMouseDragged( e-> {
+            clearSelection();
+            selectionRectangle.setX(Math.min(e.getX(), mouseDownX));
+            selectionRectangle.setWidth(Math.abs(e.getX() - mouseDownX));
+            selectionRectangle.setY(Math.min(e.getY(), mouseDownY));
+            selectionRectangle.setHeight(Math.abs(e.getY() - mouseDownY));
+        });
+
+        this.setOnMouseReleased(e -> {
+
+            for (int i = 0; i < boxes.size(); i++)
+            {
+                double x = boxes.get(i).getBox().getPosition().getX(Scale.Frontend);
+                double y = boxes.get(i).getBox().getPosition().getY(Scale.Frontend);
+                if(selectionRectangle.getX() <=  x
+                        && (selectionRectangle.getX() + selectionRectangle.getWidth()) >= x
+                        && selectionRectangle.getY() <= y
+                        && (selectionRectangle.getY() + selectionRectangle.getHeight()) >= y)
+                {
+                    selectBox(boxes.get(i));
+                }
+            }
+
+            selectionRectangle.setVisible(false);
+        });
     }
 
     @Override
@@ -71,6 +121,22 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         this.getChildren().add(box);
         boxes.add(box);
         box.toggleCircleVisibility(!toggleOn);
+        box.boxPressedSubscribe(this);
+        box.setOnMouseDragged(e -> { draggingBox( e , box);});
+        clearSelection();
+    }
+
+    private void draggingBox(MouseEvent e, BoxController box)
+    {
+        box.dragBox(e.getX(), e.getY());
+        for (int i = 0; i < selection.size(); i++)
+        {
+            if(box != selection.get(i))
+            {
+                selection.get(i).dragBox(e.getX(), e.getY());
+            }
+        }
+        e.consume();
     }
 
     public Point getMiddle() {
@@ -87,7 +153,6 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     private List<Arrow> arrows = new ArrayList<>();
     private Dictionary<Arrow, RelationFacade> arrowMap = new Hashtable<>();
     private Dictionary<RelationFacade, Arrow> relationMap = new Hashtable<>();
-
 
     @Override
     public void arrowEvent(Point p, BoxController box) {
@@ -300,11 +365,95 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
 
     //endregion
 
+    /**
+     * Deletes all the boxes on the current canvas
+     */
     public void clearBoxes() {
-        this.getChildren().removeAll();
-        for (int i = 0; i < boxes.size(); i++) {
-            boxes.get(i).setVisible(false); //todo: Properly remove items here
+        List<BoxController> tmp = boxes;
+        for (int i = 0; i < tmp.size(); i++) {
+            deleteBox(tmp.get((i)));
         }
-        boxes = new ArrayList<>();
+        tmp.clear();
+        boxes.clear();
+        selection.clear();
+        this.getChildren().clear();
+    }
+
+    private boolean multiSelect = false;
+    private List<BoxController> selection = new ArrayList<>();
+
+    /**
+     * Start adding boxes to the selection list when pressing on them
+     */
+    public void startAddSelect()
+    {
+        multiSelect = true;
+    }
+
+    /**
+     * Stops adding boxes to the selection list when pressing on them
+     */
+    public void endAddSelect()
+    {
+        multiSelect = false;
+    }
+
+    /**
+     * Deletes the currently selected boxes
+     */
+    @FXML
+    public void deleteSelectedBoxes()
+    {
+        for(int i = 0; i < selection.size(); i++)
+        {
+            deleteBox(selection.get(i));
+        }
+        selection.clear();
+    }
+
+    /**
+     * Clears the selection list
+     */
+    private void clearSelection()
+    {
+        for (int i = 0; i < selection.size(); i++)
+        {
+            selection.get(i).getStyleClass().remove("border-selected");
+            selection.get(i).getStyleClass().add("border");
+        }
+        selection.clear();
+    }
+
+    /**
+     * Deletes the box
+     * @param box
+     */
+    private void deleteBox(BoxController box)
+    {
+        boxes.remove(box);
+        this.getChildren().remove(box);
+        box.deleteBox();
+    }
+
+    /**
+     * Is called when a box is pressed
+     * @param box the box that was pressed
+     */
+    public void pressedBox(BoxController box)
+    {
+        if(!multiSelect)
+            clearSelection();
+        selectBox(box);
+    }
+
+    /**
+     * sets the box as selected
+     * @param box
+     */
+    private void selectBox(BoxController box)
+    {
+        selection.add(box);
+        box.getStyleClass().remove("border");
+        box.getStyleClass().add("border-selected");
     }
 }
