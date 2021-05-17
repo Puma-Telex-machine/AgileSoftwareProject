@@ -3,7 +3,6 @@ package model.boxes;
 import frontend.Observers.UiObservable;
 import frontend.Observers.UiObserver;
 import model.facades.AttributeFacade;
-import model.facades.VariableData;
 
 import java.util.HashSet;
 import java.util.Set;

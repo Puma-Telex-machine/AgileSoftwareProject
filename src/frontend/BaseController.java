@@ -136,6 +136,21 @@ public class BaseController extends AnchorPane {
         }
         e.consume();
     }
+    @FXML
+    private void undo(){
+        if(model.canUndo()) {
+            canvas.clearBoxes();
+            model.loadUndoLayer();
+        }
+    }
+
+    @FXML
+    private void redo(){
+        if(model.canRedo()) {
+            canvas.clearBoxes();
+            model.loadRedoLayer();
+        }
+    }
 
     /**
      * Is called when the user releases a key

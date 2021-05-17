@@ -33,11 +33,11 @@ public class Database {
      * @param filename The name of the file to be loaded, currently not including ".uml"
      * @return A Diagram object.
      */
-    static public Diagram loadDiagram(String folder, String filename){
+    static public Diagram loadDiagram(String folder, String filename, String fileEnder){
         try {
             ArrayList<Box> boxes = new ArrayList<>();
             ArrayList<Relation> relations = new ArrayList<>();
-            File toRead = new File(folder + filename + ".uml");
+            File toRead = new File(folder + filename + fileEnder + ".uml");
             Scanner scanner = new Scanner(toRead);
             Diagram result = new Diagram();
             result.setName(filename);
@@ -249,28 +249,17 @@ public class Database {
     /**
      * Saves the given diagram as a .uml-file, with the given name.
      * @param target The diagram to be saved
+     * @param folder the folder to save the diagram in, written as "example/"
      */
-    static public void saveDiagram(Diagram target) {
+    static public void saveDiagram(Diagram target, String folder, String extraName) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("diagrams/" + target.getName() + ".uml"));
-            List<Box> boxes = target.getAllBoxes(); //probably useful for relations later
+            BufferedWriter writer = new BufferedWriter(new FileWriter(folder + target.getName() + extraName + ".uml"));
+            List<Box> boxes = target.getAllBoxes();
             List<Relation> relations = target.getAllRelations();
             for (Box box: boxes) {
                 saveBox(box, writer);
             }
             for (Relation relation : relations) {
-                /*int indexfrom = 0;
-                int indexto = 0;
-                int index = 0
-                for (Box box : boxes){
-                    if (box == relation.getFrom()){
-                        indexfrom = index;
-                    }
-                    else if(box == relation.getTo()){
-                        indexto = index;
-                    }
-                    index++;
-                }*/
                 saveRelation(relation, boxes.indexOf(relation.getFrom()), boxes.indexOf(relation.getTo()), writer);
             }
             writer.close();
@@ -378,6 +367,15 @@ public class Database {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * Checks whether or not the given string is a directory
+     * @param name the name of the directory, e.g. "temp/"
+     * @return whether or not the string is a valid directory
+     */
+    public static Boolean directoryCheck(String name){
+        return new File(name).isDirectory();
     }
 
     public static void deleteFile(String folder, String filename){

@@ -7,6 +7,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -16,9 +17,6 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
-import model.MethodData;
-import model.VariableData;
-import model.boxes.Visibility;
 import model.facades.AttributeFacade;
 import model.facades.BoxFacade;
 import model.facades.MethodFacade;
@@ -79,15 +77,16 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
             case CLASS -> {
                 //remove typeidentifier and move components to work accordingly
                 //todo check that this works
-                System.out.println("hello");
-                blockpane1.setLayoutY(7);
+                blockpane1.setLayoutY(8);
                 blockpane2.setLayoutY(26);
-                nameField.setLayoutY(7);
-                vBox.setLayoutY(7);
+                nameField.setLayoutY(8);
+                name.setPadding(new Insets(8,0,8,0));
                 bigVBox.getChildren().remove(identifier);
             }
             case INTERFACE -> identifier.setText("<<Interface>>");
+
             case ABSTRACT_CLASS -> identifier.setText("<Abstract>");
+
             case ENUM -> identifier.setText("Enum");
         }
 
@@ -301,16 +300,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
         methodEditor.EditMethod(method, box);
         methodEditor.setLayoutX(this.getLayoutX() - variableEditor.getWidth());
         methodEditor.setLayoutY(this.getLayoutY() + methods.getLayoutY() + 25 + pos.getLayoutY() - methodEditor.getHeight() / 2);
-    }
-
-    private void updateMethods(List<MethodData> methods) {
-        //todo
-        //add lamda function  ish currentEditArgument.argumentTypeField.setOnAction((Action) -> editVariable(variableData)
-    }
-
-    private void updateVariables(List<VariableData> varibles) {
-        //todo
-        //add lamda function  ish currentEditArgument.argumentTypeField.setOnAction((Action) -> editVariable(variableData)
     }
 
     //endregion
