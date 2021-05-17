@@ -8,6 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import model.Model;
 import model.boxes.BoxType;
 import model.facades.Observer;
@@ -21,6 +22,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
+import javafx.scene.shape.Rectangle;
 
 public class CanvasController extends AnchorPane implements Observer, ArrowObserver, RelationObserver, BoxPressedListener {
 
@@ -35,6 +37,11 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     Model model = Model.getModel();
 
     List<BoxController> boxes = new ArrayList<>();
+
+    private double mouseDownX;
+    private double mouseDownY;
+
+    private Rectangle selectionRectangle;
 
     public CanvasController() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Canvas.fxml")));
@@ -64,6 +71,48 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
 
         model.addObserver(this);
         clearSelection();
+
+        selectionRectangle = new Rectangle();
+        selectionRectangle.setStroke(Color.WHITE);
+        selectionRectangle.setFill(Color.TRANSPARENT);
+        selectionRectangle.getStrokeDashArray().addAll(5.0,5.0);
+        this.getChildren().add(selectionRectangle);
+
+        this.setOnMousePressed(e -> {
+            selectionRectangle.setVisible(true);
+            mouseDownX = e.getX();
+            mouseDownY = e.getY();
+            selectionRectangle.setX(mouseDownX);
+            selectionRectangle.setY(mouseDownY);
+            selectionRectangle.setWidth(0);
+            selectionRectangle.setHeight(0);
+        });
+
+        this.setOnMouseDragged( e-> {
+            clearSelection();
+            selectionRectangle.setX(Math.min(e.getX(), mouseDownX));
+            selectionRectangle.setWidth(Math.abs(e.getX() - mouseDownX));
+            selectionRectangle.setY(Math.min(e.getY(), mouseDownY));
+            selectionRectangle.setHeight(Math.abs(e.getY() - mouseDownY));
+        });
+
+        this.setOnMouseReleased(e -> {
+
+            for (int i = 0; i < boxes.size(); i++)
+            {
+                double x = boxes.get(i).getBox().getPosition().getX(Scale.Frontend);
+                double y = boxes.get(i).getBox().getPosition().getY(Scale.Frontend);
+                if(selectionRectangle.getX() <=  x
+                        && (selectionRectangle.getX() + selectionRectangle.getWidth()) >= x
+                        && selectionRectangle.getY() <= y
+                        && (selectionRectangle.getY() + selectionRectangle.getHeight()) >= y)
+                {
+                    selectBox(boxes.get(i));
+                }
+            }
+
+            selectionRectangle.setVisible(false);
+        });
     }
 
     @Override
@@ -380,6 +429,15 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     {
         if(!multiSelect)
             clearSelection();
+        selectBox(box);
+    }
+
+    /**
+     * sets the box as selected
+     * @param box
+     */
+    private void selectBox(BoxController box)
+    {
         selection.add(box);
         box.getStyleClass().remove("border");
         box.getStyleClass().add("border-selected");

@@ -1,22 +1,18 @@
 <CLASS>
   name=Class
-  xposition=15
-  yposition=21
+  xposition=16
+  yposition=8
   visibility=PUBLIC
 <!CLASS>
 <CLASS>
   name=Class
-  xposition=27
-  yposition=7
+  xposition=20
+  yposition=12
   visibility=PUBLIC
 <!CLASS>
-<RELATION>
-  from=-1
-  to=1
-  type=ASSOCIATION
-<!RELATION>
-<RELATION>
-  from=-1
-  to=1
-  type=ASSOCIATION
-<!RELATION>
+<CLASS>
+  name=Class
+  xposition=22
+  yposition=8
+  visibility=PUBLIC
+<!CLASS>
