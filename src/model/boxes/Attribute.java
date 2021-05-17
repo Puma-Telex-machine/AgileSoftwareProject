@@ -1,7 +1,8 @@
 package model.boxes;
 
-import frontend.Observers.UiObservable;
-import frontend.Observers.UiObserver;
+import global.Observable;
+import global.Observers;
+import global.Observer;
 import model.facades.AttributeFacade;
 
 import java.util.HashSet;
@@ -11,23 +12,32 @@ import java.util.Set;
  *  Originally created by Emil Holmsten,
  *  Updated by Filip Hanberg.
  */
-public class Attribute implements AttributeFacade, UiObservable {
+public class Attribute implements AttributeFacade, Observable<Observer> {
 
     private String name = "foo";
     private final Set<Modifier> modifiers = new HashSet<>();
     private Visibility visibility = Visibility.PRIVATE;
     private String type = "int";
 
+    //region OBSERVABLE
+    Observers observers = new Observers();
+
+    @Override
+    public void subscribe(Observer observer) {
+        observers.add(observer);
+    }
+    //endregion
+
     @Override
     public void setName(String name) {
         this.name = name;
-        update();
+        observers.update();
     }
 
     @Override
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
-        update();
+        observers.update();
     }
 
     /**
@@ -37,7 +47,7 @@ public class Attribute implements AttributeFacade, UiObservable {
     @Override
     public void addModifier(Modifier modifier) {
         modifiers.add(modifier);
-        update();
+        observers.update();
     }
 
     /**
@@ -47,7 +57,7 @@ public class Attribute implements AttributeFacade, UiObservable {
     @Override
     public void removeModifier(Modifier modifier) {
         modifiers.remove(modifier);
-        update();
+        observers.update();
     }
 
     @Override
@@ -58,7 +68,7 @@ public class Attribute implements AttributeFacade, UiObservable {
     @Override
     public void setType(String type) {
         this.type = type;
-        update();
+        observers.update();
     }
 
     @Override
@@ -87,7 +97,7 @@ public class Attribute implements AttributeFacade, UiObservable {
         return visibility;
     }
 
-    UiObserver observer;
+    /*UiObserver observer;
     private Boolean ignoreObserver = false; //used by database
     @Override
     public void subscribe(UiObserver observer) {
@@ -105,5 +115,5 @@ public class Attribute implements AttributeFacade, UiObservable {
     private void update(){
         if(!ignoreObserver)
             observer.update();
-    }
+    }*/
 }

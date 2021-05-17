@@ -2,7 +2,7 @@ package frontend;
 
 import frontend.Observers.ArrowObservable;
 import frontend.Observers.ArrowObserver;
-import frontend.Observers.UiObserver;
+import global.Observer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -18,11 +18,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
 import model.facades.AttributeFacade;
-import model.facades.BoxFacade;
+import model.boxes.BoxFacade;
 import model.facades.MethodFacade;
-import model.point.Scale;
-import model.point.ScaledPoint;
-import com.sun.javafx.scene.control.skin.Utils;
+import global.point.Scale;
+import global.point.ScaledPoint;
 
 import java.awt.*;
 import java.io.IOException;
@@ -32,7 +31,7 @@ import java.util.List;
 /**
  * controller for the boxes in frontend
  */
-public class BoxController extends AnchorPane implements ArrowObservable, UiObserver {
+public class BoxController extends AnchorPane implements ArrowObservable, Observer {
     @FXML
     private TextField nameField;
     @FXML
@@ -211,7 +210,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
 
         this.setLayoutX(X+1);
         this.setLayoutY(Y+1);
-        box.setPosition(new ScaledPoint(Scale.Frontend, (int) this.getLayoutX(), (int) this.getLayoutY()));
     }
 
     /**
@@ -219,10 +217,14 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      *
      * @param event mouseRelease
      */
-
-    public void handleLetGo(MouseEvent event) {
+    @FXML
+    private void handleLetGo(MouseEvent event) {
         moving = false;
-        box.setPosition(new ScaledPoint(Scale.Frontend, (int) this.getLayoutX(), (int) this.getLayoutY()));
+        box.trySetPosition(new ScaledPoint(Scale.Frontend, (int) this.getLayoutX(), (int) this.getLayoutY()));
+        //for snap to grid
+        this.setLayoutX(box.getPosition().getX(Scale.Frontend));
+        this.setLayoutY(box.getPosition().getY(Scale.Frontend));
+        event.consume();
     }
     //endregion
     //region methods
@@ -422,6 +424,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, UiObse
      */
     public void update() {
 
+        System.out.println("Updating box in Frontend" + this);
         variables.getChildren().clear();
         methods.getChildren().clear();
 

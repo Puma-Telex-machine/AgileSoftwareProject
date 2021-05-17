@@ -1,12 +1,12 @@
 package model.boxes;
 
-import frontend.Observers.UiObserver;
+import global.Observer;
+import global.Observers;
+import global.point.Scale;
+import global.point.ScaledPoint;
+import model.diagram.DiagramMediator;
 import model.facades.AttributeFacade;
-import model.facades.BoxFacade;
 import model.facades.MethodFacade;
-import model.grid.IDiagram;
-import model.point.Scale;
-import model.point.ScaledPoint;
 
 import java.util.*;
 
@@ -15,12 +15,12 @@ import java.util.*;
  * Originally created by Emil Holmsten,
  * Expanded by Filip Hanberg.
  */
-public class Box implements BoxFacade, UiObserver {
+public class Box implements BoxFacade, Observer {
     //different fontsize on name and other
     private static final double SYMBOLS_PER_WIDTH_UNIT_NAME = 0.23;
     private static final double SYMBOLS_PER_WIDTH_UNIT_OTHER = 0.2;
     private static final int START_HEIGHT = 3;
-    private static final int START_WIDTH = 3;
+    private static final int START_WIDTH = 5;
     private static final double ROWS_PER_HEIGHT_UNIT = 0.4999;
 
     private String name;
@@ -30,10 +30,10 @@ public class Box implements BoxFacade, UiObserver {
     private final Set<Modifier> modifiers = new HashSet<>();
     private Visibility visibility = Visibility.PUBLIC;
     private ScaledPoint position;
-    private final IDiagram diagram;
+    private final DiagramMediator diagram;
 
 
-    public Box(IDiagram diagram, ScaledPoint position, BoxType type) {
+    public Box(DiagramMediator diagram, ScaledPoint position, BoxType type) {
         this.name = switch (type) {
             case CLASS -> "Class";
             case ABSTRACT_CLASS -> "Abstract Class";
@@ -44,9 +44,22 @@ public class Box implements BoxFacade, UiObserver {
         this.position = position;
         this.type = type;
         this.diagram = diagram;
-        diagram.add(this);
-        update();
     }
+
+    //region OBSERVABLE
+    private final Observers observers = new Observers();
+
+    @Override
+    public void subscribe(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void update() {
+        diagram.updateBox(this);
+        observers.update();
+    }
+    //endregion
 
     @Override
     public void setName(String name) {
@@ -67,7 +80,7 @@ public class Box implements BoxFacade, UiObserver {
     @Override
     public void deleteBox() {
         name = "THIS SHOULD NOT BE VISIBLE: BOX IS DELETED";
-        diagram.remove(this);
+        diagram.removeBox(this);
     }
 
     @Override
@@ -137,8 +150,12 @@ public class Box implements BoxFacade, UiObserver {
         return modifiers;
     }
 
-    @Override
     public void setPosition(ScaledPoint point) {
+        position = point;
+    }
+
+    @Override
+    public void trySetPosition(ScaledPoint point) {
         position = point;
         update();
     }
@@ -186,25 +203,18 @@ public class Box implements BoxFacade, UiObserver {
 
             maxLength = Collections.max(longest);
         }
-        if(maxLength*SYMBOLS_PER_WIDTH_UNIT_OTHER<name.length()*SYMBOLS_PER_WIDTH_UNIT_NAME){
-            return Math.max((int)(name.length() * SYMBOLS_PER_WIDTH_UNIT_NAME )+2, START_WIDTH);
+
+        int boxLength = 0;
+        if (maxLength < name.length()) {
+            boxLength = Math.max((int) (name.length() * SYMBOLS_PER_WIDTH_UNIT_NAME) + 1, START_WIDTH);
+        } else {
+            boxLength = Math.max((int) (maxLength * SYMBOLS_PER_WIDTH_UNIT_OTHER) + 1, START_WIDTH);
         }
-        return Math.max((int)(maxLength * SYMBOLS_PER_WIDTH_UNIT_OTHER)+1, START_WIDTH);
-    }
 
-
-    ArrayList<UiObserver> observers = new ArrayList<>();
-
-    @Override
-    public void subscribe(UiObserver observer) {
-        observers.add(observer);
-    }
-
-    @Override
-    public void update() {
-        diagram.update(this);
-        for (UiObserver o : observers) {
-            o.update();
+        if (Math.floorMod(boxLength, 2) == 0) {
+            boxLength++;
         }
+
+        return boxLength;
     }
 }

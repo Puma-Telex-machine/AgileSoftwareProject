@@ -10,21 +10,24 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import model.Model;
+import model.ModelFacade;
 import model.boxes.BoxType;
-import model.facades.Observer;
-import model.facades.BoxFacade;
-import model.facades.RelationFacade;
-import model.facades.RelationObserver;
-import model.point.Scale;
-import model.point.ScaledPoint;
+import model.diagram.DiagramFacade;
+import model.diagram.DiagramObserver;
+import model.boxes.BoxFacade;
+import model.relations.RelationFacade;
+import model.relations.RelationObserver;
+import global.point.Scale;
+import global.point.ScaledPoint;
 import model.relations.ArrowType;
+
 import java.awt.*;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
 import javafx.scene.shape.Rectangle;
 
-public class CanvasController extends AnchorPane implements Observer, ArrowObserver, RelationObserver, BoxPressedListener {
+public class CanvasController extends AnchorPane implements DiagramObserver, ArrowObserver, RelationObserver, BoxPressedListener {
 
     VariableEditorController variableEditor;
     MethodEditorController methodEditor;
@@ -34,7 +37,8 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     @FXML
     private ComboBox<ArrowType> arrowTypeComboBox;
 
-    Model model = Model.getModel();
+    ModelFacade model = Model.getModel();
+    DiagramFacade diagram = model.getDiagram();
 
     List<BoxController> boxes = new ArrayList<>();
 
@@ -69,7 +73,8 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         arrowMenu.setVisible(false);
         contextMenu.setVisible(false);
 
-        model.addObserver(this);
+        diagram.subscribe(this);
+        //model.addObserver(this);
         clearSelection();
 
         selectionRectangle = new Rectangle();
@@ -180,7 +185,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
                 ScaledPoint offsetTo = new ScaledPoint(Scale.Frontend, (int) (p.x - box.getLayoutX()), (int) (p.y - box.getLayoutY()));
                 ScaledPoint offsetFrom = new ScaledPoint(Scale.Frontend, (int) (arrowStart.x - arrowBox.getLayoutX()), (arrowStart.y - arrowBox.getLayoutY()));
 
-                model.addRelation(arrowBox.getBox(), offsetFrom, box.getBox(), offsetTo, ArrowType.ASSOCIATION);
+                diagram.createRelation(arrowBox.getBox(), offsetFrom, box.getBox(), offsetTo, ArrowType.ASSOCIATION);
             }
         }
         //start making arrow
@@ -201,7 +206,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     }
 
     @Override
-    public void updateRelation(RelationFacade relation){
+    public void update(RelationFacade relation){ //TODO: Borde inte detta hanteras av en RelationController eller ngt?
         removeRelation(relation);
         addArrow(relation);
     }
@@ -224,7 +229,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         arrows.remove(arrow);
         relationMap.remove(arrow);
         arrowMap.remove(r);
-        model.removeRelation(r);
+        r.remove();
     }
 
     /**
@@ -264,7 +269,28 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
 
     @FXML
     private void handleArrowMenu(MouseEvent e) {
-        List<Arrow> closest = new ArrayList<>();
+        if (makingArrow) {
+            makingArrow = false;
+            this.getChildren().remove(dragArrow);
+            e.consume();
+            return;
+        }
+        Arrow closest = null;
+        double min = 10000;
+        for (Arrow a : arrows) {
+            double distance = a.getDistaceFromClick(e);
+            if (distance < min) {
+                min = distance;
+                closest = a;
+            }
+        }
+        if (min <= 15) {
+            clickedArrow.add(closest);
+            arrowTypeComboBox.getSelectionModel().select(closest.getType());
+            openArrowMenu(e.getX(), e.getY());
+        }
+        e.consume();
+        /*List<Arrow> closest = new ArrayList<>();
         double min = 10000;
         for (Arrow a : arrows) {
             double distance = a.getDistaceFromClick(e);
@@ -281,7 +307,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
             //trying to merge dragarrow into existing arrow
             if (makingArrow) {
                 ScaledPoint offset = new ScaledPoint (Scale.Frontend,(int) (arrowStart.getX()-arrowBox.getLayoutX()),(int) (arrowStart.getY()-arrowBox.getLayoutY()));
-                model.addRelation(arrowBox.getBox(),offset,arrowMap.get(closest.get(0)));
+                diagram.createRelation(arrowBox.getBox(),offset,arrowMap.get(closest.get(0)), offset, ArrowType.ASSOCIATION);
             }
             else{
                 clickedArrow = closest;
@@ -291,7 +317,7 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         }
         if(makingArrow){
             removeDragArrow();
-        }
+        }*/
         e.consume();
     }
 
@@ -319,8 +345,8 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
     }
 
     @FXML
-    private void handleContextAddBox(MouseEvent e,BoxType type) {
-        model.addBox(new ScaledPoint(Scale.Frontend, (int) contextMenu.getLayoutX() - 80, (int) contextMenu.getLayoutY() - 35), type);
+    private void handleContextAddBox(MouseEvent e, BoxType type) {
+        diagram.createBox(new ScaledPoint(Scale.Frontend, (int) contextMenu.getLayoutX() - 80, (int) contextMenu.getLayoutY() - 35), type);
         closeMenu(e);
         e.consume();
     }
@@ -356,9 +382,8 @@ public class CanvasController extends AnchorPane implements Observer, ArrowObser
         ArrowType type = arrowTypeComboBox.getValue();
         for (Arrow a:clickedArrow) {
             a.setType(type);
-            arrowMap.get(a).changeRelation(type);
+            arrowMap.get(a).changeRelationType(type);
         }
-
         closeMenu(e);
         e.consume();
 

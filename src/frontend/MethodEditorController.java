@@ -7,7 +7,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.fxml.FXMLLoader;
 import model.boxes.Visibility;
-import model.facades.BoxFacade;
+import model.boxes.BoxFacade;
 import model.facades.MethodFacade;
 
 import java.io.IOException;

@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import model.facades.ModelFacade;
+import model.ModelFacade;
 
 import java.io.IOException;
 
@@ -45,7 +45,7 @@ public class BaseController extends AnchorPane {
 
         canvas = new CanvasController();
         model = ModelFacade.getModel();
-        files = new FilesController(model.getFileHandler(), canvas);
+        files = new FilesController(ModelFacade.getFileHandler(), canvas);
         shapes = new ShapeController(canvas);
         overview = new OverviewController();
         exercises = new ExercisesController();
@@ -138,18 +138,18 @@ public class BaseController extends AnchorPane {
     }
     @FXML
     private void undo(){
-        if(model.canUndo()) {
+        /*if(model.canUndo()) {
             canvas.clearBoxes();
             model.loadUndoLayer();
-        }
+        }*/
     }
 
     @FXML
     private void redo(){
-        if(model.canRedo()) {
+        /*if(model.canRedo()) {
             canvas.clearBoxes();
             model.loadRedoLayer();
-        }
+        }*/
     }
 
     /**

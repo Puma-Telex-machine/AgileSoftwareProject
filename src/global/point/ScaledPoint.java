@@ -1,5 +1,7 @@
-package model.point;
+package global.point;
 
+
+import model.diagram.Direction;
 
 import java.awt.*;
 
@@ -7,9 +9,9 @@ public class ScaledPoint implements Comparable<ScaledPoint> {
     int x;
     int y;
 
-    public ScaledPoint(Scale scale, ScaledPoint point) {
-        setX(scale, point.getX(scale));
-        setY(scale, point.getY(scale));
+    public ScaledPoint(ScaledPoint point) {
+        x = point.x;
+        y = point.y;
     }
 
     public ScaledPoint(Scale scale, Point point) { // This constructor can be removed when (if) all uses of Point is removed
