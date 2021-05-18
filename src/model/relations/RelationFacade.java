@@ -2,6 +2,7 @@ package model.relations;
 
 import global.Observable;
 import global.point.ScaledPoint;
+import model.boxes.BoxFacade;
 
 import java.util.ArrayList;
 
@@ -10,4 +11,6 @@ public interface RelationFacade extends Observable<RelationObserver> {
     ArrowType getArrowType();
     void remove();
     void changeRelationType(ArrowType type);
+    BoxFacade getTo();
+    ScaledPoint getOffsetTo();
 }
