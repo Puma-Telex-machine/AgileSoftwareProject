@@ -37,13 +37,19 @@ public class Diagram implements DiagramFacade, DiagramMediator, PathfindingMap {
     }
     //endregion
 
+    /**
+     * 1. Creates a new box.
+     * 2. Adds the box to the list of boxes
+     * 3. Updates the box
+     * @param position
+     * @param boxType
+     */
     @Override
     public void createBox(ScaledPoint position, BoxType boxType) {
         Box box = new Box(this, position, boxType);
         boxGrid.add(box);
         updateBox(box);
         updateObservers(box);
-        saveThis();
     }
 
     public void updateBox(Box box) {
@@ -65,7 +71,6 @@ public class Diagram implements DiagramFacade, DiagramMediator, PathfindingMap {
         relationGrid.add(relation);
         relationGrid.refreshAllPaths();
         updateObservers(relation);
-        saveThis();
     }
 
     public void updateRelation(Relation relation) {
