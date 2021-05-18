@@ -129,6 +129,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
         box.toggleCircleVisibility(!toggleOn);
         box.boxPressedSubscribe(this);
         box.setOnMouseDragged(e -> { draggingBox( e , box);});
+        box.setOnMouseReleased(e->{letGoBox(e,box);});
         clearSelection();
     }
 
@@ -140,6 +141,17 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
             if(box != selection.get(i))
             {
                 selection.get(i).dragBox(e.getX(), e.getY());
+            }
+        }
+        e.consume();
+    }
+    private void letGoBox(MouseEvent e, BoxController box){
+        box.handleLetGo();
+        for (int i = 0; i < selection.size(); i++)
+        {
+            if(box != selection.get(i))
+            {
+                selection.get(i).handleLetGo();
             }
         }
         e.consume();

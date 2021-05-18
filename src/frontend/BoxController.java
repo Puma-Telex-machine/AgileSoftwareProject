@@ -224,12 +224,10 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
      *
      * @param event mouseRelease
      */
-    @FXML
-    private void handleLetGo(MouseEvent event) {
+    public void handleLetGo(){
         if(moving) {
             moving = false;
             box.setAndUpdatePosition(new ScaledPoint(Scale.Frontend, (int) this.getLayoutX(), (int) this.getLayoutY()));
-            event.consume();
         }
     }
     //endregion
