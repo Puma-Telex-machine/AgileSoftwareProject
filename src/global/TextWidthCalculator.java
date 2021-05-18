@@ -26,31 +26,43 @@ public class TextWidthCalculator {
     private TextWidthCalculator(){};
 
     static private TextWidthCalculator instance;
-    private Font font;
-    private double help0;
+    private Font name;
+    private Font other;
+    private double offset;
 
-    public void init(Font font,double help0){
-        this.font=font;
-        this.help0=help0;
-    }
-    public double computeTextWidth(String text){
-        return this.computeTextWidth(font,text,help0);
+    public void setName(Font name) {
+        this.name = name;
     }
 
-    public double computeTextWidth(Font font,String text,double help0) {
+    public void setOther(Font other) {
+        this.other = other;
+    }
+
+    public void setOffset(double offset) {
+        this.offset = offset;
+    }
+
+    public double computeTextWidthName(String text){
+        return this.computeTextWidth(name,text,offset);
+    }
+    public double computeTextWidthOther(String text){
+        return this.computeTextWidth(other,text,offset);
+    }
+
+    private double computeTextWidth(Font font,String text,double offset) {
         helper.setText(text);
         helper.setFont(font);
 
         helper.setWrappingWidth(0.0D);
         helper.setLineSpacing(0.0D);
-        double d = Math.min(helper.prefWidth(-1.0D), help0);
+        double d = helper.prefWidth(-1.0D);
         helper.setWrappingWidth((int) Math.ceil(d));
         d = Math.ceil(helper.getLayoutBounds().getWidth());
 
         helper.setWrappingWidth(DEFAULT_WRAPPING_WIDTH);
         helper.setLineSpacing(DEFAULT_LINE_SPACING);
         helper.setText(DEFAULT_TEXT);
-        return d;
+        return d+offset;
     }
 }
 

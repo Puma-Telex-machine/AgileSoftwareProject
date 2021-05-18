@@ -1,6 +1,17 @@
 <CLASS>
-  name=Classasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasddasadsasdasdasd
-  xposition=12
-  yposition=4
+  name=Class
+  xposition=17
+  yposition=6
   visibility=PUBLIC
 <!CLASS>
+<CLASS>
+  name=Class
+  xposition=30
+  yposition=6
+  visibility=PUBLIC
+<!CLASS>
+<RELATION>
+  from=0
+  to=1
+  type=ASSOCIATION
+<!RELATION>

@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#notifyArrowEvent" onMouseEntered="#showCircles" onMouseExited="#hideCircles" onMouseMoved="#showCircles" onMouseReleased="#handleLetGo" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onMouseClicked="#notifyArrowEvent" onMouseEntered="#showCircles" onMouseExited="#hideCircles" onMouseMoved="#showCircles" onMouseReleased="#handleLetGo" prefHeight="90.0" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField fx:id="nameField" alignment="CENTER" layoutY="15.0" maxWidth="-Infinity" minWidth="-Infinity" onAction="#updateName" prefHeight="0.0" prefWidth="0.0" style="-fx-background-radius: 0;" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0">
+      <TextField fx:id="nameField" alignment="CENTER" layoutY="15.0" minWidth="0.0" onAction="#updateName" prefHeight="0.0" prefWidth="0.0" style="-fx-background-radius: 0;" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0">
          <styleClass>
             <String fx:value="box" />
             <String fx:value="text-medium" />

@@ -7,6 +7,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.text.Font;
+
 import java.io.IOException;
 
 public class BoxAttributeTextController extends AnchorPane {
@@ -26,5 +28,8 @@ public class BoxAttributeTextController extends AnchorPane {
         }
 
         nameLable.setText(text);
+    }
+    public Font getFont(){
+        return nameLable.getFont();
     }
 }
