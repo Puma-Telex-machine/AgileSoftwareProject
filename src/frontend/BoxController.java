@@ -219,10 +219,11 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
      */
     @FXML
     private void handleLetGo(MouseEvent event) {
-        //todo: denna körs även när man klickar på en point för att dra en pil
-        moving = false;
-        box.setAndUpdatePosition(new ScaledPoint(Scale.Frontend, (int) this.getLayoutX(), (int) this.getLayoutY()));
-        event.consume();
+        if(moving) {
+            moving = false;
+            box.setAndUpdatePosition(new ScaledPoint(Scale.Frontend, (int) this.getLayoutX(), (int) this.getLayoutY()));
+            event.consume();
+        }
     }
     //endregion
     //region methods

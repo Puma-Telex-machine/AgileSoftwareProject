@@ -1,12 +1,18 @@
 <CLASS>
   name=Class
-  xposition=27
-  yposition=5
+  xposition=19
+  yposition=2
   visibility=PUBLIC
 <!CLASS>
-<INTERFACE>
-  name=Interface
-  xposition=22
+<CLASS>
+  name=Class
+  xposition=15
+  yposition=14
+  visibility=PUBLIC
+<!CLASS>
+<CLASS>
+  name=Class
+  xposition=32
   yposition=10
   visibility=PUBLIC
-<!INTERFACE>
+<!CLASS>
