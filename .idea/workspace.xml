@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41a11e1e-bf49-4b51-8834-c840eb7c8781" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/global/TextWidthCalculator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/diagrams/untitled.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/untitled.uml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BoxController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/CanvasController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/Canvas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Canvas.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/relations/Relation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/Relation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/relations/RelationFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/RelationFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/Box.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Box.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

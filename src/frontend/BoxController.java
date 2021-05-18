@@ -3,6 +3,7 @@ package frontend;
 import frontend.Observers.ArrowObservable;
 import frontend.Observers.ArrowObserver;
 import global.Observer;
+import global.TextWidthCalculator;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -76,6 +77,8 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
             case CLASS -> {
                 //remove typeidentifier and move components to work accordingly
                 //todo check that this works
+                blockpane1.setLayoutY(6);
+                blockpane2.setLayoutY(30);
                 nameField.setLayoutY(6);
                 name.setPadding(new Insets(8,0,8,0));
                 bigVBox.getChildren().remove(identifier);
@@ -97,15 +100,18 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
         //box.setName(name.getText());
         update();
 
+        TextWidthCalculator.getInstance().init(nameField.getFont(), 0.0d);
+
         //rezises namefield to fit whole name
         nameField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                double width = TextUtils.computeTextWidth(nameField.getFont(), nameField.getText(), 0.0D) + 20;
+                double width = TextWidthCalculator.getInstance().computeTextWidth(nameField.getFont(),nameField.getText(),0.0d) + 20;
                 nameField.setPrefWidth(width);
                 updateLines(width);
             }
         });
+
 
         box.subscribe(this);
     }
@@ -474,42 +480,5 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
     {
         box.deleteBox();
         //this.setVisible(false); //todo: Properly remove items here
-    }
-}
-
-
-//dont mind this
-class TextUtils {
-
-    static final Text helper;
-    static final double DEFAULT_WRAPPING_WIDTH;
-    static final double DEFAULT_LINE_SPACING;
-    static final String DEFAULT_TEXT;
-    static final TextBoundsType DEFAULT_BOUNDS_TYPE;
-    static {
-        helper = new Text();
-        DEFAULT_WRAPPING_WIDTH = helper.getWrappingWidth();
-        DEFAULT_LINE_SPACING = helper.getLineSpacing();
-        DEFAULT_TEXT = helper.getText();
-        DEFAULT_BOUNDS_TYPE = helper.getBoundsType();
-    }
-
-    public static double computeTextWidth(Font font, String text, double help0) {
-        // Toolkit.getToolkit().getFontLoader().computeStringWidth(field.getText(),
-        // field.getFont());
-
-        helper.setText(text);
-        helper.setFont(font);
-
-        helper.setWrappingWidth(0.0D);
-        helper.setLineSpacing(0.0D);
-        double d = Math.min(helper.prefWidth(-1.0D), help0);
-        helper.setWrappingWidth((int) Math.ceil(d));
-        d = Math.ceil(helper.getLayoutBounds().getWidth());
-
-        helper.setWrappingWidth(DEFAULT_WRAPPING_WIDTH);
-        helper.setLineSpacing(DEFAULT_LINE_SPACING);
-        helper.setText(DEFAULT_TEXT);
-        return d;
     }
 }
