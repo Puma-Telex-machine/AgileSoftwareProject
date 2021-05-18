@@ -54,6 +54,19 @@ public class Diagram implements DiagramFacade, DiagramMediator, PathfindingMap {
     }
 
     /**
+     * Method for adding a preexisting box to the diagram.
+     * Functionality is mostly identical to createBox.
+     * Used by the Database because createBox doesn't return the box,
+     * so it can't be manipulated afterwards.
+     * @param box the box to be added
+     */
+    public void addBox(Box box){ //todo ändra returnvalue för createbox skulle också funka
+        boxGrid.add(box);
+        updateBox(box);
+        updateObservers(box);
+    }
+
+    /**
      * 1. Updates the box in the boxGrid which validates its position against all other boxes and set the position.
      *    (Does not update observers, this currently happens from inside the box when something happens or when creating a box)
      * 2. Refreshes all paths.
@@ -82,7 +95,7 @@ public class Diagram implements DiagramFacade, DiagramMediator, PathfindingMap {
         updateObservers(relation);
     }
 
-    public void updateRelation(Relation relation) {
+    public void updateRelation(Relation relation) { //todo varför behöver vi en Relation för att calla den här?
         relationGrid.refreshAllPaths();
         saveThis();
     }

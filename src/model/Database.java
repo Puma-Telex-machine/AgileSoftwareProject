@@ -36,7 +36,6 @@ public class Database {
     static public Diagram loadDiagram(String folder, String filename, String fileEnder){
         try {
             ArrayList<Box> boxes = new ArrayList<>();
-            ArrayList<Relation> relations = new ArrayList<>();
             File toRead = new File(folder + filename + fileEnder + ".uml");
             Scanner scanner = new Scanner(toRead);
             Diagram result = new Diagram();
@@ -55,13 +54,10 @@ public class Database {
                 else if(next.startsWith("<ENUM>"))
                     boxes.add(loadBox(scanner, BoxType.ENUM, result));
                 else if(next.startsWith("<RELATION>"))
-                    relations.add(loadRelation(scanner, boxes, result));
+                    loadRelation(scanner, boxes, result);
             }
-            for (Box box: boxes) {
+            for (Box box: boxes) { //todo kanske onödig
                 result.updateBox(box);
-            }
-            for (Relation relation: relations){
-                result.updateRelation(relation);
             }
             System.out.println("Successfully loaded " + filename + ".uml");
             result.unlockSaving();
@@ -132,6 +128,7 @@ public class Database {
                         for (Modifier modifier : modifiers) {
                             box.addModifier(modifier);
                         }
+                        target.addBox(box);
                         return box;
                     }
             }
@@ -222,7 +219,7 @@ public class Database {
         return null;
     }
 
-    static private Relation loadRelation(Scanner scanner, ArrayList<Box> boxes, Diagram target){
+    static private void loadRelation(Scanner scanner, ArrayList<Box> boxes, Diagram target){
         ArrowType arrowType = ArrowType.ASSOCIATION;
         int indexFrom = 0;
         int indexTo = 0;
@@ -258,10 +255,8 @@ public class Database {
                     ScaledPoint from = new ScaledPoint(Scale.Backend, xOffsetFrom, yOffsetFrom);
                     ScaledPoint to = new ScaledPoint(Scale.Backend, xOffsetTo, yOffsetTo);
                     target.createRelation(boxes.get(indexFrom), from, boxes.get(indexTo), to, arrowType);
-                    return null;
             }
         }
-        return null;
     }
 
     /**

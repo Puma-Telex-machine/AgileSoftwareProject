@@ -78,8 +78,6 @@ public class Relation implements RelationFacade {
         return from;
     }
 
-    public ScaledPoint getOffsetTo() {return offsetTo;}
-
     public ScaledPoint getOffsetFrom() {return offsetFrom;}
 
     @Override

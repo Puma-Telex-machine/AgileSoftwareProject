@@ -15,7 +15,6 @@ import model.boxes.BoxType;
 import model.diagram.DiagramFacade;
 import model.diagram.DiagramObserver;
 import model.boxes.BoxFacade;
-import model.relations.Relation;
 import model.relations.RelationFacade;
 import model.relations.RelationObserver;
 import global.point.Scale;
