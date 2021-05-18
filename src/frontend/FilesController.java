@@ -19,6 +19,8 @@ public class FilesController extends AnchorPane{
     @FXML
     VBox filesBox;
 
+    SaveAsController saving = new SaveAsController();
+
     Model model = Model.getModel();
 
     FileHandlerFacade fileHandler;
@@ -44,6 +46,8 @@ public class FilesController extends AnchorPane{
             FileMenuItemController file = new FileMenuItemController(files[i], fileHandler, canvas);
             filesBox.getChildren().add(file);
         }
+        filesBox.getChildren().add(saving);
+        saving.setVisible(false);
     }
 
     @FXML
@@ -51,4 +55,7 @@ public class FilesController extends AnchorPane{
     {
         fileHandler.newFile();
     }
+
+    @FXML
+    private void openSave(){saving.setVisible(true);}
 }
