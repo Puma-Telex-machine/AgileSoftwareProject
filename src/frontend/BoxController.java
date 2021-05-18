@@ -76,9 +76,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
             case CLASS -> {
                 //remove typeidentifier and move components to work accordingly
                 //todo check that this works
-                blockpane1.setLayoutY(8);
-                blockpane2.setLayoutY(26);
-                nameField.setLayoutY(8);
+                nameField.setLayoutY(6);
                 name.setPadding(new Insets(8,0,8,0));
                 bigVBox.getChildren().remove(identifier);
             }
@@ -204,6 +202,8 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
             posY = this.getLayoutY()+ y - offsetY;
         }
 
+        //add fakeMove
+
         int X = new ScaledPoint(Scale.Frontend,posX,posY).getX(Scale.Frontend);
         int Y = new ScaledPoint(Scale.Frontend,posX,posY).getY(Scale.Frontend);
 
@@ -220,10 +220,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
     @FXML
     private void handleLetGo(MouseEvent event) {
         moving = false;
-        box.trySetPosition(new ScaledPoint(Scale.Frontend, (int) this.getLayoutX(), (int) this.getLayoutY()));
-        //for snap to grid
-        this.setLayoutX(box.getPosition().getX(Scale.Frontend));
-        this.setLayoutY(box.getPosition().getY(Scale.Frontend));
+        box.setAndUpdatePosition(new ScaledPoint(Scale.Frontend, (int) this.getLayoutX(), (int) this.getLayoutY()));
         event.consume();
     }
     //endregion

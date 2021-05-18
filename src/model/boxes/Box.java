@@ -155,7 +155,7 @@ public class Box implements BoxFacade, Observer {
     }
 
     @Override
-    public void trySetPosition(ScaledPoint point) {
+    public void setAndUpdatePosition(ScaledPoint point) {
         position = point;
         update();
     }
