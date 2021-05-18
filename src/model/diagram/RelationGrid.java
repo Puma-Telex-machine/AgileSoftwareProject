@@ -9,9 +9,9 @@ import java.util.*;
 public class RelationGrid {
 
     AStar aStar;
-    TreeMap<ScaledPoint, HashSet<PathNode>> relationMap = new TreeMap<>();;
-    PriorityQueue<Relation> relations = new PriorityQueue<>((r1, r2) -> (int) (calculateAngle(r2) - calculateAngle(r1))); //Not sure if this did any differance
-    //HashSet<Relation> relations = new HashSet<>();
+    TreeMap<ScaledPoint, ArrayList<PathNode>> relationMap = new TreeMap<>();
+    //PriorityQueue<Relation> relations = new PriorityQueue<>((r1, r2) -> (int) (calculateAngle(r2) - calculateAngle(r1))); //Tror inte detta hjälper oavsett metod. Det beror på olika situationer
+    ArrayList<Relation> relations = new ArrayList<>();
     int crossCost = 30;
     int stepCost = 0;
 
@@ -66,8 +66,8 @@ public class RelationGrid {
         pathPoints.add(current.position);
 
         while (current != null) {
-            HashSet<PathNode> relations = relationMap.computeIfAbsent(current.position, k -> new HashSet<>());
-            relations.add(current);
+            ArrayList<PathNode> relationMapArray = relationMap.computeIfAbsent(current.position, k -> new ArrayList<>());
+            relationMapArray.add(current);
 
             if (current.previous != null && current.direction != current.previous.direction) {
                 pathPoints.add(current.previous.position);
@@ -87,7 +87,7 @@ public class RelationGrid {
         }
 
         for (PathNode n : relationMap.get(position)) {
-            if ((n.relation.getTo() == relation.getTo() || n.relation.getFrom() == relation.getFrom()) && n.relation.getArrowType() == relation.getArrowType()) {
+            if ((n.relation.getEndPosition() == relation.getEndPosition() || n.relation.getStartPosition() == relation.getStartPosition()) && n.relation.getArrowType() == relation.getArrowType()) {
                 return stepCost;
             }
         }
