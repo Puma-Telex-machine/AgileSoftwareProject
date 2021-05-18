@@ -39,10 +39,11 @@ public class Diagram implements DiagramFacade, DiagramMediator, PathfindingMap {
 
     /**
      * 1. Creates a new box.
-     * 2. Adds the box to the list of boxes
-     * 3. Updates the box
-     * @param position
-     * @param boxType
+     * 2. Adds the box to the list of boxes. (Does not check position validity)
+     * 3. Runs updateBox.
+     * 4. Tells observers there is a new box.
+     * @param position The preliminary position of the box
+     * @param boxType The type of box
      */
     @Override
     public void createBox(ScaledPoint position, BoxType boxType) {
@@ -51,6 +52,14 @@ public class Diagram implements DiagramFacade, DiagramMediator, PathfindingMap {
         updateBox(box);
         updateObservers(box);
     }
+
+    /**
+     * 1. Updates the box in the boxGrid which validates its position against all other boxes and set the position.
+     *    (Does not update observers, this currently happens from inside the box when something happens or when creating a box)
+     * 2. Refreshes all paths.
+     * 3. Saves the diagram.
+     * @param box the box to be updated
+     */
 
     public void updateBox(Box box) {
         boxGrid.update(box);
