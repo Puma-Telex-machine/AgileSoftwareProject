@@ -1,15 +1,14 @@
 package frontend;
 
-//import frontend.view.SaveAsController;
-import frontend.view.SaveAsController;
 import javafx.fxml.FXML;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import model.Model;
-import model.facades.BoxFacade;
+import javafx.scene.control.Tooltip;
 
+import javax.swing.text.html.ImageView;
 import java.awt.*;
 
 public class BaseController{
@@ -31,13 +30,13 @@ public class BaseController{
 
     ShapeController shapes;
 
-    //SaveAsController saveAs;
+    SaveAsController saveAs;
 
     public BaseController() {
         recent = new RecentController();
         canvas = new CanvasController();
-        //saveAs = new SaveAsController();
         shapes = new ShapeController(canvas);
+        saveAs = new SaveAsController();
         model = Model.getModel();
         model.addObserver(canvas);
     }
@@ -45,10 +44,9 @@ public class BaseController{
     private void init(){
         UML.getChildren().add(recent);
         UML.getChildren().add(shapes);
-        //UML.getChildren().add(saveAs);
         recent.setVisible(false);
         shapes.setVisible(false);
-        //saveAs.setVisible(false);
+        saveAs.setVisible(true);
         UML.getChildren().add(canvas);
     }
     @FXML
@@ -69,14 +67,6 @@ public class BaseController{
         e.consume();
     }
 
-    //open save dialog
-   /* @FXML
-    private void openSaveAs(){
-        if(!UML.getChildren().contains(saveAs)) init();
-        saveAs.setVisible(!saveAs.isVisible());
-        canvas.toBack();
-    }*/
-
     //open Menus
     @FXML
     private void openRecent(){
@@ -93,6 +83,12 @@ public class BaseController{
         canvas.toBack();
     }
 
+    @FXML
+    public void openSave(){
+        if(!UML.getChildren().contains(saveAs)) init();
+        saveAs.setVisible(!saveAs.isVisible());
+        canvas.toBack();
+    }
 
     /*
     @FXML

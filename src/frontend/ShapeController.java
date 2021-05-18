@@ -2,23 +2,33 @@ package frontend;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.Model;
-import model.boxes.Diagram;
+import model.boxes.BoxType;
+import model.boxes.Interface;
+import model.facades.BoxFacade;
 
-import java.awt.event.MouseEvent;
+import javax.swing.text.html.ImageView;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 public class ShapeController extends AnchorPane {
 
     @FXML
-    private Button save_button;
+    AnchorPane UML;
 
     Model model = Model.getModel();
     CanvasController canvas;
+    BaseController base;
+    SaveAsController saveAs;
 
     public ShapeController(CanvasController canvas) {
+        //base = new BaseController();
+
         FXMLLoader fxmlLoader = new FXMLLoader(
                 getClass().getResource("view/shapes.fxml"));
 
@@ -34,12 +44,25 @@ public class ShapeController extends AnchorPane {
         this.canvas = canvas;
     }
 
+ /*private void init(){
+        UML.getChildren().add(saveAs);
+        saveAs.setVisible(true);
+        UML.getChildren().add(canvas);
+    }     */
+
     @FXML
-    private void addBox(){
-        model.addBox(canvas.getMiddle());
+    private void addBox(){model.addBox(canvas.getMiddle());}
+
+    @FXML
+    private void minimize(){
+        this.setVisible(false);
     }
 
     @FXML
+    private void openSave() {base.openSave();}
+
+
+    /*@FXML
     private void addTemplate(){
         //model.addTemplate(canvas.getMiddle());
     }
@@ -47,11 +70,5 @@ public class ShapeController extends AnchorPane {
     @FXML
     private void saveTemplate(){
         //hämta template från en lista av sparade templates
-    }
-
-    @FXML
-    private void minimize(){
-        this.setVisible(false);
-    }
-
+    }*/
 }

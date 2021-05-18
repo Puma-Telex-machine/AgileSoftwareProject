@@ -2,13 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03fe3c4c-edc6-4d83-8987-cadbce45bef6" name="Default Changelist" comment="Switched to intellij, fixed errors">
-      <change afterPath="$PROJECT_DIR$/src/frontend/view/SaveAsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BoxController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/RecentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/RecentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/ShapeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/ShapeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/css/DarkMode.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/css/DarkMode.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Base.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/Box.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Box.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/Canvas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Canvas.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/MethodEditor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/MethodEditor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/SaveAsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/SaveAsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/VariableEditor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/VariableEditor.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/view/recent_work.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/recent_work.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/saveAs.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/saveAs.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/view/shapes.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/shapes.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,6 +77,7 @@
       <recent name="$PROJECT_DIR$/src/viewmodel" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="frontend" />
       <recent name="" />
     </key>
   </component>
@@ -131,6 +138,20 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Switched to intellij, fixed errors" />
     <option name="LAST_COMMIT_MESSAGE" value="Switched to intellij, fixed errors" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="5" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.reflect.InvocationTargetException" package="java.lang.reflect" />
+          <option name="timeStamp" value="7" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

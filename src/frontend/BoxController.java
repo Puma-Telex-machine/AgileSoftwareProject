@@ -72,7 +72,7 @@ public class BoxController extends AnchorPane implements ArrowObservable {
                 vBox.getChildren().remove(identifier);
                 break;
             case INTERFACE:
-                identifier.setText("<<Interfacew>>");
+                identifier.setText("<<Interface>>");
                 vBox.getChildren().remove(variables);
                 //remove line and +
                 vBox.getChildren().remove(6);

@@ -1,23 +1,18 @@
 package frontend;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
-import model.boxes.Diagram;
 
 import java.io.IOException;
 
 public class RecentController extends AnchorPane{
 
-    @FXML
-    Button delete_button;
-    @FXML
-    Button save_button;
-
     Model model = Model.getModel();
+
+    SaveAsController saveAs;
+    BaseController base;
 
     public RecentController() {
         FXMLLoader fxmlLoader = new FXMLLoader(
@@ -34,14 +29,12 @@ public class RecentController extends AnchorPane{
     }
 
     @FXML
+    private void openSave() {base.openSave();}
+
+    @FXML
     private void minimize(){
         this.setVisible(false);
     }
 
 
-    @FXML
-    private void saveWork(){
-        //save the diagram
-        //Diagram.boxes.add();
-    }
 }
