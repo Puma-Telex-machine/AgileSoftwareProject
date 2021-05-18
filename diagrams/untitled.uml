@@ -1,42 +1,58 @@
 <CLASS>
   name=Class
-  xposition=19
-  yposition=14
+  xposition=33
+  yposition=1
   visibility=PUBLIC
+  <METHOD>
+    visibility=PUBLIC
+    type=void
+    name=method
+  <!METHOD>
+  <METHOD>
+    visibility=PUBLIC
+    type=void
+    name=method
+  <!METHOD>
 <!CLASS>
 <CLASS>
   name=Class
-  xposition=20
-  yposition=4
+  xposition=27
+  yposition=16
   visibility=PUBLIC
-<!CLASS>
-<CLASS>
-  name=Class
-  xposition=4
-  yposition=3
-  visibility=PUBLIC
-<!CLASS>
-<CLASS>
-  name=Class
-  xposition=25
-  yposition=4
-  visibility=PUBLIC
-<!CLASS>
-<CLASS>
-  name=Class
-  xposition=11
-  yposition=8
-  visibility=PUBLIC
+  <ATTRIBUTE>
+    visibility=PRIVATE
+    type=int
+    name=foo
+  <!ATTRIBUTE>
 <!CLASS>
 <CLASS>
   name=Class
   xposition=16
-  yposition=7
+  yposition=1
   visibility=PUBLIC
+  <METHOD>
+    visibility=PUBLIC
+    type=void
+    name=method
+  <!METHOD>
+  <METHOD>
+    visibility=PUBLIC
+    type=void
+    name=method
+  <!METHOD>
+  <ATTRIBUTE>
+    visibility=PRIVATE
+    type=int
+    name=foo
+  <!ATTRIBUTE>
 <!CLASS>
-<CLASS>
-  name=Class
-  xposition=15
-  yposition=16
-  visibility=PUBLIC
-<!CLASS>
+<RELATION>
+  from=0
+  to=1
+  type=ASSOCIATION
+<!RELATION>
+<RELATION>
+  from=2
+  to=0
+  type=ASSOCIATION
+<!RELATION>
