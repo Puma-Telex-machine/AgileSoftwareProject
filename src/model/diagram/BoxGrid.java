@@ -32,7 +32,7 @@ public class BoxGrid { //TODO: try collision detection instead
         remove(box);
 
         // Update the position of the box
-        box.trySetPosition(point);
+        box.setAndUpdatePosition(point);
 
         // Re-add the box to the grid
         add(box);
