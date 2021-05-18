@@ -26,6 +26,10 @@ public class Attribute implements AttributeFacade, Observable<Observer> {
     public void subscribe(Observer observer) {
         observers.add(observer);
     }
+
+    public void stopUpdates(){observers.stopUpdates();}
+
+    public void startUpdates(){observers.startUpdates();}
     //endregion
 
     @Override

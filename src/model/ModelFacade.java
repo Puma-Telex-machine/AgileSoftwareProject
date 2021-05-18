@@ -14,4 +14,12 @@ public interface ModelFacade {
     }
 
     DiagramFacade getDiagram();
+
+    Boolean canUndo();
+
+    Boolean canRedo();
+
+    void loadUndoLayer();
+
+    void loadRedoLayer();
 }

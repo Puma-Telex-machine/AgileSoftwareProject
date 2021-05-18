@@ -138,18 +138,18 @@ public class BaseController extends AnchorPane {
     }
     @FXML
     private void undo(){
-        /*if(model.canUndo()) {
+        if(model.canUndo()) {
             canvas.clearBoxes();
             model.loadUndoLayer();
-        }*/
+        }
     }
 
     @FXML
     private void redo(){
-        /*if(model.canRedo()) {
+        if(model.canRedo()) {
             canvas.clearBoxes();
             model.loadRedoLayer();
-        }*/
+        }
     }
 
     /**
