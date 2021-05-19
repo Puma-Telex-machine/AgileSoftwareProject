@@ -76,8 +76,6 @@ public class RelationGrid {
             current = current.previous;
         }
 
-        Collections.reverse(pathPoints);
-
         return pathPoints;
     }
 
