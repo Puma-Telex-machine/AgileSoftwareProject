@@ -210,6 +210,8 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
 
         this.setLayoutX(X+1);
         this.setLayoutY(Y+1);
+
+        box.trySetPosition(new ScaledPoint(Scale.Frontend, (int) this.getLayoutX(), (int) this.getLayoutY()));
     }
 
     /**
@@ -217,8 +219,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
      *
      * @param event mouseRelease
      */
-    @FXML
-    private void handleLetGo(MouseEvent event) {
+    public void handleLetGo(MouseEvent event) {
         moving = false;
         box.trySetPosition(new ScaledPoint(Scale.Frontend, (int) this.getLayoutX(), (int) this.getLayoutY()));
         //for snap to grid

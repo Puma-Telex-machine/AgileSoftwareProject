@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/diagrams/untitled.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/untitled.uml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/BoxController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/CanvasController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +132,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/frontend/Arrow.java</url>
-          <line>28</line>
+          <line>27</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
