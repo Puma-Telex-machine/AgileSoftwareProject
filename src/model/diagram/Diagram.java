@@ -37,29 +37,14 @@ public class Diagram implements DiagramFacade, DiagramMediator, PathfindingMap {
     }
     //endregion
 
-    /**
-     * 1. Creates a new box.
-     * 2. Adds the box to the list of boxes. (Does not check position validity)
-     * 3. Runs updateBox.
-     * 4. Tells observers there is a new box.
-     * @param position The preliminary position of the box
-     * @param boxType The type of box
-     */
     @Override
     public void createBox(ScaledPoint position, BoxType boxType) {
         Box box = new Box(this, position, boxType);
         boxGrid.add(box);
         updateBox(box);
         updateObservers(box);
+        saveThis();
     }
-
-    /**
-     * 1. Updates the box in the boxGrid which validates its position against all other boxes and set the position.
-     *    (Does not update observers, this currently happens from inside the box when something happens or when creating a box)
-     * 2. Refreshes all paths.
-     * 3. Saves the diagram.
-     * @param box the box to be updated
-     */
 
     public void updateBox(Box box) {
         boxGrid.update(box);
@@ -80,6 +65,7 @@ public class Diagram implements DiagramFacade, DiagramMediator, PathfindingMap {
         relationGrid.add(relation);
         relationGrid.refreshAllPaths();
         updateObservers(relation);
+        saveThis();
     }
 
     public void updateRelation(Relation relation) {

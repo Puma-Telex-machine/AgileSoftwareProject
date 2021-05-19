@@ -2,7 +2,6 @@ package model.boxes;
 
 import global.Observer;
 import global.Observers;
-import global.TextWidthCalculator;
 import global.point.Scale;
 import global.point.ScaledPoint;
 import model.diagram.DiagramMediator;
@@ -18,8 +17,10 @@ import java.util.*;
  */
 public class Box implements BoxFacade, Observer {
     //different fontsize on name and other
+    private static final double SYMBOLS_PER_WIDTH_UNIT_NAME = 0.23;
+    private static final double SYMBOLS_PER_WIDTH_UNIT_OTHER = 0.2;
     private static final int START_HEIGHT = 3;
-    private static final int START_WIDTH = 4;
+    private static final int START_WIDTH = 5;
     private static final double ROWS_PER_HEIGHT_UNIT = 0.4999;
 
     private String name;
@@ -154,7 +155,7 @@ public class Box implements BoxFacade, Observer {
     }
 
     @Override
-    public void setAndUpdatePosition(ScaledPoint point) {
+    public void trySetPosition(ScaledPoint point) {
         position = point;
         update();
     }
@@ -181,6 +182,9 @@ public class Box implements BoxFacade, Observer {
 
     private int getWidth() {
 
+        //Todo width depends on characters maybe use textutil in boxController?
+        // or should boxcontroller set width of the texts?
+        
         ArrayList<String> names = new ArrayList<>();
 
         for (MethodFacade method : methods) {
@@ -190,18 +194,27 @@ public class Box implements BoxFacade, Observer {
             names.add(attribute.getString());
         }
 
-        double longest=0;
+        int maxLength = 0;
         if(!names.isEmpty()){
+            ArrayList<Integer> longest = new ArrayList<>();
             for (String n : names) {
-                if(TextWidthCalculator.getInstance().computeTextWidthOther(n)>longest){
-                    longest=TextWidthCalculator.getInstance().computeTextWidthOther(n);
-                }
+                longest.add(n.length());
             }
+
+            maxLength = Collections.max(longest);
         }
-        if(longest<TextWidthCalculator.getInstance().computeTextWidthName(name)) longest = TextWidthCalculator.getInstance().computeTextWidthName(name);
 
-        int i = new ScaledPoint(Scale.Frontend,longest,0).getX(Scale.Backend)+1;
+        int boxLength = 0;
+        if (maxLength < name.length()) {
+            boxLength = Math.max((int) (name.length() * SYMBOLS_PER_WIDTH_UNIT_NAME) + 1, START_WIDTH);
+        } else {
+            boxLength = Math.max((int) (maxLength * SYMBOLS_PER_WIDTH_UNIT_OTHER) + 1, START_WIDTH);
+        }
 
-        return Math.max(i,START_WIDTH);
+        if (Math.floorMod(boxLength, 2) == 0) {
+            boxLength++;
+        }
+
+        return boxLength;
     }
 }

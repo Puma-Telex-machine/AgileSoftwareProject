@@ -1,27 +1,11 @@
 <CLASS>
   name=Class
-<<<<<<< HEAD
   xposition=74
   yposition=0
-=======
-  xposition=33
-  yposition=1
->>>>>>> Production
   visibility=PUBLIC
-  <METHOD>
-    visibility=PUBLIC
-    type=void
-    name=method
-  <!METHOD>
-  <METHOD>
-    visibility=PUBLIC
-    type=void
-    name=method
-  <!METHOD>
 <!CLASS>
 <CLASS>
   name=Class
-<<<<<<< HEAD
   xposition=241
   yposition=0
   visibility=PUBLIC
@@ -75,39 +59,8 @@
   name=Class
   xposition=67
   yposition=0
-=======
-  xposition=27
-  yposition=16
   visibility=PUBLIC
-  <ATTRIBUTE>
-    visibility=PRIVATE
-    type=int
-    name=foo
-  <!ATTRIBUTE>
 <!CLASS>
-<CLASS>
-  name=Class
-  xposition=16
-  yposition=1
->>>>>>> Production
-  visibility=PUBLIC
-  <METHOD>
-    visibility=PUBLIC
-    type=void
-    name=method
-  <!METHOD>
-  <METHOD>
-    visibility=PUBLIC
-    type=void
-    name=method
-  <!METHOD>
-  <ATTRIBUTE>
-    visibility=PRIVATE
-    type=int
-    name=foo
-  <!ATTRIBUTE>
-<!CLASS>
-<<<<<<< HEAD
 <CLASS>
   name=Class
   xposition=51
@@ -138,15 +91,3 @@
   yposition=-5
   visibility=PUBLIC
 <!INTERFACE>
-=======
-<RELATION>
-  from=0
-  to=1
-  type=ASSOCIATION
-<!RELATION>
-<RELATION>
-  from=2
-  to=0
-  type=ASSOCIATION
-<!RELATION>
->>>>>>> Production
