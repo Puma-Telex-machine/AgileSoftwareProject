@@ -12,8 +12,7 @@ import javafx.scene.paint.Color;
 import model.Model;
 import model.ModelFacade;
 import model.boxes.BoxType;
-import model.diagram.DiagramFacade;
-import model.diagram.DiagramObserver;
+import model.diagram.ModelObserver;
 import model.boxes.BoxFacade;
 import model.relations.RelationFacade;
 import model.relations.RelationObserver;
@@ -27,7 +26,7 @@ import java.util.*;
 import java.util.List;
 import javafx.scene.shape.Rectangle;
 
-public class CanvasController extends AnchorPane implements DiagramObserver, ArrowObserver, RelationObserver, BoxPressedListener {
+public class CanvasController extends AnchorPane implements ModelObserver, ArrowObserver, RelationObserver, BoxPressedListener {
 
     VariableEditorController variableEditor;
     MethodEditorController methodEditor;
@@ -38,7 +37,6 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
     private ComboBox<ArrowType> arrowTypeComboBox;
 
     ModelFacade model = Model.getModel();
-    DiagramFacade diagram = model.getDiagram();
 
     List<BoxController> boxes = new ArrayList<>();
 
@@ -73,8 +71,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
         arrowMenu.setVisible(false);
         contextMenu.setVisible(false);
 
-        diagram.subscribe(this);
-        //model.addObserver(this);
+        model.subscribe(this);
         clearSelection();
 
         selectionRectangle = new Rectangle();
@@ -181,7 +178,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
 
                 ScaledPoint offsetTo = new ScaledPoint(Scale.Frontend, (int) (p.x - box.getLayoutX()), (int) (p.y - box.getLayoutY()));
                 ScaledPoint offsetFrom = new ScaledPoint(Scale.Frontend, (int) (arrowStart.x - arrowBox.getLayoutX()), (arrowStart.y - arrowBox.getLayoutY()));
-                diagram.createRelation(arrowBox.getBox(), offsetFrom, box.getBox(), offsetTo, ArrowType.ASSOCIATION);
+                model.createRelation(arrowBox.getBox(), offsetFrom, box.getBox(), offsetTo, ArrowType.ASSOCIATION);
             }
         }
         //start making arrow
@@ -280,7 +277,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
             //trying to merge dragarrow into existing arrow
             if (makingArrow) {
                 ScaledPoint offset = new ScaledPoint (Scale.Frontend,(int) (arrowStart.getX()-arrowBox.getLayoutX()),(int) (arrowStart.getY()-arrowBox.getLayoutY()));
-                diagram.createRelation(arrowBox.getBox(),offset,closest.get(0).getTo(),closest.get(0).getOffsetTo(), ArrowType.ASSOCIATION);
+                model.createRelation(arrowBox.getBox(),offset,closest.get(0).getTo(),closest.get(0).getOffsetTo(), ArrowType.ASSOCIATION);
             }
             else{
                 clickedRelations = closest;
@@ -319,7 +316,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
 
     @FXML
     private void handleContextAddBox(MouseEvent e, BoxType type) {
-        diagram.createBox(new ScaledPoint(Scale.Frontend, (int) contextMenu.getLayoutX() - 80, (int) contextMenu.getLayoutY() - 35), type);
+        model.createBox(new ScaledPoint(Scale.Frontend, (int) contextMenu.getLayoutX() - 80, (int) contextMenu.getLayoutY() - 35), type);
         closeMenu(e);
         e.consume();
     }
@@ -393,7 +390,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
         tmp.clear();
         boxes.clear();
         selection.clear();
-        this.getChildren().clear();
+        //this.getChildren().clear(); todo this kills contextmenu & editors
     }
 
     private boolean multiSelect = false;

@@ -41,6 +41,7 @@ public class Database {
             Diagram result = new Diagram();
             result.setName(filename);
             result.lockSaving();
+            result.stopUndo();
             while (scanner.hasNextLine()){
                 String next = scanner.nextLine().trim();
                 if(next.startsWith("<BOX>"))
@@ -61,6 +62,7 @@ public class Database {
             }
             System.out.println("Successfully loaded " + filename + ".uml");
             result.unlockSaving();
+            result.resumeUndo();
             return result;
         } catch (FileNotFoundException e){
             e.printStackTrace();
@@ -103,7 +105,8 @@ public class Database {
                     if (next.startsWith(modifierMatch)) {
                         modifiers.add(Modifier.valueOf(nextSplit[1]));
                     } else if (next.startsWith("<!")) {
-                        Box box = new Box(target, new ScaledPoint(Scale.Backend, xpos, ypos), type);
+                        Box box = target.createBox(new ScaledPoint(Scale.Backend, xpos, ypos), type);
+                        box.stopUndo();
                         box.setVisibility(visibility);
                         box.setName(name);
                         for (Method method : methods) {
@@ -128,7 +131,7 @@ public class Database {
                         for (Modifier modifier : modifiers) {
                             box.addModifier(modifier);
                         }
-                        target.addBox(box);
+                        box.resumeUndo();
                         return box;
                     }
             }
@@ -161,6 +164,7 @@ public class Database {
                     break;
                 case "<!METHOD>":
                     Method method = new Method();
+                    method.stopUndo();
                     method.stopUpdates();
                     method.setVisibility(visibility);
                     method.setType(type);
@@ -172,6 +176,7 @@ public class Database {
                         method.addModifier(modifier);
                     }
                     method.startUpdates();
+                    method.resumeUndo();
                     return method;
                 default:
                     if(next[0].startsWith(modifierMatch))
@@ -204,6 +209,7 @@ public class Database {
                         modifiers.add(Modifier.valueOf(next[0]));
                     }else if(next[0].startsWith("<!")) {
                         Attribute attribute = new Attribute();
+                        attribute.stopUndo();
                         attribute.stopUpdates();
                         attribute.setVisibility(visibility);
                         attribute.setType(type);
@@ -212,6 +218,7 @@ public class Database {
                             attribute.addModifier(modifier);
                         }
                         attribute.startUpdates();
+                        attribute.resumeUndo();
                         return attribute;
                     }
             }

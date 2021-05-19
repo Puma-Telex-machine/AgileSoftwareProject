@@ -1,8 +1,10 @@
 package model;
 
+import global.point.ScaledPoint;
 import model.boxes.Box;
+import model.boxes.BoxFacade;
 import model.diagram.Diagram;
-import model.diagram.DiagramFacade;
+import model.diagram.ModelObserver;
 import model.facades.FileHandlerFacade;
 import model.boxes.BoxType;
 import model.facades.*;
@@ -12,9 +14,8 @@ import model.relations.Relation;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
-public class Model implements ModelFacade, FileHandlerFacade, DiagramObserver {
+public class Model implements ModelFacade, FileHandlerFacade {
 
     private static Model singleton;
     Diagram diagram = new Diagram();
@@ -29,17 +30,44 @@ public class Model implements ModelFacade, FileHandlerFacade, DiagramObserver {
 
     private void init(){
         diagram = new Diagram();
-        //diagram.setObserver(this);
+        diagram.setObserver(this);
+        diagram.updateUndo();
     }
 
-    //ArrayList<Observer> observers = new ArrayList<>();
+    //region OBSERVABLE
+    private ArrayList<ModelObserver> observers = new ArrayList<>(); //TODO: ta bort public
+
+    private void updateObservers(Box box) {
+        observers.forEach(modelObserver -> modelObserver.addBox(box));
+    }
+
+    private void updateObservers(Relation relation) {
+        observers.forEach(modelObserver -> modelObserver.addRelation(relation));
+    }
 
     @Override
-    public DiagramFacade getDiagram() {
-        return diagram;
+    public void subscribe(ModelObserver modelObserver) {
+        observers.add(modelObserver);
+    }
+    //endregion
+
+    @Override
+    public void createBox(ScaledPoint position, BoxType boxType) {
+        stopUndo();
+        updateObservers(diagram.createBox(position, boxType));
+        Database.saveDiagram(diagram, "diagrams/", "");
+        resumeUndo();
+        updateUndo();
     }
 
-
+    @Override
+    public void createRelation(BoxFacade from, ScaledPoint offsetFrom, BoxFacade to, ScaledPoint offsetTo, ArrowType arrowType) {
+        stopUndo();
+        updateObservers(diagram.createRelation(from, offsetFrom, to, offsetTo, arrowType));
+        Database.saveDiagram(diagram, "diagrams/", "");
+        resumeUndo();
+        updateUndo();
+    }
 
 
 	/*public void addBox(ScaledPoint position, BoxType boxType) {
@@ -84,16 +112,19 @@ public class Model implements ModelFacade, FileHandlerFacade, DiagramObserver {
     @Override
     public void loadFile(String fileName) {
         diagram = Database.loadDiagram("diagrams/", fileName, "");
-        //diagram.setObserver(this);
+        diagram.setObserver(this);
+        stopUndo();
         for (Box box : diagram.getAllBoxes()) {
-            diagram.observers.forEach(diagramObserver -> diagramObserver.addBox(box));
+            observers.forEach(diagramObserver -> diagramObserver.addBox(box));
         }
         for (Relation relation : diagram.getAllRelations()){
-            diagram.observers.forEach(diagramObserver -> diagramObserver.addRelation(relation)); //todo
+            observers.forEach(diagramObserver -> diagramObserver.addRelation(relation)); //todo
         }
+        resumeUndo();
         undoLayer = -1;
         redoLayer = 0;
         maxUndo = -1;
+        updateUndo();
     }
 
     /**
@@ -102,13 +133,15 @@ public class Model implements ModelFacade, FileHandlerFacade, DiagramObserver {
      */
     public void loadTemplate(String fileName){
         saveUndoLayer();
+        stopUndo();
         Diagram template = Database.loadDiagram("templates/", fileName, "");
         for(Box box : template.getAllBoxes()){
-            diagram.observers.forEach(diagramObserver -> diagramObserver.addBox(box));
+            observers.forEach(diagramObserver -> diagramObserver.addBox(box));
         }
         for (Relation relation: template.getAllRelations()) {
-            diagram.observers.forEach(diagramObserver -> diagramObserver.addRelation(relation)); //todo
+            observers.forEach(diagramObserver -> diagramObserver.addRelation(relation)); //todo
         }
+        resumeUndo();
         //TODO: Sätt i databasen: System.out.println("loaded template " + fileName);
     }
 
@@ -123,13 +156,27 @@ public class Model implements ModelFacade, FileHandlerFacade, DiagramObserver {
         }
     }
 
+
+    //REGION Undo/Redo
     private int undoLayer = -1; //the suffix of the file to be loaded on undo
-    private int redoLayer = 0; // the suffix of the file to be loaded on redo
-    private int maxUndo = -1; //the highest existing relevant layer of undo
+    private int redoLayer = 1; // the suffix of the file to be loaded on redo
+    private int maxUndo = 0; //the highest existing relevant layer of undo
+    private Boolean undoActive = true;
 
     @Override
     public void updateUndo() {
-        saveUndoLayer();
+        if(undoActive)
+            saveUndoLayer();
+    }
+
+    @Override
+    public void stopUndo() {
+        undoActive = false;
+    }
+
+    @Override
+    public void resumeUndo() {
+        undoActive = true;
     }
 
     private void saveUndoLayer(){
@@ -137,7 +184,7 @@ public class Model implements ModelFacade, FileHandlerFacade, DiagramObserver {
             File folder = new File("temp/");
             folder.mkdir();
         }
-        if(maxUndo > redoLayer) {
+        if(maxUndo >= redoLayer) {
             maxUndo = redoLayer;
         } else{
             maxUndo++;
@@ -150,35 +197,39 @@ public class Model implements ModelFacade, FileHandlerFacade, DiagramObserver {
 
     public void loadUndoLayer(){
         if(Database.directoryCheck("temp/") && canUndo()){
-            Database.saveDiagram(diagram, "temp/", Integer.toString(undoLayer + 1));
+            stopUndo();
             new File("temp/" + diagram.getName() + (undoLayer + 1) + ".uml").deleteOnExit();
             diagram = Database.loadDiagram("temp/", diagram.getName(), Integer.toString(undoLayer));
-            //diagram.setObserver(this);
+            diagram.setObserver(this);
             for(Box box : diagram.getAllBoxes()){
-                diagram.observers.forEach(diagramObserver -> diagramObserver.addBox(box));
+                observers.forEach(Observer -> Observer.addBox(box));
             }
             for (Relation relation: diagram.getAllRelations()) {
-                diagram.observers.forEach(diagramObserver -> diagramObserver.addRelation(relation));
+                observers.forEach(Observer -> Observer.addRelation(relation));
             }
             undoLayer--;
             redoLayer--;
+            resumeUndo();
         }
     }
 
     public void loadRedoLayer(){
         if(Database.directoryCheck("temp/") && canRedo()){
+            stopUndo();
             diagram = Database.loadDiagram("temp/", diagram.getName(), Integer.toString(redoLayer));
-            //diagram.setObserver(this);
+            diagram.setObserver(this);
             for(Box box : diagram.getAllBoxes()){
-                diagram.observers.forEach(diagramObserver -> diagramObserver.addBox(box));
+                observers.forEach(diagramObserver -> diagramObserver.addBox(box));
             }
             for (Relation relation: diagram.getAllRelations()) {
-                diagram.observers.forEach(diagramObserver -> diagramObserver.addRelation(relation));
+                observers.forEach(diagramObserver -> diagramObserver.addRelation(relation));
             }
             undoLayer++;
             redoLayer++;
+            resumeUndo();
         }
     }
+
 
     public Boolean canUndo(){
         return undoLayer >= 0;
@@ -187,6 +238,6 @@ public class Model implements ModelFacade, FileHandlerFacade, DiagramObserver {
     public Boolean canRedo(){
         return redoLayer <= maxUndo;
     }
-
+    //endregion
 
 }

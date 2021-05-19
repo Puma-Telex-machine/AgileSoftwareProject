@@ -5,11 +5,12 @@ import global.Observer;
 import global.point.ScaledPoint;
 import model.facades.AttributeFacade;
 import model.facades.MethodFacade;
+import model.facades.UndoChain;
 
 import java.util.List;
 import java.util.Set;
 
-public interface BoxFacade extends Observable<Observer> {
+public interface BoxFacade extends Observable<Observer>, UndoChain {
 
     /**
      * Set the name of the box.
