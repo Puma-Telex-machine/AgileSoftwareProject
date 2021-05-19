@@ -395,10 +395,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
             changeable = true;
             return;
         }
-
-        TextWidthCalculator.getInstance().setOffset(20);
-        TextWidthCalculator.getInstance().setName(nameField.getFont());
-
         nameField.setText(name.getText());
         nameField.toFront();
         //blockpanes to be able to drag when editing
@@ -451,6 +447,8 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
             TextWidthCalculator.getInstance().setName(attribute.getFont());
         }
         TextWidthCalculator.getInstance().setOffset(20);
+        TextWidthCalculator.getInstance().setName(nameField.getFont());
+
 
         for (int i = 0; i < methodData.size(); i++) {
             BoxAttributeTextController attribute = new BoxAttributeTextController(methodData.get(i).getString());
@@ -460,10 +458,12 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
         }
 
         //set box size -2 +1 to make sure no overlap (border of 1px outside both sides and 1 extra since ending on 30 and starting on 30)
-        this.setWidth(box.getWidthAndHeight().getX(Scale.Frontend)-3);
-        this.setPrefHeight(box.getWidthAndHeight().getY(Scale.Frontend));
-        this.setLayoutY(box.getPosition().getY(Scale.Frontend)+1);
-        this.setLayoutX(box.getPosition().getX(Scale.Frontend)+1);
+        ScaledPoint widthAndHeight = box.getWidthAndHeight();
+        ScaledPoint position = box.getPosition();
+        this.setWidth(widthAndHeight.getX(Scale.Frontend)-3);
+        this.setPrefHeight(widthAndHeight.getY(Scale.Frontend));
+        this.setLayoutY(position.getY(Scale.Frontend)+1);
+        this.setLayoutX(position.getX(Scale.Frontend)+1);
         line.setEndX(this.getWidth());
         line1.setEndX(this.getWidth());
 

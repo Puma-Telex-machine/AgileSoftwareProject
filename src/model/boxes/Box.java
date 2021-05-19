@@ -167,7 +167,9 @@ public class Box implements BoxFacade, Observer {
     @Override
     //todo returns wrong height
     public ScaledPoint getWidthAndHeight() {
-        return new ScaledPoint(Scale.Backend, getWidth(), getHeight());
+        int x = getWidth();
+        int y = getHeight();
+        return new ScaledPoint(Scale.Backend, x, y);
     }
 
     private int getHeight() {
@@ -193,14 +195,15 @@ public class Box implements BoxFacade, Observer {
         double longest=0;
         if(!names.isEmpty()){
             for (String n : names) {
-                if(TextWidthCalculator.getInstance().computeTextWidthOther(n)>longest){
-                    longest=TextWidthCalculator.getInstance().computeTextWidthOther(n);
-                }
+                longest= Math.max(TextWidthCalculator.getInstance().computeTextWidthOther(n),longest);
             }
         }
-        if(longest<TextWidthCalculator.getInstance().computeTextWidthName(name)) longest = TextWidthCalculator.getInstance().computeTextWidthName(name);
+        double a = TextWidthCalculator.getInstance().computeTextWidthName(name);
+        longest= Math.max(a,longest);
 
         int i = new ScaledPoint(Scale.Frontend,longest,0).getX(Scale.Backend)+1;
+
+
 
         return Math.max(i,START_WIDTH);
     }
