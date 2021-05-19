@@ -51,8 +51,6 @@ public class TextWidthCalculator {
 
     private double computeTextWidth(Font font,String text,double offset) {
 
-        if(font!=null) System.out.println(font.getFamily()+" " + text);
-
         helper.setText(text);
         helper.setFont(font);
 
