@@ -8,8 +8,6 @@ import model.facades.ExerciseFacade;
 import model.facades.ExercisesHandlerFacade;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ExercisesController extends AnchorPane {
 

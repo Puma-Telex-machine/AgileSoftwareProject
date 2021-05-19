@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
-import model.ModelFacade;
 import model.boxes.BoxType;
 import global.point.Scale;
 import global.point.ScaledPoint;
