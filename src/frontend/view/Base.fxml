@@ -56,7 +56,7 @@
                               </Label>
                               <Label onMouseClicked="#openShapes" prefHeight="24.0" prefWidth="30.0" styleClass="iconLighter">
                                  <graphic>
-                                    <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter">
+                                    <ImageView fitHeight="44.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter">
                                        <image>
                                           <Image url="@Resources/box@4x.png" />
                                        </image>
@@ -68,21 +68,6 @@
                                  <tooltip>
                                     <Tooltip text="UML Boxes" />
                                  </tooltip>
-                              </Label>
-                              <Label onMouseClicked="#openTemplates" prefHeight="44.0" prefWidth="39.0" styleClass="iconLighter" stylesheets="@css/DarkMode.css">
-                                 <tooltip>
-                                    <Tooltip text="Templates" />
-                                 </tooltip>
-                                 <graphic>
-                                    <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@Resources/template0@4x.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
                               </Label>
                            </children>
                            <opaqueInsets>
