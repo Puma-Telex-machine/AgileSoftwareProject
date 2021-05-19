@@ -4,15 +4,11 @@ import model.boxes.Box;
 import model.diagram.Diagram;
 import model.diagram.DiagramFacade;
 import model.facades.FileHandlerFacade;
-import model.boxes.BoxType;
 import model.facades.*;
 
-import model.relations.ArrowType;
 import model.relations.Relation;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Model implements ModelFacade, FileHandlerFacade, DiagramObserver {
 
