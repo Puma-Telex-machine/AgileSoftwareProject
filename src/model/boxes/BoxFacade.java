@@ -101,4 +101,6 @@ public interface BoxFacade extends Observable<Observer>, UndoChain {
     ScaledPoint getPosition();
 
     ScaledPoint getWidthAndHeight();
+
+    boolean isDeleted();
 }

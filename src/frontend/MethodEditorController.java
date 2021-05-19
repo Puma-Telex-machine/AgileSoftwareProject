@@ -89,7 +89,7 @@ public class MethodEditorController extends AnchorPane {
             methodData.addArgument(arguments.get(i).argumentTypeField.getText());
         }
 
-        Visibility visibility = Visibility.valueOf(accessComboBox.getValue().toString());
+        Visibility visibility = (Visibility) accessComboBox.getValue();
         methodData.setVisibility(visibility);
 
         methodData.setType(returnTypeField.getText());
@@ -129,7 +129,7 @@ public class MethodEditorController extends AnchorPane {
         accessComboBox.getItems().setAll(Visibility.values());
 
         //Sets the current visibility
-        accessComboBox.getSelectionModel().select(methodData.getVisibility().name());
+        accessComboBox.getSelectionModel().select(methodData.getVisibility());
 
         //Sets the method type field
         returnTypeField.setText(methodData.getType());

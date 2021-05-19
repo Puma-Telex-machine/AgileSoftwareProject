@@ -50,6 +50,7 @@ public class TextWidthCalculator {
     }
 
     private double computeTextWidth(Font font,String text,double offset) {
+
         helper.setText(text);
         helper.setFont(font);
 

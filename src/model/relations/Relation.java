@@ -1,5 +1,6 @@
 package model.relations;
 
+import global.point.Scale;
 import model.boxes.Box;
 import model.boxes.BoxType;
 import model.boxes.BoxFacade;
@@ -11,20 +12,59 @@ import java.util.List;
 
 public class Relation implements RelationFacade {
     private final DiagramMediator diagram;
+
     private final BoxFacade to;
+    private boolean onLeftSideOfTo = false;
+    private boolean onTopSideOfTo = false;
     private ScaledPoint offsetTo;
+
     private final BoxFacade from;
+    private boolean onLeftSideOfFrom = false;
+    private boolean onTopSideOfFrom = false;
     private ScaledPoint offsetFrom;
+
     private ArrowType arrowType;
     private ArrayList<ScaledPoint> path;
+
+    private boolean isDeleted;
 
     public Relation(DiagramMediator diagram, BoxFacade from, ScaledPoint offsetFrom, BoxFacade to, ScaledPoint offsetTo, ArrowType arrowType) {
         this.diagram = diagram;
         this.from = from;
-        this.offsetFrom = offsetFrom;
+        this.offsetFrom = calculateOffset(offsetFrom, from, true);
         this.to = to;
-        this.offsetTo = offsetTo;
+        this.offsetTo = calculateOffset(offsetTo, to, false);
         this.arrowType = arrowType;
+    }
+
+    /**
+     * Calculates the offset independent of target width and height by removing the width and height (to be added again later).
+     * Also sets what side the box the arrow originates from.
+     * @param offset the offset from the initial position
+     * @param target the box from where the offset is
+     * @return the recalculated offset
+     */
+    private ScaledPoint calculateOffset(ScaledPoint offset, BoxFacade target, boolean isFrom) {
+        ScaledPoint calculatedOffset = new ScaledPoint(offset);
+        if (offset.getX(Scale.Backend) == 0) {
+            if (isFrom) {
+                onLeftSideOfFrom = true;
+            } else {
+                onLeftSideOfTo = true;
+            }
+        } else {
+            calculatedOffset = calculatedOffset.move(Scale.Backend, -target.getWidthAndHeight().getX(Scale.Backend), 0);
+        }
+        if (offset.getY(Scale.Backend) == 0) {
+            if (isFrom) {
+                onTopSideOfFrom = true;
+            } else {
+                onTopSideOfTo = true;
+            }
+        } else {
+            calculatedOffset = calculatedOffset.move(Scale.Backend, 0, -target.getWidthAndHeight().getY(Scale.Backend));
+        }
+        return calculatedOffset;
     }
 
     //region OBSERVABLE
@@ -35,7 +75,11 @@ public class Relation implements RelationFacade {
         observers.add(observer);
     }
 
-    private void updateObserver(){
+    private void updateObserver() {
+        if (to.isDeleted() || from.isDeleted()) {
+            this.isDeleted = true;
+            diagram.removeRelation(this);
+        }
         for (RelationObserver o : observers) {
             o.update(this);
         }
@@ -43,11 +87,25 @@ public class Relation implements RelationFacade {
     //endregion
 
     public ScaledPoint getStartPosition() {
-        return to.getPosition().move(offsetTo);
+        ScaledPoint startPosition = from.getPosition().move(offsetFrom);
+        if (!onLeftSideOfFrom) {
+            startPosition = startPosition.move(Scale.Backend, from.getWidthAndHeight().getX(Scale.Backend), 0);
+        }
+        if (!onTopSideOfFrom) {
+            startPosition = startPosition.move(Scale.Backend, 0, from.getWidthAndHeight().getY(Scale.Backend));
+        }
+        return startPosition;
     }
 
     public ScaledPoint getEndPosition() {
-        return from.getPosition().move(offsetFrom);
+        ScaledPoint endPosition = to.getPosition().move(offsetTo);
+        if (!onLeftSideOfTo) {
+            endPosition = endPosition.move(Scale.Backend, to.getWidthAndHeight().getX(Scale.Backend), 0);
+        }
+        if (!onTopSideOfTo) {
+            endPosition = endPosition.move(Scale.Backend, 0, to.getWidthAndHeight().getY(Scale.Backend));
+        }
+        return endPosition;
     }
 
     @Override
@@ -72,6 +130,11 @@ public class Relation implements RelationFacade {
     @Override
     public ScaledPoint getOffsetTo() {
         return offsetTo;
+    }
+
+    @Override
+    public boolean isDeleted() {
+        return isDeleted;
     }
 
     public BoxFacade getFrom() {

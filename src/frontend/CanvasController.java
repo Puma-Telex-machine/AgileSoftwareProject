@@ -199,9 +199,9 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
     }
 
     @Override
-    public void update(RelationFacade relation){ //TODO: Borde inte detta hanteras av en RelationController eller ngt?
+    public void update(RelationFacade relation){
         removeArrow(relation);
-        addArrow(relation);
+        if(!relation.isDeleted()) addArrow(relation);
     }
 
     private void addArrow(RelationFacade relation){
