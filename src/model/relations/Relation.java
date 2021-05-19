@@ -69,6 +69,11 @@ public class Relation implements RelationFacade {
         return to;
     }
 
+    @Override
+    public ScaledPoint getOffsetTo() {
+        return offsetTo;
+    }
+
     public BoxFacade getFrom() {
         return from;
     }
