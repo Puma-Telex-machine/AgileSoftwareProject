@@ -26,6 +26,8 @@ public class Relation implements RelationFacade {
     private ArrowType arrowType;
     private ArrayList<ScaledPoint> path;
 
+    private boolean isDeleted;
+
     public Relation(DiagramMediator diagram, BoxFacade from, ScaledPoint offsetFrom, BoxFacade to, ScaledPoint offsetTo, ArrowType arrowType) {
         this.diagram = diagram;
         this.from = from;
@@ -73,7 +75,11 @@ public class Relation implements RelationFacade {
         observers.add(observer);
     }
 
-    private void updateObserver(){
+    private void updateObserver() {
+        if (to.isDeleted() || from.isDeleted()) {
+            this.isDeleted = true;
+            diagram.removeRelation(this);
+        }
         for (RelationObserver o : observers) {
             o.update(this);
         }
@@ -124,6 +130,11 @@ public class Relation implements RelationFacade {
     @Override
     public ScaledPoint getOffsetTo() {
         return offsetTo;
+    }
+
+    @Override
+    public boolean isDeleted() {
+        return isDeleted;
     }
 
     public BoxFacade getFrom() {

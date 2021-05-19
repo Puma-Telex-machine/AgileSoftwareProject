@@ -13,4 +13,5 @@ public interface RelationFacade extends Observable<RelationObserver> {
     void changeRelationType(ArrowType type);
     BoxFacade getTo();
     ScaledPoint getOffsetTo();
+    boolean isDeleted();
 }

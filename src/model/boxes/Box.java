@@ -31,6 +31,8 @@ public class Box implements BoxFacade, Observer {
     private ScaledPoint position;
     private final DiagramMediator diagram;
 
+    private boolean isDeleted = false;
+
 
     public Box(DiagramMediator diagram, ScaledPoint position, BoxType type) {
         this.name = switch (type) {
@@ -79,6 +81,7 @@ public class Box implements BoxFacade, Observer {
     @Override
     public void deleteBox() {
         name = "THIS SHOULD NOT BE VISIBLE: BOX IS DELETED";
+        this.isDeleted = true;
         diagram.removeBox(this);
     }
 
@@ -170,6 +173,11 @@ public class Box implements BoxFacade, Observer {
         int x = getWidth();
         int y = getHeight();
         return new ScaledPoint(Scale.Backend, x, y);
+    }
+
+    @Override
+    public boolean isDeleted() {
+        return isDeleted;
     }
 
     private int getHeight() {

@@ -204,6 +204,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
 
     @Override
     public void update(RelationFacade relation){ //TODO: Borde inte detta hanteras av en RelationController eller ngt?
+        //todo: if relation.isDeleted, ta bort från frontend
         removeArrow(relation);
         addArrow(relation);
     }
