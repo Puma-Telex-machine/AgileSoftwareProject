@@ -321,7 +321,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
     @FXML
     private void handleContextAddBox(MouseEvent e, BoxType type) {
         diagram.createBox(new ScaledPoint(Scale.Frontend, (int) contextMenu.getLayoutX() - 80, (int) contextMenu.getLayoutY() - 35), type);
-        closeMenu(e);
+        closeMenu();
         e.consume();
     }
     @FXML
@@ -351,7 +351,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
             relationMap.remove(r);
             arrowMap.remove(a);
         }
-        closeMenu(e);
+        closeMenu();
         e.consume();
     }
 
@@ -362,18 +362,17 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
             relationMap.get(r).setType(type);
             r.changeRelationType(type);
         }
-        closeMenu(e);
+        closeMenu();
         e.consume();
 
     }
 
     @FXML
-    private void closeMenu(Event e) {
+    private void closeMenu() {
         menuPane.setVisible(false);
         arrowMenu.setVisible(false);
         contextMenu.setVisible(false);
         menuPane.toBack();
-        e.consume();
     }
 
     @FXML
@@ -427,6 +426,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
             deleteBox(selection.get(i));
         }
         selection.clear();
+        closeMenu();
     }
 
     /**

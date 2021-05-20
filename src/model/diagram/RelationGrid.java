@@ -39,7 +39,7 @@ public class RelationGrid {
         //todo: runs twice on creation of box
 
         relationMap = new TreeMap<>();
-        for (Relation r : relations) {
+        for (Relation r : new ArrayList<>(relations)) {
             calculatePath(r);
         }
     }
