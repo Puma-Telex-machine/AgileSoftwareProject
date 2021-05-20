@@ -1,4 +1,4 @@
-package frontend;
+package frontend.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -17,7 +17,7 @@ import java.util.List;
 public class MethodEditorController extends AnchorPane {
 
     public MethodEditorController(){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/MethodEditor.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("..//view/MethodEditor.fxml")));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -88,7 +88,7 @@ public class MethodEditorController extends AnchorPane {
             methodData.addArgument(arguments.get(i).argumentTypeField.getText());
         }
 
-        Visibility visibility = Visibility.valueOf(accessComboBox.getValue().toString());
+        Visibility visibility = (Visibility) accessComboBox.getValue();
         methodData.setVisibility(visibility);
 
         methodData.setType(returnTypeField.getText());
@@ -125,7 +125,7 @@ public class MethodEditorController extends AnchorPane {
         accessComboBox.getItems().setAll(Visibility.values());
 
         //Sets the current visibility
-        accessComboBox.getSelectionModel().select(methodData.getVisibility().name());
+        accessComboBox.getSelectionModel().select(methodData.getVisibility());
 
         //Sets the method type field
         returnTypeField.setText(methodData.getType());

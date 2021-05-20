@@ -1,22 +1,18 @@
-package frontend;
+package frontend.Controllers;
 
 import frontend.Observers.ArrowObservable;
 import frontend.Observers.ArrowObserver;
 import global.Observer;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import lobal.TextWidthCalculator;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
+import avafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
 import javafx.scene.shape.Line;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextBoundsType;
 import model.facades.AttributeFacade;
 import model.boxes.BoxFacade;
 import model.facades.MethodFacade;
@@ -37,16 +33,16 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
     @FXML
     private Label name, identifier;
     @FXML
-    private VBox methods, variables, vBox,bigVBox;
+    private VBox methods, variables, vBox, bigVBox;
     @FXML
-    private Line line,line1;
+    private Line line, line1;
 
-    //for dragging box when editing name
+    // for dragging box when editing name
     @FXML
     AnchorPane blockpane1, blockpane2;
 
     VariableEditorController variableEditor;
-    MethodEditorController methodEditor;
+    Me thodEditorController methodEditor;
 
     private Map<Label, String> methodMap = new HashMap<Label, String>();
     private Map<Label, String> variableMap = new HashMap<Label, String>();
@@ -59,7 +55,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
 
     public BoxController(BoxFacade box, VariableEditorController VEC, MethodEditorController MEC, ArrowObserver arrowObserver) {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Box.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("..//view/Box.fxml")));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -441,6 +437,9 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
             attribute.setOnMousePressed((Action) -> editVariable(var, attribute));
 
         }
+        TextWidthCalculator.getInstance().setOffset(20);
+        TextWidthCalculator.getInstance().setName(nameField.getFont());
+
 
         for (int i = 0; i < methodData.size(); i++) {
             BoxAttributeTextController attribute = new BoxAttributeTextController(methodData.get(i).getString());
@@ -450,10 +449,12 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
         }
 
         //set box size -2 +1 to make sure no overlap (border of 1px outside both sides and 1 extra since ending on 30 and starting on 30)
-        this.setWidth(box.getWidthAndHeight().getX(Scale.Frontend)-2);
-        this.setHeight(box.getWidthAndHeight().getY(Scale.Frontend)-2);
-        this.setLayoutY(box.getPosition().getY(Scale.Frontend)+1);
-        this.setLayoutX(box.getPosition().getX(Scale.Frontend)+1);
+        ScaledPoint widthAndHeight = box.getWidthAndHeight();
+        ScaledPoint position = box.getPosition();
+        this.setWidth(widthAndHeight.getX(Scale.Frontend)-3);
+        this.setPrefHeight(widthAndHeight.getY(Scale.Frontend));
+        this.setLayoutY(position.getY(Scale.Frontend)+1);
+        this.setLayoutX(position.getX(Scale.Frontend)+1);
         line.setEndX(this.getWidth());
         line1.setEndX(this.getWidth());
 

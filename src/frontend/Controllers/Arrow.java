@@ -1,4 +1,4 @@
-package frontend;
+package frontend.Controllers;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;

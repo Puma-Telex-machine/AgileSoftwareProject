@@ -1,5 +1,5 @@
 package frontend.Observers;
-import frontend.BoxController;
+import frontend.Controllers.BoxController;
 
 import java.awt.*;
 
