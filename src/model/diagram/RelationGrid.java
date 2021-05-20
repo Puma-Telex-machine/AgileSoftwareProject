@@ -76,8 +76,6 @@ public class RelationGrid {
             current = current.previous;
         }
 
-        Collections.reverse(pathPoints);
-
         return pathPoints;
     }
 
@@ -100,5 +98,11 @@ public class RelationGrid {
 
     public void remove(Relation relation) {
         relations.remove(relation);
+    }
+
+    public void removeDisconnectedRelations() {
+        for (Relation r : new ArrayList<>(relations)) {
+            r.removeIfDisconnected();
+        }
     }
 }

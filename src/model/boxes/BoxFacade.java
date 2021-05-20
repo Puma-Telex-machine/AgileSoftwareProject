@@ -94,4 +94,6 @@ public interface BoxFacade extends Observable<Observer> {
     ScaledPoint getPosition();
 
     ScaledPoint getWidthAndHeight();
+
+    boolean isDeleted();
 }

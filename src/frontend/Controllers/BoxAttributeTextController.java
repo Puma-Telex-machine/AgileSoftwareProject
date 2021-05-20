@@ -1,4 +1,4 @@
-package frontend;
+package frontend.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.input.ContextMenuEvent;
@@ -14,7 +14,7 @@ public class BoxAttributeTextController extends AnchorPane {
     Label nameLable;
 
     public BoxAttributeTextController(String text) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/BoxAttributeText.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("..//view/BoxAttributeText.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

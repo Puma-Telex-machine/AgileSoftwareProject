@@ -1,4 +1,4 @@
-package frontend;
+package frontend.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +15,7 @@ public class VariableEditorController extends AnchorPane {
 
 
     public VariableEditorController(){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/VariableEditor.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("..//view/VariableEditor.fxml")));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -51,7 +51,7 @@ public class VariableEditorController extends AnchorPane {
     {
         variable.setName(nameField.getText());
 
-        Visibility visibility = Visibility.valueOf((String)accessComboBox.getValue());
+        Visibility visibility = (Visibility) accessComboBox.getValue();
         variable.setVisibility(visibility);
 
         variable.setType(typeField.getText());
@@ -75,7 +75,7 @@ public class VariableEditorController extends AnchorPane {
         accessComboBox.getItems().setAll(Visibility.values());
 
         //Sets the current visibility
-        accessComboBox.getSelectionModel().select(variableData.getVisibility().name());
+        accessComboBox.getSelectionModel().select(variableData.getVisibility());
     }
 
 }

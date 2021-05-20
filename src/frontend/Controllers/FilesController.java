@@ -1,6 +1,5 @@
-package frontend;
+package frontend.Controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -14,9 +13,6 @@ import java.io.IOException;
 public class FilesController extends AnchorPane{
 
     @FXML
-    Button minimize_button;
-
-    @FXML
     VBox filesBox;
 
     Model model = Model.getModel();
@@ -25,7 +21,7 @@ public class FilesController extends AnchorPane{
 
     public FilesController(FileHandlerFacade fileHandler, CanvasController canvas) {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("view/Files.fxml"));
+                getClass().getResource("..//view/Files.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

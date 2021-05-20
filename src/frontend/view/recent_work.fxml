@@ -2,23 +2,25 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="220.0" styleClass="leftSideMenu" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="220.0" styleClass="leftSideMenu" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="191.0" layoutY="-13.0" onMouseClicked="#minimize" prefHeight="41.0" prefWidth="15.0" rotate="90.0" style="-fx-background-color: B8B8B8B8B8B8;" styleClass="lighter" stylesheets="@css/DarkMode.css" text="|" textAlignment="RIGHT" textFill="#b8b8b8" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="-3.0">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Label>
       <Label layoutX="30.0" layoutY="43.0" prefHeight="29.0" prefWidth="175.0" styleClass="leftSideMenu-textLarge" stylesheets="@css/DarkMode.css" text="RECENT WORK" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="15.0" />
       <AnchorPane layoutY="64.0" prefHeight="840.0" prefWidth="220.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="64.0">
          <children>
             <VBox layoutX="5.0" layoutY="108.0" prefHeight="731.0" prefWidth="220.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" />
-            <HBox layoutY="696.0" prefHeight="31.0" prefWidth="220.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <Button layoutX="23.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#saveWork" stylesheets="@css/DarkMode.css" text="SAVE WORK" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="22.0" />
+            <Button fx:id="save_button" layoutX="23.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#openSave" styleClass="buttons" stylesheets="@css/DarkMode.css" text="SAVE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="22.0">
+               <tooltip>
+                  <Tooltip text="Save changes" />
+               </tooltip></Button>
+            <Button fx:id="delete_button" layoutX="20.0" layoutY="76.0" mnemonicParsing="false" styleClass="buttons" stylesheets="@css/DarkMode.css" text="DELETE DIAGRAM">
+               <tooltip>
+                  <Tooltip text="Delete the diagram" />
+               </tooltip></Button>
          </children>
       </AnchorPane>
+   </children>
+</fx:root>
