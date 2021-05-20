@@ -216,8 +216,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
 
     /**
      * method for letting go of box, updates backend
-     *
-     * @param event mouseRelease
      */
     public void handleLetGo(){
         if(moving) {
@@ -237,7 +235,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
         methodEditor.setVisible(true);
         methodEditor.toFront();
         methodEditor.setLayoutX(this.getLayoutX() - variableEditor.getWidth());
-        methodEditor.setLayoutY(this.getLayoutY() + this.getHeight() / 2 - methodEditor.getHeight() / 2);
+        methodEditor.setLayoutY(this.getLayoutY() + methods.getLayoutY() + 15 * methods.getChildren().size()+10 - methodEditor.getHeight() / 2);
         methodEditor.EditMethod(box);
 
 
@@ -261,7 +259,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
         variableEditor.setVisible(true);
         variableEditor.toFront();
         variableEditor.setLayoutX(this.getLayoutX() - variableEditor.getWidth());
-        variableEditor.setLayoutY(this.getLayoutY() + this.getHeight() / 2 - variableEditor.getHeight() / 2);
+        variableEditor.setLayoutY(this.getLayoutY() + variables.getLayoutY() + 15 * variables.getChildren().size()+10 - variableEditor.getHeight() / 2);
         variableEditor.EditVariable(box);
         //variableEditor.EditVariable(box);
 
@@ -286,7 +284,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
         variableEditor.setVisible(true);
         variableEditor.toFront();
         variableEditor.setLayoutX(this.getLayoutX() - variableEditor.getWidth());
-        variableEditor.setLayoutY(this.getLayoutY() + variables.getLayoutY() + 25 + pos.getLayoutY() - variableEditor.getHeight() / 2);
+        variableEditor.setLayoutY(this.getLayoutY() + variables.getLayoutY() + 8 + pos.getLayoutY() - variableEditor.getHeight() / 2);
         variableEditor.EditVariable(variable, box);
     }
 
@@ -298,9 +296,9 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
         variableEditor.setVisible(false);
         methodEditor.setVisible(true);
         methodEditor.toFront();
+        methodEditor.setLayoutX(this.getLayoutX() - methodEditor.getWidth());
+        methodEditor.setLayoutY(this.getLayoutY() + methods.getLayoutY() + 8 + pos.getLayoutY() - methodEditor.getHeight() / 2);
         methodEditor.EditMethod(method, box);
-        methodEditor.setLayoutX(this.getLayoutX() - variableEditor.getWidth());
-        methodEditor.setLayoutY(this.getLayoutY() + methods.getLayoutY() + 25 + pos.getLayoutY() - methodEditor.getHeight() / 2);
     }
 
     //endregion
@@ -481,5 +479,11 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
     {
         box.deleteBox();
         //this.setVisible(false); //todo: Properly remove items here
+    }
+
+    public void closeAttributeEditors()
+    {
+        methodEditor.setVisible(false);
+        variableEditor.setVisible(false);
     }
 }

@@ -134,6 +134,8 @@ public class MethodEditorController extends AnchorPane {
 
         String[] param = methodData.getArguments().toArray(new String[methodData.getArguments().size()]);
         //Sets the arguments for this method
+
+        double yPos = this.getLayoutY() + this.getHeight()/2;
         for (int i = 0; i < param.length; i++)
         {
             MethodArgumentEditorController argument = new MethodArgumentEditorController();
@@ -142,13 +144,13 @@ public class MethodEditorController extends AnchorPane {
             argumentVBox.getChildren().add(argument);
             argument.paramLable.setText("Param " + arguments.size());
             argument.argumentTypeField.getStyleClass().add("highlight");
-            this.setLayoutY(this.getLayoutY() - argument.getHeight()/2);
         }
 
+        this.setLayoutY(this.getLayoutY() - (this.getLayoutY() + getHeight()/2 - yPos));
         newCurrentEditArgument();
     }
 
-    private  void newCurrentEditArgument ()
+    private void newCurrentEditArgument ()
     {
         currentEditArgument = new MethodArgumentEditorController();
         argumentVBox.getChildren().add(currentEditArgument);

@@ -7,13 +7,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root onContextMenuRequested="#handleContextMenu" onMouseClicked="#handleArrowMenu" onMouseMoved="#dragArrow" prefHeight="1000.0" prefWidth="3000.0" styleClass="background" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root onContextMenuRequested="#handleContextMenu" onMouseClicked="#handleArrowMenu" onMouseMoved="#dragArrow" prefHeight="1000.0" prefWidth="3000.0" styleClass="background" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane fx:id="menuPane" onContextMenuRequested="#closeMenu" onMouseClicked="#closeMenu" prefHeight="1000.0" prefWidth="3000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane fx:id="arrowMenu" layoutX="90.0" layoutY="131.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#eventTrap" prefHeight="95.0" prefWidth="200.0">
+            <AnchorPane fx:id="arrowMenu" layoutX="90.0" layoutY="131.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#eventTrap" prefHeight="71.0" prefWidth="176.0">
                <children>
-                  <AnchorPane layoutX="25.0" layoutY="62.0" prefHeight="0.0" prefWidth="148.0" styleClass="highlight-red" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                  <AnchorPane layoutX="25.0" layoutY="62.0" prefHeight="0.0" prefWidth="148.0" styleClass="highlight-red" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
                      <children>
                         <Label onMouseClicked="#deleteArrow" prefHeight="28.0" prefWidth="158.0" styleClass="text-Large" text="Delete" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <cursor>
@@ -22,7 +22,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <ComboBox fx:id="arrowTypeComboBox" layoutX="20.0" layoutY="20.0" onAction="#changeArrow" prefHeight="27.0" prefWidth="150.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="15.0">
+                  <ComboBox fx:id="arrowTypeComboBox" layoutX="20.0" layoutY="20.0" onAction="#changeArrow" prefHeight="27.0" prefWidth="150.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

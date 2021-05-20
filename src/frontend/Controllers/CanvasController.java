@@ -99,6 +99,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
             selectionRectangle.setWidth(Math.abs(e.getX() - mouseDownX));
             selectionRectangle.setY(Math.min(e.getY(), mouseDownY));
             selectionRectangle.setHeight(Math.abs(e.getY() - mouseDownY));
+            if(boxes.size() > 0) boxes.get(0).closeAttributeEditors();
         });
 
         this.setOnMouseReleased(e -> {
@@ -135,12 +136,15 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
     private void draggingBox(MouseEvent e, BoxController box)
     {
         box.dragBox(e.getX(), e.getY());
-        for (int i = 0; i < selection.size(); i++)
-        {
-            if(box != selection.get(i))
-            {
-                selection.get(i).dragBox(e.getX(), e.getY());
+        if(selection.contains(box)) {
+            for (int i = 0; i < selection.size(); i++) {
+                if (box != selection.get(i)) {
+                    selection.get(i).dragBox(e.getX(), e.getY());
+                }
             }
+        } else {
+            clearSelection();
+            selectBox(box);
         }
         e.consume();
     }
