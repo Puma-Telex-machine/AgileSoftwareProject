@@ -22,6 +22,7 @@ public class Relation implements RelationFacade {
     private boolean onLeftSideOfFrom = false;
     private boolean onTopSideOfFrom = false;
     private ScaledPoint offsetFrom;
+    private String nrFrom,nrTo;
 
     private ArrowType arrowType;
     private ArrayList<ScaledPoint> path;
@@ -35,6 +36,8 @@ public class Relation implements RelationFacade {
         this.to = to;
         this.offsetTo = calculateOffset(offsetTo, to, false);
         this.arrowType = arrowType;
+        this.nrTo="";
+        this.nrFrom="";
     }
 
     /**
@@ -135,6 +138,28 @@ public class Relation implements RelationFacade {
     @Override
     public boolean isDeleted() {
         return isDeleted;
+    }
+
+    @Override
+    public String getNrFrom() {
+        return nrFrom;
+    }
+
+    @Override
+    public String getNrTo() {
+        return nrTo;
+    }
+
+    @Override
+    public void setNrTo(String nrTo) {
+        this.nrTo=nrTo;
+        updateObserver();
+    }
+
+    @Override
+    public void setNrFrom(String nrFrom) {
+        this.nrFrom=nrFrom;
+        updateObserver();
     }
 
     public BoxFacade getFrom() {

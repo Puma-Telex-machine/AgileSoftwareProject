@@ -5,6 +5,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -36,6 +37,8 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
     private AnchorPane arrowMenu, menuPane, contextMenu;
     @FXML
     private ComboBox<ArrowType> arrowTypeComboBox;
+    @FXML
+    private TextField nrToField,nrFromField;
 
     ModelFacade model = Model.getModel();
     DiagramFacade diagram = model.getDiagram();
@@ -179,8 +182,9 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
             //box == arrowBox => aborting arrowcreation
             if (box != arrowBox) {
 
-                ScaledPoint offsetTo = new ScaledPoint(Scale.Frontend, (int) (p.x - box.getLayoutX()), (int) (p.y - box.getLayoutY()));
-                ScaledPoint offsetFrom = new ScaledPoint(Scale.Frontend, (int) (arrowStart.x - arrowBox.getLayoutX()), (arrowStart.y - arrowBox.getLayoutY()));
+
+                ScaledPoint offsetTo = new ScaledPoint(Scale.Frontend, Math.round((p.x - box.getLayoutX())/Scale.Frontend.xScale) * Scale.Frontend.xScale, Math.round((p.y - box.getLayoutY())/Scale.Frontend.yScale)* Scale.Frontend.xScale);
+                ScaledPoint offsetFrom = new ScaledPoint(Scale.Frontend, Math.round((arrowStart.x - arrowBox.getLayoutX())/Scale.Frontend.xScale) * Scale.Frontend.xScale, Math.round((arrowStart.y - arrowBox.getLayoutY())/Scale.Frontend.yScale)* Scale.Frontend.xScale);
                 diagram.createRelation(arrowBox.getBox(), offsetFrom, box.getBox(), offsetTo, ArrowType.ASSOCIATION);
             }
         }
@@ -188,7 +192,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
         else {
             arrowBox = box;
             arrowStart = new Point(p.x, p.y);
-            dragArrow = new Arrow(arrowStart, new Point(p.x, p.y),new ArrayList<>());
+            dragArrow = new Arrow(arrowStart, p,new ArrayList<>());
             this.getChildren().add(dragArrow);
         }
         toggleAnchorPoints();
@@ -209,7 +213,11 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
 
     private void addArrow(RelationFacade relation){
         List<ScaledPoint> bends = relation.getPath();
-        Arrow newArrow = new Arrow(bends);
+
+        String nrFrom = relation.getNrFrom();
+        String nrTo = relation.getNrTo();
+
+        Arrow newArrow = new Arrow(bends,nrFrom,nrTo);
         newArrow.setType(relation.getArrowType());
         this.getChildren().addAll(newArrow);
         newArrow.toBack();
@@ -284,7 +292,6 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
             }
             else{
                 clickedRelations = closest;
-                arrowTypeComboBox.getSelectionModel().select(closest.get(0).getArrowType());
                 openArrowMenu(e.getX(), e.getY());
             }
         }
@@ -295,6 +302,8 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
     }
 
     private void openArrowMenu(double x, double y) {
+        arrowTypeComboBox.getSelectionModel().select(clickedRelations.get(0).getArrowType());
+        //todo add nrTo and from to textfields
         menuPane.setVisible(true);
         menuPane.toFront();
         arrowMenu.setLayoutX(x);
@@ -355,15 +364,16 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
     }
 
     @FXML
-    private void changeArrow(Event e) {
+    private void saveArrow(){
         ArrowType type = arrowTypeComboBox.getValue();
+        String nrFrom = nrFromField.getText();
+        String nrTo = nrToField.getText();
         for (RelationFacade r: clickedRelations) {
-            relationMap.get(r).setType(type);
             r.changeRelationType(type);
+            r.setNrTo(nrTo);
+            r.setNrFrom(nrFrom);
         }
         closeMenu();
-        e.consume();
-
     }
 
     @FXML

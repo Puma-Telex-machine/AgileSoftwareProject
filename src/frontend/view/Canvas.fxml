@@ -4,6 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -11,22 +12,47 @@
    <children>
       <AnchorPane fx:id="menuPane" onContextMenuRequested="#closeMenu" onMouseClicked="#closeMenu" prefHeight="1000.0" prefWidth="3000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane fx:id="arrowMenu" layoutX="90.0" layoutY="131.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#eventTrap" prefHeight="95.0" prefWidth="200.0">
+            <AnchorPane fx:id="arrowMenu" layoutX="90.0" layoutY="131.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#eventTrap" prefHeight="121.0" prefWidth="200.0">
                <children>
-                  <AnchorPane layoutX="25.0" layoutY="62.0" prefHeight="0.0" prefWidth="148.0" styleClass="highlight-red" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                  <AnchorPane layoutX="20.0" prefHeight="27.0" prefWidth="70.0" styleClass="highlight-red" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="20.0">
                      <children>
-                        <Label onMouseClicked="#deleteArrow" prefHeight="28.0" prefWidth="158.0" styleClass="text-Large" text="Delete" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label onMouseClicked="#deleteArrow" prefHeight="28.0" prefWidth="85.0" styleClass="text-Large" text="Delete" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Label>
                      </children>
                   </AnchorPane>
-                  <ComboBox fx:id="arrowTypeComboBox" layoutX="20.0" layoutY="20.0" onAction="#changeArrow" prefHeight="27.0" prefWidth="150.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="15.0">
+                  <ComboBox fx:id="arrowTypeComboBox" layoutX="20.0" layoutY="20.0" prefHeight="27.0" prefWidth="150.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="15.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ComboBox>
+                  <TextField fx:id="nrFromField" layoutX="70.0" layoutY="53.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="30.0" promptText="nr" style="-fx-border-radius: 1; -fx-background-radius: 1;">
+                     <styleClass>
+                        <String fx:value="text-small" />
+                        <String fx:value="highlight" />
+                        <String fx:value="border" />
+                     </styleClass>
+                  </TextField>
+                  <Label layoutX="21.0" layoutY="55.0" styleClass="text-small" text="Nr From" />
+                  <Label layoutX="113.0" layoutY="55.0" styleClass="text-small" text="Nr To" />
+                  <TextField fx:id="nrToField" layoutX="148.0" layoutY="53.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="30.0" promptText="nr" style="-fx-border-radius: 1; -fx-background-radius: 1;">
+                     <styleClass>
+                        <String fx:value="highlight" />
+                        <String fx:value="text-small" />
+                        <String fx:value="border" />
+                     </styleClass>
+                  </TextField>
+                  <AnchorPane layoutX="101.0" layoutY="81.0" prefHeight="27.0" prefWidth="70.0" styleClass="highlight-green" AnchorPane.rightAnchor="21.0">
+                     <children>
+                        <Label onMouseClicked="#saveArrow" prefHeight="28.0" prefWidth="85.0" styleClass="text-Large" text="Save" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
+                     </children>
+                  </AnchorPane>
                </children>
                <styleClass>
                   <String fx:value="box" />
