@@ -86,9 +86,15 @@ public class Relation implements RelationFacade {
         ScaledPoint startPosition = from.getPosition().move(offsetFrom);
         if (!onLeftSideOfFrom) {
             startPosition = startPosition.move(Scale.Backend, from.getWidthAndHeight().getX(Scale.Backend), 0);
+            if (startPosition.getX(Scale.Backend) <= from.getPosition().getX(Scale.Backend) + 1) { // +1 is the first point instead of the edge of the box
+                startPosition = new ScaledPoint(Scale.Backend, from.getPosition().getX(Scale.Backend) + 1, startPosition.getY(Scale.Backend));
+            }
         }
         if (!onTopSideOfFrom) {
             startPosition = startPosition.move(Scale.Backend, 0, from.getWidthAndHeight().getY(Scale.Backend));
+            if (startPosition.getY(Scale.Backend) < from.getPosition().getY(Scale.Backend)) {
+                startPosition = new ScaledPoint(Scale.Backend, startPosition.getX(Scale.Backend), from.getPosition().getY(Scale.Backend) + 1);
+            }
         }
         return startPosition;
     }
@@ -97,9 +103,15 @@ public class Relation implements RelationFacade {
         ScaledPoint endPosition = to.getPosition().move(offsetTo);
         if (!onLeftSideOfTo) {
             endPosition = endPosition.move(Scale.Backend, to.getWidthAndHeight().getX(Scale.Backend), 0);
+            if (endPosition.getX(Scale.Backend) <= to.getPosition().getX(Scale.Backend) + 1) { // +1 is the first point instead of the edge of the box
+                endPosition = new ScaledPoint(Scale.Backend, to.getPosition().getX(Scale.Backend) + 1, endPosition.getY(Scale.Backend));
+            }
         }
         if (!onTopSideOfTo) {
             endPosition = endPosition.move(Scale.Backend, 0, to.getWidthAndHeight().getY(Scale.Backend));
+            if (endPosition.getY(Scale.Backend) < to.getPosition().getY(Scale.Backend)) {
+                endPosition = new ScaledPoint(Scale.Backend, endPosition.getX(Scale.Backend), to.getPosition().getY(Scale.Backend) + 1);
+            }
         }
         return endPosition;
     }
