@@ -1,4 +1,4 @@
-package frontend.Controllers;
+package frontend;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,12 +8,14 @@ import model.facades.ExerciseFacade;
 import model.facades.ExercisesHandlerFacade;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExercisesController extends AnchorPane {
 
     public ExercisesController() {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("..//view/Exercises.fxml"));
+                getClass().getResource("view/Exercises.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

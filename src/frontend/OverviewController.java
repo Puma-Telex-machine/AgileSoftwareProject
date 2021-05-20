@@ -1,4 +1,4 @@
-package frontend.Controllers;
+package frontend;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +9,7 @@ import java.io.IOException;
 public class OverviewController extends AnchorPane {
     public OverviewController() {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("..//view/Overview.fxml"));
+                getClass().getResource("view/Overview.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

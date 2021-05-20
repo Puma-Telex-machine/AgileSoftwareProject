@@ -11,12 +11,12 @@ import model.facades.MethodFacade;
 import java.util.*;
 
 /**
- * A generalized class representing a UML object, specifically
- * classes/interfaces/enums. Originally created by Emil Holmsten, Expanded by
- * Filip Hanberg.
+ * A generalized class representing a UML object, specifically classes/interfaces/enums.
+ * Originally created by Emil Holmsten,
+ * Expanded by Filip Hanberg.
  */
 public class Box implements BoxFacade, Observer {
-    // different fontsize on name and other
+    //different fontsize on name and other
     private static final double SYMBOLS_PER_WIDTH_UNIT_NAME = 0.23;
     private static final double SYMBOLS_PER_WIDTH_UNIT_OTHER = 0.2;
     private static final int START_HEIGHT = 3;
@@ -32,7 +32,6 @@ public class Box implements BoxFacade, Observer {
     private ScaledPoint position;
     private final DiagramMediator diagram;
 
-    private boolean isDeleted = false;
 
     public Box(DiagramMediator diagram, ScaledPoint position, BoxType type) {
         this.name = switch (type) {
@@ -47,7 +46,7 @@ public class Box implements BoxFacade, Observer {
         this.diagram = diagram;
     }
 
-    // region OBSERVABLE
+    //region OBSERVABLE
     private final Observers observers = new Observers();
 
     @Override
@@ -60,7 +59,7 @@ public class Box implements BoxFacade, Observer {
         diagram.updateBox(this);
         observers.update();
     }
-    // endregion
+    //endregion
 
     @Override
     public void setName(String name) {
@@ -81,7 +80,6 @@ public class Box implements BoxFacade, Observer {
     @Override
     public void deleteBox() {
         name = "THIS SHOULD NOT BE VISIBLE: BOX IS DELETED";
-        this.isDeleted = true;
         diagram.removeBox(this);
     }
 
@@ -126,7 +124,7 @@ public class Box implements BoxFacade, Observer {
     @Override
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
-        update(); // Behövs denna?
+        update(); //Behövs denna?
     }
 
     @Override
@@ -137,7 +135,7 @@ public class Box implements BoxFacade, Observer {
     @Override
     public void addModifier(Modifier modifier) {
         modifiers.add(modifier);
-        update(); // Behövs denna?
+        update(); //Behövs denna?
     }
 
     @Override
@@ -168,33 +166,25 @@ public class Box implements BoxFacade, Observer {
     }
 
     @Override
-    // todo returns wrong height
+    //todo returns wrong height
     public ScaledPoint getWidthAndHeight() {
-        int x = getWidth();
-        int y = getHeight();
-        return new ScaledPoint(Scale.Backend, x, y);
-    }
-
-    @Override
-    public boolean isDeleted() {
-        return isDeleted;
+        return new ScaledPoint(Scale.Backend, getWidth(), getHeight());
     }
 
     private int getHeight() {
 
-        if ((getMethods().size() + getAttributes().size() == 0))
-            return START_HEIGHT;
-        // +1 to round up.
-        int height = (int) ((getMethods().size() + getAttributes().size()) * ROWS_PER_HEIGHT_UNIT) + START_HEIGHT + 1;
+        if((getMethods().size() + getAttributes().size()==0)) return START_HEIGHT;
+        //+1 to round up.
+        int height = (int) ((getMethods().size() + getAttributes().size()) * ROWS_PER_HEIGHT_UNIT) + START_HEIGHT +1;
 
         return height;
     }
 
     private int getWidth() {
 
-        // Todo width depends on characters maybe use textutil in boxController?
+        //Todo width depends on characters maybe use textutil in boxController?
         // or should boxcontroller set width of the texts?
-
+        
         ArrayList<String> names = new ArrayList<>();
 
         for (MethodFacade method : methods) {
@@ -205,10 +195,10 @@ public class Box implements BoxFacade, Observer {
         }
 
         int maxLength = 0;
-        if (!names.isEmpty()) {
+        if(!names.isEmpty()){
             ArrayList<Integer> longest = new ArrayList<>();
             for (String n : names) {
-                longest = Math.max(TextWidthCalculator.getInstance().computeTextWidthOther(n), longest);
+                longest.add(n.length());
             }
 
             maxLength = Collections.max(longest);
@@ -220,13 +210,11 @@ public class Box implements BoxFacade, Observer {
         } else {
             boxLength = Math.max((int) (maxLength * SYMBOLS_PER_WIDTH_UNIT_OTHER) + 1, START_WIDTH);
         }
-        double a = TextWidthCalculator.getInstance().computeTextWidthName(name);
-        longest = Math.max(a, longest);
 
         if (Math.floorMod(boxLength, 2) == 0) {
             boxLength++;
         }
 
-        return Math.max(i, START_WIDTH);
+        return boxLength;
     }
 }

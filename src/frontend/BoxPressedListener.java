@@ -1,6 +1,4 @@
-package frontend.Controllers;
-
-import frontend.Controllers.BoxController;
+package frontend;
 
 public interface BoxPressedListener {
     void pressedBox(BoxController box);

@@ -103,7 +103,7 @@
             </FlowPane>
             <HBox layoutX="-81.0" layoutY="4.0" prefHeight="50.0" prefWidth="220.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <Button mnemonicParsing="false" styleClass="text-small-black" stylesheets="@css/DarkMode.css" text="SAVE TEMPLATE" textAlignment="CENTER" wrapText="true">
+                  <Button mnemonicParsing="false" stylesheets="@css/DarkMode.css" text="SAVE TEMPLATE" textAlignment="CENTER" wrapText="true">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>

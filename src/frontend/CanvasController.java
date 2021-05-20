@@ -1,4 +1,4 @@
-package frontend.Controllers;
+package frontend;
 
 import frontend.Observers.ArrowObserver;
 import javafx.event.Event;
@@ -27,8 +27,7 @@ import java.util.*;
 import java.util.List;
 import javafx.scene.shape.Rectangle;
 
-public class CanvasController extends AnchorPane
-        implements DiagramObserver, ArrowObserver, RelationObserver, BoxPressedListener {
+public class CanvasController extends AnchorPane implements DiagramObserver, ArrowObserver, RelationObserver, BoxPressedListener {
 
     VariableEditorController variableEditor;
     MethodEditorController methodEditor;
@@ -49,7 +48,7 @@ public class CanvasController extends AnchorPane
     private Rectangle selectionRectangle;
 
     public CanvasController() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("..//view/Canvas.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Canvas.fxml")));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -60,8 +59,7 @@ public class CanvasController extends AnchorPane
             throw new RuntimeException(exception);
         }
 
-        arrowTypeComboBox.getItems().addAll(ArrowType.IMPLEMENTATION, ArrowType.INHERITANCE, ArrowType.ASSOCIATION,
-                ArrowType.AGGREGATION, ArrowType.COMPOSITION, ArrowType.DEPENDANCY);
+        arrowTypeComboBox.getItems().addAll(ArrowType.IMPLEMENTATION, ArrowType.INHERITANCE, ArrowType.ASSOCIATION, ArrowType.AGGREGATION, ArrowType.COMPOSITION, ArrowType.DEPENDANCY);
         arrowMenu.setVisible(false);
 
         variableEditor = new VariableEditorController();
@@ -76,13 +74,13 @@ public class CanvasController extends AnchorPane
         contextMenu.setVisible(false);
 
         diagram.subscribe(this);
-        // model.addObserver(this);
+        //model.addObserver(this);
         clearSelection();
 
         selectionRectangle = new Rectangle();
         selectionRectangle.setStroke(Color.WHITE);
         selectionRectangle.setFill(Color.TRANSPARENT);
-        selectionRectangle.getStrokeDashArray().addAll(5.0, 5.0);
+        selectionRectangle.getStrokeDashArray().addAll(5.0,5.0);
         this.getChildren().add(selectionRectangle);
 
         this.setOnMousePressed(e -> {
@@ -95,7 +93,7 @@ public class CanvasController extends AnchorPane
             selectionRectangle.setHeight(0);
         });
 
-        this.setOnMouseDragged(e -> {
+        this.setOnMouseDragged( e-> {
             clearSelection();
             selectionRectangle.setX(Math.min(e.getX(), mouseDownX));
             selectionRectangle.setWidth(Math.abs(e.getX() - mouseDownX));
@@ -105,12 +103,15 @@ public class CanvasController extends AnchorPane
 
         this.setOnMouseReleased(e -> {
 
-            for (int i = 0; i < boxes.size(); i++) {
+            for (int i = 0; i < boxes.size(); i++)
+            {
                 double x = boxes.get(i).getBox().getPosition().getX(Scale.Frontend);
                 double y = boxes.get(i).getBox().getPosition().getY(Scale.Frontend);
-                if (selectionRectangle.getX() <= x && (selectionRectangle.getX() + selectionRectangle.getWidth()) >= x
+                if(selectionRectangle.getX() <=  x
+                        && (selectionRectangle.getX() + selectionRectangle.getWidth()) >= x
                         && selectionRectangle.getY() <= y
-                        && (selectionRectangle.getY() + selectionRectangle.getHeight()) >= y) {
+                        && (selectionRectangle.getY() + selectionRectangle.getHeight()) >= y)
+                {
                     selectBox(boxes.get(i));
                 }
             }
@@ -126,29 +127,31 @@ public class CanvasController extends AnchorPane
         boxes.add(box);
         box.toggleCircleVisibility(!toggleOn);
         box.boxPressedSubscribe(this);
-        box.setOnMouseDragged(e -> {
-            draggingBox(e, box);
-        });
-        box.setOnMouseReleased(e -> {
-            letGoBox(e, box);
-        });
+        box.setOnMouseDragged(e -> { draggingBox( e , box);});
+        box.setOnMouseReleased(e -> { letGoBox(e, box);});
         clearSelection();
     }
 
-    private void draggingBox(MouseEvent e, BoxController box) {
+    private void draggingBox(MouseEvent e, BoxController box)
+    {
         box.dragBox(e.getX(), e.getY());
-        for (int i = 0; i < selection.size(); i++) {
-            if (box != selection.get(i)) {
+        for (int i = 0; i < selection.size(); i++)
+        {
+            if(box != selection.get(i))
+            {
                 selection.get(i).dragBox(e.getX(), e.getY());
             }
         }
         e.consume();
     }
 
-    private void letGoBox(MouseEvent e, BoxController box) {
+    private void letGoBox (MouseEvent e, BoxController box)
+    {
         box.handleLetGo(e);
-        for (int i = 0; i < selection.size(); i++) {
-            if (box != selection.get(i)) {
+        for (int i = 0; i < selection.size(); i++)
+        {
+            if(box != selection.get(i))
+            {
                 selection.get(i).handleLetGo(e);
             }
         }
@@ -160,7 +163,7 @@ public class CanvasController extends AnchorPane
         return new Point(500, 400);
     }
 
-    // region arrowmaking
+    //region arrowmaking
 
     private boolean makingArrow = false;
     private Arrow dragArrow;
@@ -173,25 +176,23 @@ public class CanvasController extends AnchorPane
 
     @Override
     public void arrowEvent(Point p, BoxController box) {
-        // attach arrow
+        //attach arrow
         if (makingArrow) {
             this.getChildren().removeAll(dragArrow);
-            // box == arrowBox => aborting arrowcreation
+            //box == arrowBox => aborting arrowcreation
             if (box != arrowBox) {
 
-                ScaledPoint offsetTo = new ScaledPoint(Scale.Frontend, (int) (p.x - box.getLayoutX()),
-                        (int) (p.y - box.getLayoutY()));
-                ScaledPoint offsetFrom = new ScaledPoint(Scale.Frontend, (int) (arrowStart.x - arrowBox.getLayoutX()),
-                        (arrowStart.y - arrowBox.getLayoutY()));
+                ScaledPoint offsetTo = new ScaledPoint(Scale.Frontend, (int) (p.x - box.getLayoutX()), (int) (p.y - box.getLayoutY()));
+                ScaledPoint offsetFrom = new ScaledPoint(Scale.Frontend, (int) (arrowStart.x - arrowBox.getLayoutX()), (arrowStart.y - arrowBox.getLayoutY()));
 
                 diagram.createRelation(arrowBox.getBox(), offsetFrom, box.getBox(), offsetTo, ArrowType.ASSOCIATION);
             }
         }
-        // start making arrow
+        //start making arrow
         else {
             arrowBox = box;
             arrowStart = new Point(p.x, p.y);
-            dragArrow = new Arrow(arrowStart, new Point(p.x, p.y), new ArrayList<>());
+            dragArrow = new Arrow(arrowStart, new Point(p.x, p.y),new ArrayList<>());
             this.getChildren().add(dragArrow);
         }
         toggleAnchorPoints();
@@ -200,18 +201,17 @@ public class CanvasController extends AnchorPane
 
     @Override
     public void addRelation(RelationFacade relation) {
-        relation.subscribe(this);
-        addArrow(relation);
+       relation.subscribe(this);
+       addArrow(relation);
     }
 
     @Override
-    public void update(RelationFacade relation) {
-        removeArrow(relation);
-        if (!relation.isDeleted())
-            addArrow(relation);
+    public void update(RelationFacade relation){ //TODO: Borde inte detta hanteras av en RelationController eller ngt?
+        removeRelation(relation);
+        addArrow(relation);
     }
 
-    private void addArrow(RelationFacade relation) {
+    private void addArrow(RelationFacade relation){
         List<ScaledPoint> bends = relation.getPath();
 
         Arrow newArrow = new Arrow(bends);
@@ -219,11 +219,11 @@ public class CanvasController extends AnchorPane
         this.getChildren().addAll(newArrow);
         newArrow.toBack();
         arrowMap.put(newArrow, relation);
-        relationMap.put(relation, newArrow);
+        relationMap.put(relation,newArrow);
         arrows.add(newArrow);
     }
 
-    private void removeRelation(RelationFacade r) {
+    private void removeRelation(RelationFacade r){
         Arrow arrow = relationMap.get(r);
         this.getChildren().remove(arrow);
         arrows.remove(arrow);
@@ -249,22 +249,22 @@ public class CanvasController extends AnchorPane
     private void dragArrow(MouseEvent e) {
         if (makingArrow) {
             this.getChildren().remove(dragArrow);
-            dragArrow = new Arrow(arrowStart, new Point((int) e.getX(), (int) e.getY()), new ArrayList<>());
+            dragArrow = new Arrow(arrowStart, new Point((int) e.getX(), (int) e.getY()),new ArrayList<>());
             this.getChildren().add(dragArrow);
             dragArrow.toBack();
         }
         e.consume();
     }
 
-    private void removeDragArrow() {
+    private void removeDragArrow(){
         makingArrow = false;
         toggleAnchorPoints();
         this.getChildren().remove(dragArrow);
     }
 
-    // endregion
+    //endregion
 
-    // region Menus
+    //region Menus
     private List<Arrow> clickedArrow = new ArrayList<>();
 
     @FXML
@@ -290,19 +290,34 @@ public class CanvasController extends AnchorPane
             openArrowMenu(e.getX(), e.getY());
         }
         e.consume();
-        /*
-         * List<Arrow> closest = new ArrayList<>(); double min = 10000; for (Arrow a :
-         * arrows) { double distance = a.getDistaceFromClick(e); if(distance == min){
-         * closest.add(a); } if (distance < min) { min = distance; closest.clear();
-         * closest.add(a); } } if (min <= 15) { //trying to merge dragarrow into
-         * existing arrow if (makingArrow) { ScaledPoint offset = new ScaledPoint
-         * (Scale.Frontend,(int) (arrowStart.getX()-arrowBox.getLayoutX()),(int)
-         * (arrowStart.getY()-arrowBox.getLayoutY()));
-         * diagram.createRelation(arrowBox.getBox(),offset,arrowMap.get(closest.get(0)),
-         * offset, ArrowType.ASSOCIATION); } else{ clickedArrow = closest;
-         * arrowTypeComboBox.getSelectionModel().select(closest.get(0).getType());
-         * openArrowMenu(e.getX(), e.getY()); } } if(makingArrow){ removeDragArrow(); }
-         */
+        /*List<Arrow> closest = new ArrayList<>();
+        double min = 10000;
+        for (Arrow a : arrows) {
+            double distance = a.getDistaceFromClick(e);
+            if(distance == min){
+                closest.add(a);
+            }
+            if (distance < min) {
+                min = distance;
+                closest.clear();
+                closest.add(a);
+            }
+        }
+        if (min <= 15) {
+            //trying to merge dragarrow into existing arrow
+            if (makingArrow) {
+                ScaledPoint offset = new ScaledPoint (Scale.Frontend,(int) (arrowStart.getX()-arrowBox.getLayoutX()),(int) (arrowStart.getY()-arrowBox.getLayoutY()));
+                diagram.createRelation(arrowBox.getBox(),offset,arrowMap.get(closest.get(0)), offset, ArrowType.ASSOCIATION);
+            }
+            else{
+                clickedArrow = closest;
+                arrowTypeComboBox.getSelectionModel().select(closest.get(0).getType());
+                openArrowMenu(e.getX(), e.getY());
+            }
+        }
+        if(makingArrow){
+            removeDragArrow();
+        }*/
         e.consume();
     }
 
@@ -317,9 +332,9 @@ public class CanvasController extends AnchorPane
     @FXML
     private void handleContextMenu(ContextMenuEvent e) {
         if (makingArrow) {
-            removeDragArrow();
-            e.consume();
-            return;
+           removeDragArrow();
+           e.consume();
+           return;
         }
         contextMenu.setLayoutX(e.getX());
         contextMenu.setLayoutY(e.getY());
@@ -331,60 +346,56 @@ public class CanvasController extends AnchorPane
 
     @FXML
     private void handleContextAddBox(MouseEvent e, BoxType type) {
-        diagram.createBox(new ScaledPoint(Scale.Frontend, (int) contextMenu.getLayoutX() - 80,
-                (int) contextMenu.getLayoutY() - 35), type);
-        closeMenu();
+        diagram.createBox(new ScaledPoint(Scale.Frontend, (int) contextMenu.getLayoutX() - 80, (int) contextMenu.getLayoutY() - 35), type);
+        closeMenu(e);
         e.consume();
     }
-
     @FXML
-    private void addClass(MouseEvent e) {
-        handleContextAddBox(e, BoxType.CLASS);
+    private void addClass(MouseEvent e){
+        handleContextAddBox(e,BoxType.CLASS);
     }
-
     @FXML
-    private void addInterface(MouseEvent e) {
-        handleContextAddBox(e, BoxType.INTERFACE);
+    private void addInterface(MouseEvent e){
+        handleContextAddBox(e,BoxType.INTERFACE);
     }
-
     @FXML
-    private void addAbstract(MouseEvent e) {
-        handleContextAddBox(e, BoxType.ABSTRACT_CLASS);
+    private void addAbstract(MouseEvent e){
+        handleContextAddBox(e,BoxType.ABSTRACT_CLASS);
     }
-
     @FXML
-    private void addEnum(MouseEvent e) {
-        handleContextAddBox(e, BoxType.ENUM);
+    private void addEnum(MouseEvent e){
+        handleContextAddBox(e,BoxType.ENUM);
     }
 
     @FXML
     private void deleteArrow(Event e) {
-        for (Arrow a : clickedArrow) {
+        for (Arrow a:clickedArrow) {
             this.getChildren().remove(a);
             arrows.remove(a);
         }
-        closeMenu();
+        closeMenu(e);
         e.consume();
     }
 
     @FXML
     private void changeArrow(Event e) {
         ArrowType type = arrowTypeComboBox.getValue();
-        for (Arrow a : clickedArrow) {
+        for (Arrow a:clickedArrow) {
             a.setType(type);
             arrowMap.get(a).changeRelationType(type);
         }
-        closeMenu();
+        closeMenu(e);
         e.consume();
 
     }
 
     @FXML
-    private void closeMenu() {
+    private void closeMenu(Event e) {
         menuPane.setVisible(false);
         arrowMenu.setVisible(false);
         contextMenu.setVisible(false);
         menuPane.toBack();
+        e.consume();
     }
 
     @FXML
@@ -392,7 +403,7 @@ public class CanvasController extends AnchorPane
         e.consume();
     }
 
-    // endregion
+    //endregion
 
     /**
      * Deletes all the boxes on the current canvas
@@ -414,14 +425,16 @@ public class CanvasController extends AnchorPane
     /**
      * Start adding boxes to the selection list when pressing on them
      */
-    public void startAddSelect() {
+    public void startAddSelect()
+    {
         multiSelect = true;
     }
 
     /**
      * Stops adding boxes to the selection list when pressing on them
      */
-    public void endAddSelect() {
+    public void endAddSelect()
+    {
         multiSelect = false;
     }
 
@@ -429,19 +442,22 @@ public class CanvasController extends AnchorPane
      * Deletes the currently selected boxes
      */
     @FXML
-    public void deleteSelectedBoxes() {
-        for (int i = 0; i < selection.size(); i++) {
+    public void deleteSelectedBoxes()
+    {
+        for(int i = 0; i < selection.size(); i++)
+        {
             deleteBox(selection.get(i));
         }
         selection.clear();
-        closeMenu();
     }
 
     /**
      * Clears the selection list
      */
-    private void clearSelection() {
-        for (int i = 0; i < selection.size(); i++) {
+    private void clearSelection()
+    {
+        for (int i = 0; i < selection.size(); i++)
+        {
             selection.get(i).getStyleClass().remove("border-selected");
             selection.get(i).getStyleClass().add("border");
         }
@@ -450,10 +466,10 @@ public class CanvasController extends AnchorPane
 
     /**
      * Deletes the box
-     * 
      * @param box
      */
-    private void deleteBox(BoxController box) {
+    private void deleteBox(BoxController box)
+    {
         boxes.remove(box);
         this.getChildren().remove(box);
         box.deleteBox();
@@ -461,21 +477,21 @@ public class CanvasController extends AnchorPane
 
     /**
      * Is called when a box is pressed
-     * 
      * @param box the box that was pressed
      */
-    public void pressedBox(BoxController box) {
-        if (!multiSelect)
+    public void pressedBox(BoxController box)
+    {
+        if(!multiSelect)
             clearSelection();
         selectBox(box);
     }
 
     /**
      * sets the box as selected
-     * 
      * @param box
      */
-    private void selectBox(BoxController box) {
+    private void selectBox(BoxController box)
+    {
         selection.add(box);
         box.getStyleClass().remove("border");
         box.getStyleClass().add("border-selected");
