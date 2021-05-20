@@ -5,9 +5,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/diagrams/untitled.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/untitled.uml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/Controllers/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/BoxController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/Controllers/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/CanvasController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/Controllers/MethodEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/MethodEditorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/Canvas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Canvas.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/Controllers/VariableEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/VariableEditorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/boxes/Attribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Attribute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/boxes/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Box.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/boxes/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Method.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/facades/AttributeFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/facades/AttributeFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/facades/MethodFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/facades/MethodFacade.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,5 +1,6 @@
 package model.boxes;
 
+import com.sun.source.tree.ReturnTree;
 import global.Observable;
 import global.Observers;
 import global.Observer;
@@ -22,6 +23,7 @@ public class Method implements MethodFacade, Observable<Observer> {
     private final Set<Modifier> modifiers = new HashSet<>();
     private Visibility visibility = Visibility.PUBLIC;
     private String returnType = "void";
+    private boolean isConfirmed = false;
 
     //region OBSERVABLE
     Observers observers = new Observers();
@@ -36,6 +38,17 @@ public class Method implements MethodFacade, Observable<Observer> {
     public void setName(String name) {
         this.name = name;
         observers.update();
+    }
+
+    @Override
+    public void confirmMethod ()
+    {
+        isConfirmed = true;
+    }
+
+    public boolean getConfirmed()
+    {
+        return isConfirmed;
     }
 
     @Override

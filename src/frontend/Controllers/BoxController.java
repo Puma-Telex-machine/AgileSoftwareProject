@@ -184,8 +184,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
      */
     public void dragBox(double x, double y)
     {
-        variableEditor.setVisible(false);
-        methodEditor.setVisible(false);
+        closeAttributeEditors();
         if (!moving) {
             offsetX = x;
             offsetY = y;

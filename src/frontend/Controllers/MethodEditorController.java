@@ -79,6 +79,7 @@ public class MethodEditorController extends AnchorPane {
     @FXML
     public void ConfirmMethod()
     {
+        methodData.confirmMethod();
         methodData.setName(nameField.getText());
 
         //Gets the arguments for the method data
@@ -94,6 +95,7 @@ public class MethodEditorController extends AnchorPane {
         methodData.setType(returnTypeField.getText());
 
         argumentVBox.getChildren().clear();
+        methodData =  null;
         this.setVisible(false);
     }
 

@@ -1,23 +1,48 @@
 <CLASS>
   name=Class
-  xposition=24
-  yposition=6
+  xposition=21
+  yposition=9
   visibility=PUBLIC
   <METHOD>
     visibility=PUBLIC
     type=void
     name=method
-    <PARAMETER>
-      name=test
-    <!PARAMETER>
-    <PARAMETER>
-      name=hmm
-    <!PARAMETER>
-    <PARAMETER>
-      name=oke
-    <!PARAMETER>
-    <PARAMETER>
-      name=ait
-    <!PARAMETER>
   <!METHOD>
+  <METHOD>
+    visibility=PUBLIC
+    type=void
+    name=method
+  <!METHOD>
+  <METHOD>
+    visibility=PUBLIC
+    type=void
+    name=method
+  <!METHOD>
+  <METHOD>
+    visibility=PUBLIC
+    type=void
+    name=method
+  <!METHOD>
+  <METHOD>
+    visibility=PUBLIC
+    type=void
+    name=method
+  <!METHOD>
+  <ATTRIBUTE>
+    visibility=PRIVATE
+    type=int
+    name=foo
+  <!ATTRIBUTE>
 <!CLASS>
+<CLASS>
+  name=Class
+  xposition=14
+  yposition=11
+  visibility=PUBLIC
+<!CLASS>
+<INTERFACE>
+  name=Interface
+  xposition=15
+  yposition=5
+  visibility=PUBLIC
+<!INTERFACE>

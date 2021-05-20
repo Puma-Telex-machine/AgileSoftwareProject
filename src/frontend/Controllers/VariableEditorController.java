@@ -40,7 +40,7 @@ public class VariableEditorController extends AnchorPane {
     AttributeFacade variable;
 
     @FXML
-    private void deleteVariable() //This method is called when the player wants to delete the variable
+    public void deleteVariable() //This method is called when the player wants to delete the variable
     {
         box.deleteAttribute(variable);
         this.setVisible(false);
@@ -49,6 +49,7 @@ public class VariableEditorController extends AnchorPane {
     @FXML
     private void confirmVariable() //This method is called when the player wants to confirm and stop editing this variable
     {
+        variable.confirmAttribute();
         variable.setName(nameField.getText());
 
         Visibility visibility = (Visibility) accessComboBox.getValue();
@@ -56,6 +57,7 @@ public class VariableEditorController extends AnchorPane {
 
         variable.setType(typeField.getText());
 
+        variable = null;
         this.setVisible(false);
     }
 

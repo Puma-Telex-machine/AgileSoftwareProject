@@ -18,7 +18,7 @@ public class Attribute implements AttributeFacade, Observable<Observer> {
     private final Set<Modifier> modifiers = new HashSet<>();
     private Visibility visibility = Visibility.PRIVATE;
     private String type = "int";
-
+    private boolean isConfirmed = false;
     //region OBSERVABLE
     Observers observers = new Observers();
 
@@ -34,6 +34,17 @@ public class Attribute implements AttributeFacade, Observable<Observer> {
         observers.update();
     }
 
+    @Override
+    public void confirmAttribute()
+    {
+        isConfirmed = true;
+    }
+
+    public boolean getConfirmed()
+    {
+        return isConfirmed;
+    }
+    
     @Override
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
