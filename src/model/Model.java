@@ -3,13 +3,16 @@ package model;
 import global.point.ScaledPoint;
 import model.boxes.Box;
 import model.boxes.BoxFacade;
+import model.boxes.BoxType;
 import model.diagram.Diagram;
 import model.diagram.ModelObserver;
 import model.facades.FileHandlerFacade;
 import model.facades.*;
 
+import model.relations.ArrowType;
 import model.relations.Relation;
 
+import javax.xml.crypto.Data;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -125,23 +128,56 @@ public class Model implements ModelFacade, FileHandlerFacade {
         updateUndo();
     }
 
+    @Override
+    public void saveAs(String name) {
+        diagram.setName(name);
+        Database.saveDiagram(diagram, "diagrams/", "");
+    }
+
+    @Override
+    public void deleteFile(String name) {
+        new File("diagrams/" + name + ".uml").delete();
+    }
+
+    //REGION templates
+    @Override
+    public String[] getAllTemplateNames(){
+        return Database.getAllFileNames("templates/");
+    }
+
     /**
      * Loads in a template file with the given name, then adds all boxes & relations to the current diagram
      * @param fileName The name of the file we want to load
      */
+    @Override
     public void loadTemplate(String fileName){
         saveUndoLayer();
         stopUndo();
         Diagram template = Database.loadDiagram("templates/", fileName, "");
         for(Box box : template.getAllBoxes()){
+            diagram.addBox(box);
             observers.forEach(diagramObserver -> diagramObserver.addBox(box));
         }
         for (Relation relation: template.getAllRelations()) {
+            diagram.addRelation(relation);
             observers.forEach(diagramObserver -> diagramObserver.addRelation(relation)); //todo
         }
         resumeUndo();
         //TODO: Sätt i databasen: System.out.println("loaded template " + fileName);
     }
+
+    @Override
+    public void saveTemplate(String name) {
+        diagram.setName(name);
+        Database.saveDiagram(diagram, "templates/", "");
+    }
+
+    @Override
+    public void deleteTemplate(String name) {
+        new File("templates/" + name + ".uml").delete();
+    }
+
+    //endregion
 
     /**
      * Creates an empty file with the name "new" + the first unused number, then loads the empty file

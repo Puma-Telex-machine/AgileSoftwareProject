@@ -29,7 +29,7 @@
             <Insets top="10.0" />
          </padding>
       </HBox>
-      <VBox layoutX="20.0" layoutY="129.0" prefHeight="511.0" prefWidth="193.0">
+      <VBox fx:id="templatesBox" layoutX="20.0" layoutY="129.0" prefHeight="511.0" prefWidth="193.0">
          <children>
             <Label styleClass="iconLighter">
                <graphic>

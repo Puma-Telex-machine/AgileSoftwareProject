@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import model.Model;
+import model.ModelFacade;
 import model.facades.FileHandlerFacade;
 
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class FilesController extends AnchorPane{
 
     SaveAsController saving = new SaveAsController();
 
-    Model model = Model.getModel();
+    ModelFacade model = Model.getModel();
 
     FileHandlerFacade fileHandler;
 

@@ -31,9 +31,19 @@ public class Diagram implements DiagramMediator, PathfindingMap, UndoChain {
      */
     public Box createBox(ScaledPoint position, BoxType boxType) {
         Box box = new Box(this, position, boxType);
-        updateBox(box);
         boxGrid.add(box);
+        updateBox(box);
         return box;
+    }
+
+    /**
+     * Adds a preexisting box to the diagram and runs updateBox.
+     * Used by the template system.
+     * @param box the box to be added
+     */
+    public void addBox(Box box){
+        boxGrid.add(box);
+        updateBox(box);
     }
 
     /**
@@ -65,6 +75,12 @@ public class Diagram implements DiagramMediator, PathfindingMap, UndoChain {
         relationGrid.refreshAllPaths();
         updateUndo();
         return relation;
+    }
+
+    public void addRelation(Relation relation){
+        relationGrid.add(relation);
+        relationGrid.refreshAllPaths();
+        updateUndo();
     }
 
     public void updateRelation(Relation relation) { //todo varför behöver vi en Relation för att calla den här?

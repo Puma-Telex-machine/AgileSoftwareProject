@@ -1,5 +1,7 @@
 package model.facades;
 
+import model.diagram.Diagram;
+
 public interface FileHandlerFacade {
 
     /**
@@ -17,7 +19,30 @@ public interface FileHandlerFacade {
     void loadFile(String fileName);
 
     /**
+     * Forcibly changes the name of the active diagram and saves it
+     * @param name The new name of the diagram
+     */
+    void saveAs(String name);
+
+    void deleteFile(String name);
+
+    /**
      * Creates a new empty file and loads it
      */
     void newFile();
+
+    String[] getAllTemplateNames();
+    /**
+     * Should find the right template to add to the canvas.
+     * @param name The name of the template to be added.
+     */
+    void loadTemplate(String name);
+
+    /**
+     * Should save the active diagram as a template
+     * @param name The name that the diagram should be saved as.
+     */
+    void saveTemplate(String name);
+
+    void deleteTemplate(String name);
 }

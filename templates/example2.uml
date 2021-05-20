@@ -1,0 +1,21 @@
+<CLASS>
+  name=Class
+  xposition=28
+  yposition=8
+  visibility=PUBLIC
+<!CLASS>
+<CLASS>
+  name=Class
+  xposition=15
+  yposition=11
+  visibility=PUBLIC
+<!CLASS>
+<RELATION>
+  from=1
+  xOffsetFrom=0
+  yOffsetFrom=-5
+  to=0
+  xOffsetTo=0
+  yOffsetTo=-5
+  type=ASSOCIATION
+<!RELATION>

@@ -361,6 +361,9 @@ public class Database {
 
     public static String[] getAllFileNames(String foldername) {
         File folder = new File(foldername);
+        if(!directoryCheck(foldername)){
+            folder.mkdir();
+        }
         File[] matchingFiles = folder.listFiles((dir, name) ->  name.endsWith(".uml"));
         if(matchingFiles.length != 0) {
             String[] result = new String[matchingFiles.length];

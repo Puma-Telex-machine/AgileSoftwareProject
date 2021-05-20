@@ -49,7 +49,7 @@ public class BaseController extends AnchorPane {
         shapes = new ShapeController(canvas);
         overview = new OverviewController();
         exercises = new ExercisesController();
-        templates = new TemplatesController();
+        templates = new TemplatesController(ModelFacade.getFileHandler(), canvas);
 
         leftMenu.getChildren().add(files);
         leftMenu.getChildren().add(shapes);
