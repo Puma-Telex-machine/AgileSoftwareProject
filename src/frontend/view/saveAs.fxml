@@ -7,42 +7,53 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" styleClass="leftSideMenu" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="334.0" styleClass="highlight" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="43.0" layoutY="86.0" styleClass="text-medium" text="Save As:" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="50.0" />
-      <TextField layoutX="154.0" layoutY="84.0" prefHeight="25.0" prefWidth="365.0" styleClass="lighter" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="50.0" />
-      <CheckBox layoutX="41.0" layoutY="249.0" mnemonicParsing="false" styleClass="text-medium" stylesheets="@css/DarkMode.css" text="As template" wrapText="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="100.0">
+      <Label layoutX="43.0" layoutY="86.0" styleClass="text-medium" text="Save As:" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="25.0" />
+      <TextField layoutX="154.0" layoutY="84.0" prefHeight="25.0" prefWidth="365.0" styleClass="lighter" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="20.0" />
+      <CheckBox layoutX="39.0" layoutY="103.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="125.0" styleClass="text-medium" stylesheets="@css/DarkMode.css" text="As template" wrapText="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="55.0">
          <tooltip>
             <Tooltip text="Check box to save diagram as a template" />
-         </tooltip></CheckBox>
-      <Label layoutX="362.0" layoutY="9.0" onMouseClicked="#minimize" prefHeight="17.0" prefWidth="11.0" rotate="180.0" stylesheets="@css/DarkMode.css" text="X" textAlignment="RIGHT" textFill="#b8b8b8" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="13.0">
+         </tooltip>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill></CheckBox>
+      <Label layoutX="362.0" layoutY="9.0" onMouseClicked="#minimize" prefHeight="17.0" prefWidth="11.0" rotate="180.0" stylesheets="@css/DarkMode.css" text="X" textAlignment="RIGHT" textFill="#b8b8b8" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <font>
             <Font size="25.0" />
          </font>
          <styleClass>
-            <String fx:value="lighter" />
+            <String fx:value="iconLighter" />
             <String fx:value="text-medium" />
          </styleClass>
          <tooltip>
             <Tooltip text="Close the dialog box" />
          </tooltip>
       </Label>
-      <Button layoutX="27.0" layoutY="253.0" mnemonicParsing="false" onMouseClicked="#minimize" prefHeight="30.0" prefWidth="100.0" stylesheets="@css/DarkMode.css" text="CANCEL" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0">
-         <styleClass>
-            <String fx:value="highlight-red" />
-            <String fx:value="text-small" />
-         </styleClass>
+      <Button layoutX="27.0" layoutY="253.0" mnemonicParsing="false" onMouseClicked="#minimize" prefHeight="30.0" prefWidth="80.0" styleClass="highlight-red" stylesheets="@css/DarkMode.css" text="Cancel" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0">
          <tooltip>
             <Tooltip text="Cancel and close dialog box" />
          </tooltip>
       </Button>
-      <Button fx:id="save_button" layoutX="322.0" layoutY="249.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" stylesheets="@css/DarkMode.css" text="SAVE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="40.0">
-         <styleClass>
-            <String fx:value="highlight-green" />
-            <String fx:value="text-small" />
-         </styleClass>
+      <Button fx:id="save_button" layoutX="37.0" layoutY="263.0" mnemonicParsing="false" onMouseClicked="#minimize" prefHeight="30.0" prefWidth="80.0" styleClass="highlight-green" stylesheets="@css/DarkMode.css" text="Save" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="40.0">
          <tooltip>
             <Tooltip text="Save diagram" />
          </tooltip>

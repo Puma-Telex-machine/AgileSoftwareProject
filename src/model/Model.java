@@ -6,10 +6,8 @@ import model.boxes.BoxFacade;
 import model.diagram.Diagram;
 import model.diagram.ModelObserver;
 import model.facades.FileHandlerFacade;
-import model.boxes.BoxType;
 import model.facades.*;
 
-import model.relations.ArrowType;
 import model.relations.Relation;
 
 import java.io.File;

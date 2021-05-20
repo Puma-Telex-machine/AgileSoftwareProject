@@ -105,7 +105,7 @@
     -fx-border-width: 1;
 
     -fx-alignment: "Center";
-    -fx-font-size: 20px;
+    /*-fx-font-size: 20px;*/
     -fx-font-family: "Roboto";
 
    /*-fx-text-fill: "#000000";*/
@@ -116,7 +116,6 @@
 .highlight-green :pressed{
     -fx-background-color: "#40B815";
 }
-
 
 .highlight-red {
     -fx-fill: "#BA0C0C";
@@ -134,7 +133,6 @@
     -fx-text-fill: "BBBBBB";
     -fx-background-color: "#A40A0A";
 }
-
 
 .combo-box-base{
     -fx-border-width : 1;
@@ -205,4 +203,24 @@
 .line{
     -fx-stroke-width: 1px;
     -fx-stroke: "DBDBDB";
+}
+
+.buttons {
+    -fx-fill: "#FFFFFF";
+    -fx-background-color: "#929292";
+    -fx-border-color: "#000000";
+    -fx-border-width: 1;
+    -fx-text-fill: "DBDBDB";
+}
+
+.buttons:hover {
+    -fx-background-color: "#9f9f9f";
+}
+
+.buttons:pressed {
+    -fx-background-color: "#868686";
+}
+
+.checkbox {
+    -fx-border-color: "#DBDBDB";
 }

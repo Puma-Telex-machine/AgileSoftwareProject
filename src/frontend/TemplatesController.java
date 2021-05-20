@@ -1,16 +1,15 @@
 package frontend;
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class SaveAsController extends AnchorPane {
+public class TemplatesController extends AnchorPane {
 
-    public SaveAsController() {
+    public TemplatesController() {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("view/saveAs.fxml"));
+                getClass().getResource("view/templates.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -20,10 +19,5 @@ public class SaveAsController extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-    }
-
-    @FXML
-    private void minimize(){
-        this.setVisible(false);
     }
 }

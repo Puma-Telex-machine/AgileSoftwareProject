@@ -1,9 +1,7 @@
 package frontend;
 
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import model.ModelFacade;
@@ -32,6 +30,8 @@ public class BaseController extends AnchorPane {
 
     ExercisesController exercises;
 
+    TemplatesController templates;
+
     public BaseController() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Base.fxml")));
         fxmlLoader.setRoot(this);
@@ -49,15 +49,18 @@ public class BaseController extends AnchorPane {
         shapes = new ShapeController(canvas);
         overview = new OverviewController();
         exercises = new ExercisesController();
+        templates = new TemplatesController();
 
         leftMenu.getChildren().add(files);
         leftMenu.getChildren().add(shapes);
         leftMenu.getChildren().add(overview);
         leftMenu.getChildren().add(exercises);
+        leftMenu.getChildren().add(templates);
         LockPane(files);
         LockPane(shapes);
         LockPane(overview);
         LockPane(exercises);
+        LockPane(templates);
         minimizeMenu();
         UML.getChildren().add(canvas);
         LockPane(canvas);
@@ -78,6 +81,7 @@ public class BaseController extends AnchorPane {
         overview.setVisible(false);
         exercises.setVisible(false);
         leftMenu.setVisible(false);
+        templates.setVisible(false);
         leftMenu.toBack();
     }
 
@@ -101,6 +105,9 @@ public class BaseController extends AnchorPane {
     private void openExercises() {
         openMenuItem(exercises);
     }
+
+    @FXML
+    private void openTemplates(){ openMenuItem(templates); }
 
     /**
      * Opens a left side menu
