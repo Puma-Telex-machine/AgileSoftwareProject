@@ -169,13 +169,11 @@ public class Relation implements RelationFacade {
     @Override
     public void setNrTo(String nrTo) {
         this.nrTo=nrTo;
-        updateObserver();
     }
 
     @Override
     public void setNrFrom(String nrFrom) {
         this.nrFrom=nrFrom;
-        updateObserver();
     }
 
     public BoxFacade getFrom() {

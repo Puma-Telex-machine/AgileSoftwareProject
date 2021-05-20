@@ -1,24 +1,12 @@
 <CLASS>
-  name=asdasdasdaskbdhhkasdhkvadshkvdaskh
-  xposition=15
-  yposition=4
+  name=Class
+  xposition=14
+  yposition=7
   visibility=PUBLIC
-  <METHOD>
-    visibility=PUBLIC
-    type=void
-    name=method
-  <!METHOD>
-  <METHOD>
-    visibility=PUBLIC
-    type=void
-    name=method
-    <PARAMETER>
-      name=asdasdasdasdasd
-    <!PARAMETER>
-  <!METHOD>
-  <ATTRIBUTE>
-    visibility=PRIVATE
-    type=int
-    name=foo
-  <!ATTRIBUTE>
+<!CLASS>
+<CLASS>
+  name=Class
+  xposition=23
+  yposition=7
+  visibility=PUBLIC
 <!CLASS>

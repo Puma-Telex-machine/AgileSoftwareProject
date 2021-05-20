@@ -303,7 +303,8 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
 
     private void openArrowMenu(double x, double y) {
         arrowTypeComboBox.getSelectionModel().select(clickedRelations.get(0).getArrowType());
-        //todo add nrTo and from to textfields
+        nrFromField.setText(clickedRelations.get(0).getNrFrom());
+        nrToField.setText(clickedRelations.get(0).getNrTo());
         menuPane.setVisible(true);
         menuPane.toFront();
         arrowMenu.setLayoutX(x);
@@ -369,9 +370,9 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
         String nrFrom = nrFromField.getText();
         String nrTo = nrToField.getText();
         for (RelationFacade r: clickedRelations) {
-            r.changeRelationType(type);
             r.setNrTo(nrTo);
             r.setNrFrom(nrFrom);
+            r.changeRelationType(type);
         }
         closeMenu();
     }

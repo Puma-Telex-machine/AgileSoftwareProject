@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41a11e1e-bf49-4b51-8834-c840eb7c8781" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/untitled.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/untitled.uml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/Controllers/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/CanvasController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/diagram/Diagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/Diagram.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/diagram/RelationGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/RelationGrid.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/relations/Relation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/Relation.java" afterDir="false" />
@@ -32,9 +35,9 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="jar://$PATH_TO_FX$/javafx.fxml.jar!/javafx/fxml/FXMLLoader.class" root0="SKIP_INSPECTION" />
-    <setting file="jar://$PATH_TO_FX$/javafx.graphics.jar!/javafx/scene/Scene.class" root0="SKIP_INSPECTION" />
     <setting file="jar://$PATH_TO_FX$/javafx.base.jar!/javafx/event/Event.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PATH_TO_FX$/javafx.graphics.jar!/javafx/scene/Scene.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PATH_TO_FX$/javafx.fxml.jar!/javafx/fxml/FXMLLoader.class" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectId" id="1rWF7l8QkerBb0EMeKy43SosIen" />
   <component name="ProjectViewState">
@@ -138,7 +141,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/frontend/Controllers/CanvasController.java</url>
-          <line>344</line>
+          <line>345</line>
           <properties class="frontend.Controllers.CanvasController">
             <option name="EMULATED" value="true" />
           </properties>
