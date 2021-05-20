@@ -76,10 +76,6 @@ public class Relation implements RelationFacade {
     }
 
     private void updateObserver() {
-        if (to.isDeleted() || from.isDeleted()) {
-            this.isDeleted = true;
-            diagram.removeRelation(this);
-        }
         for (RelationObserver o : observers) {
             o.update(this);
         }
@@ -130,6 +126,14 @@ public class Relation implements RelationFacade {
     @Override
     public ScaledPoint getOffsetTo() {
         return offsetTo;
+    }
+
+    public void removeIfDisconnected() {
+        if (to.isDeleted() || from.isDeleted()) {
+            this.isDeleted = true;
+            diagram.removeRelation(this);
+            updateObserver();
+        }
     }
 
     @Override

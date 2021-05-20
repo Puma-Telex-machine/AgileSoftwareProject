@@ -5,7 +5,6 @@ import global.point.ScaledPoint;
 import model.relations.Relation;
 
 import java.util.*;
-import java.util.function.BiConsumer;
 
 public class RelationGrid {
 
@@ -39,7 +38,7 @@ public class RelationGrid {
         //todo: runs twice on creation of box
 
         relationMap = new TreeMap<>();
-        for (Relation r : new ArrayList<>(relations)) {
+        for (Relation r : relations) {
             calculatePath(r);
         }
     }
@@ -99,6 +98,11 @@ public class RelationGrid {
 
     public void remove(Relation relation) {
         relations.remove(relation);
-        relationMap.forEach((scaledPoint, pathNodes) -> pathNodes.removeIf(p -> p.relation == relation));
+    }
+
+    public void removeDisconnectedRelations() {
+        for (Relation r : new ArrayList<>(relations)) {
+            r.removeIfDisconnected();
+        }
     }
 }

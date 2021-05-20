@@ -2,36 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41a11e1e-bf49-4b51-8834-c840eb7c8781" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/frontend/Controllers/RecentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/frontend/Controllers/saveAsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diagrams/untitled.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/untitled.uml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AgileSoftwareProject/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AgileSoftwareProject/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/AnchorPointController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/AnchorPointController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/Arrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/Arrow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/BaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/BoxAttributeTextController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/BoxAttributeTextController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/BoxController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/BoxPressedListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/BoxPressedListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/CanvasController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/ExercisesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/ExercisesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/ExercisesMenuItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/ExercisesMenuItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/FileMenuItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/FileMenuItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/FilesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/FilesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/MethodArgumentEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/MethodArgumentEditorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/MethodEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/MethodEditorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/Observers/ArrowObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Observers/ArrowObserver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/OverviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/OverviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/SelectionBoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/SelectionBoxController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/ShapeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/ShapeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/TestPointController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/TestPointController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/VariableEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/VariableEditorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Base.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/MethodArgumentEditor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/MethodArgumentEditor.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/css/DarkMode.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/css/DarkMode.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/recent_work.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/recent_work.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view/shapes.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/shapes.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/diagram/Diagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/Diagram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/diagram/RelationGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/RelationGrid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/relations/Relation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/Relation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,9 +32,9 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="jar://$PATH_TO_FX$/javafx.base.jar!/javafx/event/Event.class" root0="SKIP_INSPECTION" />
-    <setting file="jar://$PATH_TO_FX$/javafx.graphics.jar!/javafx/scene/Scene.class" root0="SKIP_INSPECTION" />
     <setting file="jar://$PATH_TO_FX$/javafx.fxml.jar!/javafx/fxml/FXMLLoader.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PATH_TO_FX$/javafx.graphics.jar!/javafx/scene/Scene.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PATH_TO_FX$/javafx.base.jar!/javafx/event/Event.class" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectId" id="1rWF7l8QkerBb0EMeKy43SosIen" />
   <component name="ProjectViewState">
@@ -166,7 +139,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/frontend/Controllers/CanvasController.java</url>
           <line>344</line>
-          <properties class="frontend.CanvasController" method="deleteArrow">
+          <properties class="frontend.Controllers.CanvasController">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="11" />
