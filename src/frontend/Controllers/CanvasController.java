@@ -1,4 +1,4 @@
-package frontend;
+package frontend.Controllers;
 
 import frontend.Observers.ArrowObserver;
 import javafx.event.Event;
@@ -15,7 +15,6 @@ import model.boxes.BoxType;
 import model.diagram.DiagramFacade;
 import model.diagram.DiagramObserver;
 import model.boxes.BoxFacade;
-import model.relations.Relation;
 import model.relations.RelationFacade;
 import model.relations.RelationObserver;
 import global.point.Scale;
@@ -49,7 +48,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
     private Rectangle selectionRectangle;
 
     public CanvasController() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Canvas.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("..//view/Canvas.fxml")));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

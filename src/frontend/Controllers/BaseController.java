@@ -1,9 +1,7 @@
-package frontend;
+package frontend.Controllers;
 
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import model.ModelFacade;
@@ -32,8 +30,10 @@ public class BaseController extends AnchorPane {
 
     ExercisesController exercises;
 
+    RecentController recent;
+
     public BaseController() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Base.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("../view/Base.fxml")));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -45,19 +45,23 @@ public class BaseController extends AnchorPane {
 
         canvas = new CanvasController();
         model = ModelFacade.getModel();
+
         files = new FilesController(ModelFacade.getFileHandler(), canvas);
         shapes = new ShapeController(canvas);
         overview = new OverviewController();
         exercises = new ExercisesController();
+        recent = new RecentController(ModelFacade.getFileHandler());
 
         leftMenu.getChildren().add(files);
         leftMenu.getChildren().add(shapes);
         leftMenu.getChildren().add(overview);
         leftMenu.getChildren().add(exercises);
+        leftMenu.getChildren().add(recent);
         LockPane(files);
         LockPane(shapes);
         LockPane(overview);
         LockPane(exercises);
+        LockPane(recent);
         minimizeMenu();
         UML.getChildren().add(canvas);
         LockPane(canvas);
@@ -77,6 +81,7 @@ public class BaseController extends AnchorPane {
         shapes.setVisible(false);
         overview.setVisible(false);
         exercises.setVisible(false);
+        recent.setVisible(false);
         leftMenu.setVisible(false);
         leftMenu.toBack();
     }
@@ -84,6 +89,11 @@ public class BaseController extends AnchorPane {
     // open Menus
     @FXML
     private void openRecent() {
+        openMenuItem(recent);
+    }
+
+    @FXML
+    private void openFiles() {
         openMenuItem(files);
     }
 

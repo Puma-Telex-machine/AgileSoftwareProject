@@ -1,11 +1,9 @@
-package frontend;
+package frontend.Controllers;
 
 import frontend.Observers.ArrowObservable;
 import frontend.Observers.ArrowObserver;
 import global.Observer;
 import global.TextWidthCalculator;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -15,9 +13,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
 import javafx.scene.shape.Line;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextBoundsType;
 import model.facades.AttributeFacade;
 import model.boxes.BoxFacade;
 import model.facades.MethodFacade;
@@ -60,7 +55,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
 
     public BoxController(BoxFacade box, VariableEditorController VEC, MethodEditorController MEC, ArrowObserver arrowObserver) {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Box.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("..//view/Box.fxml")));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

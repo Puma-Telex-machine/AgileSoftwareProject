@@ -1,10 +1,9 @@
-package frontend;
+package frontend.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
-import model.ModelFacade;
 import model.boxes.BoxType;
 import global.point.Scale;
 import global.point.ScaledPoint;
@@ -19,7 +18,7 @@ public class ShapeController extends AnchorPane {
 
     public ShapeController(CanvasController canvas) {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("view/shapes.fxml"));
+                getClass().getResource("..//view/shapes.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

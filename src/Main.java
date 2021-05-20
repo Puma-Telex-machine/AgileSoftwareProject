@@ -1,13 +1,10 @@
-import frontend.BaseController;
+import frontend.Controllers.BaseController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-//import viewmodel.frontend.BaseController;
+//import viewmodel.frontend.Controllers.BaseController;
 
-import java.awt.event.KeyEvent;
-import java.util.Objects;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

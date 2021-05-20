@@ -1,4 +1,4 @@
-package frontend;
+package frontend.Controllers;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -12,7 +12,7 @@ public class SelectionBoxController extends AnchorPane {
     public SelectionBoxController()
     {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("view/SelectionBox.fxml"));
+                getClass().getResource("..//view/SelectionBox.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

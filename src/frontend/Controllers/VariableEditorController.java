@@ -1,4 +1,4 @@
-package frontend;
+package frontend.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +15,7 @@ public class VariableEditorController extends AnchorPane {
 
 
     public VariableEditorController(){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/VariableEditor.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("..//view/VariableEditor.fxml")));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
