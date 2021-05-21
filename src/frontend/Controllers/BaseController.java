@@ -130,6 +130,8 @@ public class BaseController extends AnchorPane {
         }
     }
 
+    private  boolean ctrlKey = false;
+
     /**
      * Is called when the user presses a key
      * 
@@ -137,15 +139,41 @@ public class BaseController extends AnchorPane {
      */
     public void onKeyPressed(KeyEvent e) {
         switch (e.getCode()) {
+            case CONTROL:
+                ctrlKey = true;
+                break;
             case SHIFT:
                 canvas.startAddSelect();
                 break;
             case DELETE:
                 canvas.deleteSelectedBoxes();
                 break;
+            case Z:
+                if(ctrlKey) undo();
+                break;
+            case Y:
+                if (ctrlKey) redo();
         }
         e.consume();
     }
+
+    /**
+     * Is called when the user releases a key
+     *
+     * @param e The key-release event
+     */
+    public void onKeyReleased(KeyEvent e) {
+        switch (e.getCode()) {
+            case SHIFT:
+                canvas.endAddSelect();
+                break;
+            case CONTROL:
+                ctrlKey = false;
+                break;
+        }
+        e.consume();
+    }
+
     @FXML
     private void undo(){
         /*if(model.canUndo()) {
@@ -160,19 +188,5 @@ public class BaseController extends AnchorPane {
             canvas.clearBoxes();
             model.loadRedoLayer();
         }*/
-    }
-
-    /**
-     * Is called when the user releases a key
-     * 
-     * @param e The key-release event
-     */
-    public void onKeyReleased(KeyEvent e) {
-        switch (e.getCode()) {
-            case SHIFT:
-                canvas.endAddSelect();
-                break;
-        }
-        e.consume();
     }
 }
