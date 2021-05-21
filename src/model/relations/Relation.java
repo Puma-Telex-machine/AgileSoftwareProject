@@ -121,6 +121,7 @@ public class Relation implements RelationFacade {
     @Override
     public void remove() {
         diagram.removeRelation(this);
+        this.isDeleted = true;
     }
 
     public BoxFacade getTo() {
@@ -146,6 +147,7 @@ public class Relation implements RelationFacade {
     @Override
     public void changeRelationType(ArrowType type) {
         this.arrowType = type;
+        diagram.updateRelation(this);
         updateObserver();
     }
 

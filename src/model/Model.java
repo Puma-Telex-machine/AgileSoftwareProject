@@ -192,7 +192,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
 
 
     //REGION Undo/Redo
-    private int undoLayer = -1; //the suffix of the file to be loaded on undo
+    private int undoLayer = 0; //the suffix of the file to be loaded on undo
     private int redoLayer = 1; // the suffix of the file to be loaded on redo
     private int maxUndo = 0; //the highest existing relevant layer of undo
     private Boolean undoActive = true;
@@ -232,7 +232,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
     public void loadUndoLayer(){
         if(Database.directoryCheck("temp/") && canUndo()){
             stopUndo();
-            new File("temp/" + diagram.getName() + (undoLayer + 1) + ".uml").deleteOnExit();
+            System.out.println("loading undolayer" + undoLayer);
             diagram = Database.loadDiagram("temp/", diagram.getName(), Integer.toString(undoLayer));
             diagram.setObserver(this);
             for(Box box : diagram.getAllBoxes()){
@@ -250,6 +250,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
     public void loadRedoLayer(){
         if(Database.directoryCheck("temp/") && canRedo()){
             stopUndo();
+            System.out.println("loading redolayer" + redoLayer);
             diagram = Database.loadDiagram("temp/", diagram.getName(), Integer.toString(redoLayer));
             diagram.setObserver(this);
             for(Box box : diagram.getAllBoxes()){
@@ -266,7 +267,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
 
 
     public Boolean canUndo(){
-        return undoLayer >= 0;
+        return undoLayer > 0;
     }
 
     public Boolean canRedo(){

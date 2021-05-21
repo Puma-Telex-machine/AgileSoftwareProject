@@ -53,7 +53,6 @@ public class Diagram implements DiagramMediator, PathfindingMap, UndoChain {
      * 3. Saves the diagram.
      * @param box the box to be updated
      */
-
     public void updateBox(Box box) {
         boxGrid.update(box);
         relationGrid.refreshAllPaths();

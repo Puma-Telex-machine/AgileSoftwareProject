@@ -384,13 +384,33 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
      */
     public void clearBoxes() {
         List<BoxController> tmp = boxes;
-        for (int i = 0; i < tmp.size(); i++) {
-            deleteBox(tmp.get((i)));
+        while(!tmp.isEmpty()){
+            deleteBox(tmp.get(0));
         }
-        tmp.clear();
-        boxes.clear();
+        /*
+        for(int i = 0; i < tmp.size(); i++){
+            deleteBox(tmp.get(i));
+        }
+         */
+        //tmp.clear();
+        //boxes.clear();
         selection.clear();
         //this.getChildren().clear(); todo this kills contextmenu & editors
+    }
+
+    /**
+     * Clears all arrows from the current canvas
+     */
+    public void clearArrows(){
+        while(!relationMap.isEmpty()){
+            Arrow a = arrows.get(0);
+            RelationFacade r = arrowMap.get(a);
+            this.getChildren().remove(a);
+            arrows.remove(a);
+            r.remove();
+            relationMap.remove(r);
+            arrowMap.remove(a);
+        }
     }
 
     private boolean multiSelect = false;

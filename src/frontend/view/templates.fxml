@@ -14,47 +14,8 @@
 <fx:root id="pane2" fx:id="pane2" prefHeight="900.0" prefWidth="220.0" style="-fx-background-color: #3E4046;" stylesheets="@css/DarkMode.css" type="Pane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="20.0" layoutY="33.0" prefHeight="29.0" prefWidth="136.0" styleClass="leftSideMenu-textLarge" stylesheets="@css/DarkMode.css" text="TEMPLATES" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="30.0" />
-      <HBox layoutY="79.0" prefHeight="50.0" prefWidth="220.0">
-         <children>
-            <Button mnemonicParsing="false" styleClass="buttons" stylesheets="@css/DarkMode.css" text="SAVE TEMPLATE" textAlignment="CENTER" wrapText="true">
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin>
-               <tooltip>
-                  <Tooltip text="Save diagram as a template" />
-               </tooltip>
-            </Button>
-         </children>
-         <padding>
-            <Insets top="10.0" />
-         </padding>
-      </HBox>
       <VBox fx:id="templatesBox" layoutX="20.0" layoutY="129.0" prefHeight="511.0" prefWidth="193.0">
          <children>
-            <Label styleClass="iconLighter">
-               <graphic>
-                  <ImageView fitHeight="74.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter">
-                     <image>
-                        <Image url="@Resources/template0@4x.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-            <Label styleClass="iconLighter">
-               <graphic>
-                  <ImageView fitHeight="74.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter">
-                     <image>
-                        <Image url="@Resources/template0@4x.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <VBox.margin>
-                  <Insets top="30.0" />
-               </VBox.margin>
-            </Label>
          </children>
       </VBox>
    </children>
