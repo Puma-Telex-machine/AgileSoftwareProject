@@ -64,7 +64,7 @@ public class BaseController extends AnchorPane {
         LockPane(recent);
         minimizeMenu();
         UML.getChildren().add(canvas);
-        LockPane(canvas);
+        //LockPane(canvas);
 
     }
 
@@ -153,6 +153,7 @@ public class BaseController extends AnchorPane {
                 break;
             case Y:
                 if (ctrlKey) redo();
+                break;
         }
         e.consume();
     }

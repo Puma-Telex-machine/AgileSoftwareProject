@@ -5,6 +5,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/diagrams/untitled.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/untitled.uml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/Controllers/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/Controllers/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/CanvasController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Base.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/view/Canvas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view/Canvas.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

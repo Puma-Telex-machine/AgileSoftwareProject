@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root onContextMenuRequested="#handleContextMenu" onMouseClicked="#handleArrowMenu" onMouseMoved="#dragArrow" prefHeight="1000.0" prefWidth="3000.0" styleClass="background" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root onContextMenuRequested="#handleContextMenu" onMouseClicked="#handleArrowMenu" onMouseMoved="#dragArrow" prefHeight="20000.0" prefWidth="20000.0" styleClass="background" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane fx:id="menuPane" onContextMenuRequested="#closeMenu" onMouseClicked="#closeMenu" prefHeight="1000.0" prefWidth="3000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
