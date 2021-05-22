@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import model.Model;
+import model.ModelFacade;
 import model.facades.FileHandlerFacade;
 
 import java.io.IOException;
@@ -15,7 +16,9 @@ public class FilesController extends AnchorPane{
     @FXML
     VBox filesBox;
 
-    Model model = Model.getModel();
+    SaveAsController saving = new SaveAsController();
+
+    ModelFacade model = Model.getModel();
 
     FileHandlerFacade fileHandler;
 
@@ -40,6 +43,8 @@ public class FilesController extends AnchorPane{
             FileMenuItemController file = new FileMenuItemController(files[i], fileHandler, canvas);
             filesBox.getChildren().add(file);
         }
+        filesBox.getChildren().add(saving);
+        saving.setVisible(false);
     }
 
     @FXML
@@ -47,4 +52,7 @@ public class FilesController extends AnchorPane{
     {
         fileHandler.newFile();
     }
+
+    @FXML
+    private void openSave(){saving.setVisible(true);}
 }

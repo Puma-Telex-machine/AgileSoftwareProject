@@ -13,8 +13,7 @@ import javafx.scene.paint.Color;
 import model.Model;
 import model.ModelFacade;
 import model.boxes.BoxType;
-import model.diagram.DiagramFacade;
-import model.diagram.DiagramObserver;
+import model.diagram.ModelObserver;
 import model.boxes.BoxFacade;
 import model.relations.RelationFacade;
 import model.relations.RelationObserver;
@@ -28,7 +27,7 @@ import java.util.*;
 import java.util.List;
 import javafx.scene.shape.Rectangle;
 
-public class CanvasController extends AnchorPane implements DiagramObserver, ArrowObserver, RelationObserver, BoxPressedListener {
+public class CanvasController extends AnchorPane implements ModelObserver, ArrowObserver, RelationObserver, BoxPressedListener {
 
     VariableEditorController variableEditor;
     MethodEditorController methodEditor;
@@ -41,7 +40,6 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
     private TextField nrToField,nrFromField;
 
     ModelFacade model = Model.getModel();
-    DiagramFacade diagram = model.getDiagram();
 
     List<BoxController> boxes = new ArrayList<>();
 
@@ -76,8 +74,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
         arrowMenu.setVisible(false);
         contextMenu.setVisible(false);
 
-        diagram.subscribe(this);
-        //model.addObserver(this);
+        model.subscribe(this);
         clearSelection();
 
         selectionRectangle = new Rectangle();
@@ -182,10 +179,9 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
             //box == arrowBox => aborting arrowcreation
             if (box != arrowBox) {
 
-
                 ScaledPoint offsetTo = new ScaledPoint(Scale.Frontend, Math.round((p.x - box.getLayoutX())/Scale.Frontend.xScale) * Scale.Frontend.xScale, Math.round((p.y - box.getLayoutY())/Scale.Frontend.yScale)* Scale.Frontend.xScale);
                 ScaledPoint offsetFrom = new ScaledPoint(Scale.Frontend, Math.round((arrowStart.x - arrowBox.getLayoutX())/Scale.Frontend.xScale) * Scale.Frontend.xScale, Math.round((arrowStart.y - arrowBox.getLayoutY())/Scale.Frontend.yScale)* Scale.Frontend.xScale);
-                diagram.createRelation(arrowBox.getBox(), offsetFrom, box.getBox(), offsetTo, ArrowType.ASSOCIATION);
+                model.createRelation(arrowBox.getBox(), offsetFrom, box.getBox(), offsetTo, ArrowType.ASSOCIATION);
             }
         }
         //start making arrow
@@ -288,7 +284,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
             //trying to merge dragarrow into existing arrow
             if (makingArrow) {
                 ScaledPoint offset = new ScaledPoint (Scale.Frontend,(int) (arrowStart.getX()-arrowBox.getLayoutX()),(int) (arrowStart.getY()-arrowBox.getLayoutY()));
-                diagram.createRelation(arrowBox.getBox(),offset,closest.get(0).getTo(),closest.get(0).getOffsetTo(), ArrowType.ASSOCIATION);
+                model.createRelation(arrowBox.getBox(),offset,closest.get(0).getTo(),closest.get(0).getOffsetTo(), ArrowType.ASSOCIATION);
             }
             else{
                 clickedRelations = closest;
@@ -329,7 +325,7 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
 
     @FXML
     private void handleContextAddBox(MouseEvent e, BoxType type) {
-        diagram.createBox(new ScaledPoint(Scale.Frontend, (int) contextMenu.getLayoutX() - 80, (int) contextMenu.getLayoutY() - 35), type);
+        model.createBox(new ScaledPoint(Scale.Frontend, (int) contextMenu.getLayoutX() - 80, (int) contextMenu.getLayoutY() - 35), type);
         closeMenu();
         e.consume();
     }
@@ -397,13 +393,33 @@ public class CanvasController extends AnchorPane implements DiagramObserver, Arr
      */
     public void clearBoxes() {
         List<BoxController> tmp = boxes;
-        for (int i = 0; i < tmp.size(); i++) {
-            deleteBox(tmp.get((i)));
+        while(!tmp.isEmpty()){
+            deleteBox(tmp.get(0));
         }
-        tmp.clear();
-        boxes.clear();
+        /*
+        for(int i = 0; i < tmp.size(); i++){
+            deleteBox(tmp.get(i));
+        }
+         */
+        //tmp.clear();
+        //boxes.clear();
         selection.clear();
-        this.getChildren().clear();
+        //this.getChildren().clear(); todo this kills contextmenu & editors
+    }
+
+    /**
+     * Clears all arrows from the current canvas
+     */
+    public void clearArrows(){
+        while(!relationMap.isEmpty()){
+            Arrow a = arrows.get(0);
+            RelationFacade r = arrowMap.get(a);
+            this.getChildren().remove(a);
+            arrows.remove(a);
+            r.remove();
+            relationMap.remove(r);
+            arrowMap.remove(a);
+        }
     }
 
     private boolean multiSelect = false;

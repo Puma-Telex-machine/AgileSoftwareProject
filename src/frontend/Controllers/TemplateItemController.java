@@ -8,7 +8,7 @@ import model.facades.FileHandlerFacade;
 
 import java.io.IOException;
 
-public class FileMenuItemController extends AnchorPane {
+public class TemplateItemController extends AnchorPane {
 
     @FXML
     Label nameLable;
@@ -19,9 +19,9 @@ public class FileMenuItemController extends AnchorPane {
 
     CanvasController canvas;
 
-    public FileMenuItemController(String fileName, FileHandlerFacade fileHandler, CanvasController canvas) {
+    public TemplateItemController(String fileName, FileHandlerFacade fileHandler, CanvasController canvas) {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("..//view/FileMenuItem.fxml"));
+                getClass().getResource("../view/TemplateMenuItem.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -39,15 +39,14 @@ public class FileMenuItemController extends AnchorPane {
     }
 
     @FXML
-    private void openFile()
+    private void openTemplate()
     {
-        canvas.clearBoxes();
-        fileHandler.loadFile(fileName);
+        fileHandler.loadTemplate(fileName);
     }
 
     @FXML
     private void deleteItem(){
-        fileHandler.deleteFile(fileName);
+        fileHandler.deleteTemplate(fileName);
         this.setVisible(false);
     }
 }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Relation implements RelationFacade {
-    private final DiagramMediator diagram;
+    private DiagramMediator diagram;
 
     private final BoxFacade to;
     private boolean onLeftSideOfTo = false;
@@ -132,6 +132,7 @@ public class Relation implements RelationFacade {
     @Override
     public void remove() {
         diagram.removeRelation(this);
+        this.isDeleted = true;
     }
 
     public BoxFacade getTo() {
@@ -180,9 +181,12 @@ public class Relation implements RelationFacade {
         return from;
     }
 
+    public ScaledPoint getOffsetFrom() {return offsetFrom;}
+
     @Override
     public void changeRelationType(ArrowType type) {
         this.arrowType = type;
+        diagram.updateRelation(this);
         updateObserver();
     }
 
@@ -283,6 +287,10 @@ public class Relation implements RelationFacade {
             default:
                 return null;
         }
+    }
+
+    public void setDiagram(DiagramMediator diagram) {
+        this.diagram = diagram;
     }
 }
    

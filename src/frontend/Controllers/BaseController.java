@@ -30,7 +30,7 @@ public class BaseController extends AnchorPane {
 
     ExercisesController exercises;
 
-    RecentController recent;
+    TemplatesController templates;
 
     public BaseController() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("../view/Base.fxml")));
@@ -50,18 +50,18 @@ public class BaseController extends AnchorPane {
         shapes = new ShapeController(canvas);
         overview = new OverviewController();
         exercises = new ExercisesController();
-        recent = new RecentController(ModelFacade.getFileHandler());
+        templates = new TemplatesController(ModelFacade.getFileHandler(), canvas);
 
         leftMenu.getChildren().add(files);
         leftMenu.getChildren().add(shapes);
         leftMenu.getChildren().add(overview);
         leftMenu.getChildren().add(exercises);
-        leftMenu.getChildren().add(recent);
+        leftMenu.getChildren().add(templates);
         LockPane(files);
         LockPane(shapes);
         LockPane(overview);
         LockPane(exercises);
-        LockPane(recent);
+        LockPane(templates);
         minimizeMenu();
         UML.getChildren().add(canvas);
         LockPane(canvas);
@@ -81,16 +81,12 @@ public class BaseController extends AnchorPane {
         shapes.setVisible(false);
         overview.setVisible(false);
         exercises.setVisible(false);
-        recent.setVisible(false);
         leftMenu.setVisible(false);
+        templates.setVisible(false);
         leftMenu.toBack();
     }
 
     // open Menus
-    @FXML
-    private void openRecent() {
-        openMenuItem(recent);
-    }
 
     @FXML
     private void openFiles() {
@@ -111,6 +107,9 @@ public class BaseController extends AnchorPane {
     private void openExercises() {
         openMenuItem(exercises);
     }
+
+    @FXML
+    private void openTemplates(){ openMenuItem(templates); }
 
     /**
      * Opens a left side menu
@@ -148,18 +147,24 @@ public class BaseController extends AnchorPane {
     }
     @FXML
     private void undo(){
-        /*if(model.canUndo()) {
+        if(model.canUndo()) {
+            model.stopUndo();
+            canvas.clearArrows();
             canvas.clearBoxes();
+            model.resumeUndo();
             model.loadUndoLayer();
-        }*/
+        }
     }
 
     @FXML
     private void redo(){
-        /*if(model.canRedo()) {
+        if(model.canRedo()) {
+            model.stopUndo();
+            canvas.clearArrows();
             canvas.clearBoxes();
+            model.resumeUndo();
             model.loadRedoLayer();
-        }*/
+        }
     }
 
     /**

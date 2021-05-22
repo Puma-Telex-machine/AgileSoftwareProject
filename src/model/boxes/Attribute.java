@@ -4,6 +4,7 @@ import global.Observable;
 import global.Observers;
 import global.Observer;
 import model.facades.AttributeFacade;
+import model.facades.UndoChain;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,12 +20,38 @@ public class Attribute implements AttributeFacade, Observable<Observer> {
     private Visibility visibility = Visibility.PRIVATE;
     private String type = "int";
 
+    public Attribute(UndoChain undoChain){
+        this.undoChain = undoChain;
+    }
+    public Attribute() {}
     //region OBSERVABLE
     Observers observers = new Observers();
+    private UndoChain undoChain;
+    private Boolean undoActive = true;
 
     @Override
     public void subscribe(Observer observer) {
         observers.add(observer);
+    }
+
+    public void stopUpdates(){observers.stopUpdates();}
+
+    public void startUpdates(){observers.startUpdates();}
+
+    @Override
+    public void updateUndo() {
+        if(undoActive)
+            undoChain.updateUndo();
+    }
+
+    @Override
+    public void stopUndo() {
+        undoActive = false;
+    }
+
+    @Override
+    public void resumeUndo() {
+        undoActive = true;
     }
     //endregion
 
@@ -32,12 +59,14 @@ public class Attribute implements AttributeFacade, Observable<Observer> {
     public void setName(String name) {
         this.name = name;
         observers.update();
+        updateUndo();
     }
 
     @Override
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
         observers.update();
+        updateUndo();
     }
 
     /**
@@ -48,6 +77,7 @@ public class Attribute implements AttributeFacade, Observable<Observer> {
     public void addModifier(Modifier modifier) {
         modifiers.add(modifier);
         observers.update();
+        updateUndo();
     }
 
     /**
@@ -58,6 +88,7 @@ public class Attribute implements AttributeFacade, Observable<Observer> {
     public void removeModifier(Modifier modifier) {
         modifiers.remove(modifier);
         observers.update();
+        updateUndo();
     }
 
     @Override
@@ -69,6 +100,7 @@ public class Attribute implements AttributeFacade, Observable<Observer> {
     public void setType(String type) {
         this.type = type;
         observers.update();
+        updateUndo();
     }
 
     @Override

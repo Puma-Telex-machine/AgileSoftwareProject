@@ -44,17 +44,21 @@ public class VariableEditorController extends AnchorPane {
     {
         box.deleteAttribute(variable);
         this.setVisible(false);
+        box.updateUndo();
     }
 
     @FXML
     private void confirmVariable() //This method is called when the player wants to confirm and stop editing this variable
     {
+        variable.stopUndo();
         variable.setName(nameField.getText());
 
         Visibility visibility = (Visibility) accessComboBox.getValue();
         variable.setVisibility(visibility);
 
         variable.setType(typeField.getText());
+        variable.resumeUndo();
+        variable.updateUndo();
 
         this.setVisible(false);
     }

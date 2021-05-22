@@ -79,6 +79,7 @@ public class MethodEditorController extends AnchorPane {
     @FXML
     public void ConfirmMethod()
     {
+        methodData.stopUndo();
         methodData.setName(nameField.getText());
 
         //Gets the arguments for the method data
@@ -92,6 +93,8 @@ public class MethodEditorController extends AnchorPane {
         methodData.setVisibility(visibility);
 
         methodData.setType(returnTypeField.getText());
+        methodData.resumeUndo();
+        methodData.updateUndo();
 
         argumentVBox.getChildren().clear();
         this.setVisible(false);
@@ -102,6 +105,7 @@ public class MethodEditorController extends AnchorPane {
     {
         box.deleteMethod(methodData);
         this.setVisible(false);
+        box.updateUndo();
     }
 
     public void EditMethod(BoxFacade box)
