@@ -350,11 +350,11 @@ public class Database {
     static private void saveRelation(Relation relation, int fromPos, int toPos, BufferedWriter writer) throws IOException {
         writeLine("<RELATION>", writer);
         writeLine("  from" + lineSplit + fromPos, writer);
-        writeLine("  xOffsetFrom" + lineSplit + relation.getOffsetFrom().getX(Scale.Backend), writer);
-        writeLine("  yOffsetFrom" + lineSplit + relation.getOffsetFrom().getY(Scale.Backend), writer);
+        writeLine("  xOffsetFrom" + lineSplit + relation.getOffsetFromInput().getX(Scale.Backend), writer);
+        writeLine("  yOffsetFrom" + lineSplit + relation.getOffsetFromInput().getY(Scale.Backend), writer);
         writeLine("  to" + lineSplit + toPos, writer);
-        writeLine("  xOffsetTo" + lineSplit + relation.getOffsetTo().getX(Scale.Backend), writer);
-        writeLine("  yOffsetTo" + lineSplit + relation.getOffsetTo().getY(Scale.Backend), writer);
+        writeLine("  xOffsetTo" + lineSplit + relation.getOffsetToInput().getX(Scale.Backend), writer);
+        writeLine("  yOffsetTo" + lineSplit + relation.getOffsetToInput().getY(Scale.Backend), writer);
         writeLine("  "+ typeMatch + lineSplit + relation.getArrowType(), writer);
         writeLine("<!RELATION>", writer);
     }

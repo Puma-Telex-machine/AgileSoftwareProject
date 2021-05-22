@@ -17,11 +17,13 @@ public class Relation implements RelationFacade {
     private boolean onLeftSideOfTo = false;
     private boolean onTopSideOfTo = false;
     private ScaledPoint offsetTo;
+    private ScaledPoint offsetToInput;
 
     private final BoxFacade from;
     private boolean onLeftSideOfFrom = false;
     private boolean onTopSideOfFrom = false;
     private ScaledPoint offsetFrom;
+    private ScaledPoint offsetFromInput;
     private String nrFrom,nrTo;
 
     private ArrowType arrowType;
@@ -33,8 +35,10 @@ public class Relation implements RelationFacade {
         this.diagram = diagram;
         this.from = from;
         this.offsetFrom = calculateOffset(offsetFrom, from, true);
+        this.offsetFromInput = offsetFrom;
         this.to = to;
         this.offsetTo = calculateOffset(offsetTo, to, false);
+        this.offsetToInput = offsetTo;
         this.arrowType = arrowType;
         this.nrTo="";
         this.nrFrom="";
@@ -144,6 +148,8 @@ public class Relation implements RelationFacade {
         return offsetTo;
     }
 
+    public ScaledPoint getOffsetToInput(){return offsetToInput;}
+
     public void removeIfDisconnected() {
         if (to.isDeleted() || from.isDeleted()) {
             this.isDeleted = true;
@@ -182,6 +188,8 @@ public class Relation implements RelationFacade {
     }
 
     public ScaledPoint getOffsetFrom() {return offsetFrom;}
+
+    public ScaledPoint getOffsetFromInput() {return offsetFromInput;}
 
     @Override
     public void changeRelationType(ArrowType type) {
