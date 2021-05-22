@@ -14,4 +14,11 @@ public interface RelationFacade extends Observable<RelationObserver> {
     BoxFacade getTo();
     ScaledPoint getOffsetTo();
     boolean isDeleted();
+
+    String getNrFrom();
+
+    String getNrTo();
+
+    void setNrTo(String nrTo);
+    void setNrFrom(String nrFrom);
 }

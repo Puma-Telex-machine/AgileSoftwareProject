@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -62,7 +63,10 @@
                      <children>
                         <AnchorPane minWidth="-Infinity" onMouseClicked="#DeleteMethod" prefHeight="0.0" prefWidth="108.0" styleClass="highlight-red">
                            <children>
-                              <Label maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="182.0" styleClass="text-Large" text="Delete" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Label maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="182.0" styleClass="text-medium" text="Delete" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <tooltip>
+                                    <Tooltip text="Delete method" />
+                                 </tooltip></Label>
                            </children>
                            <HBox.margin>
                               <Insets left="10.0" />
@@ -70,7 +74,10 @@
                         </AnchorPane>
                         <AnchorPane onMouseClicked="#ConfirmMethod" prefHeight="0.0" prefWidth="163.0" styleClass="highlight-green">
                            <children>
-                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="163.0" style="-fx-text-fill: #111111;" text="Confirm" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="163.0" style="-fx-text-fill: #111111;" styleClass="text-medium" text="Confirm" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <tooltip>
+                                    <Tooltip text="Confirm method changes" />
+                                 </tooltip></Label>
                            </children>
                            <HBox.margin>
                               <Insets left="10.0" />

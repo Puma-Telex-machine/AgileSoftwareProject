@@ -5,6 +5,7 @@ import global.Observable;
 import global.Observers;
 import global.Observer;
 import model.facades.MethodFacade;
+import model.facades.UndoChain;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -24,7 +25,13 @@ public class Method implements MethodFacade, Observable<Observer> {
     private Visibility visibility = Visibility.PUBLIC;
     private String returnType = "void";
     private boolean isConfirmed = false;
+    private UndoChain undoChain;
 
+
+    public Method(UndoChain undoChain){
+        this.undoChain = undoChain;
+    }
+    public Method() {}
     //region OBSERVABLE
     Observers observers = new Observers();
 
@@ -32,12 +39,35 @@ public class Method implements MethodFacade, Observable<Observer> {
     public void subscribe(Observer observer) {
         observers.add(observer);
     }
+
+    public void stopUpdates(){observers.stopUpdates();}
+
+    public void startUpdates(){observers.startUpdates();}
+
+    private Boolean undoActive = true;
+    @Override
+    public void updateUndo() {
+        if(undoActive)
+            undoChain.updateUndo();
+    }
+
+    @Override
+    public void stopUndo() {
+        undoActive = false;
+    }
+
+    @Override
+    public void resumeUndo() {
+        undoActive = true;
+    }
+
     //endregion
 
     @Override
     public void setName(String name) {
         this.name = name;
         observers.update();
+        updateUndo();
     }
 
     @Override
@@ -60,6 +90,7 @@ public class Method implements MethodFacade, Observable<Observer> {
     public void setType(String type) {
         returnType = type;
         observers.update();
+        updateUndo();
     }
 
     @Override
@@ -71,6 +102,7 @@ public class Method implements MethodFacade, Observable<Observer> {
     public void removeAllArguments() {
         parameters.clear();
         observers.update();
+        updateUndo();
     }
 
     /**
@@ -81,6 +113,7 @@ public class Method implements MethodFacade, Observable<Observer> {
     public void addArgument(String argument) {
         parameters.add(argument);
         observers.update();
+        updateUndo();
     }
 
     /**
@@ -91,6 +124,7 @@ public class Method implements MethodFacade, Observable<Observer> {
     public void removeArgument(String argument) {
         parameters.remove(argument);
         observers.update();
+        updateUndo();
     }
 
     @Override
@@ -106,6 +140,7 @@ public class Method implements MethodFacade, Observable<Observer> {
     public void addModifier(Modifier modifier) {
         modifiers.add(modifier);
         observers.update();
+        updateUndo();
     }
 
     /**
@@ -116,6 +151,7 @@ public class Method implements MethodFacade, Observable<Observer> {
     public void removeModifier(Modifier modifier) {
         modifiers.remove(modifier);
         observers.update();
+        updateUndo();
     }
 
     @Override
@@ -127,6 +163,7 @@ public class Method implements MethodFacade, Observable<Observer> {
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
         observers.update();
+        updateUndo();
     }
 
     @Override

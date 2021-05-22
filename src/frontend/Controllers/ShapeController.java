@@ -4,16 +4,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import model.Model;
+import model.ModelFacade;
 import model.boxes.BoxType;
 import global.point.Scale;
 import global.point.ScaledPoint;
-import model.diagram.DiagramFacade;
 
 import java.io.IOException;
 
 public class ShapeController extends AnchorPane {
 
-    DiagramFacade diagram = Model.getModel().getDiagram();
+    ModelFacade model = ModelFacade.getModel();
     CanvasController canvas;
 
     public ShapeController(CanvasController canvas) {
@@ -34,19 +34,19 @@ public class ShapeController extends AnchorPane {
 
     @FXML
     private void addClass(){
-        diagram.createBox(new ScaledPoint(Scale.Frontend, canvas.getMiddle().x, canvas.getMiddle().y), BoxType.CLASS);
+        model.createBox(new ScaledPoint(Scale.Frontend, canvas.getMiddle().x, canvas.getMiddle().y), BoxType.CLASS);
     }
     @FXML
     private void addInterface(){
-        diagram.createBox(new ScaledPoint(Scale.Frontend, canvas.getMiddle().x, canvas.getMiddle().y), BoxType.INTERFACE);
+        model.createBox(new ScaledPoint(Scale.Frontend, canvas.getMiddle().x, canvas.getMiddle().y), BoxType.INTERFACE);
     }
     @FXML
     private void addAbstract(){
-        diagram.createBox(new ScaledPoint(Scale.Frontend, canvas.getMiddle().x, canvas.getMiddle().y), BoxType.ABSTRACT_CLASS);
+        model.createBox(new ScaledPoint(Scale.Frontend, canvas.getMiddle().x, canvas.getMiddle().y), BoxType.ABSTRACT_CLASS);
     }
     @FXML
     private void addEnum(){
-        diagram.createBox(new ScaledPoint(Scale.Frontend, canvas.getMiddle().x, canvas.getMiddle().y), BoxType.ENUM);
+        model.createBox(new ScaledPoint(Scale.Frontend, canvas.getMiddle().x, canvas.getMiddle().y), BoxType.ENUM);
     }
 
     @FXML

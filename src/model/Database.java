@@ -36,12 +36,12 @@ public class Database {
     static public Diagram loadDiagram(String folder, String filename, String fileEnder){
         try {
             ArrayList<Box> boxes = new ArrayList<>();
-            ArrayList<Relation> relations = new ArrayList<>();
             File toRead = new File(folder + filename + fileEnder + ".uml");
             Scanner scanner = new Scanner(toRead);
             Diagram result = new Diagram();
             result.setName(filename);
             result.lockSaving();
+            result.stopUndo();
             while (scanner.hasNextLine()){
                 String next = scanner.nextLine().trim();
                 if(next.startsWith("<BOX>"))
@@ -55,16 +55,14 @@ public class Database {
                 else if(next.startsWith("<ENUM>"))
                     boxes.add(loadBox(scanner, BoxType.ENUM, result));
                 else if(next.startsWith("<RELATION>"))
-                    relations.add(loadRelation(scanner, boxes));
+                    loadRelation(scanner, boxes, result);
             }
-            for (Box box: boxes) {
+            for (Box box: boxes) { //todo kanske onödig
                 result.updateBox(box);
-            }
-            for (Relation relation: relations){
-                //result.(relation); todo rebuild this
             }
             System.out.println("Successfully loaded " + filename + ".uml");
             result.unlockSaving();
+            result.resumeUndo();
             return result;
         } catch (FileNotFoundException e){
             e.printStackTrace();
@@ -107,7 +105,8 @@ public class Database {
                     if (next.startsWith(modifierMatch)) {
                         modifiers.add(Modifier.valueOf(nextSplit[1]));
                     } else if (next.startsWith("<!")) {
-                        Box box = new Box(target, new ScaledPoint(Scale.Backend, xpos, ypos), type);
+                        Box box = target.createBox(new ScaledPoint(Scale.Backend, xpos, ypos), type);
+                        box.stopUndo();
                         box.setVisibility(visibility);
                         box.setName(name);
                         for (Method method : methods) {
@@ -132,6 +131,7 @@ public class Database {
                         for (Modifier modifier : modifiers) {
                             box.addModifier(modifier);
                         }
+                        box.resumeUndo();
                         return box;
                     }
             }
@@ -164,7 +164,8 @@ public class Database {
                     break;
                 case "<!METHOD>":
                     Method method = new Method();
-                    //method.ignoreObserver(); todo
+                    method.stopUndo();
+                    method.stopUpdates();
                     method.setVisibility(visibility);
                     method.setType(type);
                     method.setName(name);
@@ -174,7 +175,8 @@ public class Database {
                     for (Modifier modifier: modifiers) {
                         method.addModifier(modifier);
                     }
-                    //method.stopIgnore(); todo
+                    method.startUpdates();
+                    method.resumeUndo();
                     return method;
                 default:
                     if(next[0].startsWith(modifierMatch))
@@ -207,14 +209,16 @@ public class Database {
                         modifiers.add(Modifier.valueOf(next[0]));
                     }else if(next[0].startsWith("<!")) {
                         Attribute attribute = new Attribute();
-                        //attribute.ignoreObserver(); todo
+                        attribute.stopUndo();
+                        attribute.stopUpdates();
                         attribute.setVisibility(visibility);
                         attribute.setType(type);
                         attribute.setName(name);
                         for (Modifier modifier: modifiers) {
                             attribute.addModifier(modifier);
                         }
-                        //attribute.stopIgnore(); todo
+                        attribute.startUpdates();
+                        attribute.resumeUndo();
                         return attribute;
                     }
             }
@@ -222,28 +226,44 @@ public class Database {
         return null;
     }
 
-    static private Relation loadRelation(Scanner scanner, ArrayList<Box> boxes){
+    static private void loadRelation(Scanner scanner, ArrayList<Box> boxes, Diagram target){
         ArrowType arrowType = ArrowType.ASSOCIATION;
         int indexFrom = 0;
         int indexTo = 0;
+        int xOffsetFrom = 0;
+        int yOffsetFrom = 0;
+        int xOffsetTo = 0;
+        int yOffsetTo = 0;
         while (scanner.hasNextLine()){
             String[] next = scanner.nextLine().trim().split(lineSplit);
             switch (next[0]){
                 case "from":
                     indexFrom = Integer.parseInt(next[1]);
                     break;
+                case "xOffsetFrom":
+                    xOffsetFrom = Integer.parseInt(next[1]);
+                    break;
+                case "yOffsetFrom":
+                    yOffsetFrom = Integer.parseInt(next[1]);
+                    break;
                 case "to":
                     indexTo = Integer.parseInt(next[1]);
+                    break;
+                case "xOffsetTo":
+                    xOffsetTo = Integer.parseInt(next[1]);
+                    break;
+                case "yOffsetTo":
+                    yOffsetTo = Integer.parseInt(next[1]);
                     break;
                 case typeMatch:
                     arrowType = ArrowType.valueOf(next[1]);
                     break;
                 case "<!RELATION>":
-                    //Relation relation = new Relation(boxes.get(indexFrom), boxes.get(indexTo), arrowType);
-                    return null; //todo
+                    ScaledPoint from = new ScaledPoint(Scale.Backend, xOffsetFrom, yOffsetFrom);
+                    ScaledPoint to = new ScaledPoint(Scale.Backend, xOffsetTo, yOffsetTo);
+                    target.createRelation(boxes.get(indexFrom), from, boxes.get(indexTo), to, arrowType);
             }
         }
-        return null;
     }
 
     /**
@@ -330,13 +350,20 @@ public class Database {
     static private void saveRelation(Relation relation, int fromPos, int toPos, BufferedWriter writer) throws IOException {
         writeLine("<RELATION>", writer);
         writeLine("  from" + lineSplit + fromPos, writer);
+        writeLine("  xOffsetFrom" + lineSplit + relation.getOffsetFrom().getX(Scale.Backend), writer);
+        writeLine("  yOffsetFrom" + lineSplit + relation.getOffsetFrom().getY(Scale.Backend), writer);
         writeLine("  to" + lineSplit + toPos, writer);
+        writeLine("  xOffsetTo" + lineSplit + relation.getOffsetTo().getX(Scale.Backend), writer);
+        writeLine("  yOffsetTo" + lineSplit + relation.getOffsetTo().getY(Scale.Backend), writer);
         writeLine("  "+ typeMatch + lineSplit + relation.getArrowType(), writer);
         writeLine("<!RELATION>", writer);
     }
 
     public static String[] getAllFileNames(String foldername) {
         File folder = new File(foldername);
+        if(!directoryCheck(foldername)){
+            folder.mkdir();
+        }
         File[] matchingFiles = folder.listFiles((dir, name) ->  name.endsWith(".uml"));
         if(matchingFiles.length != 0) {
             String[] result = new String[matchingFiles.length];

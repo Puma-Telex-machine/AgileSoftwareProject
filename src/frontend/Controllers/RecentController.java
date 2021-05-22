@@ -17,7 +17,7 @@ public class RecentController extends AnchorPane{
 
     FileHandlerFacade fileHandler;
 
-    saveAsController saveAs;
+    SaveAsController saveAs;
 
     public RecentController(FileHandlerFacade fileHandler) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("..//view/recent_work.fxml"));
@@ -29,7 +29,7 @@ public class RecentController extends AnchorPane{
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-        saveAs = new saveAsController(fileHandler);
+        saveAs = new SaveAsController();
 
         this.getChildren().add(saveAs);
 

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<fx:root cache="true" prefWidth="320.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root cache="true" prefWidth="320.0" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER_LEFT" cache="true" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -49,7 +50,10 @@
                      <children>
                         <AnchorPane minWidth="-Infinity" onMouseClicked="#deleteVariable" prefHeight="0.0" prefWidth="108.0" styleClass="highlight-red">
                            <children>
-                              <Label maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="182.0" styleClass="text-Large" text="Delete" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Label maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="182.0" styleClass="text-medium" text="Delete" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <tooltip>
+                                    <Tooltip text="Delete variable" />
+                                 </tooltip></Label>
                            </children>
                            <HBox.margin>
                               <Insets left="10.0" />
@@ -57,7 +61,10 @@
                         </AnchorPane>
                         <AnchorPane onMouseClicked="#confirmVariable" prefHeight="0.0" prefWidth="163.0" styleClass="highlight-green">
                            <children>
-                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="163.0" style="-fx-text-fill: #000000;" text="Confirm" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="163.0" style="-fx-text-fill: #000000;" styleClass="text-medium" text="Confirm" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <tooltip>
+                                    <Tooltip text="Confirm variable changes" />
+                                 </tooltip></Label>
                            </children>
                            <HBox.margin>
                               <Insets left="10.0" />

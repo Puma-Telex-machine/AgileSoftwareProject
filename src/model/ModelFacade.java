@@ -1,9 +1,15 @@
 package model;
 
-import model.diagram.DiagramFacade;
+import global.Observable;
+import global.point.ScaledPoint;
+import model.boxes.BoxFacade;
+import model.boxes.BoxType;
+import model.diagram.ModelObserver;
 import model.facades.FileHandlerFacade;
+import model.facades.UndoChain;
+import model.relations.ArrowType;
 
-public interface ModelFacade {
+public interface ModelFacade extends Observable<ModelObserver>, UndoChain {
 
     static ModelFacade getModel(){
         return Model.getModel();
@@ -13,5 +19,14 @@ public interface ModelFacade {
         return Model.getModel();
     }
 
-    DiagramFacade getDiagram();
+    Boolean canUndo();
+
+    Boolean canRedo();
+
+    void loadUndoLayer();
+
+    void loadRedoLayer();
+
+    void createBox(ScaledPoint position, BoxType boxType);
+    void createRelation(BoxFacade from, ScaledPoint offsetFrom, BoxFacade to, ScaledPoint offsetTo, ArrowType arrowType);
 }

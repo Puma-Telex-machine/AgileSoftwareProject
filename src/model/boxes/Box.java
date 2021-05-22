@@ -8,6 +8,7 @@ import global.point.ScaledPoint;
 import model.diagram.DiagramMediator;
 import model.facades.AttributeFacade;
 import model.facades.MethodFacade;
+import model.facades.UndoChain;
 
 import java.util.*;
 
@@ -29,7 +30,8 @@ public class Box implements BoxFacade, Observer {
     private final Set<Modifier> modifiers = new HashSet<>();
     private Visibility visibility = Visibility.PUBLIC;
     private ScaledPoint position;
-    private final DiagramMediator diagram;
+    private DiagramMediator diagram;
+    private UndoChain undoChain;
 
     private boolean isDeleted = false;
 
@@ -45,6 +47,7 @@ public class Box implements BoxFacade, Observer {
         this.position = position;
         this.type = type;
         this.diagram = diagram;
+        this.undoChain = diagram;
     }
 
     //region OBSERVABLE
@@ -60,12 +63,32 @@ public class Box implements BoxFacade, Observer {
         diagram.updateBox(this);
         observers.update();
     }
+
+    private Boolean undoActive = true;
+
+    @Override
+    public void updateUndo() {
+        if(undoActive)
+            undoChain.updateUndo();
+    }
+
+    @Override
+    public void stopUndo(){
+        undoActive = false;
+    }
+
+    @Override
+    public void resumeUndo() {
+        undoActive = true;
+    }
+
     //endregion
 
     @Override
     public void setName(String name) {
         this.name = name;
         update();
+        updateUndo();
     }
 
     @Override
@@ -87,9 +110,10 @@ public class Box implements BoxFacade, Observer {
 
     @Override
     public MethodFacade addMethod() {
-        Method method = new Method();
+        Method method = new Method(this);
         methods.add(method);
         method.subscribe(this);
+        updateUndo();
         return method;
     }
 
@@ -97,6 +121,7 @@ public class Box implements BoxFacade, Observer {
     public void deleteMethod(MethodFacade method) {
         methods.remove(method);
         update();
+        updateUndo();
     }
 
     @Override
@@ -106,9 +131,10 @@ public class Box implements BoxFacade, Observer {
 
     @Override
     public AttributeFacade addAttribute() {
-        Attribute attribute = new Attribute();
+        Attribute attribute = new Attribute(this);
         attributes.add(attribute);
         attribute.subscribe(this);
+        updateUndo();
         return attribute;
     }
 
@@ -116,6 +142,7 @@ public class Box implements BoxFacade, Observer {
     public void deleteAttribute(AttributeFacade attribute) {
         attributes.remove(attribute);
         update();
+        updateUndo();
     }
 
     @Override
@@ -127,6 +154,7 @@ public class Box implements BoxFacade, Observer {
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
         update(); //Behövs denna?
+        updateUndo();
     }
 
     @Override
@@ -138,6 +166,7 @@ public class Box implements BoxFacade, Observer {
     public void addModifier(Modifier modifier) {
         modifiers.add(modifier);
         update(); //Behövs denna?
+        updateUndo();
     }
 
     @Override
@@ -145,6 +174,7 @@ public class Box implements BoxFacade, Observer {
         // TODO: deleteModifier? (consistency)
         modifiers.remove(modifier);
         update();
+        updateUndo();
     }
 
     @Override
@@ -158,6 +188,7 @@ public class Box implements BoxFacade, Observer {
 
     @Override
     public void setAndUpdatePosition(ScaledPoint point) {
+        //updateUndo();
         position = point;
         update();
     }
@@ -214,5 +245,10 @@ public class Box implements BoxFacade, Observer {
 
 
         return Math.max(i,START_WIDTH);
+    }
+
+    public void setDiagram(DiagramMediator diagram) {
+        this.diagram = diagram;
+        this.undoChain = diagram;
     }
 }

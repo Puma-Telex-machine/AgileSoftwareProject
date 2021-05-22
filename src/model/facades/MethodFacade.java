@@ -6,7 +6,7 @@ import model.boxes.Visibility;
 import java.util.List;
 import java.util.Set;
 
-public interface MethodFacade {
+public interface MethodFacade extends UndoChain {
 
     void setName(String name);
     String getName();
