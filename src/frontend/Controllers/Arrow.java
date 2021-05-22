@@ -1,5 +1,6 @@
-package frontend;
+package frontend.Controllers;
 
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -23,12 +24,20 @@ public class Arrow extends AnchorPane{
     private Line endline;
     private ArrowType type;
     private List<ScaledPoint> bends;
+    private Label nrToLabel,nrFromLabel;
+
+    public Arrow(List<ScaledPoint> bends,String nrFrom,String nrTo){
+        this(bends);
+        nrFromLabel.setText(nrFrom);
+        nrToLabel.setText(nrTo);
+    }
 
     public Arrow(List<ScaledPoint> bends) {
         this(bends.get(0).getPoint(Scale.Frontend),bends.get(bends.size()-1).getPoint(Scale.Frontend),bends);
+        setLabels();
     }
 
-    public Arrow(Point start,Point end,List<ScaledPoint> bends) {
+    public Arrow(Point start, Point end, List<ScaledPoint> bends) {
 
         this.startX = start.getX();
         this.startY = start.getY();
@@ -62,6 +71,7 @@ public class Arrow extends AnchorPane{
         if (!(startX == endX && startY == endY)) {
             setType(ArrowType.ASSOCIATION);
         }
+
     }
 
     private void addLine(Line line,int startX,int startY, int endX, int endY){
@@ -85,6 +95,44 @@ public class Arrow extends AnchorPane{
         }
     }
 
+
+    private void setLabels(){
+        nrFromLabel = new Label("s");
+        nrToLabel = new Label("s");
+        nrFromLabel.getStyleClass().add("text-small");
+        nrToLabel.getStyleClass().add("text-small");
+
+        this.getChildren().add(nrFromLabel);
+        this.getChildren().add(nrToLabel);
+
+        //placeing nrFromLabel
+        Line start = lines.get(0);
+        if(start.getStartY()==start.getEndY()){
+            nrFromLabel.setLayoutY(start.getEndY()-20);
+            if(start.getStartX()>start.getEndX()) nrFromLabel.setLayoutX(start.getEndX()+10);
+            else nrFromLabel.setLayoutX(start.getStartX()+10);
+        }
+        //else will be paralell with Yaxis
+        else{
+            nrFromLabel.setLayoutX(start.getStartX()+10);
+            if(start.getStartY()>start.getEndY()) nrFromLabel.setLayoutY(start.getStartY()-20);
+            else nrFromLabel.setLayoutY(start.getStartY()+10);
+        }
+
+        //placing nrToLabel
+
+        if(endline.getStartY()==endline.getEndY()){
+            nrToLabel.setLayoutY(endline.getEndY()-20);
+            if(endline.getStartX()>endline.getEndX()) nrToLabel.setLayoutX(endline.getStartX()-20);
+            else nrToLabel.setLayoutX(endline.getEndX()-20);
+        }
+        //else will be paralell with Yaxis
+        else{
+            nrToLabel.setLayoutX(endline.getEndX()+10);
+            if(endline.getStartY()>endline.getEndY()) nrToLabel.setLayoutY(endline.getEndY()+10);
+            else nrToLabel.setLayoutY(endline.getEndY()-20);
+        }
+    }
 
     /**
      * get the points for the different type of arrowheads

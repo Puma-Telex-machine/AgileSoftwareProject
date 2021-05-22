@@ -1,6 +1,12 @@
 <CLASS>
   name=Class
-  xposition=16
-  yposition=13
+  xposition=14
+  yposition=7
+  visibility=PUBLIC
+<!CLASS>
+<CLASS>
+  name=Class
+  xposition=23
+  yposition=7
   visibility=PUBLIC
 <!CLASS>

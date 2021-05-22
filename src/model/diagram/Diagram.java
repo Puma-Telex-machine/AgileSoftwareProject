@@ -63,6 +63,7 @@ public class Diagram implements DiagramMediator, PathfindingMap, UndoChain {
     @Override
     public void removeBox(Box box) {
         boxGrid.remove(box);
+        relationGrid.removeDisconnectedRelations();
         relationGrid.refreshAllPaths();
         saveThis();
         updateUndo();

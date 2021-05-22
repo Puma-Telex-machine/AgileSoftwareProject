@@ -39,7 +39,7 @@
                      <children>
                         <VBox alignment="TOP_CENTER" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                            <children>
-                              <Label onMouseClicked="#openRecent" prefHeight="28.0" prefWidth="47.0" styleClass="iconLighter">
+                              <Label onMouseClicked="#openFiles" prefHeight="28.0" prefWidth="47.0" styleClass="iconLighter">
                                  <graphic>
                                     <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter">
                                        <image>

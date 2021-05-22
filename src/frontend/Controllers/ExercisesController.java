@@ -1,4 +1,4 @@
-package frontend;
+package frontend.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +13,7 @@ public class ExercisesController extends AnchorPane {
 
     public ExercisesController() {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("view/Exercises.fxml"));
+                getClass().getResource("..//view/Exercises.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

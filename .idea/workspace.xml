@@ -4,11 +4,10 @@
     <list default="true" id="41a11e1e-bf49-4b51-8834-c840eb7c8781" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/diagrams/untitled.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/untitled.uml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/CanvasController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/boxes/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/boxes/BoxFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/boxes/BoxFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/Controllers/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/CanvasController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/diagram/Diagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/Diagram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/diagram/RelationGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/diagram/RelationGrid.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/relations/Relation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/Relation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/relations/RelationFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/relations/RelationFacade.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,9 +35,9 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="jar://$PATH_TO_FX$/javafx.fxml.jar!/javafx/fxml/FXMLLoader.class" root0="SKIP_INSPECTION" />
-    <setting file="jar://$PATH_TO_FX$/javafx.graphics.jar!/javafx/scene/Scene.class" root0="SKIP_INSPECTION" />
     <setting file="jar://$PATH_TO_FX$/javafx.base.jar!/javafx/event/Event.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PATH_TO_FX$/javafx.graphics.jar!/javafx/scene/Scene.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PATH_TO_FX$/javafx.fxml.jar!/javafx/fxml/FXMLLoader.class" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectId" id="1rWF7l8QkerBb0EMeKy43SosIen" />
   <component name="ProjectViewState">
@@ -84,6 +83,7 @@
       <recent name="model.grid" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="frontend.Controllers" />
       <recent name="model.point" />
     </key>
   </component>
@@ -135,14 +135,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/frontend/CanvasController.java</url>
-          <line>282</line>
+          <url>file://$PROJECT_DIR$/src/frontend/Controllers/CanvasController.java</url>
+          <line>281</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/frontend/CanvasController.java</url>
+          <url>file://$PROJECT_DIR$/src/frontend/Controllers/CanvasController.java</url>
           <line>345</line>
-          <properties class="frontend.CanvasController" method="deleteArrow">
+          <properties class="frontend.Controllers.CanvasController">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="11" />

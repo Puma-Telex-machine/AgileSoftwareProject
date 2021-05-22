@@ -1,4 +1,4 @@
-package frontend;
+package frontend.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -17,7 +17,7 @@ import java.util.List;
 public class MethodEditorController extends AnchorPane {
 
     public MethodEditorController(){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/MethodEditor.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("..//view/MethodEditor.fxml")));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

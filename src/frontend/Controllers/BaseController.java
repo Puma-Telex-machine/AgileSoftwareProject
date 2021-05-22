@@ -1,4 +1,4 @@
-package frontend;
+package frontend.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,7 +33,7 @@ public class BaseController extends AnchorPane {
     TemplatesController templates;
 
     public BaseController() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("view/Base.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("../view/Base.fxml")));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -45,6 +45,7 @@ public class BaseController extends AnchorPane {
 
         canvas = new CanvasController();
         model = ModelFacade.getModel();
+
         files = new FilesController(ModelFacade.getFileHandler(), canvas);
         shapes = new ShapeController(canvas);
         overview = new OverviewController();
@@ -86,8 +87,9 @@ public class BaseController extends AnchorPane {
     }
 
     // open Menus
+
     @FXML
-    private void openRecent() {
+    private void openFiles() {
         openMenuItem(files);
     }
 

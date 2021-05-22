@@ -23,7 +23,7 @@
                </font>
             </Label>
             <Polygon fill="#585858" points="0.0, -29.0, 20.0, -37.0, 0.0, -47.0" stroke="BLACK" strokeType="INSIDE" />
-            <TextField fx:id="argumentTypeField" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" promptText="Add Parameter..." styleClass="text-field">
+            <TextField fx:id="argumentTypeField" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" promptText="Add Parameter..." style="-fx-font-family: Roboto Light;">
                <font>
                   <Font name="Roboto Bold" size="12.0" />
                </font>
