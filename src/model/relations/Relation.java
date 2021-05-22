@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Relation implements RelationFacade {
-    private final DiagramMediator diagram;
+    private DiagramMediator diagram;
 
     private final BoxFacade to;
     private boolean onLeftSideOfTo = false;
@@ -287,6 +287,10 @@ public class Relation implements RelationFacade {
             default:
                 return null;
         }
+    }
+
+    public void setDiagram(DiagramMediator diagram) {
+        this.diagram = diagram;
     }
 }
    

@@ -1,4 +1,4 @@
-package frontend;
+package frontend.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +21,7 @@ public class TemplateItemController extends AnchorPane {
 
     public TemplateItemController(String fileName, FileHandlerFacade fileHandler, CanvasController canvas) {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("view/TemplateMenuItem.fxml"));
+                getClass().getResource("../view/TemplateMenuItem.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

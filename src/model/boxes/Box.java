@@ -30,8 +30,8 @@ public class Box implements BoxFacade, Observer {
     private final Set<Modifier> modifiers = new HashSet<>();
     private Visibility visibility = Visibility.PUBLIC;
     private ScaledPoint position;
-    private final DiagramMediator diagram;
-    private final UndoChain undoChain;
+    private DiagramMediator diagram;
+    private UndoChain undoChain;
 
     private boolean isDeleted = false;
 
@@ -245,5 +245,10 @@ public class Box implements BoxFacade, Observer {
 
 
         return Math.max(i,START_WIDTH);
+    }
+
+    public void setDiagram(DiagramMediator diagram) {
+        this.diagram = diagram;
+        this.undoChain = diagram;
     }
 }

@@ -112,6 +112,10 @@ public class Model implements ModelFacade, FileHandlerFacade {
      */
     @Override
     public void loadFile(String fileName) {
+        diagram = new Diagram();
+        diagram.setObserver(this);
+        diagram.setName(fileName);
+        saveUndoLayer(); //creates empty first tempfile
         diagram = Database.loadDiagram("diagrams/", fileName, "");
         diagram.setObserver(this);
         stopUndo();
@@ -122,9 +126,9 @@ public class Model implements ModelFacade, FileHandlerFacade {
             observers.forEach(diagramObserver -> diagramObserver.addRelation(relation)); //todo
         }
         resumeUndo();
-        undoLayer = -1;
-        redoLayer = 0;
-        maxUndo = -1;
+        undoLayer = 0;
+        redoLayer = 1;
+        maxUndo = 0;
         updateUndo();
     }
 
@@ -151,18 +155,20 @@ public class Model implements ModelFacade, FileHandlerFacade {
      */
     @Override
     public void loadTemplate(String fileName){
-        saveUndoLayer();
         stopUndo();
         Diagram template = Database.loadDiagram("templates/", fileName, "");
         for(Box box : template.getAllBoxes()){
+            box.setDiagram(diagram);
             diagram.addBox(box);
             observers.forEach(diagramObserver -> diagramObserver.addBox(box));
         }
         for (Relation relation: template.getAllRelations()) {
+            relation.setDiagram(diagram);
             diagram.addRelation(relation);
             observers.forEach(diagramObserver -> diagramObserver.addRelation(relation)); //todo
         }
         resumeUndo();
+        saveUndoLayer();
         //TODO: Sätt i databasen: System.out.println("loaded template " + fileName);
     }
 
