@@ -1,5 +1,6 @@
 package model.boxes;
 
+import com.sun.source.tree.ReturnTree;
 import global.Observable;
 import global.Observers;
 import global.Observer;
@@ -23,6 +24,7 @@ public class Method implements MethodFacade, Observable<Observer> {
     private final Set<Modifier> modifiers = new HashSet<>();
     private Visibility visibility = Visibility.PUBLIC;
     private String returnType = "void";
+    private boolean isConfirmed = false;
     private UndoChain undoChain;
 
 
@@ -66,6 +68,17 @@ public class Method implements MethodFacade, Observable<Observer> {
         this.name = name;
         observers.update();
         updateUndo();
+    }
+
+    @Override
+    public void confirmMethod ()
+    {
+        isConfirmed = true;
+    }
+
+    public boolean getConfirmed()
+    {
+        return isConfirmed;
     }
 
     @Override

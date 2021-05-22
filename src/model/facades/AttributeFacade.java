@@ -25,6 +25,12 @@ public interface AttributeFacade extends UndoChain {
     void setVisibility(Visibility visibility);
     Visibility getVisibility();
 
+    /**
+     * confirms that this attribute should exist.
+     * An attribute that has never been confirm shouldn't be added to the frontend
+     */
+    void confirmAttribute();
+
     void addModifier(Modifier modifier); // Please explain what this is / Emil E
     void removeModifier(Modifier modifier);
     Set<Modifier> getModifiers();

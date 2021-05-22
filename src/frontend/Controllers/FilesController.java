@@ -22,6 +22,8 @@ public class FilesController extends AnchorPane{
 
     FileHandlerFacade fileHandler;
 
+    CanvasController canvas;
+
     public FilesController(FileHandlerFacade fileHandler, CanvasController canvas) {
         FXMLLoader fxmlLoader = new FXMLLoader(
                 getClass().getResource("..//view/Files.fxml"));
@@ -36,6 +38,7 @@ public class FilesController extends AnchorPane{
         }
 
         this.fileHandler = fileHandler;
+        this.canvas = canvas;
         String[] files = fileHandler.getAllFileNames();
 
         for(int i = 0; i < files.length; i++)
@@ -55,4 +58,17 @@ public class FilesController extends AnchorPane{
 
     @FXML
     private void openSave(){saving.setVisible(true);}
+
+    public void updateItems(){
+        filesBox.getChildren().clear();
+        String[] files = fileHandler.getAllFileNames();
+
+        for(int i = 0; i < files.length; i++)
+        {
+            FileMenuItemController file = new FileMenuItemController(files[i], fileHandler, canvas);
+            filesBox.getChildren().add(file);
+        }
+        filesBox.getChildren().add(saving);
+        saving.setVisible(false);
+    }
 }

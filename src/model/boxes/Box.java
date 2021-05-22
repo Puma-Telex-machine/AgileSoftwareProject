@@ -25,8 +25,8 @@ public class Box implements BoxFacade, Observer {
 
     private String name;
     private final BoxType type;
-    private final List<MethodFacade> methods = new ArrayList<>();
-    private final List<AttributeFacade> attributes = new ArrayList<>();
+    private final List<Method> methods = new ArrayList<>();
+    private final List<Attribute> attributes = new ArrayList<>();
     private final Set<Modifier> modifiers = new HashSet<>();
     private Visibility visibility = Visibility.PUBLIC;
     private ScaledPoint position;

@@ -180,7 +180,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
 
     @Override
     public void deleteTemplate(String name) {
-        new File("templates/" + name + ".uml").delete();
+        System.out.println(new File("templates/" + name + ".uml").delete());
     }
 
     //endregion

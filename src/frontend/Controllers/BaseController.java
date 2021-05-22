@@ -64,7 +64,7 @@ public class BaseController extends AnchorPane {
         LockPane(templates);
         minimizeMenu();
         UML.getChildren().add(canvas);
-        LockPane(canvas);
+        //LockPane(canvas);
 
     }
 
@@ -90,6 +90,7 @@ public class BaseController extends AnchorPane {
 
     @FXML
     private void openFiles() {
+        files.updateItems();
         openMenuItem(files);
     }
 
@@ -109,7 +110,10 @@ public class BaseController extends AnchorPane {
     }
 
     @FXML
-    private void openTemplates(){ openMenuItem(templates); }
+    private void openTemplates(){
+        templates.updateItems();
+        openMenuItem(templates);
+    }
 
     /**
      * Opens a left side menu
@@ -129,6 +133,8 @@ public class BaseController extends AnchorPane {
         }
     }
 
+    private  boolean ctrlKey = false;
+
     /**
      * Is called when the user presses a key
      * 
@@ -136,15 +142,42 @@ public class BaseController extends AnchorPane {
      */
     public void onKeyPressed(KeyEvent e) {
         switch (e.getCode()) {
+            case CONTROL:
+                ctrlKey = true;
+                break;
             case SHIFT:
                 canvas.startAddSelect();
                 break;
             case DELETE:
                 canvas.deleteSelectedBoxes();
                 break;
+            case Z:
+                if(ctrlKey) undo();
+                break;
+            case Y:
+                if (ctrlKey) redo();
+                break;
         }
         e.consume();
     }
+
+    /**
+     * Is called when the user releases a key
+     *
+     * @param e The key-release event
+     */
+    public void onKeyReleased(KeyEvent e) {
+        switch (e.getCode()) {
+            case SHIFT:
+                canvas.endAddSelect();
+                break;
+            case CONTROL:
+                ctrlKey = false;
+                break;
+        }
+        e.consume();
+    }
+
     @FXML
     private void undo(){
         if(model.canUndo()) {
@@ -165,19 +198,5 @@ public class BaseController extends AnchorPane {
             model.resumeUndo();
             model.loadRedoLayer();
         }
-    }
-
-    /**
-     * Is called when the user releases a key
-     * 
-     * @param e The key-release event
-     */
-    public void onKeyReleased(KeyEvent e) {
-        switch (e.getCode()) {
-            case SHIFT:
-                canvas.endAddSelect();
-                break;
-        }
-        e.consume();
     }
 }

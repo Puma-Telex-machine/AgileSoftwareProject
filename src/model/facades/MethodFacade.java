@@ -35,6 +35,12 @@ public interface MethodFacade extends UndoChain {
     void removeModifier(Modifier modifier);
     Set<Modifier> getModifiers();
 
+    /**
+     * confirms that this method shoudl exist. 
+     * A method that has never been confirm shouldn't be added to the frontend
+     */
+    void confirmMethod();
+
     void setVisibility(Visibility visibility);
     Visibility getVisibility();
 

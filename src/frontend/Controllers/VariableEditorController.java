@@ -40,7 +40,7 @@ public class VariableEditorController extends AnchorPane {
     AttributeFacade variable;
 
     @FXML
-    private void deleteVariable() //This method is called when the player wants to delete the variable
+    public void deleteVariable() //This method is called when the player wants to delete the variable
     {
         box.deleteAttribute(variable);
         this.setVisible(false);
@@ -50,6 +50,7 @@ public class VariableEditorController extends AnchorPane {
     @FXML
     private void confirmVariable() //This method is called when the player wants to confirm and stop editing this variable
     {
+        variable.confirmAttribute();
         variable.stopUndo();
         variable.setName(nameField.getText());
 
@@ -60,6 +61,7 @@ public class VariableEditorController extends AnchorPane {
         variable.resumeUndo();
         variable.updateUndo();
 
+        variable = null;
         this.setVisible(false);
     }
 

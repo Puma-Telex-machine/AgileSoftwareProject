@@ -19,6 +19,7 @@ public class Attribute implements AttributeFacade, Observable<Observer> {
     private final Set<Modifier> modifiers = new HashSet<>();
     private Visibility visibility = Visibility.PRIVATE;
     private String type = "int";
+    private boolean isConfirmed = false;
 
     public Attribute(UndoChain undoChain){
         this.undoChain = undoChain;
@@ -62,6 +63,17 @@ public class Attribute implements AttributeFacade, Observable<Observer> {
         updateUndo();
     }
 
+    @Override
+    public void confirmAttribute()
+    {
+        isConfirmed = true;
+    }
+
+    public boolean getConfirmed()
+    {
+        return isConfirmed;
+    }
+    
     @Override
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;

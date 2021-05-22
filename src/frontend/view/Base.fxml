@@ -7,16 +7,105 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Rectangle?>
+<fx:root fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane layoutX="86.0" prefHeight="900.0" prefWidth="1354.0" style="-fx-background-color: #2A314A;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="NEVER" maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="1440.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" vgrow="NEVER" />
+          <RowConstraints minHeight="10.0" prefHeight="847.0" vgrow="ALWAYS" />
+        </rowConstraints>
          <children>
-            <AnchorPane minHeight="50.0" prefHeight="50.0" style="-fx-background-color: #2A314A;" styleClass="text-Large">
+            <AnchorPane fx:id="UML" layoutX="9000.0" layoutY="9000.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="20000.0" prefWidth="20000.0" styleClass="background" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <AnchorPane fx:id="leftMenu" prefHeight="850.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" GridPane.halignment="LEFT" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <children>
+                  <AnchorPane fx:id="minimize" layoutX="200.0" layoutY="6.0" onMouseClicked="#minimizeMenu" prefHeight="30.0" prefWidth="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label styleClass="iconLighter" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                           <graphic>
+                              <ImageView fitHeight="10.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter">
+                                 <image>
+                                    <Image url="@Resources/minimize@4x.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Close menu" />
+                           </tooltip>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane id="left_anchorpane" fx:id="left_anchorpane1" prefHeight="900.0" prefWidth="110.0" style="-fx-background-color: #2A314A;" styleClass="text-Large" GridPane.rowIndex="1">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                     <children>
+                        <Label onMouseClicked="#openFiles" prefHeight="28.0" prefWidth="47.0" styleClass="iconLighter">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter">
+                                 <image>
+                                    <Image url="@Resources/folder@4x.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <tooltip>
+                              <Tooltip text="Files" />
+                           </tooltip>
+                        </Label>
+                        <Label onMouseClicked="#openShapes" prefHeight="24.0" prefWidth="30.0" styleClass="iconLighter">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter">
+                                 <image>
+                                    <Image url="@Resources/box@4x.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                           <tooltip>
+                              <Tooltip text="UML Boxes" />
+                           </tooltip>
+                        </Label>
+                        <Label onMouseClicked="#openTemplates" styleClass="iconLighter">
+                           <graphic>
+                              <ImageView fitHeight="44.0" fitWidth="50.0" pickOnBounds="true" styleClass="iconLighter">
+                                 <image>
+                                    <Image url="@Resources/template0@4x.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Templates" />
+                           </tooltip>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="60.0" minHeight="60.0" prefHeight="60.0" style="-fx-background-color: #2A314A;" styleClass="text-Large" GridPane.columnIndex="1">
                <children>
                   <Text fill="#b8b8b8" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-Huge" text="UML 2000" wrappingWidth="150.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <font>
@@ -33,90 +122,7 @@
                      </tooltip></Button>
                </children>
             </AnchorPane>
-            <HBox prefWidth="1442.0">
-               <children>
-                  <AnchorPane id="left_anchorpane" fx:id="left_anchorpane1" prefHeight="900.0" prefWidth="110.0" style="-fx-background-color: #2A314A;" styleClass="text-Large">
-                     <children>
-                        <VBox alignment="TOP_CENTER" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-                           <children>
-                              <Label onMouseClicked="#openFiles" prefHeight="28.0" prefWidth="47.0" styleClass="iconLighter">
-                                 <graphic>
-                                    <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter">
-                                       <image>
-                                          <Image url="@Resources/folder@4x.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                                 <tooltip>
-                                    <Tooltip text="Files" />
-                                 </tooltip>
-                              </Label>
-                              <Label onMouseClicked="#openShapes" prefHeight="24.0" prefWidth="30.0" styleClass="iconLighter">
-                                 <graphic>
-                                    <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter">
-                                       <image>
-                                          <Image url="@Resources/box@4x.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                                 <tooltip>
-                                    <Tooltip text="UML Boxes" />
-                                 </tooltip>
-                              </Label>
-                              <Label onMouseClicked="#openTemplates" styleClass="iconLighter">
-                                 <graphic>
-                                    <ImageView fitHeight="44.0" fitWidth="50.0" pickOnBounds="true" styleClass="iconLighter">
-                                       <image>
-                                          <Image url="@Resources/template0@4x.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <tooltip>
-                                    <Tooltip text="Templates" />
-                                 </tooltip>
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                              </Label>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </VBox>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="UML" prefHeight="10000.0" prefWidth="10000.0" styleClass="background">
-                     <children>
-                        <AnchorPane fx:id="leftMenu" prefHeight="850.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <AnchorPane fx:id="minimize" layoutX="200.0" layoutY="6.0" onMouseClicked="#minimizeMenu" prefHeight="30.0" prefWidth="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <Label styleClass="iconLighter" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                       <graphic>
-                                          <ImageView fitHeight="10.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true" styleClass="iconLighter">
-                                             <image>
-                                                <Image url="@Resources/minimize@4x.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <tooltip>
-                                          <Tooltip text="Close menu" />
-                                       </tooltip>
-                                    </Label>
-                                 </children>
-                              </AnchorPane>
-                           </children></AnchorPane>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </HBox>
          </children>
-      </VBox>
+      </GridPane>
    </children>
 </fx:root>

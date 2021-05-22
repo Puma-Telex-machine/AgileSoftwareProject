@@ -84,44 +84,55 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
         this.getChildren().add(selectionRectangle);
 
         this.setOnMousePressed(e -> {
-            selectionRectangle.setVisible(true);
             mouseDownX = e.getX();
             mouseDownY = e.getY();
-            selectionRectangle.setX(mouseDownX);
-            selectionRectangle.setY(mouseDownY);
-            selectionRectangle.setWidth(0);
-            selectionRectangle.setHeight(0);
+            if(!e.isMiddleButtonDown())
+            {
+                selectionRectangle.setVisible(true);
+                selectionRectangle.setX(mouseDownX);
+                selectionRectangle.setY(mouseDownY);
+                selectionRectangle.setWidth(0);
+                selectionRectangle.setHeight(0);
+            }
         });
 
         this.setOnMouseDragged( e-> {
-            clearSelection();
-            selectionRectangle.setX(Math.min(e.getX(), mouseDownX));
-            selectionRectangle.setWidth(Math.abs(e.getX() - mouseDownX));
-            selectionRectangle.setY(Math.min(e.getY(), mouseDownY));
-            selectionRectangle.setHeight(Math.abs(e.getY() - mouseDownY));
+            if(e.isMiddleButtonDown())
+            {
+                moveCamera(-e.getX() + mouseDownX, e.getY() -mouseDownY);
+            }
+            else
+            {
+                clearSelection();
+                selectionRectangle.setX(Math.min(e.getX(), mouseDownX));
+                selectionRectangle.setWidth(Math.abs(e.getX() - mouseDownX));
+                selectionRectangle.setY(Math.min(e.getY(), mouseDownY));
+                selectionRectangle.setHeight(Math.abs(e.getY() - mouseDownY));
+                if(boxes.size() > 0) boxes.get(0).closeAttributeEditors();
+            }
         });
 
         this.setOnMouseReleased(e -> {
-
-            for (int i = 0; i < boxes.size(); i++)
-            {
-                double x = boxes.get(i).getBox().getPosition().getX(Scale.Frontend);
-                double y = boxes.get(i).getBox().getPosition().getY(Scale.Frontend);
-                if(selectionRectangle.getX() <=  x
-                        && (selectionRectangle.getX() + selectionRectangle.getWidth()) >= x
-                        && selectionRectangle.getY() <= y
-                        && (selectionRectangle.getY() + selectionRectangle.getHeight()) >= y)
-                {
-                    selectBox(boxes.get(i));
+            if(!e.isMiddleButtonDown()) {
+                for (int i = 0; i < boxes.size(); i++) {
+                    double x = boxes.get(i).getBox().getPosition().getX(Scale.Frontend);
+                    double y = boxes.get(i).getBox().getPosition().getY(Scale.Frontend);
+                    if (selectionRectangle.getX() <= x
+                            && (selectionRectangle.getX() + selectionRectangle.getWidth()) >= x
+                            && selectionRectangle.getY() <= y
+                            && (selectionRectangle.getY() + selectionRectangle.getHeight()) >= y) {
+                        selectBox(boxes.get(i));
+                    }
                 }
-            }
 
-            selectionRectangle.setVisible(false);
+                selectionRectangle.setVisible(false);
+            }
         });
     }
 
     @Override
     public void addBox(BoxFacade b) {
+        System.out.println("added box at " + b.getPosition().getX(Scale.Frontend) + " " + b.getPosition().getY(Scale.Frontend));
         BoxController box = new BoxController(b, variableEditor, methodEditor, this);
         this.getChildren().add(box);
         boxes.add(box);
@@ -135,12 +146,15 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
     private void draggingBox(MouseEvent e, BoxController box)
     {
         box.dragBox(e.getX(), e.getY());
-        for (int i = 0; i < selection.size(); i++)
-        {
-            if(box != selection.get(i))
-            {
-                selection.get(i).dragBox(e.getX(), e.getY());
+        if(selection.contains(box)) {
+            for (int i = 0; i < selection.size(); i++) {
+                if (box != selection.get(i)) {
+                    selection.get(i).dragBox(e.getX(), e.getY());
+                }
             }
+        } else {
+            clearSelection();
+            selectBox(box);
         }
         e.consume();
     }
@@ -157,7 +171,7 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
     }
 
     public Point getMiddle() {
-        return new Point(500, 400);
+        return new Point(-(int)this.getLayoutX()/2+9940, -(int)this.getLayoutY()/2 +9940);
     }
 
     //region arrowmaking
@@ -499,5 +513,13 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
         selection.add(box);
         box.getStyleClass().remove("border");
         box.getStyleClass().add("border-selected");
+    }
+
+    public void moveCamera(double xPos, double yPos)
+    {
+        this.setLayoutX(this.getLayoutX()-xPos);
+        this.setLayoutY(this.getLayoutY()+yPos);
+        System.out.println("moved camera " + this.getLayoutX() + " " + this.getLayoutY());
+
     }
 }
