@@ -10,3 +10,12 @@
   yposition=335
   visibility=PUBLIC
 <!CLASS>
+<RELATION>
+  from=0
+  xOffsetFrom=4
+  yOffsetFrom=1
+  to=1
+  xOffsetTo=0
+  yOffsetTo=1
+  type=ASSOCIATION
+<!RELATION>

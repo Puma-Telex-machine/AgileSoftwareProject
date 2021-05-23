@@ -541,7 +541,11 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
     public void copy()
     {
         BoxFacade[] tmp = new BoxFacade[selection.size()];
-        selection.toArray(tmp);
+
+        for (int i = 0; i < tmp.length; i++)
+        {
+            tmp[i] = selection.get(i).getBox();
+        }
         fileHandler.copy(tmp);
     }
 

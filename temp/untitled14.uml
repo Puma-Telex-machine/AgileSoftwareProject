@@ -1,13 +1,13 @@
 <CLASS>
   name=Class
-  xposition=0
-  yposition=12
+  xposition=340
+  yposition=339
   visibility=PUBLIC
 <!CLASS>
 <CLASS>
   name=Class
-  xposition=9
-  yposition=6
+  xposition=349
+  yposition=333
   visibility=PUBLIC
   <ATTRIBUTE>
     visibility=PRIVATE
@@ -23,8 +23,8 @@
 <!CLASS>
 <CLASS>
   name=Class
-  xposition=354
-  yposition=326
+  xposition=350
+  yposition=327
   visibility=PUBLIC
 <!CLASS>
 <CLASS>

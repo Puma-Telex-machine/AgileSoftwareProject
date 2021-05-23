@@ -1,37 +1,19 @@
 <CLASS>
   name=Class
   xposition=0
-  yposition=12
+  yposition=0
   visibility=PUBLIC
 <!CLASS>
 <CLASS>
   name=Class
-  xposition=9
-  yposition=6
+  xposition=349
+  yposition=333
   visibility=PUBLIC
   <ATTRIBUTE>
     visibility=PRIVATE
     type=int
     name=foo
   <!ATTRIBUTE>
-<!CLASS>
-<CLASS>
-  name=Class
-  xposition=298
-  yposition=331
-  visibility=PUBLIC
-<!CLASS>
-<CLASS>
-  name=Class
-  xposition=354
-  yposition=326
-  visibility=PUBLIC
-<!CLASS>
-<CLASS>
-  name=Class
-  xposition=328
-  yposition=320
-  visibility=PUBLIC
 <!CLASS>
 <RELATION>
   from=0
