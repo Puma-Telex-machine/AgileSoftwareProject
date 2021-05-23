@@ -56,7 +56,6 @@
 
 .highlight{
     -fx-background-color: "#585858";
-    -text-fill: "#000000"
 }
 .highlight_clickable{
     -fx-background-color: "#585858";

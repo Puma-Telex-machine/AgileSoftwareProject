@@ -157,6 +157,9 @@ public class BaseController extends AnchorPane {
             case Y:
                 if (ctrlKey) redo();
                 break;
+            case M:
+                canvas.keyMove = true;
+                break;
         }
         e.consume();
     }
@@ -173,6 +176,9 @@ public class BaseController extends AnchorPane {
                 break;
             case CONTROL:
                 ctrlKey = false;
+                break;
+            case M:
+                canvas.keyMove = false;
                 break;
         }
         e.consume();

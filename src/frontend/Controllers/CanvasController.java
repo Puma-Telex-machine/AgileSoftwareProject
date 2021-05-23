@@ -48,6 +48,8 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
 
     private Rectangle selectionRectangle;
 
+    public boolean keyMove;
+
     public CanvasController() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("..//view/Canvas.fxml")));
 
@@ -86,7 +88,7 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
         this.setOnMousePressed(e -> {
             mouseDownX = e.getX();
             mouseDownY = e.getY();
-            if(!e.isMiddleButtonDown())
+            if(!e.isMiddleButtonDown()||!keyMove)
             {
                 selectionRectangle.setVisible(true);
                 selectionRectangle.setX(mouseDownX);
@@ -97,7 +99,7 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
         });
 
         this.setOnMouseDragged( e-> {
-            if(e.isMiddleButtonDown())
+            if(e.isMiddleButtonDown()||keyMove)
             {
                 moveCamera(-e.getX() + mouseDownX, e.getY() -mouseDownY);
             }
@@ -113,7 +115,7 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
         });
 
         this.setOnMouseReleased(e -> {
-            if(!e.isMiddleButtonDown()) {
+            if(!e.isMiddleButtonDown()||!keyMove) {
                 for (int i = 0; i < boxes.size(); i++) {
                     double x = boxes.get(i).getBox().getPosition().getX(Scale.Frontend);
                     double y = boxes.get(i).getBox().getPosition().getY(Scale.Frontend);
