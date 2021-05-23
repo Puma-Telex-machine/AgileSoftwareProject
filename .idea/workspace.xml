@@ -3,11 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="41a11e1e-bf49-4b51-8834-c840eb7c8781" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clipboard.uml" beforeDir="false" afterPath="$PROJECT_DIR$/clipboard.uml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/diagrams/untitled.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/untitled.uml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/Controllers/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/BaseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/Controllers/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/CanvasController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/temp/untitled1.uml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/temp/untitled2.uml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/temp/untitled3.uml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp/untitled4.uml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp/untitled5.uml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp/untitled6.uml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp/untitled7.uml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp/untitled8.uml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

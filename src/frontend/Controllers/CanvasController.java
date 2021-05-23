@@ -554,4 +554,16 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
         ScaledPoint point = new ScaledPoint(Scale.Frontend, getMiddle());
         fileHandler.paste(point);
     }
+
+    public void duplicate()
+    {
+        copy();
+        paste();
+    }
+
+    public void clip()
+    {
+        copy();
+        deleteSelectedBoxes();
+    }
 }
