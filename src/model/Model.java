@@ -285,6 +285,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
 
     //Region copy/paste
     public void copy(BoxFacade[] boxes){
+        diagram.lockSaving();
         int x = findLowestX(boxes);
         int y = findLowestY(boxes);
         reducePositions(x,y,boxes);
@@ -292,21 +293,27 @@ public class Model implements ModelFacade, FileHandlerFacade {
         temp.setName("clipboard");
         temp.lockSaving();
         for (BoxFacade box: boxes) {
-            temp.addBox((Box)box);
+            temp.addBox((Box) box);
         }
         Database.saveDiagram(temp, "", "");
         new File("clipboard.uml").deleteOnExit();
         System.out.println("saved to clipboard");
+        reducePositions(x*-1, y*-1, boxes);
+        diagram.unlockSaving();
     }
 
     public void paste(ScaledPoint position){
-        Diagram temp = Database.loadDiagram("", "clipboard", "");
-        temp.lockSaving();
-        for (Box box: temp.getAllBoxes()) {
-            int newX = position.getX(Scale.Backend) + box.getPosition().getX(Scale.Backend);
-            int newY = position.getY(Scale.Backend) + box.getPosition().getY(Scale.Backend);
-            box.setPosition(new ScaledPoint(Scale.Backend, newX, newY));
-            observers.forEach(diagramObserver -> diagramObserver.addBox(box));
+        if(new File("clipboard.uml").exists()) {
+            Diagram temp = Database.loadDiagram("", "clipboard", "");
+            temp.lockSaving();
+            for (Box box : temp.getAllBoxes()) {
+                int newX = position.getX(Scale.Backend) + box.getPosition().getX(Scale.Backend);
+                int newY = position.getY(Scale.Backend) + box.getPosition().getY(Scale.Backend);
+                box.setPosition(new ScaledPoint(Scale.Backend, newX, newY));
+                diagram.addBox(box);
+                box.setDiagram(diagram);
+                observers.forEach(diagramObserver -> diagramObserver.addBox(box));
+            }
         }
     }
 
