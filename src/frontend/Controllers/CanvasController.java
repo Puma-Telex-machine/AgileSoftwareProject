@@ -522,6 +522,22 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
         box.getStyleClass().add("border-selected");
     }
 
+    private boolean selectedAll = false;
+    public void selectAll()
+    {
+        if(selectedAll)
+        {
+            clearSelection();
+            selectedAll = false;
+            return;
+        }
+        for (int i = 0; i < boxes.size(); i++)
+        {
+            selectBox(boxes.get(i));
+        }
+        selectedAll = true;
+    }
+
     public void moveCamera(double xPos, double yPos)
     {
         this.setLayoutX(this.getLayoutX()-xPos);

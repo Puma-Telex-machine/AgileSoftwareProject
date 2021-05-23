@@ -172,6 +172,9 @@ public class BaseController extends AnchorPane {
             case X:
                 if(ctrlKey) canvas.clip();
                 break;
+            case A:
+                if(ctrlKey) canvas.selectAll();
+                break;
         }
         e.consume();
     }
