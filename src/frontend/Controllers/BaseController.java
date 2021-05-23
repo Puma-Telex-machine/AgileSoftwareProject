@@ -43,7 +43,7 @@ public class BaseController extends AnchorPane {
             throw new RuntimeException(exception);
         }
 
-        canvas = new CanvasController();
+        canvas = new CanvasController(ModelFacade.getFileHandler());
         model = ModelFacade.getModel();
 
         files = new FilesController(ModelFacade.getFileHandler(), canvas);
@@ -157,6 +157,24 @@ public class BaseController extends AnchorPane {
             case Y:
                 if (ctrlKey) redo();
                 break;
+            case M:
+                canvas.keyMove = true;
+                break;
+            case C:
+                if(ctrlKey) canvas.copy();
+                break;
+            case V:
+                if(ctrlKey) canvas.paste();
+                break;
+            case D:
+                if(ctrlKey) canvas.duplicate();
+                break;
+            case X:
+                if(ctrlKey) canvas.clip();
+                break;
+            case A:
+                if(ctrlKey) canvas.selectAll();
+                break;
         }
         e.consume();
     }
@@ -173,6 +191,9 @@ public class BaseController extends AnchorPane {
                 break;
             case CONTROL:
                 ctrlKey = false;
+                break;
+            case M:
+                canvas.keyMove = false;
                 break;
         }
         e.consume();

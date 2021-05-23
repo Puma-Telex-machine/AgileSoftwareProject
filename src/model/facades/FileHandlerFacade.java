@@ -2,6 +2,7 @@ package model.facades;
 
 import global.point.ScaledPoint;
 import model.boxes.Box;
+import model.boxes.BoxFacade;
 import model.diagram.Diagram;
 
 public interface FileHandlerFacade {
@@ -48,7 +49,7 @@ public interface FileHandlerFacade {
 
     void deleteTemplate(String name);
 
-    void copy(Box[] boxes);
+    void copy(BoxFacade[] boxes);
 
     void paste(ScaledPoint point);
 }

@@ -12,10 +12,10 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="334.0" styleClass="highlight" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="334.0" styleClass="highlight" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="43.0" layoutY="86.0" styleClass="text-medium" text="Save As:" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="25.0" />
-      <TextField fx:id="nameField" layoutX="154.0" layoutY="84.0" prefHeight="25.0" prefWidth="365.0" styleClass="lighter" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="20.0" />
+      <TextField fx:id="nameField" layoutX="154.0" layoutY="84.0" prefHeight="25.0" prefWidth="365.0" style="-fx-text-fill: #000000;" styleClass="lighter" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="20.0" />
       <CheckBox fx:id="templateCheck" layoutX="39.0" layoutY="103.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="125.0" styleClass="text-medium" stylesheets="@css/DarkMode.css" text="As template" wrapText="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="55.0">
          <tooltip>
             <Tooltip text="Check box to save diagram as a template" />
@@ -30,7 +30,7 @@
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
+                        <Color blue="1.0" green="1.0" red="1.0" />
                      </color>
                   </Stop>
                </stops>

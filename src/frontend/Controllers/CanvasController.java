@@ -15,6 +15,7 @@ import model.ModelFacade;
 import model.boxes.BoxType;
 import model.diagram.ModelObserver;
 import model.boxes.BoxFacade;
+import model.facades.FileHandlerFacade;
 import model.relations.RelationFacade;
 import model.relations.RelationObserver;
 import global.point.Scale;
@@ -32,6 +33,8 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
     VariableEditorController variableEditor;
     MethodEditorController methodEditor;
 
+    FileHandlerFacade fileHandler;
+
     @FXML
     private AnchorPane arrowMenu, menuPane, contextMenu;
     @FXML
@@ -48,7 +51,9 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
 
     private Rectangle selectionRectangle;
 
-    public CanvasController() {
+    public boolean keyMove;
+
+    public CanvasController(FileHandlerFacade fileHandler) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("..//view/Canvas.fxml")));
 
         fxmlLoader.setRoot(this);
@@ -59,6 +64,8 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        this.fileHandler = fileHandler;
 
         arrowTypeComboBox.getItems().addAll(ArrowType.IMPLEMENTATION, ArrowType.INHERITANCE, ArrowType.ASSOCIATION, ArrowType.AGGREGATION, ArrowType.COMPOSITION, ArrowType.DEPENDANCY);
         arrowMenu.setVisible(false);
@@ -86,7 +93,7 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
         this.setOnMousePressed(e -> {
             mouseDownX = e.getX();
             mouseDownY = e.getY();
-            if(!e.isMiddleButtonDown())
+            if(!e.isMiddleButtonDown()||!keyMove)
             {
                 selectionRectangle.setVisible(true);
                 selectionRectangle.setX(mouseDownX);
@@ -97,7 +104,7 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
         });
 
         this.setOnMouseDragged( e-> {
-            if(e.isMiddleButtonDown())
+            if(e.isMiddleButtonDown()||keyMove)
             {
                 moveCamera(-e.getX() + mouseDownX, e.getY() -mouseDownY);
             }
@@ -113,7 +120,7 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
         });
 
         this.setOnMouseReleased(e -> {
-            if(!e.isMiddleButtonDown()) {
+            if(!e.isMiddleButtonDown()||!keyMove) {
                 for (int i = 0; i < boxes.size(); i++) {
                     double x = boxes.get(i).getBox().getPosition().getX(Scale.Frontend);
                     double y = boxes.get(i).getBox().getPosition().getY(Scale.Frontend);
@@ -520,6 +527,22 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
         box.getStyleClass().add("border-selected");
     }
 
+    private boolean selectedAll = false;
+    public void selectAll()
+    {
+        if(selectedAll)
+        {
+            clearSelection();
+            selectedAll = false;
+            return;
+        }
+        for (int i = 0; i < boxes.size(); i++)
+        {
+            selectBox(boxes.get(i));
+        }
+        selectedAll = true;
+    }
+
     public void moveCamera(double xPos, double yPos)
     {
         this.setLayoutX(this.getLayoutX()-xPos);
@@ -534,5 +557,34 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
         clearArrows();
         clearBoxes();
         model.resumeUndo();
+    }
+
+    public void copy()
+    {
+        BoxFacade[] tmp = new BoxFacade[selection.size()];
+
+        for (int i = 0; i < tmp.length; i++)
+        {
+            tmp[i] = selection.get(i).getBox();
+        }
+        fileHandler.copy(tmp);
+    }
+
+    public void paste()
+    {
+        ScaledPoint point = new ScaledPoint(Scale.Frontend, getMiddle());
+        fileHandler.paste(point);
+    }
+
+    public void duplicate()
+    {
+        copy();
+        paste();
+    }
+
+    public void clip()
+    {
+        copy();
+        deleteSelectedBoxes();
     }
 }
