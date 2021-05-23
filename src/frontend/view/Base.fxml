@@ -14,8 +14,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.shape.Rectangle?>
 <fx:root fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane layoutX="86.0" prefHeight="900.0" prefWidth="1354.0" style="-fx-background-color: #2A314A;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -24,12 +22,12 @@
           <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="1440.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" vgrow="NEVER" />
+          <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
           <RowConstraints minHeight="10.0" prefHeight="847.0" vgrow="ALWAYS" />
         </rowConstraints>
          <children>
             <AnchorPane fx:id="UML" layoutX="9000.0" layoutY="9000.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="20000.0" prefWidth="20000.0" styleClass="background" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <AnchorPane fx:id="leftMenu" prefHeight="850.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" GridPane.halignment="LEFT" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+            <AnchorPane fx:id="leftMenu" minWidth="250.0" prefHeight="850.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" GridPane.halignment="LEFT" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
                <children>
                   <AnchorPane fx:id="minimize" layoutX="200.0" layoutY="6.0" onMouseClicked="#minimizeMenu" prefHeight="30.0" prefWidth="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
@@ -48,6 +46,9 @@
                      </children>
                   </AnchorPane>
                </children>
+               <GridPane.margin>
+                  <Insets left="60.0" />
+               </GridPane.margin>
             </AnchorPane>
             <AnchorPane id="left_anchorpane" fx:id="left_anchorpane1" prefHeight="900.0" prefWidth="110.0" style="-fx-background-color: #2A314A;" styleClass="text-Large" GridPane.rowIndex="1">
                <children>
@@ -105,7 +106,7 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane maxHeight="60.0" minHeight="60.0" prefHeight="60.0" style="-fx-background-color: #2A314A;" styleClass="text-Large" GridPane.columnIndex="1">
+            <AnchorPane maxHeight="60.0" minHeight="44.0" prefHeight="44.0" prefWidth="1440.0" style="-fx-background-color: #2A314A;" styleClass="text-Large" GridPane.columnIndex="1">
                <children>
                   <Text fill="#b8b8b8" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-Huge" text="UML 2000" wrappingWidth="150.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <font>

@@ -1,34 +1,11 @@
 <CLASS>
   name=Class
-  xposition=340
-  yposition=328
+  xposition=335
+  yposition=330
   visibility=PUBLIC
+  <METHOD>
+    visibility=PUBLIC
+    type=void
+    name=method
+  <!METHOD>
 <!CLASS>
-<CLASS>
-  name=Class
-  xposition=319
-  yposition=332
-  visibility=PUBLIC
-<!CLASS>
-<CLASS>
-  name=Class
-  xposition=320
-  yposition=338
-  visibility=PUBLIC
-<!CLASS>
-<CLASS>
-  name=Class
-  xposition=331
-  yposition=334
-  visibility=PUBLIC
-<!CLASS>
-<RELATION>
-  from=3
-  to=0
-  type=ASSOCIATION
-<!RELATION>
-<RELATION>
-  from=3
-  to=1
-  type=ASSOCIATION
-<!RELATION>
