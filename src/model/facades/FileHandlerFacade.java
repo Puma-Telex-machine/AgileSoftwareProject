@@ -1,5 +1,7 @@
 package model.facades;
 
+import global.point.ScaledPoint;
+import model.boxes.Box;
 import model.diagram.Diagram;
 
 public interface FileHandlerFacade {
@@ -45,4 +47,8 @@ public interface FileHandlerFacade {
     void saveTemplate(String name);
 
     void deleteTemplate(String name);
+
+    void copy(Box[] boxes);
+
+    void paste(ScaledPoint point);
 }

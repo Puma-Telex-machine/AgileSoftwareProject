@@ -184,6 +184,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
      */
     public void dragBox(double x, double y)
     {
+        this.toFront();
         closeAttributeEditors();
         if (!moving) {
             offsetX = x;
@@ -312,7 +313,6 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
 
     @FXML
     private void showCircles() {
-        this.toFront();
         if (circleToggle) return;
         for (AnchorPointController e : anchorPoints) {
             e.setVisible(true);

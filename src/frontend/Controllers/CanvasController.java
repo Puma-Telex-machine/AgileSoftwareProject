@@ -524,4 +524,12 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
         System.out.println("moved camera " + this.getLayoutX() + " " + this.getLayoutY());
 
     }
+
+    @Override
+    public void clearCanvas() {
+        model.stopUndo();
+        clearArrows();
+        clearBoxes();
+        model.resumeUndo();
+    }
 }

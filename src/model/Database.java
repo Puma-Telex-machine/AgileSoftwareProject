@@ -379,11 +379,11 @@ public class Database {
     public static String newFile() {
         File newFile = new File("diagrams/new.uml");
         boolean firstTry = true;
-        int magicNumber = 0;
+        int magicNumber = -1;
         try {
             while (!newFile.createNewFile()) { //if the filename already exists
-                newFile = new File("diagrams/new" + magicNumber + ".uml");
                 magicNumber++;
+                newFile = new File("diagrams/new" + magicNumber + ".uml");
                 firstTry = false;
             }
             if(firstTry){

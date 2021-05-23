@@ -1,5 +1,6 @@
 package model;
 
+import global.point.Scale;
 import global.point.ScaledPoint;
 import model.boxes.Box;
 import model.boxes.BoxFacade;
@@ -192,6 +193,7 @@ public class Model implements ModelFacade, FileHandlerFacade {
     public void newFile() {
         diagram.setName(Database.newFile());
         if(diagram.getName() != null) { //TODO: Samma som förra
+            observers.forEach(ModelObserver::clearCanvas); //???
             loadFile(diagram.getName());
         }
     }
@@ -281,4 +283,63 @@ public class Model implements ModelFacade, FileHandlerFacade {
     }
     //endregion
 
+    //Region copy/paste
+    public void copy(Box[] boxes){
+        int x = findLowestX(boxes);
+        int y = findLowestY(boxes);
+        reducePositions(x,y,boxes);
+        Diagram temp = new Diagram();
+        temp.setName("clipboard");
+        temp.lockSaving();
+        for (Box box: boxes) {
+            temp.addBox(box);
+        }
+        Database.saveDiagram(temp, "", "");
+        new File("clipboard.uml").deleteOnExit();
+        System.out.println("saved to clipboard");
+    }
+
+    public void paste(ScaledPoint position){
+        Diagram temp = Database.loadDiagram("", "clipboard", "");
+        temp.lockSaving();
+        for (Box box: temp.getAllBoxes()) {
+            int newX = position.getX(Scale.Backend) + box.getPosition().getX(Scale.Backend);
+            int newY = position.getY(Scale.Backend) + box.getPosition().getY(Scale.Backend);
+            box.setPosition(new ScaledPoint(Scale.Backend, newX, newY));
+            observers.forEach(diagramObserver -> diagramObserver.addBox(box));
+        }
+    }
+
+    public int findLowestX(Box[] boxes){
+        int result = -1;
+        for (Box box: boxes) {
+            int current = box.getPosition().getX(Scale.Backend);
+            if(result == -1)
+                result = current;
+            if(current < result){
+                result = current;
+            }
+        }
+        return result;
+    }
+
+    public int findLowestY(Box[] boxes){
+        int result = -1;
+        for (Box box: boxes) {
+            int current = box.getPosition().getY(Scale.Backend);
+            if(result == -1)
+                result = current;
+            if(current < result){
+                result = current;
+            }
+        }
+        return result;
+    }
+
+    public void reducePositions(int x, int y, Box[] boxes){
+        for (Box box: boxes) {
+            box.setPosition(new ScaledPoint(Scale.Backend, box.getPosition().getX(Scale.Backend)-x, box.getPosition().getY(Scale.Backend)-y));
+        }
+    }
+    //endregion
 }
