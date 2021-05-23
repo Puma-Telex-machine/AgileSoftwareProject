@@ -1,6 +1,11 @@
 <CLASS>
   name=Class
-  xposition=327
+  xposition=326
   yposition=326
   visibility=PUBLIC
+  <ATTRIBUTE>
+    visibility=PRIVATE
+    type=int
+    name=foo
+  <!ATTRIBUTE>
 <!CLASS>

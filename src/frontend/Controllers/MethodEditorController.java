@@ -1,5 +1,6 @@
 package frontend.Controllers;
 
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -50,6 +51,7 @@ public class MethodEditorController extends AnchorPane {
 
     private void AddArgument()
     {
+        if(currentEditArgument.argumentTypeField.getText().equals("")) return;
         //Adds the current edit argument to the arguments
         currentEditArgument.highlightPane.getStyleClass().clear();
         currentEditArgument.highlightPane.getStyleClass().add("box");
@@ -59,6 +61,9 @@ public class MethodEditorController extends AnchorPane {
         arguments.add(currentEditArgument);
         MethodArgumentEditorController argument = currentEditArgument;
         argument.argumentTypeField.setOnAction((Action) -> ChangeArgument(argument));
+        argument.argumentTypeField.focusedProperty().addListener((arg0, oldPropertyValue, newPropertyValue) -> {
+            if (!newPropertyValue){ChangeArgument(argument);}
+        });
         this.setLayoutY(this.getLayoutY() - argument.getHeight()/2);
 
         //Creates a new current edit argument
@@ -147,6 +152,9 @@ public class MethodEditorController extends AnchorPane {
             MethodArgumentEditorController argument = new MethodArgumentEditorController();
             argument.argumentTypeField.setText(param[i]);
             argument.argumentTypeField.setOnAction((Action) -> ChangeArgument(argument));
+            argument.argumentTypeField.focusedProperty().addListener((arg0, oldPropertyValue, newPropertyValue) -> {
+                if (!newPropertyValue){ChangeArgument(argument);}
+            });
             argumentVBox.getChildren().add(argument);
             argument.paramLable.setText("Param " + arguments.size());
             argument.argumentTypeField.getStyleClass().add("highlight");
@@ -156,8 +164,16 @@ public class MethodEditorController extends AnchorPane {
         newCurrentEditArgument();
     }
 
+    ChangeListener<Boolean> changeListener= (ChangeListener<Boolean>) (observable, oldValue, newValue) -> {
+        if (!newValue){AddArgument();}
+    };
+
+
     private void newCurrentEditArgument ()
     {
+        if(currentEditArgument != null) {
+            currentEditArgument.argumentTypeField.focusedProperty().removeListener(changeListener);
+        }
         currentEditArgument = new MethodArgumentEditorController();
         argumentVBox.getChildren().add(currentEditArgument);
         currentEditArgument.highlightPane.getStyleClass().clear();
@@ -165,6 +181,7 @@ public class MethodEditorController extends AnchorPane {
         currentEditArgument.argumentTypeField.getStyleClass().clear();
         currentEditArgument.argumentTypeField.getStyleClass().add("box");
         currentEditArgument.argumentTypeField.setOnAction((Action) -> AddArgument());
+        currentEditArgument.argumentTypeField.focusedProperty().addListener(changeListener);
         currentEditArgument.paramLable.setText("Param " + arguments.size());
     }
 }
