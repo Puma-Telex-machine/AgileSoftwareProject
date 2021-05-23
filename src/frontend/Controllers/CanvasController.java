@@ -15,6 +15,7 @@ import model.ModelFacade;
 import model.boxes.BoxType;
 import model.diagram.ModelObserver;
 import model.boxes.BoxFacade;
+import model.facades.FileHandlerFacade;
 import model.relations.RelationFacade;
 import model.relations.RelationObserver;
 import global.point.Scale;
@@ -31,6 +32,8 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
 
     VariableEditorController variableEditor;
     MethodEditorController methodEditor;
+
+    FileHandlerFacade fileHandler;
 
     @FXML
     private AnchorPane arrowMenu, menuPane, contextMenu;
@@ -50,7 +53,7 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
 
     public boolean keyMove;
 
-    public CanvasController() {
+    public CanvasController(FileHandlerFacade fileHandler) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("..//view/Canvas.fxml")));
 
         fxmlLoader.setRoot(this);
@@ -61,6 +64,8 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        this.fileHandler = fileHandler;
 
         arrowTypeComboBox.getItems().addAll(ArrowType.IMPLEMENTATION, ArrowType.INHERITANCE, ArrowType.ASSOCIATION, ArrowType.AGGREGATION, ArrowType.COMPOSITION, ArrowType.DEPENDANCY);
         arrowMenu.setVisible(false);
@@ -531,5 +536,18 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
         clearArrows();
         clearBoxes();
         model.resumeUndo();
+    }
+
+    public void copy()
+    {
+        BoxFacade[] tmp = new BoxFacade[selection.size()];
+        selection.toArray(tmp);
+        fileHandler.copy(tmp);
+    }
+
+    public void paste()
+    {
+        ScaledPoint point = new ScaledPoint(Scale.Frontend, getMiddle());
+        fileHandler.paste(point);
     }
 }

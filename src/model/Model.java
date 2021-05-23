@@ -284,15 +284,15 @@ public class Model implements ModelFacade, FileHandlerFacade {
     //endregion
 
     //Region copy/paste
-    public void copy(Box[] boxes){
+    public void copy(BoxFacade[] boxes){
         int x = findLowestX(boxes);
         int y = findLowestY(boxes);
         reducePositions(x,y,boxes);
         Diagram temp = new Diagram();
         temp.setName("clipboard");
         temp.lockSaving();
-        for (Box box: boxes) {
-            temp.addBox(box);
+        for (BoxFacade box: boxes) {
+            temp.addBox((Box)box);
         }
         Database.saveDiagram(temp, "", "");
         new File("clipboard.uml").deleteOnExit();
@@ -310,9 +310,9 @@ public class Model implements ModelFacade, FileHandlerFacade {
         }
     }
 
-    public int findLowestX(Box[] boxes){
+    public int findLowestX(BoxFacade[] boxes){
         int result = -1;
-        for (Box box: boxes) {
+        for (BoxFacade box: boxes) {
             int current = box.getPosition().getX(Scale.Backend);
             if(result == -1)
                 result = current;
@@ -323,9 +323,9 @@ public class Model implements ModelFacade, FileHandlerFacade {
         return result;
     }
 
-    public int findLowestY(Box[] boxes){
+    public int findLowestY(BoxFacade[] boxes){
         int result = -1;
-        for (Box box: boxes) {
+        for (BoxFacade box: boxes) {
             int current = box.getPosition().getY(Scale.Backend);
             if(result == -1)
                 result = current;
@@ -336,8 +336,8 @@ public class Model implements ModelFacade, FileHandlerFacade {
         return result;
     }
 
-    public void reducePositions(int x, int y, Box[] boxes){
-        for (Box box: boxes) {
+    public void reducePositions(int x, int y, BoxFacade[] boxes){
+        for (BoxFacade box: boxes) {
             box.setPosition(new ScaledPoint(Scale.Backend, box.getPosition().getX(Scale.Backend)-x, box.getPosition().getY(Scale.Backend)-y));
         }
     }
