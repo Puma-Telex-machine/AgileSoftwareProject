@@ -193,8 +193,13 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
             //box == arrowBox => aborting arrowcreation
             if (box != arrowBox) {
 
+                System.out.println((arrowStart.x - arrowBox.getLayoutX()) + " , " +(arrowStart.y - arrowBox.getLayoutY()));
+                System.out.println((p.x - box.getLayoutX()) + " , " + (p.y-box.getLayoutY()));
+
                 ScaledPoint offsetTo = new ScaledPoint(Scale.Frontend, Math.round((p.x - box.getLayoutX())/Scale.Frontend.xScale) * Scale.Frontend.xScale, Math.round((p.y - box.getLayoutY())/Scale.Frontend.yScale)* Scale.Frontend.xScale);
                 ScaledPoint offsetFrom = new ScaledPoint(Scale.Frontend, Math.round((arrowStart.x - arrowBox.getLayoutX())/Scale.Frontend.xScale) * Scale.Frontend.xScale, Math.round((arrowStart.y - arrowBox.getLayoutY())/Scale.Frontend.yScale)* Scale.Frontend.xScale);
+                System.out.println(offsetFrom.getX(Scale.Frontend) + " , " + offsetFrom.getY(Scale.Frontend));
+                System.out.println(offsetTo.getX(Scale.Frontend) + " , " + offsetTo.getY(Scale.Frontend));
                 model.createRelation(arrowBox.getBox(), offsetFrom, box.getBox(), offsetTo, ArrowType.ASSOCIATION);
             }
         }
