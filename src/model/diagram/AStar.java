@@ -24,6 +24,13 @@ public class AStar {
 
     ScaledPoint destination;
 
+    
+    /** 
+     * Find the optimal arrowpaths between the boxes in the relation on the grid
+     * @param relation
+     * @return PathNode
+     * @throws Exception
+     */
     public PathNode findPath(Relation relation) throws Exception {
 
         visited = new TreeMap<>();
@@ -51,6 +58,12 @@ public class AStar {
         throw new Exception("No path found (There should always be a path)");
     }
 
+    
+    /** 
+     * Checks if the gridposition is empty and adds cost/weight if the optimal path can't be chosen
+     * @param previous
+     * @param direction
+     */
     private void discover(PathNode previous, Direction direction) {
         // Get the position to discover
         ScaledPoint position = previous.position;
@@ -86,16 +99,36 @@ public class AStar {
         discovered.add(node);
     }
 
+    
+    /** 
+     * Estimates the cost/weight of the arrowpath
+     * @param node
+     * @return int returns the cost/weight of the path
+     */
     private int getCostEstimate(PathNode node) {
         return node.cost + manhattanDistance(node.position, destination) + minBends(node.position, destination);
     }
 
+    
+    /** 
+     * Chckes if the arrows bend and if so returns a higher cost/weight
+     * @param position the position where the arrow come from
+     * @param destination the destination of the arrow
+     * @return int of the cost/weight
+     */
     private int minBends(ScaledPoint position, ScaledPoint destination) {
         if (position.getX(Scale.Backend) != destination.getX(Scale.Backend)) return bendCost;
         if (position.getY(Scale.Backend) != destination.getY(Scale.Backend)) return bendCost;
         return 0;
     }
 
+    
+    /** 
+     * Calculates the manhattanDistance between two points
+     * @param from the box the arrow comes from
+     * @param to the box the arrow goes to
+     * @return int giving the distance
+     */
     private static int manhattanDistance(ScaledPoint from, ScaledPoint to) {
         return (Math.abs(from.getX(Scale.Backend) - to.getX(Scale.Backend)) + Math.abs(from.getY(Scale.Backend) - to.getY(Scale.Backend)));
     }

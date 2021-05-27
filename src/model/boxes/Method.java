@@ -63,6 +63,11 @@ public class Method implements MethodFacade, Observable<Observer> {
 
     //endregion
 
+    
+    /** 
+     * Set the name of the method
+     * @param name
+     */
     @Override
     public void setName(String name) {
         this.name = name;
@@ -81,11 +86,21 @@ public class Method implements MethodFacade, Observable<Observer> {
         return isConfirmed;
     }
 
+    
+    /** 
+     * Gets the name of the method
+     * @return String
+     */
     @Override
     public String getName() {
         return name;
     }
 
+    
+    /** 
+     * Sets the type of metod
+     * @param type
+     */
     @Override
     public void setType(String type) {
         returnType = type;
@@ -93,6 +108,11 @@ public class Method implements MethodFacade, Observable<Observer> {
         updateUndo();
     }
 
+    
+    /** 
+     * Gets the type of method
+     * @return String
+     */
     @Override
     public String getType() {
         return returnType;
@@ -127,6 +147,11 @@ public class Method implements MethodFacade, Observable<Observer> {
         updateUndo();
     }
 
+    
+    /** 
+     * Returns a list of parameters
+     * @return List<String>
+     */
     @Override
     public List<String> getArguments() {
         return parameters;
@@ -154,11 +179,21 @@ public class Method implements MethodFacade, Observable<Observer> {
         updateUndo();
     }
 
+    
+    /** 
+     * Gets the set of modifiers
+     * @return Set<Modifier>
+     */
     @Override
     public Set<Modifier> getModifiers() {
         return modifiers;
     }
 
+    
+    /** 
+     * Set the visibility of the box
+     * @param visibility
+     */
     @Override
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
@@ -166,31 +201,22 @@ public class Method implements MethodFacade, Observable<Observer> {
         updateUndo();
     }
 
+    
+    /** 
+     * Get the visibilith of the box
+     * @return Visibility
+     */
     @Override
     public Visibility getVisibility() {
         return visibility;
     }
 
-    /*UiObserver observer;
-    private Boolean ignoreObserver = false; //used by database
-    @Override
-    public void subscribe(UiObserver observer) {
-       this.observer = observer;
-    }
 
-    public void ignoreObserver(){
-        ignoreObserver = true;
-    }
-
-    public void stopIgnore(){
-        ignoreObserver = false;
-    }
-
-    private void update(){
-        if(!ignoreObserver)
-            observer.update();
-    }*/
-
+    
+   /** 
+     * Turns the visibility, name and parameters into a String and returns it
+     * @return String
+     */
     @Override
     public String getString(){
         String method = "";

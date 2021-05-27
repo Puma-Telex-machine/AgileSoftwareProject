@@ -22,6 +22,11 @@ public class Model implements ModelFacade, FileHandlerFacade {
     private static Model singleton;
     Diagram diagram = new Diagram();
 
+    
+    /** 
+     * Creates a singleton that ensures that a model exists and returns it
+     * @return Model
+     */
     public static Model getModel() {
         if (singleton == null) {
             singleton = new Model();
@@ -47,12 +52,23 @@ public class Model implements ModelFacade, FileHandlerFacade {
         observers.forEach(modelObserver -> modelObserver.addRelation(relation));
     }
 
+    
+    /** 
+     * Returns the model
+     * @return FileHandlerFacade
+     */
     @Override
     public void subscribe(ModelObserver modelObserver) {
         observers.add(modelObserver);
     }
     //endregion
 
+
+	/** 
+     * Create a box and add it to all observers
+     * @param position
+     * @param boxType
+     */
     @Override
     public void createBox(ScaledPoint position, BoxType boxType) {
         stopUndo();
@@ -72,35 +88,9 @@ public class Model implements ModelFacade, FileHandlerFacade {
     }
 
 
-	/*public void addBox(ScaledPoint position, BoxType boxType) {
-        saveUndoLayer();
-        observers.forEach(observer -> observer.addBox(new Box(diagram, position, boxType)));
-    }
-	
-	public void addRelation(BoxFacade from,ScaledPoint offsetFrom, BoxFacade to,ScaledPoint offsetTo, ArrowType arrowType) {
-        //todo fix offset
-        saveUndoLayer();
-        Relation relation = new Relation(from, to, arrowType);
-        diagram.add(relation);
-        observers.forEach(observer -> observer.addRelation(relation));
-    }
-    //for merging an arrow into another arrow
-    public void addRelation(BoxFacade from,ScaledPoint offsetFrom, RelationFacade followRelation) {
-        //todo fix offset (steal offset from followrelation or something)
-
-        //todo might need to save the data that this relation follows followRelation as viceversa
-        // since i should not be able to change type of one and they stay merged
-        Relation relation = new Relation(from, followRelation.getTo(), followRelation.getArrowType());
-        diagram.add(relation);
-        observers.forEach(observer -> observer.addRelation(relation));
-    }
-    public void removeRelation(RelationFacade relation){
-        //todo
-    }*/
-
     /**
      * returns the name of all .uml files in the "diagrams" folder.
-     * @return
+     * @return the name of all saved diagrams
      */
     @Override
     public String[] getAllFileNames() {
@@ -197,7 +187,6 @@ public class Model implements ModelFacade, FileHandlerFacade {
             loadFile(diagram.getName());
         }
     }
-
 
     //REGION Undo/Redo
     private int undoLayer = 0; //the suffix of the file to be loaded on undo

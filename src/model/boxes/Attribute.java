@@ -56,12 +56,19 @@ public class Attribute implements AttributeFacade, Observable<Observer> {
     }
     //endregion
 
+    
+    /** 
+     * Set name for attribute
+     * @param name
+     */
     @Override
     public void setName(String name) {
         this.name = name;
         observers.update();
         updateUndo();
     }
+
+    
 
     @Override
     public void confirmAttribute()
@@ -73,7 +80,11 @@ public class Attribute implements AttributeFacade, Observable<Observer> {
     {
         return isConfirmed;
     }
-    
+
+    /**
+     * Set visibility for attribute
+     * @param visibility
+     */
     @Override
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
@@ -103,11 +114,21 @@ public class Attribute implements AttributeFacade, Observable<Observer> {
         updateUndo();
     }
 
+    
+    /** 
+     * Returns name for the Attribute
+     * @return String
+     */
     @Override
     public String getName() {
         return name;
     }
 
+    
+    /** 
+     * Set types for the attribute
+     * @param type
+     */
     @Override
     public void setType(String type) {
         this.type = type;
@@ -115,16 +136,31 @@ public class Attribute implements AttributeFacade, Observable<Observer> {
         updateUndo();
     }
 
+    
+    /** 
+     * Get the attributes type
+     * @return String
+     */
     @Override
     public String getType() {
         return type;
     }
 
+    
+    /** 
+     * Returns a Set of all modifiers
+     * @return Set<Modifier>
+     */
     @Override
     public Set<Modifier> getModifiers() {
         return modifiers;
     }
 
+    
+    /** 
+     * Turns the visibility, name and type into a String and return it as a variable
+     * @return String
+     */
     @Override
     public String getString() {
         String variable = "";
@@ -136,28 +172,14 @@ public class Attribute implements AttributeFacade, Observable<Observer> {
         return variable;
     }
 
+    
+    /** 
+     * get the visibility of the attribute
+     * @return Visibility
+     */
     @Override
     public Visibility getVisibility() {
         return visibility;
     }
 
-    /*UiObserver observer;
-    private Boolean ignoreObserver = false; //used by database
-    @Override
-    public void subscribe(UiObserver observer) {
-        this.observer = observer;
-    }
-
-    public void ignoreObserver(){
-        ignoreObserver = true;
-    }
-
-    public void stopIgnore(){
-        ignoreObserver = false;
-    }
-
-    private void update(){
-        if(!ignoreObserver)
-            observer.update();
-    }*/
 }
