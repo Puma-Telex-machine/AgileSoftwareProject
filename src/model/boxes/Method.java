@@ -65,7 +65,7 @@ public class Method implements MethodFacade, Observable<Observer> {
 
     
     /** 
-     * Set the name of the metod
+     * Set the name of the method
      * @param name
      */
     @Override
@@ -88,7 +88,7 @@ public class Method implements MethodFacade, Observable<Observer> {
 
     
     /** 
-     * Gets the name of the metod
+     * Gets the name of the method
      * @return String
      */
     @Override
@@ -211,43 +211,10 @@ public class Method implements MethodFacade, Observable<Observer> {
         return visibility;
     }
 
-    /*UiObserver observer;
-    private Boolean ignoreObserver = false; //used by database
-    
-     /** 
-     * TODO: shouldn't ot be setsubscriber or something
-     * @param observer
-     */
-    @Override
-    public void subscribe(UiObserver observer) {
-       this.observer = observer;
-    }
-
-    /**
-     * Stop updating observer
-     */
-    public void ignoreObserver(){
-        ignoreObserver = true;
-    }
-
-    /**
-     * Updates the observer
-     */
-    public void stopIgnore(){
-        ignoreObserver = false;
-    }
-
-    /**
-     * Updates observer if it is set to false
-     */
-    private void update(){
-        if(!ignoreObserver)
-            observer.update();
-    }*/
 
     
    /** 
-     * Turns the visibility, name and parameteres into a String and return it as a metod
+     * Turns the visibility, name and parameters into a String and returns it
      * @return String
      */
     @Override

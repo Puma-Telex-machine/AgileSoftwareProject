@@ -69,10 +69,7 @@ public class Attribute implements AttributeFacade, Observable<Observer> {
     }
 
     
-    /** 
-     * Set visibility for attribute
-     * @param visibility
-     */
+
     @Override
     public void confirmAttribute()
     {
@@ -83,7 +80,11 @@ public class Attribute implements AttributeFacade, Observable<Observer> {
     {
         return isConfirmed;
     }
-    
+
+    /**
+     * Set visibility for attribute
+     * @param visibility
+     */
     @Override
     public void setVisibility(Visibility visibility) {
         this.visibility = visibility;
@@ -181,37 +182,4 @@ public class Attribute implements AttributeFacade, Observable<Observer> {
         return visibility;
     }
 
-    /*UiObserver observer;
-    private Boolean ignoreObserver = false; //used by database
-    
-    /** 
-     * TODO: shouldn't ot be setsubscriber or something
-     * @param observer
-     */
-    @Override
-    public void subscribe(UiObserver observer) {
-        this.observer = observer;
-    }
-
-    /**
-     * stop updating observer
-     */
-    public void ignoreObserver(){
-        ignoreObserver = true;
-    }
-
-    /**
-     * updates the observer
-     */
-    public void stopIgnore(){
-        ignoreObserver = false;
-    }
-
-    /**
-     * updates observer if it is set to false
-     */
-    private void update(){
-        if(!ignoreObserver)
-            observer.update();
-    }*/
 }
