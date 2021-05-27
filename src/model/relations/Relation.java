@@ -123,11 +123,21 @@ public class Relation implements RelationFacade {
         return endPosition;
     }
 
+    
+    /** 
+     * Returns an arraylist of the paths
+     * @return ArrayList<ScaledPoint>
+     */
     @Override
     public ArrayList<ScaledPoint> getPath() {
         return path;
     }
 
+    
+    /** 
+     * Gets the arrowtype
+     * @return ArrowType
+     */
     @Override
     public ArrowType getArrowType() {
         return arrowType;
@@ -138,7 +148,11 @@ public class Relation implements RelationFacade {
         diagram.removeRelation(this);
         this.isDeleted = true;
     }
-
+    
+    /** 
+     * Get the BoxFacade to
+     * @return BoxFacade
+     */
     public BoxFacade getTo() {
         return to;
     }
@@ -158,11 +172,18 @@ public class Relation implements RelationFacade {
         }
     }
 
+    
+    
     @Override
     public boolean isDeleted() {
         return isDeleted;
     }
 
+    
+   /** 
+     * TODO: shouldn't ot be setsubscriber or something
+     * @param observer
+     */
     @Override
     public String getNrFrom() {
         return nrFrom;
@@ -183,6 +204,10 @@ public class Relation implements RelationFacade {
         this.nrFrom=nrFrom;
     }
 
+	/**
+	* Returns the BoxFacade "from"
+	* @return the BoxFacade.
+	*/
     public BoxFacade getFrom() {
         return from;
     }
@@ -191,6 +216,10 @@ public class Relation implements RelationFacade {
 
     public ScaledPoint getOffsetFromInput() {return offsetFromInput;}
 
+/** 
+     * change the relationtype of an arrow
+     * @param type
+     */
     @Override
     public void changeRelationType(ArrowType type) {
         this.arrowType = type;
@@ -198,11 +227,23 @@ public class Relation implements RelationFacade {
         updateObserver();
     }
 
+    
+    /** 
+     * Set the paths for the relations
+     * @param pathPoints
+     */
     public void setPath(ArrayList<ScaledPoint> pathPoints) {
         this.path = pathPoints;
         updateObserver();
     }
 
+    
+    /** 
+     * Get the possible arrowtype depending on the two boxes types
+     * @param from
+     * @param to
+     * @return List<ArrowType>
+     */
     public static List<ArrowType> getPossibleRelations(Box from, Box to) {
         BoxType toType = to.getType();
         switch (from.getType()){
@@ -223,6 +264,12 @@ public class Relation implements RelationFacade {
         }
     }
 
+    
+    /** 
+     * Returns a list of which possible arrowtypes depending on the to-box, where the from-box, is a classtype
+     * @param to
+     * @return List<ArrowType>
+     */
     private static List<ArrowType> classRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
         switch(to){
@@ -245,6 +292,12 @@ public class Relation implements RelationFacade {
         }
     }
 
+    
+    /** 
+     * Returns a list of which possible arrowtypes depending on the to-box, where the from-box, is a interface
+     * @param to
+     * @return List<ArrowType>
+     */
     private static List<ArrowType> interfaceRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
         switch(to){
@@ -261,6 +314,12 @@ public class Relation implements RelationFacade {
         }
     }
 
+    
+    /** 
+     * Returns a list of which possible arrowtypes depending on the to-box, where the from-box, is a abstractclass
+     * @param to
+     * @return List<ArrowType>
+     */
     private static List<ArrowType> abstractclassRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
         switch(to){
@@ -282,6 +341,12 @@ public class Relation implements RelationFacade {
         }
     }
 
+    
+    /** 
+     * Returns a list of which possible arrowtypes depending on the to-box, where the from-box, is a enum
+     * @param to
+     * @return List<ArrowType>
+     */
     private static List<ArrowType> enumRelations(BoxType to) {
         List<ArrowType> types = new ArrayList<>();
         switch (to) {
