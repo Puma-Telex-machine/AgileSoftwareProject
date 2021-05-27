@@ -4,8 +4,6 @@
     <list default="true" id="41a11e1e-bf49-4b51-8834-c840eb7c8781" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/diagrams/untitled.uml" beforeDir="false" afterPath="$PROJECT_DIR$/diagrams/untitled.uml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/Controllers/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/BaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/Controllers/CanvasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/Controllers/CanvasController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,8 +32,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$PATH_TO_FX$/javafx.base.jar!/javafx/event/Event.class" root0="SKIP_INSPECTION" />
-    <setting file="jar://$PATH_TO_FX$/javafx.fxml.jar!/javafx/fxml/FXMLLoader.class" root0="SKIP_INSPECTION" />
     <setting file="jar://$PATH_TO_FX$/javafx.graphics.jar!/javafx/scene/Scene.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PATH_TO_FX$/javafx.fxml.jar!/javafx/fxml/FXMLLoader.class" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectId" id="1rWF7l8QkerBb0EMeKy43SosIen" />
   <component name="ProjectViewState">
@@ -137,6 +135,6 @@
     </pin-to-top-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/AgileSoftwareProject$Main.ic" NAME="Main Coverage Results" MODIFIED="1621766158002" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/AgileSoftwareProject$Main.ic" NAME="Main Coverage Results" MODIFIED="1620818577980" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
