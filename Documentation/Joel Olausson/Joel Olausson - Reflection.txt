@@ -1,0 +1,95 @@
+Week 1
+I would like to learn more about having a client and the interaction between client and team, and this will come naturally during the course.
+
+When i realise something important i share it with the group. Otherwise help out when other people are stuck or when i see them
+doing something wrong guide them in the right direction.
+
+Well we just started the scrum and does not have a project yet so not much at the moment,
+but I will use it in the future when we have a project to start planning on.
+
+This week i was active in the meetings and was the “ordförande” of one of our meetings,
+since we have not started the code or such i have not contributed towards that.
+Later on i will be more involved in the coding and keep the activity in meetings high.
+
+
+
+Week 2
+This week we have mostly been working towards deciding the project and the PO, so the scrum has not been used.
+
+I was away for easter this week so i was not as active in the meetings,
+but i was there when we decided to change our idea and set up the base for the assignment.
+
+
+
+Week 3
+I would like to learn more about CSS, and will do so by using it here and also practicing it in a course im TA in.
+
+I have created some of the checklists for acceptance criterea for the user stories and assesed the time each will take.
+Since much of the work this week was planning not much has changed on the scrum.
+
+I have been part of the creation of the sketches and made the darkmode sketch which we will pursue as our first colour theme.
+
+
+
+Week 4
+this week i created the boxes, fixed dragging boxes across the canvas, added a context menu that adds boxes,
+this creates a nice base for the coming weeks work
+
+
+
+Week 5
+This week I noticed some patterns in a teammates code that was unneccesary and made it the code harder to understand
+so i gave some tips on how to change that and it was well recieved.
+
+I held the meeting with our stakeholder, been involved in all our meetings and such.
+
+this week i have made arrows in the frontend, modularized the anchorpoints on the boxes and wired them up to make arrows.
+I also added interfaces, abstract classes and enums to the frontend so we can add them to the UML.
+
+
+
+Week 6
+This week i was unable to attend one of our meetings, and did not do much more than be a part of the rest of the meetings
+
+This week i did not do as much since i have been putting down 140% of the time predicted for me each week before,
+but i fixed some pliancy and set up a framework for arrows moving with boxes.
+
+
+
+Week 7
+This week we reprioritized to make sure the product is polished at the end of the course, i was a part of this reprioritizing
+even if our PO had the last word. Otherwise i was a part of all our meetings and was the "ordförande" at one of them.
+
+I have made boxes resize depending on content and made the anchorpoints update with the size.
+I have also spent a lot of time with Elmo connecting my work in the frontend with the things he made in backend so things work not just look good.
+
+
+
+Week 8
+This week i saw a bug in our Scrum that when a textfield is deselected things sould update, i knew i had the solution to this in an old
+program i made a while ago, so i sent that piece of code to the person working with that bug and it was very well recieved.
+
+This week we went through the functionality we still had left to see if something was important to get done ASAP for our PO to get those done,
+and otherwise make sure previous weeks work properly.
+This was appriciated by the PO since he saw that this was necessary to ensure value for him.
+Otherwise he said priority should be on ironing out bugs and making everything else work 100%
+I have taken a bit of a backseat when it comes to the final team reflection, since it is hard to work 7 people at the same time.
+
+I worked a lot on buggfixing this week, but also added multiplicity to the arrows.
+
+
+
+Final thought:
+Every week we have had discussions with our PO about the state of the project, what he thought about it, what his priorities were,
+so we could update our scrum so that we prioritized our user stories correctly.
+We also asked a lot of questions about how he wanted the layout to be or the controls to work.
+On our meetings we Reflected on last weeks user stories, checked our acceptance criterea and assesed how big the coming userstories were.
+
+I was a big part of all these discussions but did not take any notice of them in my weekly reflections above.
+
+Even though i was "ordförade" a couple of meetings i would say i was not a driving force towards our meetings,
+i was active and made sure to make my voice heard but did not plan meetings and such.
+I think this is since i came into more of a coding role where i coded a lot and did not have as much responsibility towards holding meetings and such.
+This happend because other people in the group was more interested in leading the project than i was.
+Also i made the boxes and arrows in the beginning and they were a bit of a black box for the other frontend devs,
+and since these parts are a big part of our program i had a lot to do there.
