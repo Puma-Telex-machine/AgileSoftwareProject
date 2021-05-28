@@ -1,146 +1,346 @@
 package model.boxes;
 
-import model.MethodData;
-//import model.VariableData;
-import model.VariableData;
-import model.facades.BoxFacade;
+import global.Observer;
+import global.Observers;
+import global.TextWidthCalculator;
+import global.point.Scale;
+import global.point.ScaledPoint;
+import model.diagram.DiagramMediator;
+import model.facades.AttributeFacade;
+import model.facades.MethodFacade;
+import model.facades.UndoChain;
 
-import java.awt.*;
 import java.util.*;
-import java.util.List;
 
 /**
  * A generalized class representing a UML object, specifically classes/interfaces/enums.
  * Originally created by Emil Holmsten,
  * Expanded by Filip Hanberg.
  */
-public class Box {
+public class Box implements BoxFacade, Observer {
+    //different fontsize on name and other
+    private static final int START_HEIGHT = 3;
+    private static final int START_WIDTH = 4;
+    private static final double ROWS_PER_HEIGHT_UNIT = 0.4999;
 
     private String name;
-    private List<Method> methods;
-    private List<Attribute> attributes;
-    private Set<Modifier> modifiers;
-    private Visibility visibility;
-    private Point position;
+    private final BoxType type;
+    private final List<Method> methods = new ArrayList<>();
+    private final List<Attribute> attributes = new ArrayList<>();
+    private final Set<Modifier> modifiers = new HashSet<>();
+    private Visibility visibility = Visibility.PUBLIC;
+    private ScaledPoint position;
+    private DiagramMediator diagram;
+    private UndoChain undoChain;
 
-    public Box(String name, Point position) {
-        this.name = name;
+    private boolean isDeleted = false;
+
+
+    public Box(DiagramMediator diagram, ScaledPoint position, BoxType type) {
+        this.name = switch (type) {
+            case CLASS -> "Class";
+            case ABSTRACT_CLASS -> "Abstract Class";
+            case INTERFACE -> "Interface";
+            case ENUM -> "Enum";
+            default -> "Box";
+        };
         this.position = position;
-        methods = new ArrayList<>();
-        attributes = new ArrayList<>();
-        modifiers = new HashSet<>();
+        this.type = type;
+        this.diagram = diagram;
+        this.undoChain = diagram;
     }
 
-    public BoxType getType(){
-        return BoxType.BOX;
+    //region OBSERVABLE
+    private final Observers observers = new Observers();
+
+    @Override
+    public void subscribe(Observer observer) {
+        observers.add(observer);
     }
 
-    public void setName(String newName){
-        name = newName;
+    @Override
+    public void update() {
+        diagram.updateBox(this);
+        observers.update();
     }
 
-    public void setPosition(Point newPosition){
-        position = newPosition;
+    private Boolean undoActive = true;
+
+    @Override
+    public void updateUndo() {
+        if(undoActive)
+            undoChain.updateUndo();
     }
 
-    public Method getMethod(int position){
-        if(position < methods.size() && position >= 0)
-            return methods.get(position);
-        return null;
+    @Override
+    public void stopUndo(){
+        undoActive = false;
     }
 
-    public Attribute getAttribute(int position){
-        if(position < attributes.size() && position >= 0)
-            return attributes.get(position);
-        return null;
+    @Override
+    public void resumeUndo() {
+        undoActive = true;
+    }
+    //endregion
+
+
+    /** 
+     * sets the boxes name
+     * @param name
+     */
+    @Override
+    public void setName(String name) {
+        this.name = name;
+        update();
+        updateUndo();
     }
 
-    public void setModifiers(Set<Modifier> modifiers){
-        this.modifiers = modifiers;
-    }
-
-    public void addModifier(Modifier modifier){
-        modifiers.add(modifier);
-    }
-
-    public void removeModifier(Modifier modifier){
-        modifiers.remove(modifier);
-    }
-
-    public void setVisibility(Visibility visibility){
-        this.visibility = visibility;
-    }
-
+    
+    /** 
+     * get the boxes name
+     * @return String
+     */
+    @Override
     public String getName() {
         return name;
     }
 
-    public void editMethod(MethodData methodData) {
-        boolean exists = false;
-        for (Method method: methods) {
-            if(methodData.methodName == method.GetName()){
-                exists = true;
-                //method.SetName(methodData.methodName); todo: identify methods
-                method.SetVisibility(methodData.visibility);
-                method.SetArguments(methodData);
-                break;
-            }
-        }
-        if(!exists){
-            methods.add(new Method(methodData));
-        }
+    
+    /** 
+     * get the boxes type
+     * @return BoxType
+     */
+    @Override
+    public BoxType getType() {
+        return type;
     }
 
-    public void editVariable(VariableData variableData) {
-        boolean exists = false;
-        for (Attribute attribute: attributes) {
-            if(variableData.name == attribute.GetName()){
-                exists = true;
-                //attribute.SetName(variableData.name); todo: identify attributes
-                attribute.SetVisibility(variableData.visibility);
-                break;
-            }
-        }
-        if(!exists){
-            attributes.add(new Attribute(variableData));
-        }
+    /**
+     * deletes boxes
+     */
+    @Override
+    public void deleteBox() {
+        name = "THIS SHOULD NOT BE VISIBLE: BOX IS DELETED";
+        this.isDeleted = true;
+        diagram.removeBox(this);
     }
 
-    public void deleteMethod(String methodName) {
-        int counter = 0;
-        for (Method method: methods) {
-            if(methodName == method.GetName()) {
-                methods.remove(counter);
-                break;
-            }
-            counter++;
-        }
+    
+    /** 
+     * adds a method in a list an returns it
+     * @return MethodFacade
+     */
+    @Override
+    public MethodFacade addMethod() {
+        Method method = new Method(this);
+        methods.add(method);
+        method.subscribe(this);
+        updateUndo();
+        return method;
     }
 
-    public void deleteVariable(String variableName) {
-        int counter = 0;
-        for (Attribute attribute: attributes) {
-            if(variableName == attribute.GetName()) {
-                attributes.remove(counter);
-                break;
-            }
-            counter++;
-        }
+    
+    /** 
+     * deletes a metod from a list
+     * @param method
+     */
+    @Override
+    public void deleteMethod(MethodFacade method) {
+        methods.remove(method);
+        update();
+        updateUndo();
     }
 
-    public Point getPosition(){return position; }
+    
+    /** 
+     * returns a list of methods
+     * @return List<MethodFacade>
+     */
+    @Override
+    public List<MethodFacade> getMethods() {
+        return new ArrayList<>(methods);
+    }
 
-    public List<Method> getMethods(){return methods;}
+    
+    /** 
+     * adds an attribute in a list an returns it
+     * @return AttributeFacade
+     */
+    @Override
+    public AttributeFacade addAttribute() {
+        Attribute attribute = new Attribute(this);
+        attributes.add(attribute);
+        attribute.subscribe(this);
+        updateUndo();
+        return attribute;
+    }
 
-    public List<Attribute> getAttributes(){return attributes;}
+    
+    /** 
+     * deletes an attribute from a list
+     * @param attribute
+     */
+    @Override
+    public void deleteAttribute(AttributeFacade attribute) {
+        attributes.remove(attribute);
+        update();
+        updateUndo();
+    }
 
-    public Set<Modifier> getModifiers(){return modifiers;}
+    
+    /** 
+     * returns a list of attributes
+     * @return List<AttributeFacade>
+     */
+    @Override
+    public List<AttributeFacade> getAttributes() {
+        return new ArrayList<>(attributes);
+    }
 
-    public Visibility GetVisibility(){
+    
+    /** 
+     * set the visibility of the box
+     * @param visibility
+     */
+    @Override
+    public void setVisibility(Visibility visibility) {
+        this.visibility = visibility;
+        update(); //Behövs denna?
+        updateUndo();
+    }
+
+    
+    /** 
+     * get the visibility of the box
+     * @return Visibility
+     */
+    @Override
+    public Visibility getVisibility() {
         return visibility;
     }
 
-    public int getHeight() {
-        return 0;
+    
+    /** 
+     * adds a modifier to a list of modifiers
+     * @param modifier
+     */
+    @Override
+    public void addModifier(Modifier modifier) {
+        modifiers.add(modifier);
+        update(); //Behövs denna?
+        updateUndo();
+    }
+
+    
+    /** 
+     * remove a modifier from a list of modifiers
+     * @param modifier
+     */
+    @Override
+    public void removeModifier(Modifier modifier) {
+        modifiers.remove(modifier);
+        update();
+        updateUndo();
+    }
+
+    
+    /** 
+     * returns a set of modifiers
+     * @return Set<Modifier>
+     */
+    @Override
+    public Set<Modifier> getModifiers() {
+        return modifiers;
+    }
+
+  
+    /** 
+     * sets the boxes positions
+     * @param point
+     */
+    @Override
+    public void setPosition(ScaledPoint point) {
+        position = point;
+    }
+
+    @Override
+    public void setAndUpdatePosition(ScaledPoint point) {
+        //updateUndo();
+        position = point;
+        update();
+    }
+
+    
+    /** 
+     * gets the positions of the box
+     * @return ScaledPoint
+     */
+    @Override
+    public ScaledPoint getPosition() {
+        return position;
+    }
+
+  
+    @Override
+    //TODO: returns wrong height
+    public ScaledPoint getWidthAndHeight() {
+        int x = getWidth();
+        int y = getHeight();
+        return new ScaledPoint(Scale.Backend, x, y);
+    }
+
+    @Override
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    
+    /** 
+     * calculates the height of a box based on its metods and attributes
+     * @return int
+     */
+    private int getHeight() {
+
+        if((getMethods().size() + getAttributes().size()==0)) return START_HEIGHT;
+        //+1 to round up.
+        int height = (int) ((getMethods().size() + getAttributes().size()) * ROWS_PER_HEIGHT_UNIT) + START_HEIGHT +1;
+
+        return height;
+    }
+
+    
+    /** 
+     * calculates the width ofa box based on the longest character name in it
+     * @return int
+     */
+    private int getWidth() {
+
+        ArrayList<String> names = new ArrayList<>();
+
+        for (MethodFacade method : methods) {
+            names.add(method.getString());
+        }
+        for (AttributeFacade attribute : attributes) {
+            names.add(attribute.getString());
+        }
+
+        double longest=0;
+        if(!names.isEmpty()){
+            for (String n : names) {
+                longest= Math.max(TextWidthCalculator.getInstance().computeTextWidthOther(n),longest);
+            }
+        }
+        double a = TextWidthCalculator.getInstance().computeTextWidthName(name);
+        longest= Math.max(a,longest);
+
+        int i = new ScaledPoint(Scale.Frontend,longest,0).getX(Scale.Backend)+1;
+
+
+        return Math.max(i,START_WIDTH);
+    }
+
+    public void setDiagram(DiagramMediator diagram) {
+        this.diagram = diagram;
+        this.undoChain = diagram;
     }
 }

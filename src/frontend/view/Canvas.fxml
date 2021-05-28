@@ -1,8 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-
-<fx:root prefHeight="1000.0" prefWidth="3000.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-
+<fx:root onContextMenuRequested="#handleContextMenu" onMouseClicked="#handleArrowMenu" onMouseMoved="#dragArrow" prefHeight="20000.0" prefWidth="20000.0" styleClass="background" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane fx:id="menuPane" onContextMenuRequested="#closeMenu" onMouseClicked="#closeMenu" prefHeight="1000.0" prefWidth="3000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="arrowMenu" layoutX="90.0" layoutY="131.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#eventTrap" prefHeight="131.0" prefWidth="200.0">
+               <children>
+                  <AnchorPane layoutX="25.0" layoutY="62.0" prefHeight="0.0" prefWidth="70.0" styleClass="highlight-red" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="21.0">
+                     <children>
+                        <Label onMouseClicked="#deleteArrow" prefHeight="28.0" prefWidth="85.0" styleClass="text-Large" text="Delete" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <ComboBox fx:id="arrowTypeComboBox" layoutX="20.0" layoutY="20.0" prefHeight="27.0" prefWidth="150.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="15.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ComboBox>
+                  <TextField fx:id="nrFromField" layoutX="70.0" layoutY="53.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="30.0" promptText="nr" style="-fx-border-radius: 1; -fx-background-radius: 1;">
+                     <styleClass>
+                        <String fx:value="text-small" />
+                        <String fx:value="highlight" />
+                        <String fx:value="border" />
+                     </styleClass>
+                  </TextField>
+                  <Label layoutX="21.0" layoutY="55.0" styleClass="text-small" text="Nr From" />
+                  <Label layoutX="113.0" layoutY="55.0" styleClass="text-small" text="Nr To" />
+                  <TextField fx:id="nrToField" layoutX="148.0" layoutY="53.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="30.0" promptText="nr" style="-fx-border-radius: 1; -fx-background-radius: 1;">
+                     <styleClass>
+                        <String fx:value="highlight" />
+                        <String fx:value="text-small" />
+                        <String fx:value="border" />
+                     </styleClass>
+                  </TextField>
+                  <AnchorPane layoutX="101.0" layoutY="81.0" prefHeight="27.0" prefWidth="70.0" styleClass="highlight-green" AnchorPane.rightAnchor="21.0" AnchorPane.bottomAnchor="15.0">
+                     <children>
+                        <Label onMouseClicked="#saveArrow" prefHeight="28.0" prefWidth="85.0" styleClass="text-Large" text="Save" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+               <styleClass>
+                  <String fx:value="box" />
+                  <String fx:value="border" />
+               </styleClass>
+            </AnchorPane>
+            <AnchorPane fx:id="contextMenu" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#eventTrap" prefHeight="100.0" prefWidth="150.0" visible="false">
+               <children>
+                  <VBox alignment="TOP_CENTER" layoutX="205.0" layoutY="336.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label alignment="CENTER" onMouseClicked="#addClass" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add Class" textAlignment="CENTER" />
+                        <Label alignment="CENTER" onMouseClicked="#addInterface" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add interface" textAlignment="CENTER" />
+                        <Label alignment="CENTER" onMouseClicked="#addAbstract" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add Abstract Class" textAlignment="CENTER" />
+                        <Label alignment="CENTER" onMouseClicked="#addEnum" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Add Enum" textAlignment="CENTER" />
+                        <Label alignment="CENTER" layoutX="11.0" layoutY="84.0" onMouseClicked="#deleteSelectedBoxes" prefHeight="28.0" prefWidth="170.0" styleClass="text-small" text="Delete Selected" textAlignment="CENTER" />
+                     </children>
+                     <styleClass>
+                        <String fx:value="highlight_clickable" />
+                        <String fx:value="border" />
+                     </styleClass>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
 </fx:root>

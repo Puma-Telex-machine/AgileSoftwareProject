@@ -1,6 +1,11 @@
 package model.relations;
 
 public enum ArrowType {
-        EXTENDS,
-        IMPLEMENTS
+        DEFAULT,
+        INHERITANCE,
+        IMPLEMENTATION,
+        ASSOCIATION,
+        DEPENDANCY,
+        AGGREGATION,
+        COMPOSITION
 }

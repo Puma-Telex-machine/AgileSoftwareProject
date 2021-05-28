@@ -1,6 +1,11 @@
 package model.boxes;
 
-import model.MethodData;
+import com.sun.source.tree.ReturnTree;
+import global.Observable;
+import global.Observers;
+import global.Observer;
+import model.facades.MethodFacade;
+import model.facades.UndoChain;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -12,98 +17,223 @@ import java.util.Set;
  * Originally created by Emil Holmsten,
  * Updated by Filip Hanberg.
  */
-public class Method {
+public class Method implements MethodFacade, Observable<Observer> {
 
-    private String name;
-    private List<Attribute> arguments;
-    private Set<Modifier> modifiers = new HashSet<>();
-    private Visibility visibility;
-    String returnValue; // Unsure how to implement types, for now
+    private String name = "method";
+    private final List<String> parameters = new ArrayList<>();
+    private final Set<Modifier> modifiers = new HashSet<>();
+    private Visibility visibility = Visibility.PUBLIC;
+    private String returnType = "void";
+    private boolean isConfirmed = false;
+    private UndoChain undoChain;
 
-    Method(MethodData data){
-        this.name = data.methodName;
-        this.arguments = createArguments(data);
-        this.visibility = data.visibility;
+
+    public Method(UndoChain undoChain){
+        this.undoChain = undoChain;
+    }
+    public Method() {}
+    //region OBSERVABLE
+    Observers observers = new Observers();
+
+    @Override
+    public void subscribe(Observer observer) {
+        observers.add(observer);
     }
 
-    private List<Attribute> createArguments(MethodData methodData){
-        List<Attribute> result = new ArrayList<>();
-        for (String argument: methodData.arguments) {
-            result.add(new Attribute(argument,null, null));
-        }
-        return result;
+    public void stopUpdates(){observers.stopUpdates();}
+
+    public void startUpdates(){observers.startUpdates();}
+
+    private Boolean undoActive = true;
+    @Override
+    public void updateUndo() {
+        if(undoActive)
+            undoChain.updateUndo();
     }
 
-    public void SetName(String name){
-        this.name = name;
+    @Override
+    public void stopUndo() {
+        undoActive = false;
     }
 
-    /**
-     * Changes all of the Method's arguments.
-     * @param data The new set of arguments.
+    @Override
+    public void resumeUndo() {
+        undoActive = true;
+    }
+
+    //endregion
+
+    
+    /** 
+     * Set the name of the method
+     * @param name
      */
-    public void SetArguments(MethodData data){
-        this.arguments = createArguments(data);
+    @Override
+    public void setName(String name) {
+        this.name = name;
+        observers.update();
+        updateUndo();
+    }
+
+    @Override
+    public void confirmMethod ()
+    {
+        isConfirmed = true;
+    }
+
+    public boolean getConfirmed()
+    {
+        return isConfirmed;
+    }
+
+    
+    /** 
+     * Gets the name of the method
+     * @return String
+     */
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    
+    /** 
+     * Sets the type of metod
+     * @param type
+     */
+    @Override
+    public void setType(String type) {
+        returnType = type;
+        observers.update();
+        updateUndo();
+    }
+
+    
+    /** 
+     * Gets the type of method
+     * @return String
+     */
+    @Override
+    public String getType() {
+        return returnType;
+    }
+
+    @Override
+    public void removeAllArguments() {
+        parameters.clear();
+        observers.update();
+        updateUndo();
     }
 
     /**
      * Adds an argument to the Method.
      * @param argument The argument to be added.
      */
-    public void AddArgument(Attribute argument){
-        arguments.add(argument);
+    @Override
+    public void addArgument(String argument) {
+        parameters.add(argument);
+        observers.update();
+        updateUndo();
     }
 
     /**
      * Removes an argument from the Method
-     * @param position the argument's position in the list.
+     * @param argument the argument to be removed.
      */
-    public void RemoveArgument(int position){
-        if(position < arguments.size() && position >= 0)
-            arguments.remove(position);
+    @Override
+    public void removeArgument(String argument) {
+        parameters.remove(argument);
+        observers.update();
+        updateUndo();
     }
 
-    /**
-     * Changes all of the Method's modifiers.
-     * @param modifiers The new set of modifiers.
-     *  */
-    public void SetModifiers(Set<Modifier> modifiers){
-        this.modifiers = modifiers;
+    
+    /** 
+     * Returns a list of parameters
+     * @return List<String>
+     */
+    @Override
+    public List<String> getArguments() {
+        return parameters;
     }
 
     /**
      * Adds a modifier to the Method.
      * @param modifier The modifier to be added.
      */
-    public void AddModifier(Modifier modifier){
+    @Override
+    public void addModifier(Modifier modifier) {
         modifiers.add(modifier);
+        observers.update();
+        updateUndo();
     }
 
     /**
      * Removes a modifier from the Method.
      * @param modifier The modifier to be removed.
      */
-    public void RemoveModifier(Modifier modifier){
+    @Override
+    public void removeModifier(Modifier modifier) {
         modifiers.remove(modifier);
+        observers.update();
+        updateUndo();
     }
 
-    public void SetVisibility(Visibility visibility){
-        this.visibility = visibility;
-    }
-
-    public String GetName(){
-        return name;
-    }
-
-    public List<Attribute> GetArguments(){
-        return arguments;
-    }
-
-    public Set<Modifier> GetModifiers(){
+    
+    /** 
+     * Gets the set of modifiers
+     * @return Set<Modifier>
+     */
+    @Override
+    public Set<Modifier> getModifiers() {
         return modifiers;
     }
 
-    public Visibility GetVisibility(){
+    
+    /** 
+     * Set the visibility of the box
+     * @param visibility
+     */
+    @Override
+    public void setVisibility(Visibility visibility) {
+        this.visibility = visibility;
+        observers.update();
+        updateUndo();
+    }
+
+    
+    /** 
+     * Get the visibilith of the box
+     * @return Visibility
+     */
+    @Override
+    public Visibility getVisibility() {
         return visibility;
+    }
+
+
+    
+   /** 
+     * Turns the visibility, name and parameters into a String and returns it
+     * @return String
+     */
+    @Override
+    public String getString(){
+        String method = "";
+        method += Visibility.getString(visibility);
+        method += " ";
+        method += name;
+        method += " (";
+        List<String> param = parameters;
+        for (int j = 0; j < param.size(); j++) {
+            method += param.get(j);
+
+            if (j + 1 != param.size())
+                method += ", ";
+        }
+        method += ") : ";
+        method += returnType;
+
+        return method;
     }
 }
