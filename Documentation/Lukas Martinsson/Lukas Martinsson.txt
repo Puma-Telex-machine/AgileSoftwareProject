@@ -1,0 +1,105 @@
+Week 1
+What do I want to learn or understand better?
+How to work in short sprint cycles efficiently and produce a useful product
+
+How can I help someone else, or the entire team, to learn something new?
+Since I don't know the team's previous knowledge yet it's hard to say. But ensuring that everyone gets their voices heard is one thing
+
+What is my contribution towards the team’s use of Scrum?
+We haven't really had any Scrum discussion yet so it's hard to say
+
+What is my contribution towards the team’s deliveries?
+Reminded the group of meetings 
+
+
+
+Week 2
+What do I want to learn or understand better?
+Since we have chosen to make an UML-program I would like to be able to understand UML better then before, by being able to utilize it fully. Furthermore I would also like to get a deeper understanding of git, and specifically how to communicate with github through a terminal
+
+How can I help someone else, or the entire team, to learn something new?
+By a) ensuring that everyone gets their voices heard in the meetings, this would ensure that everyone would learn that every idé is worth to discuss, even if the idé is not necessarily good. Also I can do my best to ensure that everyone is on the same page when it comes to the workspace and how to utilize it, even if I am not myself an expert at it.
+
+What is my contribution towards the team’s use of Scrum?
+We have not started to use scrum yet, but I have added points to discuss making a trello board on the meeting agenda and proposed that we use the MoSCoW method when deciding what do progress with
+
+What is my contribution towards the team’s deliveries?
+I have made a structured meeting agenda that hopefully ensures that we can get everyone on the same page before turning in our project scope, due friday
+
+
+
+Week 3
+What do I want to learn or understand better?
+Currently we have made an UML diagram of how we think everything is going to interact. Furthermore we have broken down the parts needed to hopefully create an UML-program. As this course progresses I would like to understand how everything in a UML-program interacts, and also how interaction between the back and frontend works.
+
+How can I help someone else, or the entire team, to learn something new?
+To amongst other things, propose that we have a git-tutorial so that everyone is one the same page when it comes to using the repository. Furthermore by ensuring that individuals that have a lot of knowledge but that are not speaking much during the meetings gets their opinions heard. Usually it is as simple as just asking them.
+
+What is my contribution towards the team’s use of Scrum?
+That when we divide user stories into smaller tasks that we do so in smaller groups to increase time efficiency. By smaller groups I mean backend and frontend. And afterwards to ensure that everyone gets a say in everything,  the group that divided a user story gives a quick runthrough of the task they have broken it down into so that everyone can have an opinion in case someone wants to change something.
+
+What is my contribution towards the team’s deliveries?
+Right now I try to ensure that only the bigger decisions are made with the entire group. Since if the smaller decisions can be made in smaller groups we can achieve much more and deliver faster.
+
+
+
+Week 4
+What do I want to learn or understand better?
+During this week we have determined the KPIs, and it would thus be interesting to understand how these can improve our work as a group.
+
+How can I help someone else, or the entire team, to learn something new?
+Me and another team member tried to get vs code to work, and since i have a bit more experience than him I taught him how to install java fx (after i learned it myself) so that we could use it.
+
+What is my contribution towards the team’s use of Scrum?
+This week i did not have a big contribution towards the team’s use of Scrum
+
+What is my contribution towards the team’s deliveries?
+This week mostly to ensure that I delivered the code I was assigned to do.
+
+
+
+Week 5
+What do I want to learn or understand better?
+This week a member of the backend group explained about a search algorithm called A Star that I would like to understand better.
+
+How can I help someone else, or the entire team, to learn something new?
+This week in the backend group there were 2 high technical tasks to be done, and since neither of me or the other student from industriell ekonomi had that knowledge we were tasked with java-documenting the code so far. This will make the code easier to read and understand.
+
+What is my contribution towards the team’s deliveries?
+This week we discussed how the KPIs can be used to improve the group work and whether they were relevant. I discussed how especially the time planned to actual time ratio is a good indicator on how precise we are with our time estimates and furthermore if the workload is even, and if not, why and if we should change something.
+
+
+
+Week 6
+What do I want to learn or understand better?
+This week I worked with refactoring, and it was interesting to learn more about effective refactorization processes.
+
+How can I help someone else, or the entire team, to learn something new?
+Through having a discussion about refactoring in the backend group, we ensured that hopefully everyone better understood how everything works together.
+
+What is my contribution towards the team’s deliveries?
+As stated above, this week for me was mainly about refactoring code so that it could work better and be easier to understand
+
+
+
+Week 7
+What do I want to learn or understand better?
+How to effectively understand and thorugh it write javadocs that would enable people beside the group to understand the code and how each module interacts. 
+
+How can I help someone else, or the entire team, to learn something new?
+By ensuring that the javadocs I write are clear and concise, I would enable the rest of the team to easier understand each other's code that would be beneficial when a merge occurs.
+
+What is my contribution towards the team’s deliveries?
+Since I mainly wrote javadocs on the backend that was my main contribution this week, it has been less than previous week since the deadline for the bachelor's thesis was this week and I thus had to focus more on that.
+
+
+Week 8
+What do I want to learn or understand better?
+This week due to time constraints of the previous week on my part since our bachelor's thesis deadline was approaching I could not code as much, therefore debugging new code which we decided to do this week would be much harder for me. Therefore, me and the other I-student (who was in a similar position) took upon us to create the presentation. Therefore what I would like to learn better after creating the presentation is how to improve it even further, to present even more and better information within the same timeframe.
+
+How can I help someone else, or the entire team, to learn something new?
+This week I therefore helped the rest of the students not in our group understand our program and what we had accomplished. Also to ensure that every group member agreed that everything of value was presented I had to ask them to reflect over what they thought was the most valuable part in our program, and that might have helped them understand its value better.
+
+What is my contribution towards the team’s deliveries?
+What I’ve written above sums it up pretty nicely, that is creating the presentation. Additionally I of course actively participated in the meeting and tried to make them as good as possible.
+
