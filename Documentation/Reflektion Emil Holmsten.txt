@@ -1,0 +1,92 @@
+v1
+Under veckan har vi primärt fokuserat på att definiera gruppkontraktet vilket har gått relativt bra. Gruppen fungerar bra och vi kommer framåt i den takt som jag upplever förväntas av oss, alltså att vi ligger i fas.
+
+Vi har kommit på några bra ideer men jag är rädd att den ide gruppen är mest sugen på är svår att implementera. Jag har i flera tidigare projekt varit med om att gruppen har tagit sig vatten över huvudet och skulle vilja undvika den situationen igen.
+
+
+Vad vill jag lära mig eller förstå bättre?
+Jag är intresserad av att förstå och jobba agilt, det ska bli intressant att se hur systemet fungerar och om det kan förbättra resultatet.
+ 
+Hur kan jag hjälpa någon annan, eller hela laget, att lära sig något nytt?
+Svårt att säga i dagsläget, vi har inte kommit långt nog i processen.
+ 
+Vad bidrar jag med till mitt lags användande av Scrum?
+Inget ännu, men jag hjälper gärna till att sätta upp ett bra och fungerande system i praktiken och hjälper därefter gärna till om min hjälp efterfrågas. I övrigt är mitt mål mest att vara en fungerande del av scrum-processen/laget och observera hur det fungerar. Om jag upplever att något kan förbättras kommer jag kommunicera det till de ansvariga.
+ 
+Vad bidrar jag med till vad laget levererar?
+Hittills har jag primärt varit med och genererat ideer, men även gruppkontrakt etc. Vi har inte spikat min roll i projektet ännu, så vi får helt enkelt se.
+
+
+v2
+Vi har haft bra möten kring arkitekturen i programmet. Målet för veckan är att implementera v0.1 som är en väldigt grundläggande setup för resten av arbetet.
+
+
+Vad vill jag lära mig eller förstå bättre?
+Jag kommer jobba ganska intensivt med MVVM modellen närmsta tiden, hoppas förstå hur det är tänkt att fungera.
+ 
+Hur kan jag hjälpa någon annan, eller hela laget, att lära sig något nytt?
+Jag hoppas kunna hjälpa de andra att förstå och arbeta med MVVM. Först måste jag förstå det själv.
+ 
+Vad bidrar jag med till mitt lags användande av Scrum?
+Jag har varit med under de möten vi haft kring implementationen av scrum i arbetet. Jag tycker inte att det känns som att gruppen riktigt insett att vi ska skapa tasks, vilket jag hoppas kunna leda gruppen till att göra på måndag.
+ 
+Vad bidrar jag med till vad laget levererar?
+Jag har lett arbetet kring design av applikationens arkitektur, hittills endast på klassdiagram-nivå. Jag kommer under helgen att implementera grunden av programmet, v0.1 eftersom det inte hanns med i veckan och vi vill presentera något för intressenten på måndag.
+
+
+v3
+Arbetet har kommit igång bra och v0.1 är implementerad. Vi har fortsatt implementera funktionalitet och jobbat bra inom backend gruppen.
+
+Vad bidrar jag med till mitt lags användande av Scrum?
+Vi har delat upp våra user stories i mer hanterbara punkter efter behov. Det går att göra bättre men vi använder det iaf nu.
+ 
+Vad bidrar jag med till vad laget levererar?
+Jag har skapat den grundläggande strukturen för programmet.
+
+
+v4
+Tyvärr gick planeringen för veckan inte speciellt bra för backend. Jag önskar att jag hade kunnat lösa det hela bättre men jag (vi) lyckades alltså inte lösa en bra arbetsfördelning.
+
+
+Vad vill jag lära mig eller förstå bättre?
+Hur man hanterar en liknande situation. Delegation av arbete är svårt.
+ 
+Hur kan jag hjälpa någon annan, eller hela laget, att lära sig något nytt?
+Förhoppningsvis har vi löst det så att jag kommer att gå igenom och förklara vad som behöver hända senare i veckan så att jag kan dela ut delar av mitt arbete. Förhoppningsvis kan jag lära dem hur det jag gjort fungerar.
+ 
+Vad bidrar jag med till mitt lags användande av Scrum?
+Jag har ansvarat för att vi introducerade scrum poker till vår process, det var dock inte denna veckan. I övrigt har jag varit involverad i det mesta.
+ 
+Vad bidrar jag med till vad laget levererar?
+Jag har bidragit mycket till modellen, både i planering och praktiskt arbete. Jag har också varit väldigt involverad i backend-frontend samkörningen.
+
+
+v5
+Planeringen för veckan gick bättre denna gång, vi hade en bättre arbetsfördelning där tanken var att vi skulle jobba mer två o två. Vi hade också ett lyckat arbetsmöte inom backend-gruppen. 
+
+Vad vill jag lära mig eller förstå bättre?
+Hur kan jag hjälpa någon annan, eller hela laget, att lära sig något nytt?
+Vad bidrar jag med till mitt lags användande av Scrum?
+Jag har legat ganska lågt, jag är ordförande för möten när det passar att jag håller i dem. Jag har hållit i våra scrum poker-sessioner.
+ 
+Vad bidrar jag med till vad laget levererar?
+Jag har jobbat mer med backend och försökt styra upp arbetet och arkitekturen.
+
+
+v6
+Vad bidrar jag med till vad laget levererar?
+Denna vecka har jag gjort pathfinding algoritmen samt allmänt arbete med vårt grid, den fungerar relativt bra. Kopplingen mellan backend och frontend har varit en svårighet. Tror det beror på bristande kommunikation.
+
+
+v7
+Vi har refaktoriserat istället för att implementera nya features under veckan vilket känns väldigt bra. Det finns fortfarande mycket som kan förbättras men nu har vi löst mycket utav det trassel som fanns innan.
+ 
+Vad bidrar jag med till vad laget levererar?
+Denna vecka har ju då alltså gått till refaktorisering. Allt är mycket stabilare och mer organiserat nu. Det finns antagligen stor förbättringspotential fortfarande men grunden känns ok nu. 
+
+
+v8
+Veckan har varit en blandning av att fortsätta refaktoriseringen och att implementera de kritiska funktionerna som måste finnas för att vi ska ha en MVP.
+
+Jag har jobbat mest med polish och hjälpt till vid implementation av olika funktioner som kräver arbete i backend.
+
