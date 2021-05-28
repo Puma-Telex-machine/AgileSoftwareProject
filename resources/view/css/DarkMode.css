@@ -1,0 +1,232 @@
+@font-face
+{
+    font-family: "Roboto Mediumm";
+    src: url("Roboto-Medium.ttf");
+}
+@font-face
+{
+    font-family: "Roboto";
+    src: url("Roboto-Regular.ttf");
+}
+@font-face
+{
+    font-family: "Roboto Light";
+    src: url("Roboto-Light.ttf");
+}
+
+.text-Huge{
+    -fx-text-fill: "DBDBDB";
+    -fx-alignment: "Center";
+    -fx-font-size: 30px;
+    -fx-font-family: "Roboto Medium";
+}
+
+.text-Large{
+    -fx-text-fill: "DBDBDB";
+    -fx-alignment: "Center";
+    -fx-font-size: 20px;
+    -fx-font-family: "Roboto";
+}
+
+.text-small{
+    -fx-text-fill: "DBDBDB";
+    -fx-alignment: "Center";
+       -fx-font-size: 12px;
+       -fx-font-family: "Roboto Light";
+}
+.text-small-black{
+    -fx-text-fill: "000000";
+    -fx-alignment: "Center";
+       -fx-font-size: 12px;
+       -fx-font-family: "Roboto Light";
+}
+
+
+.text-medium {
+    -fx-text-fill: "DBDBDB";
+    -fx-alignment: "Center";
+    -fx-font-size: 16px;
+    -fx-font-family: "Roboto Light";
+}
+
+.background{
+    -fx-background-color: "#1B1E22";
+}
+
+
+.highlight{
+    -fx-background-color: "#585858";
+    -fx-text-fill: "#ffffff";
+}
+.highlight_clickable{
+    -fx-background-color: "#585858";
+}
+.highlight_clickable :hover{
+    -fx-background-color: "#686868";
+}
+.highlight_clickable :pressed{
+    -fx-background-color: "#484848";
+}
+
+
+.box{
+    -fx-background-color: "#3E4046";
+}
+.box_clickable{
+    -fx-background-color: "#3E4046";
+}
+.box_clickable :hover{
+    -fx-background-color: "#4B4C50";
+}
+.box_clickable :pressed{
+    -fx-background-color: "#34363C";
+}
+
+.border{
+    -fx-border-color: "#000000";
+    -fx-border-width: 1;
+}
+
+.border-selected {
+    -fx-border-color: "#AAAAAA";
+    -fx-border-width: 2;
+}
+
+.fill-light{
+    -fx-fill: "DBDBDB";
+    -fx-border-color: "#000000";
+    -fx-border-width: 1;
+}
+.fill-light :hover{
+    -fx-fill: "EBEBEB";
+    -fx-border-color: "#111111";
+    -fx-border-width: 1;
+}
+
+.highlight-green{
+    -fx-fill: "#54ED1F";
+    -fx-background-color: "#54ED1F";
+    -fx-border-color: "#000000";
+    -fx-border-width: 1;
+
+    -fx-alignment: "Center";
+    /*-fx-font-size: 20px;*/
+    -fx-font-family: "Roboto";
+
+   /*-fx-text-fill: "#000000";*/
+}
+.highlight-green :hover{
+    -fx-background-color: "#73E84A";
+}
+.highlight-green :pressed{
+    -fx-background-color: "#40B815";
+}
+
+.highlight-red {
+    -fx-fill: "#BA0C0C";
+    -fx-background-color: "#BA0C0C";
+    -fx-border-color: "#000000";
+    -fx-border-width: 1;
+    -fx-text-fill: "DBDBDB";
+    -fx-font-family: "Roboto";
+}
+.highlight-red :hover{
+    -fx-text-fill: "EBEBEB";
+    -fx-background-color: "#D62929";
+}
+.highlight-red :pressed{
+    -fx-text-fill: "BBBBBB";
+    -fx-background-color: "#A40A0A";
+}
+
+.combo-box-base{
+    -fx-border-width : 1;
+    -fx-border-color: "#000000";
+    -fx-background-color: "#585858"
+}
+.combo-box-base:hover{
+    -fx-background-color: "#686868"
+}
+.combo-box-base:pressed{
+    -fx-background-color: "#484848"
+}
+
+.combo-box .arrow{
+    -fx-background-color: "DBDBDB";
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color:  "#686868";
+}
+.combo-box .list-cell{
+    -fx-font-family: "Roboto";
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-text-fill: "DBDBDB";
+}
+
+.combo-box .combo-box-popup .list-cell:selected {
+ -fx-background-color:"6D6D6D";
+ }
+
+.combo-box .combo-box-popup .list-view{
+    -fx-background-color: "585858";
+    -fx-border-width : 1;
+    -fx-border-color: "#000000";
+}
+
+.leftSideMenu{
+    -fx-fill: "#3E4046";
+    -fx-font-size: 16px;
+    -fx-text-fill: "DBDBDB";
+    -fx-background: "#3E4046";
+    -fx-background-color: "#3E4046";
+    -fx-alignment: "Left";
+    -fx-font-family: "Roboto";
+}
+
+.leftSideMenu-textLarge {
+    -fx-font-size: 24px;
+    -fx-font-family:"Roboto Light";
+    -fx-text-fill: "#B8B8B8";
+}
+
+.lighter:hover{
+    -fx-text-fill: "#DBDBDB";
+}
+
+.iconLighter:hover{
+    -fx-effect: dropshadow(one-pass-box, rgba(219, 219, 219, 0.3), 4, 1, 0.0, 0.0);
+}
+
+.iconLighter:pressed{
+    -fx-effect: dropshadow(one-pass-box, rgba(59, 59, 59, 0.3), 10, 1, 0.0, 0.0);
+}
+
+.text-field{
+    -fx-font-family: "Roboto Light";
+}
+
+.line{
+    -fx-stroke-width: 1px;
+    -fx-stroke: "DBDBDB";
+}
+
+.buttons {
+    -fx-fill: "#FFFFFF";
+    -fx-background-color: "#929292";
+    -fx-border-color: "#000000";
+    -fx-border-width: 1;
+    -fx-text-fill: "000000";
+}
+
+.buttons:hover {
+    -fx-background-color: "#9f9f9f";
+}
+
+.buttons:pressed {
+    -fx-background-color: "#868686";
+}
+
+.checkbox {
+    -fx-border-color: "#DBDBDB";
+}

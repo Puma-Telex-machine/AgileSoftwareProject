@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root minHeight="100.0" prefHeight="900.0" prefWidth="250.0" styleClass="leftSideMenu" stylesheets="@css/DarkMode.css" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label prefWidth="230.0" styleClass="leftSideMenu-textLarge" stylesheets="@css/DarkMode.css" text="Load Diagram" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <VBox fx:id="filesBox" layoutX="10.0" layoutY="71.0" prefHeight="585.0" prefWidth="230.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0" />
+      <Button layoutX="10.0" layoutY="808.0" mnemonicParsing="false" onAction="#newFile" prefHeight="14.0" prefWidth="235.0" styleClass="buttons" stylesheets="@css/DarkMode.css" text="New Diagram" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+         <tooltip>
+            <Tooltip text="Create a new diagram" />
+         </tooltip></Button>
+      <Button fx:id="save_button" layoutX="23.0" layoutY="861.0" mnemonicParsing="false" onMouseClicked="#openSave" prefHeight="16.0" prefWidth="235.0" styleClass="buttons" stylesheets="@css/DarkMode.css" text="Save Diagram" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+         <tooltip>
+            <Tooltip text="Save changes" />
+         </tooltip></Button>
+   </children>
+</fx:root>

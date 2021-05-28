@@ -26,7 +26,7 @@ public class FilesController extends AnchorPane{
 
     public FilesController(FileHandlerFacade fileHandler, CanvasController canvas) {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("..//view/Files.fxml"));
+                getClass().getResource("/view/Files.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

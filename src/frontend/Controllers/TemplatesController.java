@@ -19,7 +19,7 @@ public class TemplatesController extends AnchorPane {
 
     public TemplatesController(FileHandlerFacade fileHandler, CanvasController canvas) {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("../view/templates.fxml"));
+                getClass().getResource("/view/templates.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

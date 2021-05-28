@@ -21,7 +21,7 @@ public class FileMenuItemController extends AnchorPane {
 
     public FileMenuItemController(String fileName, FileHandlerFacade fileHandler, CanvasController canvas) {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("..//view/FileMenuItem.fxml"));
+                getClass().getResource("/view/FileMenuItem.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

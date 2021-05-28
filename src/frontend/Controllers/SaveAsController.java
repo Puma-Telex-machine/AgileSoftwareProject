@@ -23,7 +23,7 @@ public class SaveAsController extends AnchorPane {
 
     public SaveAsController() {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("../view/saveAs.fxml"));
+                getClass().getResource("/view/saveAs.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

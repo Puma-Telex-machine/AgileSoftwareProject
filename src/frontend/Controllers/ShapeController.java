@@ -18,7 +18,7 @@ public class ShapeController extends AnchorPane {
 
     public ShapeController(CanvasController canvas) {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("..//view/shapes.fxml"));
+                getClass().getResource("/view/shapes.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

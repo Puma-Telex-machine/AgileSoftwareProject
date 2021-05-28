@@ -33,7 +33,7 @@ public class BaseController extends AnchorPane {
     TemplatesController templates;
 
     public BaseController() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("../view/Base.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/view/Base.fxml")));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

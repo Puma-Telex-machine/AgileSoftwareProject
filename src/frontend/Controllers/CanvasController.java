@@ -54,7 +54,7 @@ public class CanvasController extends AnchorPane implements ModelObserver, Arrow
     public boolean keyMove;
 
     public CanvasController(FileHandlerFacade fileHandler) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("..//view/Canvas.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/view/Canvas.fxml")));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

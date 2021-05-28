@@ -16,7 +16,7 @@ public class BoxAttributeTextController extends AnchorPane {
     Label nameLable;
 
     public BoxAttributeTextController(String text) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("..//view/BoxAttributeText.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/BoxAttributeText.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

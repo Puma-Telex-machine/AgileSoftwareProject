@@ -17,7 +17,7 @@ public class ExercisesMenuItemController extends AnchorPane {
 
     public ExercisesMenuItemController(ExerciseFacade exercise) {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("..//view/ExercisesMenuItem.fxml"));
+                getClass().getResource("/view/ExercisesMenuItem.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

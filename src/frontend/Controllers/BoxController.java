@@ -55,7 +55,7 @@ public class BoxController extends AnchorPane implements ArrowObservable, Observ
 
     public BoxController(BoxFacade box, VariableEditorController VEC, MethodEditorController MEC, ArrowObserver arrowObserver) {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("..//view/Box.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/view/Box.fxml")));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

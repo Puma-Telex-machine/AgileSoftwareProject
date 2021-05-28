@@ -1,0 +1,110 @@
+<CLASS>
+  name=ConcreteObservable
+  xposition=299
+  yposition=331
+  visibility=PUBLIC
+  <METHOD>
+    visibility=PUBLIC
+    type=void
+    name=subscribe
+    <PARAMETER>
+      name=Observer
+    <!PARAMETER>
+  <!METHOD>
+  <ATTRIBUTE>
+    visibility=PRIVATE
+    type=int
+    name=observing
+  <!ATTRIBUTE>
+<!CLASS>
+<CLASS>
+  name=ConcreteObserver
+  xposition=312
+  yposition=329
+  visibility=PUBLIC
+  <METHOD>
+    visibility=PUBLIC
+    type=void
+    name=update
+  <!METHOD>
+<!CLASS>
+<INTERFACE>
+  name=Observable
+  xposition=306
+  yposition=323
+  visibility=PUBLIC
+  <METHOD>
+    visibility=PUBLIC
+    type=void
+    name=method
+  <!METHOD>
+<!INTERFACE>
+<INTERFACE>
+  name=Observer
+  xposition=312
+  yposition=323
+  visibility=PUBLIC
+  <METHOD>
+    visibility=PUBLIC
+    type=void
+    name=update
+  <!METHOD>
+<!INTERFACE>
+<INTERFACE>
+  name=Observable
+  xposition=319
+  yposition=330
+  visibility=PUBLIC
+  <METHOD>
+    visibility=PUBLIC
+    type=void
+    name=method
+  <!METHOD>
+<!INTERFACE>
+<INTERFACE>
+  name=Observer
+  xposition=325
+  yposition=330
+  visibility=PUBLIC
+  <METHOD>
+    visibility=PUBLIC
+    type=void
+    name=update
+  <!METHOD>
+<!INTERFACE>
+<RELATION>
+  from=0
+  xOffsetFrom=4
+  yOffsetFrom=0
+  to=2
+  xOffsetTo=2
+  yOffsetTo=4
+  type=IMPLEMENTATION
+<!RELATION>
+<RELATION>
+  from=2
+  xOffsetFrom=4
+  yOffsetFrom=2
+  to=3
+  xOffsetTo=0
+  yOffsetTo=2
+  type=ASSOCIATION
+<!RELATION>
+<RELATION>
+  from=1
+  xOffsetFrom=2
+  yOffsetFrom=0
+  to=3
+  xOffsetTo=2
+  yOffsetTo=4
+  type=IMPLEMENTATION
+<!RELATION>
+<RELATION>
+  from=1
+  xOffsetFrom=0
+  yOffsetFrom=2
+  to=0
+  xOffsetTo=6
+  yOffsetTo=2
+  type=ASSOCIATION
+<!RELATION>

@@ -17,7 +17,7 @@ public class AnchorPointController extends AnchorPane {
     private boolean pressed = false;
 
     public AnchorPointController(){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("..//view/Anchorpoint.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/view/Anchorpoint.fxml")));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

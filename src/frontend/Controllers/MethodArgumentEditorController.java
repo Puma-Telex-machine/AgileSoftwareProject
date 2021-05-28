@@ -23,7 +23,7 @@ public class MethodArgumentEditorController extends AnchorPane {
 
     public MethodArgumentEditorController()
     {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("..//view/MethodArgumentEditor.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/view/MethodArgumentEditor.fxml")));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
