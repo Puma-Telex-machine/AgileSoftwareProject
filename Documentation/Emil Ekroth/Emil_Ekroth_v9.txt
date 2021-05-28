@@ -1,0 +1,22 @@
+Individuell reflektion Emil Ekroth
+Då detta är sista veckan att jobba på projektet så har denna vecka haft som fokus att färdigställa projektet. 
+Vi har även denna vecka fått prioritera vilka delar vi vill färdigställa och polera samt vilka delar vi vill cutta. 
+
+Vad vill jag lära mer om?
+Denna vecka har jag lärt mig hur man implementerar att man får ett event call då man deselectar ett input field. 
+Väldigt specifikt i know men känns typ som att man kan lära sig mer om det. 
+
+Hur kan jag hjälpa min grupp att lära sig något nytt?
+Denna vecka har det varit lite dåligt i att ha koll på vem som ska vara mötesordförande. Det känns som att många har missat att planera inför möten, 
+vilket är rimligt då man säkert har haft fokus på att sammanfoga projektet istället. Jag känner lite att jag har tagit på mig ansvar att komma ihåg och skriva ihop 
+agendor för möten samt att påminna om att de bör hålla i mötet och inte bara vara där. Detta är fine denna vecka då det som sagt har varit stor fokus på att sammanställa 
+projektet, men i framtiden så skulle jag gärna hjälpa min grupp i att lära sig att använda en tydlig projektkalender. 
+
+Vad är mitt bidrag till grupppens användning av scrum?
+Denna vecka har jag varit delaktig i att planera upp den uppkommande veckan med de sista inlämningarna, hjälpt till att prioritera de sista delarna för 
+projektet samt att hjälpt till att få ihop projektet. Jag har skrivit mötesprotokoll när det har behövts och jag jag höll i slutet av denna scrum i ett möte där vi 
+planerade upp hur vi skulle färdigställa inlämningar angående projektet. 
+
+Vad är mitt bidrag till vad gruppen levererar?
+Denna vecka har jag fokuserat på att implementera ett system för att kunna flytta på kameran i programmet, fixa frontend delarna av copy paste, 
+lägga till ett antal keyboard shortcuts som tex copy/paste/cut, undo/redo och select all samt fixa buggar i de delar jag har haft större ansvar i tidigare i projektet. 

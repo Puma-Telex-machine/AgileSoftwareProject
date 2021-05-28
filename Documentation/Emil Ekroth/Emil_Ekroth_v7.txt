@@ -1,0 +1,21 @@
+Individuell reflektion Emil Ekroth
+Denna vecka har vi fokuserat på att inte lägga till nya saker utan istället polera, refaktorisera och färdigställa de delar vi redan har.
+
+Vad vill jag lära mer om?
+Nu under polering och faktorisering så har det inte direkt dykt upp någonting nytt som jag känner att jag borde lära mig.
+
+Hur kan jag hjälpa min grupp att lära sig något nytt?
+Det känns som vi som grupp börjar få ganska bra koll på det mesta, förutom att committa saker i mindre delar istället för allt på en gång. 
+Detta är någonting jag försöker övertala de andra om.
+
+Vad är mitt bidrag till grupppens användning av scrum?
+Denna vecka har vi gemensamt i gruppen bestämt att vi ska ta bort en massa planerade features som vi inte har hunnit börja jobba på än och istället 
+fokusera på att polera på det vi har. Detta har inneburit att vi har tagit bort en massa user stories. Detta var ett  gruppbeslut som jag känner att jag var delaktig i att ta. 
+Som tidigare veckor har även jag och Madeleine tittat igenom våra user stories och försökt planera upp upplägget för kommande veckorna. Det har dock varit ett mindre 
+arbete denna vecka då vi har haft färre userstories. 
+
+Vad är mitt bidrag till vad gruppen levererar?
+Denna vecka har jag fokuserat på att polera och färdigställa editorerna för attributen samt jobbat på controllern för boxar. Det har varit mycket småfix. 
+Generellt känns det som om jag har haft mindre att göra denna vecka, men det har varit väldigt skönt för då har jag kunnat fokusera mer på våran mattekurs som jag 
+annars ligger lite efter i. Jag känner fortfarande att jag har bidragit till gruppen och har varit aktiv i alla möten samt jobbat på projektet. 
+Jag tror och hoppas att jag kommer att ha mer att göra nästa vecka. 

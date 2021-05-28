@@ -1,0 +1,15 @@
+Individuell reflektion Emil Ekroth
+Denna vecka har vi börjat koda och bygga själva UIn för projektet. 
+
+Vad vill jag lära mer om?
+
+
+Hur kan jag hjälpa min grupp att lära sig något nytt?
+Denna vecka har jag hållit i många möten, vilket jag inte har någonting emot. Tror dock att det skulle vara bra att sprida lite på vem som är mötesansvarig. 
+Jag kan kanske pusha mötesordförande till att skriva en agenda då det brukar korta ner mötena något avsevärt.
+
+Vad är mitt bidrag till gruppens användning av scrum?
+Jag har hållit i många möten och försökt se till att vi får de gemensamma sakerna som står på våran scrum gjorda som att skapa DoD.
+
+Vad är mitt bidrag till vad gruppen levererar?
+Jag har fokuserat på att göra UI och controllers för variabel och metod editorerna. Jag har även hållit i många möten.

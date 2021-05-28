@@ -1,0 +1,16 @@
+Individuell reflektion Emil Ekroth
+Denna vecka har vi haft vårt första möte med en intressent samt kommit igång att jobba med själva projektet. 
+
+Vad vill jag lära mer om?
+Vi har under denna vecka satt våra KPI:er, jag skulle vilja lära mig mer om huruvida dessa faktiskt hjälper oss med vårt arbete. 
+
+Hur kan jag hjälpa min grupp att lära sig något nytt?
+Min känsla är att denna grupp måste bli bättre på att hålla strukturerade möten med en tydlig agenda för att mötena inte ska ta onödigt lång tid. 
+Jag har lite erfarenhet i detta så jag skulle kunna hjälpa de andra medlemmarna med detta. 
+
+Vad är mitt bidrag till grupppens användning av scrum?
+Jag och Madeleine hade ett scrummaster möte i onsdags där vi gjorde en generell planering inför alla kommande veckor. 
+Vi har även gått igenom våra user stories med intressenten. 
+
+Vad är mitt bidrag till vad gruppen levererar?
+Under denna vecka har jag tillsammans med frontend gruppen skissat upp en user UI. Jag har även gjort en generell plan för projektet och hållit i ett möte. 

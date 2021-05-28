@@ -1,0 +1,16 @@
+Individuell reflektion Emil Ekroth
+Denna vecka har fokus varit på att börja färdigställa programmet. Vi har funderat på vilka delar vi vill implementera och vilka delar vi tror 
+att vi inte kommer att hinna samt försökt implementera de sista större featursarna. 
+
+Vad vill jag lära mer om?
+Denna vecka lärde jag mig lite mer om hur man smidigt kunde använda javafx system för att skicka event calls. Tror det finns mer här att lära sig. 
+
+Hur kan jag hjälpa min grupp att lära sig något nytt?
+Denna vecka har det inte uppstått en situation där vi som grupp har behövt lära sig något nytt. 
+
+Vad är mitt bidrag till grupppens användning av scrum?
+Denna vecka höll jag i mötet med våran stakeholder. Jag har även som vanligt varit delaktig i det gemensamma arbetet med att planera och reflektera över vårt arbete.
+
+Vad är mitt bidrag till vad gruppen levererar?
+Denna vecka har jag fokuserat på att implementera ett system för keyboard shortcuts, ett sätt att selecta och flytta på flera boxar samtidigt 
+samt ett set att deleta boxar i frontend och skicka det till backend.

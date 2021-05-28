@@ -1,0 +1,21 @@
+Individuell reflektion Emil Ekroth
+Denna vecka har vi fokuserat på att bygga ut projektet med features som att spara diagram och dra pilar. 
+Mitt fokus har varit på att bygga upp menyer och hjälpa till med pathfindingen.
+
+Vad vill jag lära mer om?
+I nuläget så skulle jag vilja lära mig mer om hur man delar upp user-stories i bättre delar då det känns som om att alla user-stories vi har är typ klara men 
+alltid har någon obskyr del kvar som gör att vi inte kan kalla dem för 100% klara. 
+
+Hur kan jag hjälpa min grupp att lära sig något nytt?
+Denna vecka har jag hjälpt till med pathfindingen då jag har lite erfarenhet av att göra pathfinding algoritmer. 
+
+Vad är mitt bidrag till grupppens användning av scrum?
+Denna vecka har vi haft väldigt mycket att göra. Det har varit svårt att få ihop alla user stories och att få dem faktiskt klara. 
+Jag har försökt att göra tydliga interfaces för backend att implementera så att vi kan få frontend och backend att fungera tillsammans vilket är ett kritiskt steg 
+för att vi ska kunna kalla en userstory för klar. Tror dock att vi måste ta bort en del av våra userstories då vi har väldigt mycket. 
+
+Vad är mitt bidrag till vad gruppen levererar?
+Jag har fokuserat på att bygga upp menyer och gjort så att UI:t är skalbart utan att alla knappar “flyet runt”. 
+Jag har även agerat support för Emil H i att skapa pathfindingen för pilar och jag har fixat med boxarna så att när attribut läggs till i boxar så visas det 
+upp ordentligt på skärmen. 
+
