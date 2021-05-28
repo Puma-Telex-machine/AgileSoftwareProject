@@ -1,0 +1,20 @@
+During the course of this week, I have learned about loading and saving text files in java.
+Other than that, I can't really point towards anything in particular that I have learned/ will have to learn other than
+the Agile workflow, a process which is progressing fairly steadily.
+
+As mentioned last week, it feels like I've been placed into something like a teaching/guiding position when it comes
+to coding in Java, which has now also extended to being asked to look over and try to solve bugs, particularly when
+it has some relation to code that I myself has written, but sometimes also in more separate cases. Overall, I'd say
+that it is fitting work, and I will continue to do it. There's not many changes that need to be made yet.
+As one of the two people placed in the team's github-focused role, I have also been working on giving advice on the git-usage
+of the team. Again, can't see much that would need changing at the moment.
+
+Similarly to last week, I have not done any standout work when it comes to our use of Scrum, mostly because I have not found
+it to be particularly necessary.
+
+As previously mentioned, I have developed a system for saving and loading diagram files for the program, which notably
+allows the user to theoretically create a valid diagram using a text editor to be loaded into the program.
+Since this part of the program will require updating whenever the necessary data to be saved/loaded changes, I will
+likely continue to work on this system alongside any other user stories we develop.
+
+My contribution to our team reflection remains as it has been previously, which I feel is perfectly fine for now.

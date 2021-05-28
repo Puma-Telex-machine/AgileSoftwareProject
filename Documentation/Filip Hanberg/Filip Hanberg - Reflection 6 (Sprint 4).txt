@@ -1,0 +1,31 @@
+At the end of this work week, the team was forced to deal with a really weird version control issue.
+This was eventually found to be an issue with how Github Desktop does not allow the user to literally remove
+a commit, and instead allows for the creation of an "undo-commit", which just does the reverse of the commit to be undone.
+In this case, a team member decided to undo a merge-commit, causing a large amount of work to dissapear whenever their
+branch was merged back into our "Production" branch.
+
+All this rambling is here to justify why I think it is reasonable to say that the thing I'd like to understand better
+is "why the 'undo commit' command even exists", even though actually reaching an understanding of this is likely impossible.
+
+On a similar note, I'll try to make sure that no more undo-commits occur during the project by informing the rest of
+the team of their danger when I feel it is a good time to do so.
+During our refactoring process which took place over this week I continued my "role" as "code advisor" as described in
+previous reflections. It still feels somewhat odd to be relied upon like this, but it seems to be working out, so I don't really mind.
+
+On the topic of refactoring, it feels important to point out that we cut a lot of planned features at the start of this week.
+Personally, I'd always felt a bit iffy on their inclusion in the project, since a fair few of them were proposed by the team
+rather than the PO, which made for rather odd conversations where it felt like we were convincing him of why they should be
+part of the program. Of course, this made me fairly vocal once the topic of removing them from our planning came up.
+I definitely recognise that I could have (and almost certainly should have) brought up this topic myself, but I suppose
+that is an experience to remember for the future. At the same time, I don't have any major misgivings towards our remaining
+plans for the project, so this isn't really a point to actively work on for the remainder of the course.
+
+Other than that, my contributions towards our use of Scrum has not changed much, and there's nothing I can think of at the moment
+that I'd like to change about this.
+
+I spent this week helping out with the refactoring of our Backend and polishing up the class file used for our file system,
+making it a lot more readable and easier to alter in the future.
+Most of the refactoring job was done by the remaining members of the backend-team over voice chat, So there wasn't a massive
+amount of work for me to do this week (until the bugs at the end happened). I would say that I'd like to find more things to do
+during the remaining project, but our plan for next week will end up with me burdened with some fairly tricky work, so that
+reflection is already null and void.

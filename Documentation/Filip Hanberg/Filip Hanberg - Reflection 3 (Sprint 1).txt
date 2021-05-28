@@ -1,0 +1,15 @@
+I've started to understand the Agile workflow, but I wouldn't say that I've fully understood it quite yet.
+The only real way to make progress is to keep going.
+
+As stated previously, I was in charge of teaching our team about it and Github. I'd say that process was successful.
+Since our work this week focused mostly on creating drafts for our UI and UML, I have yet to be able to see
+just how successful the process was. Next week will have a lot more coding, so we'll see what happens then.
+
+Our first Scrum has come and gone, and I will admit that I have not actively done much for our team's use of scrum.
+I have participated in the parts related to it, of course, but it would be good for me to try to take a slightly more
+active role.
+
+During the week, I was assigned to help design a preliminary UML diagram for our program structure, a process in which
+I made sure I was an active participant, in no small part due to my coworkers(?) trusting my knowledge in program design.
+We also had our first team reflection during the week, where I helped to clarify for the team what the assignment
+expected of us. I imagine that this "role" might continue into the foreseeable future.

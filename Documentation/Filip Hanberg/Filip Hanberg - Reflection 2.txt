@@ -1,0 +1,17 @@
+Last week's reflection was simple, I'll admit.
+At the same time, there really was not much to talk about regarding that first week.
+
+There is not anything in particular that I want to learn or understand better, so I suppose that "the nature of an Agile
+workflow in practice" will have to do; this is something I will naturally begin (and actively strive to) understand
+over the course of our first actual week of Scrum.
+
+As I have been chosen by the team to take special note over our use of Git and Github, I feel that it is my responsibility
+to ensure that all team members have a grasp over the function of these two services. We have, as a team, decided that this
+will, in part, be done during the self study week. I'll be preparing a sort of quickstart-style guide for git (this will
+likely consist of links to already existing material) as well as making a proposal for our standard regarding git-commits
+and pull requests (essentially the code documentation side of our DoD).
+
+We have not yet began working with Scrum.
+
+Apart from actively taking part in the discussion regarding our deliverables, I performed some minor spellchecks and rephrasing
+of our project scope. Not sure how much else I can write on this topic, for now.

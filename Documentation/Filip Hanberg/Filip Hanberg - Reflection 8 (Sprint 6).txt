@@ -1,0 +1,19 @@
+Hey, it's the last reflection!
+
+Even if it didn't come through very clearly in these reflections, I did learn a fair bit about the Agile workflow during the
+course. Overall, it did feel like a lot of the baseline concepts (user stories, sprints, etc.) were familiar to me, a lot
+of the deeper specifics were new to me, and working towards an actual PO was also a very fresh experience.
+
+I ended up learning a fair bit about Git during the course of this project (mostly some of its problems), but I still
+felt like i have helped the rest of my team get a better grasp of Git. Having a better grasp of it now will of course
+also mean that I will be able to help people even more in the future, which is a very nice feeling.
+
+For a future project, it would be interesting to be placed in a role that is more central to the agile workflow.
+As it stands, me not being in such a role led to me not making any particularly significant contributions to our use of Scrum,
+which does feel somewhat underwhelming(?) to me. I do feel good about the contributions I could make, given the situation.
+
+Over the course of this week I ended up fixing most un-/semi-implemented systems that I was responsible for (including creating
+a copy/paste system over the course of, like, one and a half hours), as well as fixing a fair few bugs in the related code.
+In the project overall, my responsibility for the file system ended up somewhat limiting what kind of contributions I could
+make for the team/project, but it doesn't bother me all that much. I'm fairly satisfied with my contribution, and don't see a lot
+of things that I could do better, at least off the top of my head. Is that a bad thing to say in a reflection? eh, whatever.

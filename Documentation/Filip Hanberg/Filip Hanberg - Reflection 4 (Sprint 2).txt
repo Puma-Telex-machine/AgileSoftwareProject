@@ -1,0 +1,19 @@
+I'm definitely starting to get the hang of the workflow now that we've actually done some concrete programming for the project.
+There isn't really much I can think of that I'd like to understand better.
+However, I do know that the work I'll liekly be doing next week will require a bit of learning.
+
+At the moment, there isn't much that I feel like I can do to help people learn better.
+At the same time, I am aware of the fact that some members of the team see me as somewhat of a senior(?) when it comes
+to programming (a sentiment I don't particularly agree with) and will occasionally ask for advice,
+so I suppose "giving advice when prompted" is a pretty decent way of helping people learn.
+
+I've made sure to actively contribute in discussions and meetings. While this does, of course, mean that I help contribute
+to our use of Scrum, I wouldn't say I've done any standout work on that topic.
+
+Over the course of the week, I've been working on creating the basic class layout of the project's backend.
+Specifically, I've defined the classes that represent the various "boxes" in a UML class diagram (classes, interfaces, et cetera).
+The team reflection this week went similarly to our last week, where I helped guide the team somewhat.
+I do know that we aren't quite following the formatting laid out in the course (A, B, A -> B), but that's mainly because
+we feel like the format is a bit hard to use for some of the bulletpoints presented on Canvas (such as the point regarding
+external literature). We're also somewhat unsure if all those bulletpoints are required topics
+or if the 4 headlines are what are intended to be important.

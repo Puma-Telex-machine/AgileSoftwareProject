@@ -1,0 +1,17 @@
+Github continues its attempts to frustrate me, but I do feel like I've gotten a somewhat better grasp of the whole thing.
+Overall the topic of "what I want to learn" feels like a weird topic to me. Most of my learning is done in fairly short
+bursts, so it's difficult for me to pinpoint a specific topic unless it's already on my mind. Sorry about that.
+
+My work on teaching others continues as previously described and unhindered, and I'm fine with that.
+
+We've reshuffled our approach to work a little, in that we now have greater contact with whomever we're working with
+to complete a user story rather than communicating primarily within the frontend/backend teams. This was probably a better
+idea overall, since it allows conversations to be more focused on topics relevant for me/us. My own contribution to our team's
+use of Scrum has stayed largely the same.
+
+I've definitely done more work this week than i did last week, mostly due to my job for the week being the setup for an
+undo/redo system for the program as well as implementing the ability to load in pre-established template files into the user's
+current work. While both of these made for interesting work, they weren't able to be properly finished in time due to issues
+in integrating the frontend with the backend. (this is somewhat of a running theme in the project)
+Also, there's a whole bunch of bugs to fix, so this next week will be fun. I have no particular complaints or proposals for
+improvement regarding my contributions to the project.
