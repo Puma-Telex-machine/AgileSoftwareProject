@@ -1,0 +1,180 @@
+	
+	Week 1.
+
+	What do I want to learn or understand better?
+	How to efficiently divide the workload considering that we all have different backgrounds and experiences
+
+
+	How can I help someone else, or the entire team, to learn something new?
+	Not easy to say, but in general by listening and giving advice and sharing thoughts in areas that I’m familiar with.
+
+
+	What is my contribution towards the team’s use of Scrum?
+	This far, none.
+
+
+	What is my contribution towards the team’s deliveries?
+	Participating in meetings and discussions.
+
+	
+
+
+	Week 2.
+
+	What do I want to learn or understand better?
+	In the end, we decided to make a program for making UML diagrams. As it was quite some time since I used it, I’m not completely up to date with some things of it. Also, 		learning more about git would be great since I have no previous experience of it.
+
+
+	How can I help someone else, or the entire team, to learn something new?
+	One way could be by sharing information that I myself find useful. Even if a group member knows more than me, repetition rarely hurts. 
+	Also by actively participating in the internal discussions I could contribute towards the team in terms of learning.
+	
+
+	What is my contribution towards the team’s use of Scrum?
+	Not very much this far, I’ve now read more about it since I didn’t know very much about the concept prior to this project.
+
+
+	What is my contribution towards the team’s deliveries?
+	I’ve participated in the brainstorming and given input and discussing pros and cons.
+
+
+	
+
+	Week 3, sprint 1.
+
+	What do I want to learn or understand better?
+	We’ve begun creating a UML diagram for our program. It came clear that I needed some repetition on that, 
+	especially when it comes to what arrow every relation is represented by. 
+
+
+	How can I help someone else, or the entire team, to learn something new?
+	By not being shy to give input on different ideas, helping to elaborate the team members’ thought and ideas. 
+	Also it’s very important that each and everyone of us feels confident to speak up, therefore I try my best to contribute to a good atmosphere at our meetings.
+	
+
+	What is my contribution towards the team’s use of Scrum?
+	To make sure that when we divide user stories into smaller tasks, we do so in smaller groups to increase time efficiency. By smaller groups I mean backend and frontend. 
+	And afterwards ensure that everyone gets a say in everything, the group that divided a user story gives a quick run through of the task they have broken down so that everyone 		can share their opinion in case someone wants to change something.
+
+
+	What is my contribution towards the team’s deliveries?
+	I take notes from the meetings with our stakeholder and emphasize what he finds especially important and what he feels that we can cut off or focus less on.
+	By getting it clear what we must prioritize I feel that we can deliver better.
+
+
+	
+
+	Week 4, Sprint 2.
+
+	What do I want to learn or understand better?
+	We talked about different KPIs and determined the ones we wanted to use. Hopefully this will help us to better understand how we work and how we can improve.
+
+
+	How can I help someone else, or the entire team, to learn something new?
+	I struggled to get my compilator to stay up to date with git, so a team member helped adviced me to get vs code. He helped me to install java fx, 
+	we experienced some troubles so I think both he and I learned some from it.
+
+
+	What is my contribution towards the team’s use of Scrum?
+	Perhaps by helping with time estimation for different tasks.
+
+	
+	What is my contribution towards the team’s deliveries?
+	Again by taking notes from the meeting with our stakeholder, I also worked with some code in the relations’ class.
+
+
+	
+
+	Week 5, Sprint 3.
+
+	What do I want to learn or understand better?
+	In the backend group we talked about pathfinding for the arrows, one person mentioned aStar which I remember slightly from the algorithms and datastructures’ course. 
+	It would be nice to get a better grip on search algorithms’ in general and particularly the aStar algorithm.
+
+	
+	How can I help someone else, or the entire team, to learn something new?
+	In the backend group this sprint’s tasks were quite advanced, I didn’t feel like I really could contribute on my own, at least in terms of code writing. 
+	Therefore me and another one from the backend group made java documentation for the already existing code. 
+	This raised some questions of how a few methods were intended to work. It felt like we had a good discussion about it. 
+	Hopefully this will help the other team members to better understand the code, especially the ones from the frontend group.
+	
+
+	What is my contribution towards the team’s use of Scrum?
+	By discussing with the group about what our stakeholder said, how we can implement it.
+
+
+	What is my contribution towards the team’s deliveries?
+	Again, I took notes from the Monday’s meeting with our stakeholder. Also the KPIs were brought up to discussion.
+	Apart from that I didn’t contribute very much, as I had a lot to do with the bachelor’s thesis that I’m writing.
+
+
+
+
+	Week 6, Sprint 4.
+
+	What do I want to learn or understand better?
+	This week, most of the time spent with the backend group went to refactorizing the relations’ class. While doing so we spoke a bit about complexity and scalability. 
+	It would be rewarding for future projects to learn more about different solutions for that.
+	
+
+	How can I help someone else, or the entire team, to learn something new?
+	By bringing up questions about the refactoring, maybe others had the same questions but didn’t feel like asking the question.
+	
+
+	What is my contribution towards the team’s use of Scrum?
+	Participating in our weekly meetings, doing the scrum poker, discussing what we’ve come up with and giving support wherever needed.
+
+
+	What is my contribution towards the team’s deliveries?
+	Refactoring the code, making it neater and more coherent. Also taking notes from our stakeholder again, which helped us narrow down our priorities.
+
+
+
+
+	Week 7, Sprint 5.
+
+	What do I want to learn or understand better?
+	The pathfinding for the arrows. Even though I understand the basics and some implementations of aStar, this specific implementation would be nice to understand thoroughly. 
+	Also from last week after refactoring the code we decided that I should come up with a draft of which relations we want to be “suggested” for each pair of boxes. 
+	In order to do this I had to do some research on relations in UML-diagrams.
+	
+
+	How can I help someone else, or the entire team, to learn something new?
+	By sharing my findings on the relations for UML-diagrams. I feel like many of us only are confident and familiar with the most ordinary ones.
+	
+
+	What is my contribution towards the team’s use of Scrum?
+	Filling in the KPIs, discussing our situation and what’s next to do.	
+
+
+	What is my contribution towards the team’s deliveries?
+	Doing the draft on the relation types, since it would save us alot of time if one of us comes up with a suggestion that the team can agree or disagree on, partly or completely. 
+
+	
+
+
+	Week 8, Sprint 6.
+
+	What do I want to learn or understand better?
+	I would like to learn some frameworks for presenting IT-projects. I already know some frameworks on pitching in general and we tried to implement some general ideas of it in 		the presentation.
+
+
+	How can I help someone else, or the entire team, to learn something new?
+	During the creation of the presentation a few bugs were discovered, some of them new and some of them previously known by other team members. This brought attention to it so we 	could work it out.
+
+
+	What is my contribution towards the team’s use of Scrum?
+	Discussing the the meeting with our stakeholder, agreeing on that we should cut off the ”suggest arrow” function.	
+
+
+	What is my contribution towards the team’s deliveries?
+	This week the other I-student and I had our deadline for the bachelor’s thesis, so we were pretty stressed out. Like usually I took notes from the meeting with our stakeholder. 
+	I participated in our other meetings, gave input and shared thoughts. I also created the presentation-demo together with another team member. 
+	Prior to creating the presentation we discussed a lot within the group what we wanted to show and highlight in the presentation.
+
+
+	
+
+	
+
+
