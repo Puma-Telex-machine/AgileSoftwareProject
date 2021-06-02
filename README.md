@@ -1,4 +1,4 @@
-# AgileSoftwareProject
+# Puma Telex Machine - AgileSoftwareProject
 
 This is the repository of the group Puma-Telex Machine for the course DAT257 "Agile software project management" at the Chalmers University of Technology.
 
