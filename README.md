@@ -33,6 +33,7 @@ adam2524: Adam Sandén
 ## Usage
 
 The application can be ran by using the Executable Jar File "AgileSoftwareProject.jar" which is present at the top of the project.
+As previously mentioned, the project has been built in Java 16.
 
 The menus at the left of the screen allows the user to load diagram files, add new boxes to the program, and load in template files, respectively.
 
